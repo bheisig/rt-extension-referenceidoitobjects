@@ -42,6 +42,8 @@ C<RT_HOME/etc/RT_SiteConfig>:
 
 FIXME more variables...
 
+    Set($IDoitURL, 'http://localhost/i-doit/?api=jsonrpc');
+
 
 =head1 AUTHOR
 

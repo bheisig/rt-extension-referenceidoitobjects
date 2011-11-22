@@ -1,0 +1,16 @@
+@CustomFields = (
+    {
+        Name => 'IDoitObject',
+        Type => 'FreeformSingle',
+        LookupType => 'RT::Queue-RT::Ticket',
+        Disabled => 0,
+        Description => 'Reference to an i-doit object'
+    },
+    {
+        Name => 'IDoitMandator',
+        Type => 'SelectSingle',
+        LookupType => 'RT::Queue-RT::Ticket',
+        Disabled => 0,
+        Description => 'i-doit mandator'
+    }
+)
