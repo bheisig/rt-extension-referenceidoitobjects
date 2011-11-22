@@ -1,0 +1,12 @@
+<input type="text" id="<% $Name %>" name="<% $Name %>" value="<% $Value %>" size="<% $Size %>" />
+
+<%init>
+$Value = $Value || $Default;
+</%init>
+
+<%args>
+$Default => 0
+$Value => 0
+$Name => 'IDoitObject'
+$Size => 16
+</%args>

@@ -1,0 +1,49 @@
+NAME
+    RT::Extension::ReferenceIDoitObject - Create a ticket in relation to an
+    i-doit object
+
+DESCRIPTION
+    FIXME
+
+INSTALLATION
+    This extension requires a running i-doit >= 0.9.9-8 installation.
+
+    To install this extension, run the following commands:
+
+        perl Makefile.PL
+        make
+        make test
+        make install
+
+CONFIGURATION
+  RT SITE CONFIGURATION
+    To enabled this condition edit the RT site configuration based in
+    "RT_HOME/etc/RT_SiteConfig":
+
+        Set(@Plugins,qw(RT::Extension::ReferenceIDoitObject));
+
+    FIXME more variables...
+
+AUTHOR
+    Benjamin Heisig, <bheisig@synetics.de>
+
+SUPPORT AND DOCUMENTATION
+    You can find documentation for this module with the perldoc command.
+
+        perldoc RT::Extension::ReferenceIDoitObject
+
+BUGS
+    Please report any bugs or feature requests to the author.
+
+ACKNOWLEDGEMENTS
+    Special thanks to the synetics GmbH, "<http://i-doit.org/>" for
+    initiating and supporting this project!
+
+COPYRIGHT AND LICENSE
+    Copyright 2011 Benjamin Heisig, <bheisig@synetics.de>
+
+    This program is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+
+    Request Tracker (RT) is Copyright Best Practical Solutions, LLC.
+

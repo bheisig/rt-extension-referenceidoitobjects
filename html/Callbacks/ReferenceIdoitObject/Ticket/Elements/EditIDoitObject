@@ -1,0 +1,11 @@
+<table>
+  <tr>
+    <td class="label"><&|/l&>i-doit</&>:</td>
+    <td class="entry"><& /Elements/SelectIDoitObject, current => 0 &></td>
+  </tr>
+</table>
+
+<%ARGS>
+
+</%ARGS>
+

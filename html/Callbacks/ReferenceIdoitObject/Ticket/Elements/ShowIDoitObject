@@ -1,0 +1,10 @@
+<table>
+  <tr>
+    <td class="label"><&|/l&>i-doit</&>:</td>\
+    <td class="value"><% $Ticket->IDoitObject %></td>
+  </tr>
+</table>
+<%ARGS>
+$Ticket => undef
+</%ARGS>
+

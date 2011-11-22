@@ -1,0 +1,25 @@
+--- #YAML:1.0
+abstract: 'Create a ticket in relation to an i-doit object'
+author:
+  - 'Benjamin Heisig <bheisig@synetics.de>'
+build_requires:
+  ExtUtils::MakeMaker: 6.42
+configure_requires:
+  ExtUtils::MakeMaker: 6.42
+requires:
+  perl: 5.10.0
+distribution_type: module
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: RT-Extension-ReferenceIDoitObject
+no_index:
+  directory:
+    - html
+    - inc
+    - t
+resources:
+  license: http://dev.perl.org/licenses/
+  repository: git://git.benjaminheisig.net/rt-extension-referenceidoitobject.git
+version: 0.1

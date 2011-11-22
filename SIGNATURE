@@ -1,0 +1,51 @@
+This file contains message digests of all files listed in MANIFEST,
+signed via the Module::Signature module, version 0.68.
+
+To verify the content in this distribution, first make sure you have
+Module::Signature installed, then type:
+
+    % cpansign -v
+
+It will check each file's integrity, as well as the signature's
+validity.  If "==> Signature verified OK! <==" is not displayed,
+the distribution may already have been compromised, and you should
+not run its Makefile.PL or Build.PL.
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+SHA1 4794c98011c2fb963d376987422ea1e7892aa3e2 Changes
+SHA1 03de990f13b886fa3f4892092faba59f8790fa57 MANIFEST
+SHA1 afda31d8a96f99e3099b5e32203d6b818f709678 META.yml
+SHA1 71d516ea8af884635056c89cb0747d1bd3c7158b Makefile.PL
+SHA1 1f925a36d7460693da4273cc207fe95405308a66 README
+SHA1 e2e4a19d2618a9644b28d177b623735e82f27de8 html/Callbacks/ReferenceIdoitObject/Elements/SelectIDoitObject
+SHA1 c05f2baeab5c54ddd842a40578438a21b17eb300 html/Callbacks/ReferenceIdoitObject/Ticket/Create.html/AfterBasics
+SHA1 5898cb983f649d8b96b62a7ba50e98eb3e368c49 html/Callbacks/ReferenceIdoitObject/Ticket/Elements/EditIDoitObject
+SHA1 dc951b17b4e2f6347b6a3f9f4fc8415134a3718e html/Callbacks/ReferenceIdoitObject/Ticket/Elements/ShowIDoitObject
+SHA1 59e69e8b99149999c0c74e6031def042569410aa inc/Module/AutoInstall.pm
+SHA1 eba6465ce5287959acc940e75b080205960b7ac6 inc/Module/Install.pm
+SHA1 9dc7102b5e2c3a791205ecc4f9d84a56632253ef inc/Module/Install/AutoInstall.pm
+SHA1 b1cf7431800187990981684e7f67e572e8f7a631 inc/Module/Install/Base.pm
+SHA1 8550a7c7d2ed0632f8bdb3b741dfccaa013a1403 inc/Module/Install/Can.pm
+SHA1 73b01297ba83de8dbe4a87f70bbad0460f973ae2 inc/Module/Install/Fetch.pm
+SHA1 cb6547200d5494081535f3d91d76dc4364ad1029 inc/Module/Install/Include.pm
+SHA1 318ae9c85a1e1c4b7be1586e7e93713714ba93f8 inc/Module/Install/Makefile.pm
+SHA1 27edaaee2dc9d9b0be98e09ae82e5fe81cd58ba6 inc/Module/Install/Metadata.pm
+SHA1 e51d256f3c61dc968e1f3226d04c6fd06c3586d8 inc/Module/Install/RTx.pm
+SHA1 5c589819986050dd79faf8572992a9790ae89f2e inc/Module/Install/RTx/Factory.pm
+SHA1 dc972927565015ffbbaae806ff44634cae6fa1d2 inc/Module/Install/ReadmeFromPod.pm
+SHA1 0ae795f0a9b6783872d393f92f9dc7173f7632e9 inc/Module/Install/Win32.pm
+SHA1 2ad05d85780f32385e90fc76da59f635d453e29a inc/Module/Install/WriteAll.pm
+SHA1 d2b4810cf9687c20828848f97b3388468d0d794e lib/RT/Extension/ReferenceIDoitObject.pm
+SHA1 02abf7e881101b9455dce0756eb364b7ed69d7d0 t/00-load.t
+SHA1 56a1a2c7bd6ca715cc9304119bbdd22ab31f8dfd t/boilerplate.t
+SHA1 0b1c5a2d59be6bfa7d60c64cd964fea6a0331705 t/pod-coverage.t
+SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+
+iEYEARECAAYFAk7LmZsACgkQWFkxZRfLwXKtZACeKf2OSYHBLZa+Zwu9miDgJRER
+ul8AoNSjHZ1GAtBjak/zzBBJJkIQ4VSK
+=BlqI
+-----END PGP SIGNATURE-----
