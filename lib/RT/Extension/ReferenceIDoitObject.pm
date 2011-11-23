@@ -46,10 +46,20 @@ i-doit has a built-in API based on JSON-RPC. To call this API set its URL:
 
     Set($IDoitAPI, 'http://localhost/i-doit/?api=jsonrpc');
 
+    Set($IDoitUser, 'admin');
 
-=head1 AUTHOR
+    Set($IDoitPassword, '21232f297a57a5a743894a0e4a801fc3'); # 'admin'
+
+The password is MD5 encoded. It's highly recommended to establish an encrypted
+connection between RT and i-doit, e. g. TLS over HTTP (HTTPS). You also need a
+mandator who owns the objects, but this is handled while creating a ticket.
+
+
+=head1 AUTHORS
 
 Benjamin Heisig, E<lt>bheisig@synetics.deE<gt>
+
+Leonard Fischer, E<lt>lfischer@synetics.deE<gt>
 
 
 =head1 SUPPORT AND DOCUMENTATION
@@ -61,18 +71,12 @@ You can find documentation for this module with the perldoc command.
 
 =head1 BUGS
 
-Please report any bugs or feature requests to the L<author|/"AUTHOR">.
-
-
-=head1 ACKNOWLEDGEMENTS
-
-Special thanks to the synetics GmbH, C<< <http://i-doit.org/> >> for initiating
-and supporting this project!
+Please report any bugs or feature requests to the L<author|/"AUTHORS">.
 
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2011 Benjamin Heisig, E<lt>bheisig@synetics.deE<gt>
+Copyright 2011 synetics GmbH, E<lt>http://i-doit.org/E<gt>
 
 This program is free software; you can redistribute it and/or modify it under
 the same terms as Perl itself.

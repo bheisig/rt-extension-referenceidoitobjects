@@ -1,3 +1,4 @@
+<&| /Widgets/TitleBox, title => loc('i-doit') &>
 <table>
   <tr>
     <td class="labeltop"><&|/l&>i-doit</&>:</td>

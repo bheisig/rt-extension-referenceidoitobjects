@@ -2,6 +2,7 @@
 abstract: 'Create a ticket in relation to an i-doit object'
 author:
   - 'Benjamin Heisig <bheisig@synetics.de>'
+  - 'Leonard Fischer <lfischer@synetics.de>'
 build_requires:
   ExtUtils::MakeMaker: 6.42
 configure_requires:
