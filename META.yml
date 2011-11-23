@@ -16,6 +16,7 @@ meta-spec:
 name: RT-Extension-ReferenceIDoitObject
 no_index:
   directory:
+    - etc
     - html
     - inc
     - t

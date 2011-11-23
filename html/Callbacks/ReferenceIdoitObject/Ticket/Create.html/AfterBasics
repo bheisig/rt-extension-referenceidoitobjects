@@ -1,5 +1,4 @@
 <&| /Widgets/TitleBox, title => loc("i-doit"), class=>'ticket-info-basics' &>
-    <input type="hidden" class="hidden" name="IDoitObject" value="<% $QueueObj->IDoitObject %>" />
     <table width="100%" border="0">
         <& /Ticket/Elements/EditIDoitObject,
             InTable => 1,
@@ -7,8 +6,8 @@
                 {   name => 'IDoitObject',
                     comp => '/Ticket/Elements/ShowIDoitObject',
                     args => {
-                        Name            => 'IDoitObject',
-                        Default         => $ARGS{IDoitObject},
+                        Name            => 'IDoitObjectBrowser',
+                        Default         => $ARGS{IDoitObjectBrowser},
                         DefaultValue    => 0,
                         SkipDeleted     => 1,
                         QueueObj => $QueueObj,

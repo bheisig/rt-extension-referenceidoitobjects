@@ -28,6 +28,7 @@ To install this extension, run the following commands:
     make
     make test
     make install
+    make initdb
 
 
 =head1 CONFIGURATION

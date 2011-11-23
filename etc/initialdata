@@ -1,16 +1,18 @@
 @CustomFields = (
     {
-        Name => 'IDoitObject',
-        Type => 'FreeformSingle',
-        LookupType => 'RT::Queue-RT::Ticket',
-        Disabled => 0,
-        Description => 'Reference to an i-doit object'
+        Name            => 'i-doit object',
+        Type            => 'FreeformSingle',
+        LookupType      => 'RT::Queue-RT::Ticket',
+        Disabled        => 0,
+        Description     => 'Reference to an i-doit object',
+        Values          => ['1']
     },
     {
-        Name => 'IDoitMandator',
-        Type => 'SelectSingle',
-        LookupType => 'RT::Queue-RT::Ticket',
-        Disabled => 0,
-        Description => 'i-doit mandator'
+        Name            => 'i-doit mandator',
+        Type            => 'SelectSingle',
+        LookupType      => 'RT::Queue-RT::Ticket',
+        RenderType      => 'Select box'
+        Disabled        => 0,
+        Description     => 'i-doit mandator who owns the objects (defaults to '1')'
     }
 )
