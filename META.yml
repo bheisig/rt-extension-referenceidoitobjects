@@ -8,6 +8,7 @@ configure_requires:
   ExtUtils::MakeMaker: 6.42
 requires:
   perl: 5.10.0
+  rt: 4.0.0
 distribution_type: module
 license: perl
 meta-spec:

@@ -15,13 +15,13 @@ not run its Makefile.PL or Build.PL.
 Hash: SHA1
 
 SHA1 41f6c7a237d8966853431f17b452e963cd4fdce4 Changes
-SHA1 4c9238bd32fc059b7e8bd8f1e5dac4ae2b204bab MANIFEST
-SHA1 59ca2273211403efe4195b8e8fe20d27ca67a060 META.yml
-SHA1 9c58caef08c11f13945f7baf01e3e0c39eecd310 Makefile.PL
+SHA1 b26294d2b67ef8b741ff9cd363de20199446438c MANIFEST
+SHA1 b404e8a41a870234981e467aaf43440e6cc84905 META.yml
+SHA1 1397b0915ed9dac1a4e4db9e8d008c902ec86779 Makefile.PL
 SHA1 c6c23607a47399443e68a938de3ddb1c71914fc5 README
-SHA1 3490c7aacc1adb9b0e85e4b52da7fd2520804158 TODO
-SHA1 2d13e8e3a6b46ffafbcf52be745dc155408f6336 etc/initialdata
-SHA1 9a67c60c0de62a185d576689ce6db052b53b305c html/Callbacks/ReferenceIdoitObject/Ticket/Create.html/AfterBasics
+SHA1 077e5a7a4ca47018455b75ff080d1d6fdee82cb7 etc/initialdata
+SHA1 97f9d95ffa70e300e35ac55c998b92b32140c992 html/Callbacks/ReferenceIdoitObject/Ticket/Create.html/AfterBasics
+SHA1 4ecae6c4cb498785d30e4f7bd842790fe6dff4c9 html/Callbacks/ReferenceIdoitObject/Ticket/Elements/ShowSummary/LeftColumn
 SHA1 25f0cc8da6acf766ce2bee1a7ce1390e4f4ba2f8 html/Elements/SelectIDoitObject
 SHA1 25f0cc8da6acf766ce2bee1a7ce1390e4f4ba2f8 html/Elements/ShowIDoitObject
 SHA1 7f058f335bdb3ad2413625c21c45d21b2a107593 html/Ticket/Elements/EditIDoitObject
@@ -40,7 +40,7 @@ SHA1 5c589819986050dd79faf8572992a9790ae89f2e inc/Module/Install/RTx/Factory.pm
 SHA1 dc972927565015ffbbaae806ff44634cae6fa1d2 inc/Module/Install/ReadmeFromPod.pm
 SHA1 0ae795f0a9b6783872d393f92f9dc7173f7632e9 inc/Module/Install/Win32.pm
 SHA1 2ad05d85780f32385e90fc76da59f635d453e29a inc/Module/Install/WriteAll.pm
-SHA1 251de20320067d035e94e17f85ab1c5cb180eaa1 lib/RT/Extension/ReferenceIDoitObject.pm
+SHA1 ddad44f53c9e0c38822e10d1410872c387e118c5 lib/RT/Extension/ReferenceIDoitObject.pm
 SHA1 02abf7e881101b9455dce0756eb364b7ed69d7d0 t/00-load.t
 SHA1 56a1a2c7bd6ca715cc9304119bbdd22ab31f8dfd t/boilerplate.t
 SHA1 0b1c5a2d59be6bfa7d60c64cd964fea6a0331705 t/pod-coverage.t
@@ -48,7 +48,7 @@ SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEUEARECAAYFAk7MunUACgkQWFkxZRfLwXLFXQCTBmHXpCxzn5stSSPm7Acbqmev
-9wCgupN7HPWDknji8UHvDiyL/ljjAjc=
-=kq5O
+iEYEARECAAYFAk7Mx34ACgkQWFkxZRfLwXJOnwCgr8aJyMetHOa7hx/x1RVkbtX6
+ghkAoMeUd0fYNFqoeg6tERTdEdBkOfs0
+=I0Tm
 -----END PGP SIGNATURE-----

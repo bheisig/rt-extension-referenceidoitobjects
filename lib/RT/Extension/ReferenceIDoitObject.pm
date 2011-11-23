@@ -20,7 +20,8 @@ FIXME
 
 =head1 INSTALLATION
 
-This extension requires a running i-doit >= 0.9.9-8 installation.
+This extension requires RT >= 4.0.0 and a running i-doit >= 0.9.9-8
+installation.
 
 To install this extension, run the following commands:
 
@@ -41,9 +42,9 @@ C<RT_HOME/etc/RT_SiteConfig>:
 
     Set(@Plugins,qw(RT::Extension::ReferenceIDoitObject));
 
-FIXME more variables...
+i-doit has a built-in API based on JSON-RPC. To call this API set its URL:
 
-    Set($IDoitURL, 'http://localhost/i-doit/?api=jsonrpc');
+    Set($IDoitAPI, 'http://localhost/i-doit/?api=jsonrpc');
 
 
 =head1 AUTHOR

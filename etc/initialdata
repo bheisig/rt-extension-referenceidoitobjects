@@ -12,7 +12,7 @@
         LookupType => 'RT::Queue-RT::Ticket',
         RenderType => 'Dropdown',
         Disabled => 0,
-        Description => 'i-doit mandator who owns the objects (defaults to "1")',
+        Description => 'i-doit mandator who owns the objects',
         Values => [
             { Name => '1', SortOrder => 1 }
         ]

@@ -1,0 +1,14 @@
+<table>
+  <tr>
+    <td class="labeltop"><&|/l&>i-doit</&>:</td>
+    <td class="value"><& /Ticket/Elements/ShowIDoitObject, Ticket => $Ticket &></td>
+  </tr>
+</table>
+
+<%INIT>
+
+</%INIT>
+
+<%ARGS>
+$Ticket => undef
+</%ARGS>
