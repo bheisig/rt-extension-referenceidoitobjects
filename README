@@ -14,6 +14,7 @@ INSTALLATION
         make
         make test
         make install
+        make initdb
 
 CONFIGURATION
   RT SITE CONFIGURATION
@@ -23,6 +24,8 @@ CONFIGURATION
         Set(@Plugins,qw(RT::Extension::ReferenceIDoitObject));
 
     FIXME more variables...
+
+        Set($IDoitURL, 'http://localhost/i-doit/?api=jsonrpc');
 
 AUTHOR
     Benjamin Heisig, <bheisig@synetics.de>

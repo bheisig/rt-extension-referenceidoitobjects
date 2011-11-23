@@ -14,15 +14,18 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 4794c98011c2fb963d376987422ea1e7892aa3e2 Changes
-SHA1 03de990f13b886fa3f4892092faba59f8790fa57 MANIFEST
-SHA1 afda31d8a96f99e3099b5e32203d6b818f709678 META.yml
-SHA1 71d516ea8af884635056c89cb0747d1bd3c7158b Makefile.PL
-SHA1 1f925a36d7460693da4273cc207fe95405308a66 README
-SHA1 e2e4a19d2618a9644b28d177b623735e82f27de8 html/Callbacks/ReferenceIdoitObject/Elements/SelectIDoitObject
-SHA1 c05f2baeab5c54ddd842a40578438a21b17eb300 html/Callbacks/ReferenceIdoitObject/Ticket/Create.html/AfterBasics
-SHA1 5898cb983f649d8b96b62a7ba50e98eb3e368c49 html/Callbacks/ReferenceIdoitObject/Ticket/Elements/EditIDoitObject
-SHA1 dc951b17b4e2f6347b6a3f9f4fc8415134a3718e html/Callbacks/ReferenceIdoitObject/Ticket/Elements/ShowIDoitObject
+SHA1 41f6c7a237d8966853431f17b452e963cd4fdce4 Changes
+SHA1 4c9238bd32fc059b7e8bd8f1e5dac4ae2b204bab MANIFEST
+SHA1 59ca2273211403efe4195b8e8fe20d27ca67a060 META.yml
+SHA1 9c58caef08c11f13945f7baf01e3e0c39eecd310 Makefile.PL
+SHA1 c6c23607a47399443e68a938de3ddb1c71914fc5 README
+SHA1 3490c7aacc1adb9b0e85e4b52da7fd2520804158 TODO
+SHA1 2d13e8e3a6b46ffafbcf52be745dc155408f6336 etc/initialdata
+SHA1 9a67c60c0de62a185d576689ce6db052b53b305c html/Callbacks/ReferenceIdoitObject/Ticket/Create.html/AfterBasics
+SHA1 25f0cc8da6acf766ce2bee1a7ce1390e4f4ba2f8 html/Elements/SelectIDoitObject
+SHA1 25f0cc8da6acf766ce2bee1a7ce1390e4f4ba2f8 html/Elements/ShowIDoitObject
+SHA1 7f058f335bdb3ad2413625c21c45d21b2a107593 html/Ticket/Elements/EditIDoitObject
+SHA1 facb7062d2620e55d3f9fdb70d80c5ffbcf22a01 html/Ticket/Elements/ShowIDoitObject
 SHA1 59e69e8b99149999c0c74e6031def042569410aa inc/Module/AutoInstall.pm
 SHA1 eba6465ce5287959acc940e75b080205960b7ac6 inc/Module/Install.pm
 SHA1 9dc7102b5e2c3a791205ecc4f9d84a56632253ef inc/Module/Install/AutoInstall.pm
@@ -37,7 +40,7 @@ SHA1 5c589819986050dd79faf8572992a9790ae89f2e inc/Module/Install/RTx/Factory.pm
 SHA1 dc972927565015ffbbaae806ff44634cae6fa1d2 inc/Module/Install/ReadmeFromPod.pm
 SHA1 0ae795f0a9b6783872d393f92f9dc7173f7632e9 inc/Module/Install/Win32.pm
 SHA1 2ad05d85780f32385e90fc76da59f635d453e29a inc/Module/Install/WriteAll.pm
-SHA1 d2b4810cf9687c20828848f97b3388468d0d794e lib/RT/Extension/ReferenceIDoitObject.pm
+SHA1 251de20320067d035e94e17f85ab1c5cb180eaa1 lib/RT/Extension/ReferenceIDoitObject.pm
 SHA1 02abf7e881101b9455dce0756eb364b7ed69d7d0 t/00-load.t
 SHA1 56a1a2c7bd6ca715cc9304119bbdd22ab31f8dfd t/boilerplate.t
 SHA1 0b1c5a2d59be6bfa7d60c64cd964fea6a0331705 t/pod-coverage.t
@@ -45,7 +48,7 @@ SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAk7LmZsACgkQWFkxZRfLwXKtZACeKf2OSYHBLZa+Zwu9miDgJRER
-ul8AoNSjHZ1GAtBjak/zzBBJJkIQ4VSK
-=BlqI
+iEUEARECAAYFAk7MunUACgkQWFkxZRfLwXLFXQCTBmHXpCxzn5stSSPm7Acbqmev
+9wCgupN7HPWDknji8UHvDiyL/ljjAjc=
+=kq5O
 -----END PGP SIGNATURE-----

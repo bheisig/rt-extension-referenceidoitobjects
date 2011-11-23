@@ -1,10 +1,10 @@
 <&| /Widgets/TitleBox, title => loc("i-doit"), class=>'ticket-info-basics' &>
     <table width="100%" border="0">
-        <& Elements/EditIDoitObject,
+        <& /Ticket/Elements/EditIDoitObject,
             InTable => 1,
             fields  => [
                 {   name => 'IDoitObject',
-                    comp => 'Elements/ShowIDoitObject',
+                    comp => '/Ticket/Elements/ShowIDoitObject',
                     args => {
                         Name            => 'IDoitObjectBrowser',
                         Default         => $ARGS{IDoitObjectBrowser},
