@@ -15,10 +15,11 @@ not run its Makefile.PL or Build.PL.
 Hash: SHA1
 
 SHA1 41f6c7a237d8966853431f17b452e963cd4fdce4 Changes
-SHA1 b26294d2b67ef8b741ff9cd363de20199446438c MANIFEST
+SHA1 21f455a6957260d5bc71fc147c59ed64fbb27d3b MANIFEST
 SHA1 749fc82543f13eb5fec9042272c5db8bd8239901 META.yml
 SHA1 1397b0915ed9dac1a4e4db9e8d008c902ec86779 Makefile.PL
 SHA1 8df697f9b3fbe7e7118151289121bf8a598d7ebd README
+SHA1 8836b76335b754bafeb1080b70b631ae1e518a9a etc/i-doit_api_proxy.php
 SHA1 077e5a7a4ca47018455b75ff080d1d6fdee82cb7 etc/initialdata
 SHA1 97f9d95ffa70e300e35ac55c998b92b32140c992 html/Callbacks/ReferenceIdoitObject/Ticket/Create.html/AfterBasics
 SHA1 668499c85b605ab9b0a2f9b7026b5a6409506da0 html/Callbacks/ReferenceIdoitObject/Ticket/Elements/ShowSummary/LeftColumn
@@ -48,7 +49,7 @@ SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAk7NG30ACgkQWFkxZRfLwXIKywCfTE96nvwOTsDmPFFwN2doQFHD
-Wf8AnRn/lPMbdj83AswwqbRqIxvriHwA
-=NBum
+iEYEARECAAYFAk7U/gMACgkQWFkxZRfLwXJyxgCfWQoJTbwbxatxC+2YsNrTdAeD
+2EgAn06M4hRTzHwXZtMAqoVlJQFbRQq/
+=Ln82
 -----END PGP SIGNATURE-----
