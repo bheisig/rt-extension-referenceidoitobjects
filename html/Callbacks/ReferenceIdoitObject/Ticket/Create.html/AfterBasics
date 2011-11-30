@@ -1,4 +1,4 @@
-<&| /Widgets/TitleBox, title => loc("i-doit"), class=>'ticket-info-basics' &>
+<&| /Widgets/TitleBox, title => loc('i-doit'), class => 'ticket-info-basics' &>
     <table width="100%" border="0">
         <& /Ticket/Elements/EditIDoitObject,
             InTable => 1,

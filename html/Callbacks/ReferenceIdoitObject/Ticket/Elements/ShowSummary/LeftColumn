@@ -1,13 +1,22 @@
-<&| /Widgets/TitleBox, title => loc('i-doit') &>
+<&| /Widgets/TitleBox,
+    title => loc('i-doit'),
+    (($can_modify || $can_modify_idoitobject) ? (title_href => RT->Config->Get('WebPath')."/Ticket/ModifyIDoitObject.html?id=".$Ticket->Id) : ()),
+    class => 'ticket-info-basics'
+&>
 <table>
   <tr>
     <td class="labeltop"><&|/l&>i-doit</&>:</td>
     <td class="value"><& /Ticket/Elements/ShowIDoitObject, Ticket => $Ticket &></td>
   </tr>
 </table>
+</&>
 
 <%INIT>
-
+my $can_modify = $Ticket->CurrentUserHasRight('ModifyTicket');
+my $can_modify_idoitobject =
+    $Ticket->CurrentUserHasRight('OwnTicket') ||
+    $Ticket->CurrentUserHasRight('TakeTicket') ||
+    $Ticket->CurrentUserHasRight('StealTicket');
 </%INIT>
 
 <%ARGS>

@@ -15,18 +15,19 @@ not run its Makefile.PL or Build.PL.
 Hash: SHA1
 
 SHA1 41f6c7a237d8966853431f17b452e963cd4fdce4 Changes
-SHA1 21f455a6957260d5bc71fc147c59ed64fbb27d3b MANIFEST
+SHA1 049afeba2c4576416ac78e6bd17bd0e04aa8ea49 MANIFEST
 SHA1 749fc82543f13eb5fec9042272c5db8bd8239901 META.yml
 SHA1 1397b0915ed9dac1a4e4db9e8d008c902ec86779 Makefile.PL
 SHA1 8df697f9b3fbe7e7118151289121bf8a598d7ebd README
 SHA1 8836b76335b754bafeb1080b70b631ae1e518a9a etc/i-doit_api_proxy.php
 SHA1 077e5a7a4ca47018455b75ff080d1d6fdee82cb7 etc/initialdata
-SHA1 97f9d95ffa70e300e35ac55c998b92b32140c992 html/Callbacks/ReferenceIdoitObject/Ticket/Create.html/AfterBasics
-SHA1 668499c85b605ab9b0a2f9b7026b5a6409506da0 html/Callbacks/ReferenceIdoitObject/Ticket/Elements/ShowSummary/LeftColumn
-SHA1 25f0cc8da6acf766ce2bee1a7ce1390e4f4ba2f8 html/Elements/SelectIDoitObject
-SHA1 25f0cc8da6acf766ce2bee1a7ce1390e4f4ba2f8 html/Elements/ShowIDoitObject
+SHA1 bfe1904372c094d7c0e093aecd842206997f5b0c html/Callbacks/ReferenceIdoitObject/Ticket/Create.html/AfterBasics
+SHA1 125d5f1525cdee69c05690abeb98097a1339f360 html/Callbacks/ReferenceIdoitObject/Ticket/Elements/ShowSummary/LeftColumn
+SHA1 c97ec4757748d0721864fae3a7cfd882167430f7 html/Elements/SelectIDoitObject
+SHA1 c97ec4757748d0721864fae3a7cfd882167430f7 html/Elements/ShowIDoitObject
 SHA1 7f058f335bdb3ad2413625c21c45d21b2a107593 html/Ticket/Elements/EditIDoitObject
 SHA1 facb7062d2620e55d3f9fdb70d80c5ffbcf22a01 html/Ticket/Elements/ShowIDoitObject
+SHA1 d39c7e64587f64432e3f06e5c124f63dc5ab1edb html/Ticket/ModifyIDoitObject.html
 SHA1 59e69e8b99149999c0c74e6031def042569410aa inc/Module/AutoInstall.pm
 SHA1 eba6465ce5287959acc940e75b080205960b7ac6 inc/Module/Install.pm
 SHA1 9dc7102b5e2c3a791205ecc4f9d84a56632253ef inc/Module/Install/AutoInstall.pm
@@ -49,7 +50,7 @@ SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAk7U/gMACgkQWFkxZRfLwXJyxgCfWQoJTbwbxatxC+2YsNrTdAeD
-2EgAn06M4hRTzHwXZtMAqoVlJQFbRQq/
-=Ln82
+iEYEARECAAYFAk7WOI8ACgkQWFkxZRfLwXKGFQCgu3Mj6rKwoMokvGs7HWse2QXY
+1QEAnjctgn8mijiJOI0qDAE6PCsbeWIl
+=nYuQ
 -----END PGP SIGNATURE-----

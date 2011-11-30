@@ -1,11 +1,11 @@
 <input type="hidden" id="<% $Name %>" name="<% $Name %>" value="<% $Value %>" />
 
-<%init>
+<%INIT>
 $Value = $Value || $Default;
-</%init>
+</%INIT>
 
-<%args>
+<%ARGS>
 $Default => 0
 $Value => 0
 $Name => 'IDoitObjectBrowser'
-</%args>
+</%ARGS>

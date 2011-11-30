@@ -7,6 +7,7 @@ html/Elements/SelectIDoitObject
 html/Elements/ShowIDoitObject
 html/Ticket/Elements/EditIDoitObject
 html/Ticket/Elements/ShowIDoitObject
+html/Ticket/ModifyIDoitObject.html
 inc/Module/AutoInstall.pm
 inc/Module/Install.pm
 inc/Module/Install/AutoInstall.pm
