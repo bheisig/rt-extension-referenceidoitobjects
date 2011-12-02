@@ -13,24 +13,25 @@
  * @license http://www.i-doit.com/license
  */
 
-ob_start();
-
 // URL to i-doit's API:
 $l_url = 'http://example.net/i-doit/index.php?api=jsonrpc';
 
+$l_content_type = 'application/json';
+$l_header = array(
+    'Content-Type: ' . $l_content_type
+);
+
 $l_curl_handle = curl_init($l_url);
-curl_setopt($l_curl_handle, CURLOPT_HEADER, 0);
-curl_setopt($l_curl_handle, CURLOPT_FOLLOWLOCATION, 1);
+curl_setopt($l_curl_handle, CURLOPT_POST, 1);
+curl_setopt($l_curl_handle, CURLOPT_POSTFIELDS, file_get_contents('php://input'));
 curl_setopt($l_curl_handle, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($l_curl_handle, CURLOPT_USERAGENT, "i-doit AJAX Proxy");
+curl_setopt($l_curl_handle, CURLOPT_USERAGENT, 'i-doit AJAX Proxy');
+curl_setopt($l_curl_handle, CURLOPT_HTTPHEADER, $l_header);
 
 $l_content = curl_exec($l_curl_handle);
-$l_content_type = curl_getinfo($l_curl_handle, CURLINFO_CONTENT_TYPE);
 curl_close($l_curl_handle);
 
 header('Content-Type: ' . $l_content_type);
 echo $l_content;
-
-ob_flush();
 
 ?>
