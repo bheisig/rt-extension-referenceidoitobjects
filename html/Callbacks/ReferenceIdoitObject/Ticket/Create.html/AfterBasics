@@ -3,15 +3,16 @@
         <& /Ticket/Elements/EditIDoitObject,
             InTable => 1,
             fields  => [
-                {   name => 'IDoitObject',
+                {
+                    name => 'IDoitObject',
                     comp => '/Ticket/Elements/ShowIDoitObject',
                     args => {
-                        Name            => 'IDoitObjectBrowser',
-                        Default         => $ARGS{IDoitObjectBrowser},
-                        DefaultValue    => 0,
-                        SkipDeleted     => 1,
+                        Name => 'IDoitObjectBrowser',
+                        Default => $ARGS{IDoitObjectBrowser},
+                        DefaultValue => 0,
+                        SkipDeleted => 1,
                         QueueObj => $QueueObj,
-                    },
+                    }
                 }
             ]
         &>
@@ -25,4 +26,3 @@
 <%ARGS>
 $QueueObj => undef
 </%ARGS>
-

@@ -14,7 +14,7 @@
  */
 
 // URL to i-doit's API:
-$l_url = 'http://example.net/i-doit/index.php?api=jsonrpc';
+$l_url = 'http://example.org/i-doit/index.php?api=jsonrpc';
 
 $l_content_type = 'application/json';
 $l_header = array(
@@ -25,7 +25,7 @@ $l_curl_handle = curl_init($l_url);
 curl_setopt($l_curl_handle, CURLOPT_POST, 1);
 curl_setopt($l_curl_handle, CURLOPT_POSTFIELDS, file_get_contents('php://input'));
 curl_setopt($l_curl_handle, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($l_curl_handle, CURLOPT_USERAGENT, 'i-doit AJAX Proxy');
+curl_setopt($l_curl_handle, CURLOPT_USERAGENT, 'i-doit API Proxy');
 curl_setopt($l_curl_handle, CURLOPT_HTTPHEADER, $l_header);
 
 $l_content = curl_exec($l_curl_handle);

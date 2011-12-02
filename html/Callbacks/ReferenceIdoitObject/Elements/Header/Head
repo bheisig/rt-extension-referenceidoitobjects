@@ -1,0 +1,13 @@
+%# TODO Include these files only if needed.
+%# my $ARGSRef = $ARGS{'ARGSRef'};
+%# if (defined($$ARGSRef{'id'}) && $$ARGSRef{'id'} eq 'new') {
+<script type="text/javascript" src="<% $RT::WebPath %>/NoAuth/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="<% $RT::WebPath %>/NoAuth/css/demo_table.css" type="text/css" />
+<link rel="stylesheet" href="<% $RT::WebPath %>/NoAuth/css/demo_table_jui.css" type="text/css" />
+%# }
+
+<%INIT>
+</%INIT>
+
+<%ARGS>
+</%ARGS>

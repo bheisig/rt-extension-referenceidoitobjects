@@ -50,12 +50,22 @@ i-doit has a built-in API based on JSON-RPC. To call this API set its URL:
 
     Set($IDoitPassword, '21232f297a57a5a743894a0e4a801fc3'); # 'admin'
 
+    Set($IDoitLanguage, 'en');
+
 The password is MD5 encoded. It's highly recommended to establish an encrypted
 connection between RT and i-doit, e. g. TLS over HTTP (HTTPS). You also need a
 mandator who owns the objects, but this is handled while creating a ticket.
 
+After all your new configuration will take effect after restarting your RT
+environment:
 
-=head1 AUTHORS
+    rm -rf $RT_HOME/var/mason_data/obj/* && service apache2 restart
+
+This is an example for deleting the mason cache and restarting the Apache HTTP
+web server on a Debian GNU/Linux based operating system.
+
+
+=head1 AUTHOR
 
 Benjamin Heisig, E<lt>bheisig@synetics.deE<gt>
 
@@ -64,14 +74,36 @@ Leonard Fischer, E<lt>lfischer@synetics.deE<gt>
 
 =head1 SUPPORT AND DOCUMENTATION
 
-You can find documentation for this module with the perldoc command.
+You can find documentation for this module with the C<perldoc> command.
 
-    perldoc RT::Extension::ReferenceIDoitObject
+    perldoc RT::Extension::EscalationDates
+
+You can also look for information at:
+
+=over 4
+
+=item * Search CPAN
+
+L<http://search.cpan.org/dist/RT-Extension-ReferenceIDoitObject/>
+
+=item * RT: CPAN's request tracker
+
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=RT-Extension-ReferenceIDoitObject>
+
+=item * AnnoCPAN: Annotated CPAN documentation
+
+L<http://annocpan.org/dist/RT-Extension-ReferenceIDoitObject>
+
+=item * CPAN Ratings
+
+L<http://cpanratings.perl.org/d/RT-Extension-ReferenceIDoitObject>
+
+=back
 
 
 =head1 BUGS
 
-Please report any bugs or feature requests to the L<author|/"AUTHORS">.
+Please report any bugs or feature requests to the L<author|/"AUTHOR">.
 
 
 =head1 COPYRIGHT AND LICENSE
@@ -82,6 +114,11 @@ This program is free software; you can redistribute it and/or modify it under
 the same terms as Perl itself.
 
 Request Tracker (RT) is Copyright Best Practical Solutions, LLC.
+
+
+=head1 SEE ALSO
+
+    RT
 
 
 =cut
