@@ -45,11 +45,11 @@
 
 <script type="text/javascript">
 // Global variables (without "var").
-api_url = '<% $IDoitAPI; %>';
-api_lang = '<% $IDoitLanguage; %>';
-api_user = '<% $IDoitUser; %>';
-api_password = '<% $IDoitPassword; %>';
-api_mandator = '<% $IDoitMandator; %>';
+api_url = '<% $IDoitAPI %>';
+api_lang = '<% $IDoitLanguage %>';
+api_user = '<% $IDoitUser %>';
+api_password = '<% $IDoitPassword %>';
+api_mandator = '<% $IDoitMandator %>';
 current_objectview_data = {};
 current_treeview_data = {};
 
@@ -72,352 +72,339 @@ datatable_lang = {
 };
 
 (function($){
-        // Initialize the data table.
-        var objectview_table = $('#i-doit-objectbrowser #tab-objectview table.object-table').dataTable({
-                        "bJQueryUI": true, 
-                        "bAutoWidth": false,
-                        "bLengthChange": false,
-                        "iDisplayLength": 20,
-                        "sPaginationType": "full_numbers",
-                        "oLanguage": datatable_lang
-                }),
-                itemview_table = $('#i-doit-objectbrowser #tab-itemview table.object-table').dataTable({
-                        "bJQueryUI": true, 
-                        "bAutoWidth": false,
-                        "bPaginate": false,
-                        "bLengthChange": false,
-                        "bSort": false,
-                        "oLanguage": datatable_lang
+    // Initialize the data table.
+    var objectview_table = $('#i-doit-objectbrowser #tab-objectview table.object-table').dataTable({
+        "bJQueryUI": true, 
+        "bAutoWidth": false,
+        "bLengthChange": false,
+        "iDisplayLength": 20,
+        "sPaginationType": "full_numbers",
+        "oLanguage": datatable_lang
+    }),
+    itemview_table = $('#i-doit-objectbrowser #tab-itemview table.object-table').dataTable({
+        "bJQueryUI": true, 
+        "bAutoWidth": false,
+        "bPaginate": false,
+        "bLengthChange": false,
+        "bSort": false,
+        "oLanguage": datatable_lang
+    });
+
+    /**
+     * This event will initialize the browser.
+     *
+     * @author  Leonard Fischer <lfischer@synetics.de>
+     */
+    $('#i-doit-objectbrowser-button').click(function() {
+            $(this).slideUp(400);
+            $('#i-doit-objectbrowser-content').slideDown(400);
+
+            // Here we get our preselection data and cast the ID's to integer.
+            var preselection = $('#<% $IDoitObjects %>').val().replace(/(\s|[^\d,])/g, ''),
+                requestors = $('#Requestors').val().replace(/(\s)/g, ''),
+                data = {};
+
+            // We look if the preselection field is filled.
+            if (preselection != '') {
+                preselection = preselection.split(',').map(function(i) {
+                    return (!isNaN(parseInt(i)) ? parseInt(i) : 0);
                 });
 
-        /**
-          * This event will initialize the browser.
-          *
-          * @author  Leonard Fischer <lfischer@synetics.de>
-          */
-        $('#i-doit-objectbrowser-button').click(function() {
-                $(this).slideUp(400);
-                $('#i-doit-objectbrowser-content').slideDown(400);
-        
-                // Here we get our preselection data and cast the ID's to integer.
-                var preselection = $('#<% $IDoitObjects %>').val().replace(/(\s|[^\d,])/g, ''),
-                        requestors = $('#Requestors').val().replace(/(\s)/g, ''),
-                        data = {};
-                
-                // We look if the preselection field is filled.
-                if (preselection != '') {
-                        preselection = preselection.split(',').map(function(i) {
-                                return (!isNaN(parseInt(i)) ? parseInt(i) : 0);
-                        });
-                        
-                        if (preselection.length > 0) {
-                                // We first request the preselected ID's so we can display them correctly inside the "selected objects" list (ID, Name, Type).
-                                data = {
-                                        "method":"cmdb.objects_by_filter",
-                                        "params":{
-                                                "session":{
-                                                        "username":api_user,
-                                                        "password":api_password,
-                                                        "language":api_lang,
-                                                        "mandator":api_mandator},
-                                                "filter":{
-                                                        "ids":preselection}},
-                                        "id":"1",
-                                        "jsonrpc":"2.0"};
-                                
-                                idoit_ajax(data, function(response) {
-                                                if (response.error == null) {
-                                                        $.each(response.result, function(i, e) {
-                                                                window.add_object(e.id, e.title, e.objecttype);
-                                                        });
-                                                } else {
-                                                        window.error_notice('Error while preselecting objects.');
-                                                }
-                                        });
-                        }
-                }
-
-                // Here we load the requestor data (workplaces and assigned objects).
-                window.load_requestor_data();
-                
-                data = {
-                        "method":"cmdb.object_types",
+                if (preselection.length > 0) {
+                    // We first request the preselected ID's so we can display them correctly inside the "selected objects" list (ID, Name, Type).
+                    data = {
+                        "method":"cmdb.objects_by_filter",
                         "params":{
-                                "session":{
-                                        "username":api_user,
-                                        "password":api_password,
-                                        "language":api_lang,
-                                        "mandator":api_mandator}},
+                            "session":{
+                                "username":api_user,
+                                "password":api_password,
+                                "language":api_lang,
+                                "mandator":api_mandator},
+                            "filter":{
+                                "ids":preselection}},
                         "id":"1",
                         "jsonrpc":"2.0"};
-                
-                idoit_ajax(data, function(response) {
-                                if (response.error == null) {
-                                        $('#i-doit-objectbrowser select.object-type').html('');
-                                        $.each(response.result, function(i, e) {
-                                                $('<option value="' + e.id + '">' + e.title + '</option>').appendTo('#i-doit-objectbrowser select.object-type');
-                                        });
-                                        
-                                        // Trigger the event.
-                                        $('#i-doit-objectbrowser select.object-type').change();
-                                } else {
-                                        window.error_notice('Error while loading object-types.');
-                                }
-                        });
-        });
 
-
-        /**
-          * Callback function for selecting an object-type.
-          *
-          * @author  Leonard Fischer <lfischer@synetics.de>
-          */
-        $('#i-doit-objectbrowser select.object-type').change(function() {
-                var data = {
-                        "method":"cmdb.objects",
-                        "params":{
-                                "session":{
-                                        "username":api_user,
-                                        "password":api_password,
-                                        "language":api_lang,
-                                        "mandator":api_mandator},
-                                "type":parseInt(this.value)},
-                        "id":"1",
-                        "jsonrpc":"2.0"};
-        
-                idoit_ajax(data, function(response) {
-                                if (response.error == null) {
-                                        // Clear the table from our old entries.
-                                        
-                                        current_objectview_data = response.result;
-                                        window.render_objectview();
-                                } else {
-                                        window.error_notice('Error while loading objects by object-type');
-                                }
-                        });             
-        });
-
-
-        /**
-          * This event will store the added ID's from the object-view.
-          *
-          * @author  Leonard Fischer <lfischer@synetics.de>
-          */
-        $('input[name="i-doit-objectbrowser-obj[]"]').live('change', function() {
-                if ($(this).attr('checked')) {
-                        var name = $(this).closest('tr').find('td:eq(1)').text(),
-                                type = $('#i-doit-objectbrowser select.object-type option:selected').text();
-                
-                        window.add_object($(this).val(), name, type);
-                } else {
-                        window.remove_object($(this).val());
-                }
-        });
-
-
-        /**
-          * This event will store the added ID's from the tree-view.
-          *
-          * @author  Leonard Fischer <lfischer@synetics.de>
-          */
-        $('input[name="i-doit-treebrowser-obj[]"]').live('change', function() {
-                if ($(this).attr('checked')) {
-                        var name = $(this).next('span.obj-name').text(),
-                                type = $(this).next('span.obj-type').text();
-
-                        window.add_object($(this).val(), name, type);
-                } else {
-                        window.remove_object($(this).val());
-                }
-        });
-
-
-        /**
-          * Function for loading the requestor - This can be used if a new requestor has been added to the "Requestor" field.
-          *
-          * @author  Leonard Fischer <lfischer@synetics.de>
-          */
-        $('#requestor-reload').click(function() {
-                window.load_requestor_data();
-        });
-
-
-        /**
-          * Loads and displays the requestor-data (workplace, assigned objects, ...).
-          *
-          * @param   mixed  requestors  May be an array or a string containing email-addresses.
-          * @author  Leonard Fischer <lfischer@synetics.de>
-          */
-        window.load_requestor_data = function(requestors) {
-                if (typeof requestors == 'undefined') {
-                        requestors = $('#Requestors').val();
-                }
-                
-                if (typeof requestors == 'string') {
-                        requestors = requestors.replace(/(\s)/g, '').split(',');
-                }
-                
-                if (requestors.length > 0) {
-                        data = {
-                                "method":"cmdb.workstation_components",
-                                "params":{
-                                        "session":{
-                                                "username":api_user,
-                                                "password":api_password,
-                                                "language":api_lang,
-                                                "mandator":api_mandator},
-                                        "email":requestors},
-                                "id":"1",
-                                "jsonrpc":"2.0"};
-                        
-                        idoit_ajax(data, function(response) {
-                                // First we check for errors.
-                                if (response.error == null) {
-                                        current_treeview_data = response.result;
-                                        window.render_treeview();
-                                } else {
-                                        window.error_notice('Error while loading objects by email.');
-                                }
-                        });
-                }
-        };
-        
-        
-        window.render_treeview = function() {
-                $('#tab-treeview div').html('');
-                
-                // We iterate through the email-addresses.
-                $.each(current_treeview_data, function(i, e) {
-                        $('#tab-treeview div.workplaces').append('<b>' + i + '</b><br />');
-                        
-                        // We iterate through the workplaces.
-                        $.each(e, function(i, e) {
-                                var selected = false;
-                                if (typeof $('#data-store').data(e.data.id) != 'undefined') {
-                                        selected = true;
-                                }
-                        
-                                $('#tab-treeview div.workplaces').append('<div class="workplace"><input type="checkbox" value="' + e.data.id + '" ' + ((selected) ? 'checked="checked"' : '') + ' name="i-doit-treebrowser-obj[]" /><span class="obj-name">' + e.data.title + '</span> (<span class="obj-type">Arbeitsplatz</span>)<br />');
-                                
-                                if (e.childs) {                                                                 
-                                        // Finally we iterate through the single assigned objects.
-                                        $.each(e.childs, function(i, e) {
-                                                var selected = false;
-                                                if (typeof $('#data-store').data(e.id) != 'undefined') {
-                                                        selected = true;
-                                                }
-                                                
-                                                $('#tab-treeview div.workplaces div.workplace:last').append('<input type="checkbox" value="' + e.id + '" ' + ((selected) ? 'checked="checked"' : '') + ' name="i-doit-treebrowser-obj[]" style="margin-left:20px;" /><span class="obj-name">' + e.title + '</span> (<span class="obj-type">' + e.objecttype + '</span>)<br />');
-                                        });
-                                }
-
-                                $('#tab-treeview div.workplaces').append('</div>');
-                        });
-                });
-        };
-
-
-        /**
-         * Function for rendering the object-table.
-         *
-         * @author  Leonard Fischer <lfischer@synetics.de>
-         */
-        window.render_objectview = function() {
-                objectview_table.fnClearTable();
-                $.each(current_objectview_data, function(i, e) {
-                        if (e.status == 2) {
-                                var check = '', selected = false;
-
-                                if (typeof $('#data-store').data(e.id) != 'undefined') {
-                                        selected = true;
-                                }
-
-                                check = '<input type="checkbox" value="' + e.id + '" name="i-doit-objectbrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' /> ' + e.id;
-                                objectview_table.fnAddData([check, e.title]);
+                    idoit_ajax(data, function(response) {
+                        if (response.error == null) {
+                            $.each(response.result, function(i, e) {
+                                window.add_object(e.id, e.title, e.objecttype);
+                            });
+                        } else {
+                            window.error_notice('Error while preselecting objects.');
                         }
-                });
-        };
+                    });
+                }
+            }
 
+            // Here we load the requestor data (workplaces and assigned objects).
+            window.load_requestor_data();
 
-        /**
-          * Function for removing an item from the selected data.
-          *
-          * @param   integer  id  The object-id to remove from our selection.
-          * @author  Leonard Fischer <lfischer@synetics.de>
-          */
-        window.remove_object = function(id) {
-                $('#data-store').removeData(id);
+            data = {
+                "method":"cmdb.object_types",
+                "params":{
+                    "session":{
+                        "username":api_user,
+                        "password":api_password,
+                        "language":api_lang,
+                        "mandator":api_mandator}},
+                "id":"1",
+                "jsonrpc":"2.0"};
 
-                window.render_selected_items();
+            idoit_ajax(data, function(response) {
+                if (response.error == null) {
+                    $('#i-doit-objectbrowser select.object-type').html('');
+                    $.each(response.result, function(i, e) {
+                        $('<option value="' + e.id + '">' + e.title + '</option>').appendTo('#i-doit-objectbrowser select.object-type');
+                    });
+
+                    // Trigger the event.
+                    $('#i-doit-objectbrowser select.object-type').change();
+                } else {
+                    window.error_notice('Error while loading object-types.');
+                }
+            });
+    });
+
+    /**
+     * Callback function for selecting an object-type.
+     *
+     * @author  Leonard Fischer <lfischer@synetics.de>
+     */
+    $('#i-doit-objectbrowser select.object-type').change(function() {
+        var data = {
+            "method":"cmdb.objects",
+            "params":{
+                "session":{
+                    "username":api_user,
+                    "password":api_password,
+                    "language":api_lang,
+                    "mandator":api_mandator},
+                "type":parseInt(this.value)},
+            "id":"1",
+            "jsonrpc":"2.0"};
+
+        idoit_ajax(data, function(response) {
+            if (response.error == null) {
+                // Clear the table from our old entries.
+                current_objectview_data = response.result;
                 window.render_objectview();
-                window.render_treeview();
-        };
+            } else {
+                window.error_notice('Error while loading objects by object-type');
+            }
+        });
+    });
 
+    /**
+     * This event will store the added ID's from the object-view.
+     *
+     * @author  Leonard Fischer <lfischer@synetics.de>
+     */
+    $('input[name="i-doit-objectbrowser-obj[]"]').live('change', function() {
+        if ($(this).attr('checked')) {
+            var name = $(this).closest('tr').find('td:eq(1)').text(),
+                type = $('#i-doit-objectbrowser select.object-type option:selected').text();
 
-        /**
-          * Function for removing an item from the selected data.
-          *
-          * @param   integer  id    The object-id.
-          * @param   string   name  The object-title.
-          * @param   integer  type  The object-type.
-          * @author  Leonard Fischer <lfischer@synetics.de>
-          */
-        window.add_object = function(id, name, type) {
-                $('#data-store').data(id, {"name": name, "type": type});
+            window.add_object($(this).val(), name, type);
+        } else {
+            window.remove_object($(this).val());
+        }
+    });
 
-                window.render_selected_items();
-                window.render_objectview();
-                window.render_treeview();
-        };
+    /**
+     * This event will store the added ID's from the tree-view.
+     *
+     * @author  Leonard Fischer <lfischer@synetics.de>
+     */
+    $('input[name="i-doit-treebrowser-obj[]"]').live('change', function() {
+        if ($(this).attr('checked')) {
+            var name = $(this).next('span.obj-name').text(),
+                type = $(this).next('span.obj-type').text();
 
+            window.add_object($(this).val(), name, type);
+        } else {
+            window.remove_object($(this).val());
+        }
+    });
 
-        /**
-          * Function for rendering the "selected objects" list. Will be used when adding or removing an object.
-          *
-          * @author  Leonard Fischer <lfischer@synetics.de>
-          */
-        window.render_selected_items = function() {
+    /**
+     * Function for loading the requestor - This can be used if a new requestor has been added to the "Requestor" field.
+     *
+     * @author  Leonard Fischer <lfischer@synetics.de>
+     */
+    $('#requestor-reload').click(function() {
+        window.load_requestor_data();
+    });
 
-                var data_array = [];
-
-                itemview_table.fnClearTable();
-                $.each($('#data-store').data(), function(i, e) {
-
-                        itemview_table.fnAddData(['<a href="#" class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')">#' + i + ' Entfernen</a>', e.name, e.type]);
-
-                        data_array.push(i);
-                });
-                $('#<% $IDoitObjects %>').val(data_array.join(','));
-        };
-
-
-        /**
-          * Function for sending requests to idoit.
-          *
-          * @param   json      data      A json-object with the data, you want to send with the request.
-          * @param   function  callback  A callback to assign to the "success" of an request.
-          * @author  Leonard Fischer <lfischer@synetics.de>
-          */
-        window.idoit_ajax = function(data, callback) {
-                $.ajax({
-                        url: api_url,
-                        data: JSON.stringify(data),
-                        contentType: 'application/json',
-                        type: 'POST',
-                        dataType: 'json',
-                        success: callback
-                });
-        };
-
-        window.error_notice = function(msg) {
-                alert(msg);
+    /**
+     * Loads and displays the requestor-data (workplace, assigned objects, ...).
+     *
+     * @param   mixed  requestors  May be an array or a string containing email-addresses.
+     * @author  Leonard Fischer <lfischer@synetics.de>
+     */
+    window.load_requestor_data = function(requestors) {
+        if (typeof requestors == 'undefined') {
+            requestors = $('#Requestors').val();
         }
 
-        // Initialize our data object.
-        $('#data-store').data();
+        if (typeof requestors == 'string') {
+            requestors = requestors.replace(/(\s)/g, '').split(',');
+        }
 
-        // Initialize our tabs.
-        $('#i-doit-objectbrowser-content').tabs();
+        if (requestors.length > 0) {
+            data = {
+                "method":"cmdb.workstation_components",
+                "params":{
+                    "session":{
+                        "username":api_user,
+                        "password":api_password,
+                        "language":api_lang,
+                        "mandator":api_mandator},
+                    "email":requestors},
+                "id":"1",
+                "jsonrpc":"2.0"};
+
+            idoit_ajax(data, function(response) {
+                // First we check for errors.
+                if (response.error == null) {
+                    current_treeview_data = response.result;
+                    window.render_treeview();
+                } else {
+                    window.error_notice('Error while loading objects by email.');
+                }
+            });
+        }
+    };
+
+    window.render_treeview = function() {
+        $('#tab-treeview div').html('');
+
+        // We iterate through the email-addresses.
+        $.each(current_treeview_data, function(i, e) {
+            $('#tab-treeview div.workplaces').append('<b>' + i + '</b><br />');
+
+            // We iterate through the workplaces.
+            $.each(e, function(i, e) {
+                var selected = false;
+                if (typeof $('#data-store').data(e.data.id) != 'undefined') {
+                    selected = true;
+                }
+
+                $('#tab-treeview div.workplaces').append('<div class="workplace"><input type="checkbox" value="' + e.data.id + '" ' + ((selected) ? 'checked="checked"' : '') + ' name="i-doit-treebrowser-obj[]" /><span class="obj-name">' + e.data.title + '</span> (<span class="obj-type">Arbeitsplatz</span>)<br />');
+
+                if (e.childs) {
+                    // Finally we iterate through the single assigned objects.
+                    $.each(e.childs, function(i, e) {
+                        var selected = false;
+                        if (typeof $('#data-store').data(e.id) != 'undefined') {
+                            selected = true;
+                        }
+
+                        $('#tab-treeview div.workplaces div.workplace:last').append('<input type="checkbox" value="' + e.id + '" ' + ((selected) ? 'checked="checked"' : '') + ' name="i-doit-treebrowser-obj[]" style="margin-left:20px;" /><span class="obj-name">' + e.title + '</span> (<span class="obj-type">' + e.objecttype + '</span>)<br />');
+                    });
+                }
+
+                $('#tab-treeview div.workplaces').append('</div>');
+            });
+        });
+    };
+
+    /**
+     * Function for rendering the object-table.
+     *
+     * @author  Leonard Fischer <lfischer@synetics.de>
+     */
+    window.render_objectview = function() {
+        objectview_table.fnClearTable();
+        $.each(current_objectview_data, function(i, e) {
+            if (e.status == 2) {
+                var check = '', selected = false;
+
+                if (typeof $('#data-store').data(e.id) != 'undefined') {
+                    selected = true;
+                }
+
+                check = '<input type="checkbox" value="' + e.id + '" name="i-doit-objectbrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' /> ' + e.id;
+                objectview_table.fnAddData([check, e.title]);
+            }
+        });
+    };
+
+    /**
+     * Function for removing an item from the selected data.
+     *
+     * @param   integer  id  The object-id to remove from our selection.
+     * @author  Leonard Fischer <lfischer@synetics.de>
+     */
+    window.remove_object = function(id) {
+        $('#data-store').removeData(id);
+
+        window.render_selected_items();
+        window.render_objectview();
+        window.render_treeview();
+    };
+
+    /**
+     * Function for removing an item from the selected data.
+     *
+     * @param   integer  id    The object-id.
+     * @param   string   name  The object-title.
+     * @param   integer  type  The object-type.
+     * @author  Leonard Fischer <lfischer@synetics.de>
+     */
+    window.add_object = function(id, name, type) {
+        $('#data-store').data(id, {"name": name, "type": type});
+
+        window.render_selected_items();
+        window.render_objectview();
+        window.render_treeview();
+    };
+
+    /**
+     * Function for rendering the "selected objects" list. Will be used when adding or removing an object.
+     *
+     * @author  Leonard Fischer <lfischer@synetics.de>
+     */
+    window.render_selected_items = function() {
+        var data_array = [];
+
+        itemview_table.fnClearTable();
+        $.each($('#data-store').data(), function(i, e) {
+            itemview_table.fnAddData(['<a href="#" class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')">#' + i + ' Entfernen</a>', e.name, e.type]);
+
+            data_array.push(i);
+        });
+
+        $('#<% $IDoitObjects %>').val(data_array.join("\n"));
+    };
+
+    /**
+     * Function for sending requests to idoit.
+     *
+     * @param   json      data      A json-object with the data, you want to send with the request.
+     * @param   function  callback  A callback to assign to the "success" of an request.
+     * @author  Leonard Fischer <lfischer@synetics.de>
+     */
+    window.idoit_ajax = function(data, callback) {
+        $.ajax({
+            url: api_url,
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            type: 'POST',
+            dataType: 'json',
+            success: callback
+        });
+    };
+
+    window.error_notice = function(msg) {
+        alert(msg);
+    }
+
+    // Initialize our data object.
+    $('#data-store').data();
+
+    // Initialize our tabs.
+    $('#i-doit-objectbrowser-content').tabs();
 })(jQuery);
 </script>
 
@@ -456,10 +443,10 @@ unless($IDoitPassword) {
 
 my $cfMandator = 'i-doit mandator';
 my $cf = RT::CustomField->new($RT::SystemUser);
-$cf->LoadByNameAndQueue(Name => $cfPriority, Queue => '0');
+$cf->LoadByNameAndQueue(Name => $cfMandator, Queue => '0');
 unless($cf->id) {
-  $$skip_create = 1;
-  push @{$results}, loc('Custom field ' . $cfMandator . ' does not exist.');
+    $$skip_create = 1;
+    push @{$results}, loc('Custom field ' . $cfMandator . ' does not exist.');
     my $msg = loc('URL for i-doit\'s API is not configured.');
     RT::Logger->error($msg);
     $$skip_create = 1;
@@ -468,11 +455,11 @@ unless($cf->id) {
 $IDoitMandator = 'Object-RT::Ticket--CustomField-' . $cf->id . '-Values';
 
 my $cfObjects = 'i-doit objects';
-my $cf = RT::CustomField->new($RT::SystemUser);
-$cf->LoadByNameAndQueue(Name => $cfPriority, Queue => '0');
+$cf = RT::CustomField->new($RT::SystemUser);
+$cf->LoadByNameAndQueue(Name => $cfObjects, Queue => '0');
 unless($cf->id) {
-  $$skip_create = 1;
-  push @{$results}, loc('Custom field ' . $cfObjects . ' does not exist.');
+    $$skip_create = 1;
+    push @{$results}, loc('Custom field ' . $cfObjects . ' does not exist.');
     my $msg = loc('URL for i-doit\'s API is not configured.');
     RT::Logger->error($msg);
     $$skip_create = 1;
@@ -485,12 +472,12 @@ $IDoitObjects = 'Object-RT::Ticket--CustomField-' . $cf->id . '-Values';
 $skip_create => undef
 $results => undef
 
-$IDoitAPI = undef
-$IDoitLanguage = undef
-$IDoitUser = undef
-$IDoitPassword = undef
-$IDoitMandator = undef
-$IDoitObjects = undef
+$IDoitAPI => undef
+$IDoitLanguage => undef
+$IDoitUser => undef
+$IDoitPassword => undef
+$IDoitMandator => undef
+$IDoitObjects => undef
 
 # TODO Make field for email addresses configurable (current status: 'Requestors').
 </%ARGS>

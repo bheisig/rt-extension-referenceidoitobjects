@@ -33,20 +33,49 @@ CONFIGURATION
 
         Set($IDoitPassword, '21232f297a57a5a743894a0e4a801fc3'); # 'admin'
 
+        Set($IDoitLanguage, 'en');
+
     The password is MD5 encoded. It's highly recommended to establish an
     encrypted connection between RT and i-doit, e. g. TLS over HTTP (HTTPS).
     You also need a mandator who owns the objects, but this is handled while
     creating a ticket.
 
-AUTHORS
+    After all your new configuration will take effect after restarting your
+    RT environment:
+
+        rm -rf $RT_HOME/var/mason_data/obj/* && service apache2 restart
+
+    This is an example for deleting the mason cache and restarting the
+    Apache HTTP web server on a Debian GNU/Linux based operating system.
+
+AUTHOR
     Benjamin Heisig, <bheisig@synetics.de>
 
     Leonard Fischer, <lfischer@synetics.de>
 
 SUPPORT AND DOCUMENTATION
-    You can find documentation for this module with the perldoc command.
+    You can find documentation for this module with the "perldoc" command.
 
-        perldoc RT::Extension::ReferenceIDoitObject
+        perldoc RT::Extension::EscalationDates
+
+    You can also look for information at:
+
+    *   Search CPAN
+
+        <http://search.cpan.org/dist/RT-Extension-ReferenceIDoitObject/>
+
+    *   RT: CPAN's request tracker
+
+        <http://rt.cpan.org/NoAuth/Bugs.html?Dist=RT-Extension-ReferenceIDoi
+        tObject>
+
+    *   AnnoCPAN: Annotated CPAN documentation
+
+        <http://annocpan.org/dist/RT-Extension-ReferenceIDoitObject>
+
+    *   CPAN Ratings
+
+        <http://cpanratings.perl.org/d/RT-Extension-ReferenceIDoitObject>
 
 BUGS
     Please report any bugs or feature requests to the author.
@@ -58,4 +87,7 @@ COPYRIGHT AND LICENSE
     under the same terms as Perl itself.
 
     Request Tracker (RT) is Copyright Best Practical Solutions, LLC.
+
+SEE ALSO
+        RT
 
