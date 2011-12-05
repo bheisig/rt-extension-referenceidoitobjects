@@ -23,7 +23,8 @@
             <table class="object-table" style="width:100%;">
                 <thead>
                     <tr>
-                        <th width="20%">ID</th>
+                        <th width="5%"></th>
+                        <th width="15%">ID</th>
                         <th width="80%">Name</th>
                     </tr>
                 </thead>
@@ -40,10 +41,10 @@
             <table class="object-table" style="width:100%;">
                 <thead>
                     <tr>
-                        <th width="10%"></th>
+                        <th width="10%">Aktion</th>
                         <th width="10%">ID</th>
                         <th width="40%">Name</th>
-                        <th width="30%">Typ</th>
+                        <th width="40%">Typ</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -399,15 +400,19 @@ datatable_lang = {
         objectview_table.fnClearTable();
         $.each(current_objectview_data, function(i, e) {
             if (e.status == 2) {
-                var check = '', selected = false, title = '';
+                var check, 
+					selected = false, 
+					title, 
+					id;
 
                 if (typeof $('#data-store').data(e.id) != 'undefined') {
                     selected = true;
                 }
 
-                check = '<input type="checkbox" value="' + e.id + '" name="i-doit-objectbrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' /> ' + e.id;
+                check = '<input type="checkbox" value="' + e.id + '" name="i-doit-objectbrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' />';
+                id = e.id;
 				title = '<a href="<% RT->Config->Get('IDoitURL') %>?objID=' + e.id + '">' + e.title + '</a>';
-                objectview_table.fnAddData([check, title]);
+                objectview_table.fnAddData([check, id, title]);
             }
         });
     };
@@ -531,7 +536,7 @@ datatable_lang = {
 	}
 
 	// Hide the preselection field.
-	browser_preselection_field.parent(2).hide();
+	browser_preselection_field.parent(3).hide();
 
 	// Initialize our data object.
 	$('#data-store').data();
