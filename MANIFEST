@@ -8,6 +8,8 @@ html/Elements/SelectIDoitObject
 html/Elements/ShowIDoitObject
 html/NoAuth/css/demo_table.css
 html/NoAuth/css/demo_table_jui.css
+html/NoAuth/images/ajaxload.gif
+html/NoAuth/images/i-doit.png
 html/NoAuth/js/jquery.dataTables.min.js
 html/Ticket/Elements/EditIDoitObject
 html/Ticket/Elements/ShowIDoitObject

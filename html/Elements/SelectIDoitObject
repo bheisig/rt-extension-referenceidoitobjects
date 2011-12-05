@@ -139,7 +139,8 @@ datatable_lang = {
 					"username":api_user,
 					"password":api_password,
 					"language":api_lang,
-					"mandator":api_mandator}},
+					"mandator":api_mandator},
+                "order_by":"title"},
 			"id":"1",
 			"jsonrpc":"2.0"};
 
@@ -173,7 +174,9 @@ datatable_lang = {
                     "password":api_password,
                     "language":api_lang,
                     "mandator":api_mandator},
-                "type":parseInt(this.value)},
+                "filter":{
+                    "type":parseInt(this.value)},
+                "order_by":"title"},
             "id":"1",
             "jsonrpc":"2.0"};
 
@@ -312,7 +315,7 @@ datatable_lang = {
 					window.display_loading();
 					// We first request the preselected ID's so we can display them correctly inside the "selected objects" list (ID, Name, Type).
 					data = {
-						"method":"cmdb.objects_by_filter",
+						"method":"cmdb.objects",
 						"params":{
 							"session":{
 								"username":api_user,
