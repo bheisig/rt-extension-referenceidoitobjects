@@ -8,10 +8,10 @@
             <li><a href="#tab-itemview">Gewählte Objekte</a></li>
         </ul>
 
-			<div id="loading-screen" style="position:absolute; opacity:0; background:#000; z-index:100;">
-				<img src="NoAuth/images/jquery_ui/ui-anim_basic_16x16.gif" alt="Loading" />
-			</div>
-		
+        <div id="loading-screen" style="position:absolute; opacity:0; background:#000; z-index:100;">
+            <img src="<% RT->Config->Get('WebPath') %>/NoAuth/images/jquery_ui/ui-anim_basic_16x16.gif" alt="Loading" />
+        </div>
+
         <div id="tab-objectview">
             Objekt Typ <select class="object-type"></select><br />
             <table class="object-table" style="width:100%;">
@@ -78,8 +78,8 @@ datatable_lang = {
 };
 
 (function($){
-		browser_preselection_field = $('textarea[name="Object-RT::Ticket--CustomField-11-Values"]');
-	
+    browser_preselection_field = $('textarea[name="Object-RT::Ticket--CustomField-11-Values"]');
+
     // Initialize the data table.
     var objectview_table = $('#i-doit-objectbrowser #tab-objectview table.object-table').dataTable({
         "bJQueryUI": true, 
@@ -271,7 +271,8 @@ datatable_lang = {
                     }
                 });
             }
-		};
+		}
+    };
 		
 		
 		/**
@@ -519,6 +520,8 @@ datatable_lang = {
 </script>
 
 <%INIT>
+use Switch;
+
 $IDoitURL = RT->Config->Get('IDoitURL');
 unless($IDoitURL) {
     my $msg = loc('URL for i-doit is not configured.');
@@ -585,7 +588,7 @@ unless($cf->id) {
 }
 $IDoitObjects = 'Object-RT::Ticket--CustomField-' . $cf->id . '-Values';
 
-my $IDoitDefaultView = RT->Config->Get('IDoitDefaultView');
+$IDoitDefaultView = RT->Config->Get('IDoitDefaultView');
 unless($IDoitDefaultView) {
     my $msg = loc('Default view for i-doit\'s API is not configured.');
     RT::Logger->error($msg);
