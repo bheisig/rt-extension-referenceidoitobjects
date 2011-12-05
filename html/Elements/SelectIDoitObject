@@ -539,7 +539,7 @@ datatable_lang = {
 	}
 
 	// Hide the preselection field.
-	browser_preselection_field.parent(3).hide();
+	browser_preselection_field.parent().parent().hide();
 
 	// Initialize our data object.
 	$('#data-store').data();
