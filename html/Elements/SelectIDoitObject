@@ -424,6 +424,14 @@ datatable_lang = {
 </script>
 
 <%INIT>
+$IDoitURL = RT->Config->Get('IDoitURL');
+unless($IDoitURL) {
+    my $msg = loc('URL for i-doit is not configured.');
+    RT::Logger->error($msg);
+    $$skip_create = 1;
+    push @{$results}, $msg;
+}
+
 $IDoitAPI = RT->Config->Get('IDoitAPI');
 unless($IDoitAPI) {
     my $msg = loc('URL for i-doit\'s API is not configured.');
@@ -500,6 +508,7 @@ switch ($IDoitDefaultView) {
 $skip_create => undef
 $results => undef
 
+$IDoitURL => undef
 $IDoitAPI => undef
 $IDoitLanguage => undef
 $IDoitUser => undef
