@@ -44,7 +44,9 @@ C<RT_HOME/etc/RT_SiteConfig>:
 
 i-doit has a built-in API based on JSON-RPC. To call this API set its URL:
 
-    Set($IDoitAPI, 'http://localhost/i-doit/?api=jsonrpc');
+    Set($IDoitURL, 'http://localhost/i-doit/');
+
+    Set($IDoitAPI, $IDoitURL . '?api=jsonrpc');
 
     Set($IDoitUser, 'admin');
 
