@@ -8,12 +8,9 @@
             <li><a href="#tab-itemview">Gewählte Objekte</a></li>
         </ul>
 
-        <a href="<% RT->Config->Get('IDoitURL') %>" title="Go to i-doit"><img src="<% RT->Config->Get('WebPath') %>/NoAuth/images/i-doit.png" alt="i-doit" style="position: absolute; right: 15px; top:12px;" /></a>
+        <a href="<% RT->Config->Get('IDoitURL') %>" title="Go to i-doit"><img src="<% RT->Config->Get('WebPath') %>/NoAuth/images/i-doit.png" alt="i-doit" style="position: absolute; top: 3px; right: 8px; height: 28px;" /></a>
 
-        <div id="loading-screen" style="position:absolute; opacity:0; background:#000; z-index:100;">
-            <img src="<% RT->Config->Get('WebPath') %>/NoAuth/images/ajaxload.gif" alt="Loading" height="32" width="32" />
-        </div>
-		
+        <img id="loading-screen" src="<% RT->Config->Get('WebPath') %>/NoAuth/images/ajaxload.gif" alt="Loading" height="32" width="32" style="position:absolute; opacity:0; z-index:100;" />
         <img src="<% RT->Config->Get('WebPath') %>/NoAuth/images/i-doit.png" alt="Loading" style="position: absolute; top: 3px; right: 8px; height: 28px;" />
 
         <div id="tab-objectview">
