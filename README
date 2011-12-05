@@ -27,13 +27,17 @@ CONFIGURATION
     i-doit has a built-in API based on JSON-RPC. To call this API set its
     URL:
 
-        Set($IDoitAPI, 'http://localhost/i-doit/?api=jsonrpc');
+        Set($IDoitURL, 'http://localhost/i-doit/');
+
+        Set($IDoitAPI, $IDoitURL . '?api=jsonrpc');
 
         Set($IDoitUser, 'admin');
 
         Set($IDoitPassword, '21232f297a57a5a743894a0e4a801fc3'); # 'admin'
 
         Set($IDoitLanguage, 'en');
+
+        Set($IDoitDefaultView, 'tree'); # 'object', 'tree' or 'item'
 
     The password is MD5 encoded. It's highly recommended to establish an
     encrypted connection between RT and i-doit, e. g. TLS over HTTP (HTTPS).

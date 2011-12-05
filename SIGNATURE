@@ -18,13 +18,13 @@ SHA1 41f6c7a237d8966853431f17b452e963cd4fdce4 Changes
 SHA1 63422d0f6105c993bf1f6e180b5396ed9f7d1df3 MANIFEST
 SHA1 749fc82543f13eb5fec9042272c5db8bd8239901 META.yml
 SHA1 1397b0915ed9dac1a4e4db9e8d008c902ec86779 Makefile.PL
-SHA1 724f774412a877cba49b79710778cee0697adb90 README
+SHA1 296e0e623ad8e0621ce97410f1ca31828427d721 README
 SHA1 f93b52d570be35795e64baec99ee9459e231af32 etc/i-doit_api_proxy.php
 SHA1 e1e604e5d2bbb842d030132c60f56692f814a468 etc/initialdata
 SHA1 710c7e4ebc11693bbd2d0a9df5b29da82aa13c92 html/Callbacks/ReferenceIdoitObject/Elements/Header/Head
 SHA1 a333f636cbe34ad54f5f7956fdf9e66d0f36da75 html/Callbacks/ReferenceIdoitObject/Ticket/Create.html/AfterBasics
 SHA1 9737a1528038a1764755d5207dd684a33b027a99 html/Callbacks/ReferenceIdoitObject/Ticket/Elements/ShowSummary/LeftColumn
-SHA1 c6ccb5cba37d73ffa80365018165dcad92734f77 html/Elements/SelectIDoitObject
+SHA1 21c1add0ab15cf40725c336ad0cb7cc201c49013 html/Elements/SelectIDoitObject
 SHA1 c97ec4757748d0721864fae3a7cfd882167430f7 html/Elements/ShowIDoitObject
 SHA1 faf56d314fefe40211b3db8fb305dedec3861bab html/NoAuth/css/demo_table.css
 SHA1 223e1510edfffd88fe57a41baa77ffc4e18f5073 html/NoAuth/css/demo_table_jui.css
@@ -46,7 +46,7 @@ SHA1 5c589819986050dd79faf8572992a9790ae89f2e inc/Module/Install/RTx/Factory.pm
 SHA1 dc972927565015ffbbaae806ff44634cae6fa1d2 inc/Module/Install/ReadmeFromPod.pm
 SHA1 0ae795f0a9b6783872d393f92f9dc7173f7632e9 inc/Module/Install/Win32.pm
 SHA1 2ad05d85780f32385e90fc76da59f635d453e29a inc/Module/Install/WriteAll.pm
-SHA1 6952713c0d2a7259de33b8bb27e871acef00a592 lib/RT/Extension/ReferenceIDoitObject.pm
+SHA1 5d7edddfae46145714df86052605cbaf89cd8b16 lib/RT/Extension/ReferenceIDoitObject.pm
 SHA1 02abf7e881101b9455dce0756eb364b7ed69d7d0 t/00-load.t
 SHA1 56a1a2c7bd6ca715cc9304119bbdd22ab31f8dfd t/boilerplate.t
 SHA1 0b1c5a2d59be6bfa7d60c64cd964fea6a0331705 t/pod-coverage.t
@@ -54,7 +54,7 @@ SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAk7chnwACgkQWFkxZRfLwXIrswCghhIVd5zPHtZLp6hA9Q2zUnG0
-+38An0dYjEjVQEhS05R1+zjPpmvrRqql
-=++v5
+iEYEARECAAYFAk7cvgEACgkQWFkxZRfLwXJUFQCg0R53NZL0JKltogBNk5PTQ2Pl
+E5UAnRbZajHXrGe2jMTFmR6FQW3R7qdv
+=yiZv
 -----END PGP SIGNATURE-----
