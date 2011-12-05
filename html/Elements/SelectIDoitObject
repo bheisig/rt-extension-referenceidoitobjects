@@ -8,6 +8,10 @@
             <li><a href="#tab-itemview">Gewählte Objekte</a></li>
         </ul>
 
+			<div id="loading-screen" style="position:absolute; opacity:0; background:#000; z-index:100;">
+				<img src="NoAuth/images/jquery_ui/ui-anim_basic_16x16.gif" alt="Loading" />
+			</div>
+		
         <div id="tab-objectview">
             Objekt Typ <select class="object-type"></select><br />
             <table class="object-table" style="width:100%;">
@@ -22,16 +26,17 @@
             </table>
         </div>
         <div id="tab-treeview">
-            <a href="#i-doit-objectbrowser" id="requestor-reload">Neu laden</a>
             <div class="workplaces"></div>
+            <a href="#" id="requestor-reload">Neu laden</a>
         </div>
         <div id="tab-itemview">
             Ausgewählte Objekte
             <table class="object-table" style="width:100%;">
                 <thead>
                     <tr>
-                        <th width="20%">ID</th>
-                        <th width="50%">Name</th>
+                        <th width="10%"></th>
+                        <th width="10%">ID</th>
+                        <th width="40%">Name</th>
                         <th width="30%">Typ</th>
                     </tr>
                 </thead>
@@ -49,6 +54,7 @@ api_lang = '<% $IDoitLanguage %>';
 api_user = '<% $IDoitUser %>';
 api_password = '<% $IDoitPassword %>';
 api_mandator = 12;
+browser_preselection_field = null;
 api_default_view = '<% $IDoitView %>';
 current_objectview_data = {};
 current_treeview_data = {};
@@ -72,6 +78,8 @@ datatable_lang = {
 };
 
 (function($){
+		browser_preselection_field = $('textarea[name="Object-RT::Ticket--CustomField-11-Values"]');
+	
     // Initialize the data table.
     var objectview_table = $('#i-doit-objectbrowser #tab-objectview table.object-table').dataTable({
         "bJQueryUI": true, 
@@ -99,53 +107,10 @@ datatable_lang = {
             $('#i-doit-objectbrowser-content').slideDown(400);
 
             // Here we get our preselection data and cast the ID's to integer.
-            var preselection = $('textarea[name="<% $IDoitObjects %>"]').val(),
-                requestors = $('#Requestors').val(),
-                data = {};
-
-            if (typeof preselection == 'undefined') {
-                window.error_notice("i-doit objects field could not be found.");
-                return;
-            }
-
-            preselection = preselection.replace(/(\s|[^\d,])/g, '')
-
-            if (typeof requestors != 'undefined') {
-                requestors = requestors.replace(/(\s)/g, '');
-            }
+			var data = {};
 
             // We look if the preselection field is filled.
-            if (preselection != '') {
-                preselection = preselection.split("\n").map(function(i) {
-                    return (!isNaN(parseInt(i)) ? parseInt(i) : 0);
-                });
-
-                if (preselection.length > 0) {
-                    // We first request the preselected ID's so we can display them correctly inside the "selected objects" list (ID, Name, Type).
-                    data = {
-                        "method":"cmdb.objects_by_filter",
-                        "params":{
-                            "session":{
-                                "username":api_user,
-                                "password":api_password,
-                                "language":api_lang,
-                                "mandator":api_mandator},
-                            "filter":{
-                                "ids":preselection}},
-                        "id":"1",
-                        "jsonrpc":"2.0"};
-
-                    idoit_ajax(data, function(response) {
-                        if (response.error == null) {
-                            $.each(response.result, function(i, e) {
-                                window.add_object(e.id, e.title, e.objecttype);
-                            });
-                        } else {
-                            window.error_notice('Error while preselecting objects.');
-                        }
-                    });
-                }
-            }
+			window.load_preselection_data();
 
             // Here we load the requestor data (workplaces and assigned objects).
             window.load_requestor_data();
@@ -182,6 +147,7 @@ datatable_lang = {
      * @author  Leonard Fischer <lfischer@synetics.de>
      */
     $('#i-doit-objectbrowser select.object-type').change(function() {
+			window.display_loading();
         var data = {
             "method":"cmdb.objects",
             "params":{
@@ -196,6 +162,7 @@ datatable_lang = {
 
         idoit_ajax(data, function(response) {
             if (response.error == null) {
+						window.remove_loading();
                 // Clear the table from our old entries.
                 current_objectview_data = response.result;
                 window.render_objectview();
@@ -246,16 +213,33 @@ datatable_lang = {
         window.load_requestor_data();
     });
 
+
+		/**
+		 * Function for reloading the requestors - This will be fired when a new requestor is beeing added to the "Requestor" field.
+		 *
+		 * @author  Leonard Fischer <lfischer@synetics.de>
+		 */
+		$('#Requestors').live('change', function() {
+			window.load_requestor_data();
+		});
+
+
+		/**
+		 * Function for reloading the preselection - This will be fired when the preselection field is beeing changed.
+		 *
+		 * @author  Leonard Fischer <lfischer@synetics.de>
+		 */
+		browser_preselection_field.live('change', function() {
+			window.load_preselection_data();
+		});
+
     /**
      * Loads and displays the requestor-data (workplace, assigned objects, ...).
      *
-     * @param   mixed  requestors  May be an array or a string containing email-addresses.
      * @author  Leonard Fischer <lfischer@synetics.de>
      */
-    window.load_requestor_data = function(requestors) {
-        if (typeof requestors == 'undefined') {
+		window.load_requestor_data = function() {
             requestors = $('#Requestors').val();
-        }
 
         if (typeof requestors == 'string') {
             requestors = requestors.replace(/(\s)/g, '').split(',');
@@ -263,6 +247,7 @@ datatable_lang = {
 
         if (typeof requestors != 'undefined') {
             if (requestors.length > 0) {
+				window.display_loading();
                 data = {
                     "method":"cmdb.workstation_components",
                     "params":{
@@ -277,6 +262,7 @@ datatable_lang = {
 
                 idoit_ajax(data, function(response) {
                     // First we check for errors.
+					window.remove_loading();
                     if (response.error == null) {
                         current_treeview_data = response.result;
                         window.render_treeview();
@@ -285,9 +271,64 @@ datatable_lang = {
                     }
                 });
             }
+		};
+		
+		
+		/**
+		 * Loads and displays the preselection-data.
+		 *
+		 * @author  Leonard Fischer <lfischer@synetics.de>
+		 */
+		window.load_preselection_data = function() {
+			var preselection = browser_preselection_field.val();
+			
+			if (typeof preselection != 'undefined') {
+				preselection = preselection.split("\n")
+				
+				if (preselection != '') {
+					preselection = preselection.map(function(i) {
+						return (!isNaN(parseInt(i)) ? parseInt(i) : 0);
+					});
+					
+					if (preselection.length > 0) {
+						window.display_loading();
+						// We first request the preselected ID's so we can display them correctly inside the "selected objects" list (ID, Name, Type).
+						data = {
+							"method":"cmdb.objects_by_filter",
+							"params":{
+								"session":{
+									"username":api_user,
+									"password":api_password,
+									"language":api_lang,
+									"mandator":api_mandator},
+								"filter":{
+									"ids":preselection}},
+							"id":"1",
+							"jsonrpc":"2.0"};
+						
+						idoit_ajax(data, function(response) {
+								window.remove_loading();
+								if (response.error == null) {
+									window.remove_all_objects();
+								
+									$.each(response.result, function(i, e) {
+										window.add_object(e.id, e.title, e.objecttype);
+									});
+								} else {
+									window.error_notice('Error while preselecting objects.');
+								}
+							});
+					}
+				}
         }
     };
 
+		
+		/**
+		 * This function is used to render the tree view. This is needed to update the selected ID's.
+		 *
+		 * @author  Leonard Fischer <lfischer@synetics.de>
+		 */
     window.render_treeview = function() {
         $('#tab-treeview div').html('');
 
@@ -352,6 +393,22 @@ datatable_lang = {
         $('#data-store').removeData(id);
 
         window.render_selected_items();
+			
+			// Instead of rendering the lists new, we can to something like this:
+			$('input[name="i-doit-objectbrowser-obj[]"][value="' + id + '"]').attr('checked', false);
+			$('input[name="i-doit-treebrowser-obj[]"][value="' + id + '"]').attr('checked', false);
+		};
+
+
+		/**
+		 * Function for removing all items from the selected data.
+		 *
+		 * @author  Leonard Fischer <lfischer@synetics.de>
+		 */
+		window.remove_all_objects = function() {
+			$('#data-store').removeData();
+			
+			window.render_selected_items();
         window.render_objectview();
         window.render_treeview();
     };
@@ -368,8 +425,10 @@ datatable_lang = {
         $('#data-store').data(id, {"name": name, "type": type});
 
         window.render_selected_items();
-        window.render_objectview();
-        window.render_treeview();
+			
+			// Instead of rendering the tables new, we can to something like this:
+			$('input[name="i-doit-objectbrowser-obj[]"][value="' + id + '"]').attr('checked', 'checked');
+			$('input[name="i-doit-treebrowser-obj[]"][value="' + id + '"]').attr('checked', 'checked');
     };
 
     /**
@@ -381,13 +440,13 @@ datatable_lang = {
         var data_array = [];
 
         itemview_table.fnClearTable();
-        $.each($('#data-store').data(), function(i, e) {
-            itemview_table.fnAddData(['<a href="#i-doit-objectbrowser" class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')">#' + i + ' Entfernen</a>', e.name, e.type]);
+        $.each($('#data-store').data(), function(i, e) {	
+				itemview_table.fnAddData(['<a href="#i-doit-objectbrowser" class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')">Entfernen</a>', i, e.name, e.type]);
 
             data_array.push(i);
         });
 
-        $('textarea[name="<% $IDoitObjects %>"]').val(data_array.join("\n"));
+        browser_preselection_field.val(data_array.join("\n"));
     };
 
     /**
@@ -408,18 +467,54 @@ datatable_lang = {
         });
     };
 
+		
+		/**
+		 * You may implement an own method to display errors here.
+		 *
+		 * @param   string  msg  The error message.
+		 * @author  Leonard Fischer <lfischer@synetics.de>
+		 */
     window.error_notice = function(msg) {
         alert(msg);
     }
 
-	// Start the browser
-	window.init_browser();
+		
+		/**
+		 * Function for displaying the "loading" screen.
+		 *
+		 * @author  Leonard Fischer <lfischer@synetics.de>
+		 */
+		window.display_loading = function() {
+			if ($('#tab-objectview').width() > 0 && $('#tab-objectview').height() > 0) {
+				$('#loading-screen').width($('#tab-objectview').width() + 'px').height($('#tab-objectview').height() + 'px');
+			} else {
+				$('#loading-screen').width($('#tab-treeview').width() + 'px').height($('#tab-treeview').height() + 'px');
+			}
+			
+			$('#loading-screen').stop().fadeTo(500, 0.5);
+		}
+		
+		
+		/**
+		 * Function for removing the "loading" screen.
+		 *
+		 * @author  Leonard Fischer <lfischer@synetics.de>
+		 */
+		window.remove_loading = function() {
+			$('#loading-screen').stop().fadeOut(500);
+		}
+
+		// Hide the preselection field.
+		browser_preselection_field.hide();
 	
     // Initialize our data object.
     $('#data-store').data();
 
     // Initialize our tabs.
-    $('#i-doit-objectbrowser-content').tabs();
+		$('#i-doit-objectbrowser-content').tabs({selected: api_default_view});
+		
+		// Start the browser
+		window.init_browser();
 })(jQuery);
 </script>
 
