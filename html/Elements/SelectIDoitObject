@@ -1,6 +1,6 @@
 <div id="i-doit-objectbrowser" style="position: relative; min-width: 400px;">
     <div id="data-store" style="display:none;"></div>
-
+	<div id="i-doit-mandator-notice">Bitte wählen Sie einen Mandanten aus.</div>
     <div id="i-doit-objectbrowser-content" style="display:none;">
         <ul>
             <li><a href="#tab-objectview">Objektansicht</a></li>
@@ -8,7 +8,7 @@
             <li><a href="#tab-itemview">Gewählte Objekte</a></li>
         </ul>
 
-        <div id="loading-screen" style="position:absolute; opacity:0; background:#000; z-index:100;">
+        <div id="loading-screen" style="position: absolute; right: 15px; top:12px; opacity: 0;">
             <img src="<% RT->Config->Get('WebPath') %>/NoAuth/images/jquery_ui/ui-anim_basic_16x16.gif" alt="Loading" />
         </div>
 
@@ -53,9 +53,12 @@ api_url = '<% $IDoitAPI %>';
 api_lang = '<% $IDoitLanguage %>';
 api_user = '<% $IDoitUser %>';
 api_password = '<% $IDoitPassword %>';
-api_mandator = 12;
-browser_preselection_field = null;
+api_mandator = 0;
 api_default_view = '<% $IDoitView %>';
+
+browser_preselection_field = null;
+browser_mandator_field = null;
+
 current_objectview_data = {};
 current_treeview_data = {};
 
@@ -78,8 +81,9 @@ datatable_lang = {
 };
 
 (function($) {
-    browser_preselection_field = $('textarea[name="Object-RT::Ticket--CustomField-11-Values"]');
-
+    browser_preselection_field = $('textarea[name="<% $IDoitObjects %>"]');
+	browser_mandator_field = $('select[name="<% $IDoitMandator %>"]');
+	
     // Initialize the data table.
     var objectview_table = $('#i-doit-objectbrowser #tab-objectview table.object-table').dataTable({
         "bJQueryUI": true, 
@@ -104,6 +108,11 @@ datatable_lang = {
      * @author  Leonard Fischer <lfischer@synetics.de>
      */
     window.init_browser = function() {
+		api_mandator = browser_mandator_field.val();
+		if (api_mandator == 0 || api_mandator == "") {
+			return
+		}
+	
 		$('#i-doit-objectbrowser-content').slideDown(400);
 
 		// Here we get our preselection data and cast the ID's to integer.
@@ -324,6 +333,17 @@ datatable_lang = {
         }
     };
 
+	
+	/**
+	 * Event for initializing the object browser, when changing the mandator.
+	 * 
+	 * @author  Leonard Fischer <lfischer@synetics.de>
+	 */
+	browser_mandator_field.live('change', function() {
+		api_mandator = browser_mandator_field.val();
+		window.init_browser();
+	});
+	
 		
 	/**
 	 * This function is used to render the tree view. This is needed to update the selected ID's.
@@ -372,14 +392,15 @@ datatable_lang = {
         objectview_table.fnClearTable();
         $.each(current_objectview_data, function(i, e) {
             if (e.status == 2) {
-                var check = '', selected = false;
+                var check = '', selected = false, title = '';
 
                 if (typeof $('#data-store').data(e.id) != 'undefined') {
                     selected = true;
                 }
 
                 check = '<input type="checkbox" value="' + e.id + '" name="i-doit-objectbrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' /> ' + e.id;
-                objectview_table.fnAddData([check, e.title]);
+				title = '<a href="###IDOIT-URL###?objID=' + e.id + '">' + e.title + '</a>';
+                objectview_table.fnAddData([check, title]);
             }
         });
     };
@@ -395,21 +416,21 @@ datatable_lang = {
 
         window.render_selected_items();
 			
-			// Instead of rendering the lists new, we can to something like this:
-			$('input[name="i-doit-objectbrowser-obj[]"][value="' + id + '"]').attr('checked', false);
-			$('input[name="i-doit-treebrowser-obj[]"][value="' + id + '"]').attr('checked', false);
-		};
+		// Instead of rendering the lists new, we can to something like this:
+		$('input[name="i-doit-objectbrowser-obj[]"][value="' + id + '"]').attr('checked', false);
+		$('input[name="i-doit-treebrowser-obj[]"][value="' + id + '"]').attr('checked', false);
+	};
 
 
-		/**
-		 * Function for removing all items from the selected data.
-		 *
-		 * @author  Leonard Fischer <lfischer@synetics.de>
-		 */
-		window.remove_all_objects = function() {
-			$('#data-store').removeData();
-			
-			window.render_selected_items();
+	/**
+	 * Function for removing all items from the selected data.
+	 *
+	 * @author  Leonard Fischer <lfischer@synetics.de>
+	 */
+	window.remove_all_objects = function() {
+		$('#data-store').removeData();
+		
+		window.render_selected_items();
         window.render_objectview();
         window.render_treeview();
     };
@@ -442,8 +463,9 @@ datatable_lang = {
 
         itemview_table.fnClearTable();
         $.each($('#data-store').data(), function(i, e) {	
-				itemview_table.fnAddData(['<a href="#i-doit-objectbrowser" class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')">Entfernen</a>', i, e.name, e.type]);
-
+			var title = '<a href="###IDOIT-URL###?objID=' + i + '">' + e.name + '</a>';
+			
+			itemview_table.fnAddData(['<a href="#i-doit-objectbrowser" class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')">Entfernen</a>', i, title, e.type]);
             data_array.push(i);
         });
 
@@ -486,13 +508,8 @@ datatable_lang = {
 	 * @author  Leonard Fischer <lfischer@synetics.de>
 	 */
 	window.display_loading = function() {
-		if ($('#tab-objectview').width() > 0 && $('#tab-objectview').height() > 0) {
-			$('#loading-screen').width($('#tab-objectview').width() + 'px').height($('#tab-objectview').height() + 'px');
-		} else {
-			$('#loading-screen').width($('#tab-treeview').width() + 'px').height($('#tab-treeview').height() + 'px');
-		}
-		
-		$('#loading-screen').stop().fadeTo(500, 0.5);
+		$('#loading-screen').stop().fadeTo(300, 1);
+		$('#i-doit-objectbrowser-content').stop().fadeTo(300, 0.3);
 	}
 	
 	
@@ -502,7 +519,8 @@ datatable_lang = {
 	 * @author  Leonard Fischer <lfischer@synetics.de>
 	 */
 	window.remove_loading = function() {
-		$('#loading-screen').stop().fadeOut(500);
+		$('#loading-screen').stop().fadeTo(300, 0);
+		$('#i-doit-objectbrowser-content').stop().fadeTo(300, 1);
 	}
 
 	// Hide the preselection field.
