@@ -263,7 +263,7 @@ datatable_lang = {
 				idoit_ajax(data, function(response) {
 					// First we check for errors.
 					window.remove_loading();
-<<<<<<< HEAD
+					
 					if (response.error == null) {
 						current_treeview_data = response.result;
 						window.render_treeview();
@@ -274,18 +274,6 @@ datatable_lang = {
 			}
 		}
 	};
-=======
-                    if (response.error == null) {
-                        current_treeview_data = response.result;
-                        window.render_treeview();
-                    } else {
-                        window.error_notice('Error while loading objects by email.');
-                    }
-                });
-            }
-		}
-    };
->>>>>>> 9c214f09d334679ecfec4791adebdf1be87baedd
 		
 	/**
 	 * Loads and displays the preselection-data.
