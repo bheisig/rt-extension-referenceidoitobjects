@@ -119,7 +119,7 @@ datatable_lang = {
 			return
 		}
 	
-		browser_mandator_field.css({display: 'none'});
+		$('#i-doit-mandator-notice').css({display: 'none'});
 		$('#i-doit-objectbrowser-content').css({display: 'block'});
 
 		// Here we get our preselection data and cast the ID's to integer.
@@ -531,7 +531,7 @@ datatable_lang = {
 	}
 
 	// Hide the preselection field.
-	browser_preselection_field.prev('tr').hide();
+	browser_preselection_field.parent(2).hide();
 
 	// Initialize our data object.
 	$('#data-store').data();
