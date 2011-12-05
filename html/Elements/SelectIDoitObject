@@ -49,7 +49,7 @@ api_lang = '<% $IDoitLanguage %>';
 api_user = '<% $IDoitUser %>';
 api_password = '<% $IDoitPassword %>';
 api_mandator = 12;
-api_default_view = '<% $IDoitDefaultView %>';
+api_default_view = '<% $IDoitView %>';
 current_objectview_data = {};
 current_treeview_data = {};
 
@@ -482,12 +482,17 @@ unless($cf->id) {
 }
 $IDoitObjects = 'Object-RT::Ticket--CustomField-' . $cf->id . '-Values';
 
-$IDoitDefaultView = RT->Config->Get('IDoitDefaultView');
+my $IDoitDefaultView = RT->Config->Get('IDoitDefaultView');
 unless($IDoitDefaultView) {
     my $msg = loc('Default view for i-doit\'s API is not configured.');
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
+}
+switch ($IDoitDefaultView) {
+    case 'object' { $IDoitView = 0; }
+    case 'tree' { $IDoitView = 1; }
+    case 'item' { $IDoitView = 2; }
 }
 </%INIT>
 
@@ -502,6 +507,7 @@ $IDoitPassword => undef
 $IDoitMandator => undef
 $IDoitObjects => undef
 $IDoitDefaultView => undef
+$IDoitView => undef
 
 # TODO Make field for email addresses configurable (current status: 'Requestors').
 </%ARGS>
