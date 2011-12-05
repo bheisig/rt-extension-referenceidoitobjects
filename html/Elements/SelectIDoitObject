@@ -22,7 +22,7 @@
             </table>
         </div>
         <div id="tab-treeview">
-            <a href="#" id="requestor-reload">Neu laden</a>
+            <a href="#i-doit-objectbrowser" id="requestor-reload">Neu laden</a>
             <div class="workplaces"></div>
         </div>
         <div id="tab-itemview">
@@ -48,7 +48,8 @@ api_url = '<% $IDoitAPI %>';
 api_lang = '<% $IDoitLanguage %>';
 api_user = '<% $IDoitUser %>';
 api_password = '<% $IDoitPassword %>';
-api_mandator = '<% $IDoitMandator %>';
+api_mandator = 12;
+api_default_view = '<% $IDoitDefaultView %>';
 current_objectview_data = {};
 current_treeview_data = {};
 
@@ -99,19 +100,23 @@ datatable_lang = {
 
             // Here we get our preselection data and cast the ID's to integer.
             var preselection = $('textarea[name="<% $IDoitObjects %>"]').val(),
-                requestors = $('#Requestors').val().replace(/(\s)/g, ''),
+                requestors = $('#Requestors').val(),
                 data = {};
 
-			if (typeof preselection == 'undefined') {
-				window.error_notice("i-doit objects field could not be found.");
-				return;
-			}
-			
-			preselection = preselection.replace(/(\s|[^\d,])/g, '')
+            if (typeof preselection == 'undefined') {
+                window.error_notice("i-doit objects field could not be found.");
+                return;
+            }
+
+            preselection = preselection.replace(/(\s|[^\d,])/g, '')
+
+            if (typeof requestors != 'undefined') {
+                requestors = requestors.replace(/(\s)/g, '');
+            }
 
             // We look if the preselection field is filled.
             if (preselection != '') {
-                preselection = preselection.split(',').map(function(i) {
+                preselection = preselection.split("\n").map(function(i) {
                     return (!isNaN(parseInt(i)) ? parseInt(i) : 0);
                 });
 
@@ -256,28 +261,30 @@ datatable_lang = {
             requestors = requestors.replace(/(\s)/g, '').split(',');
         }
 
-        if (requestors.length > 0) {
-            data = {
-                "method":"cmdb.workstation_components",
-                "params":{
-                    "session":{
-                        "username":api_user,
-                        "password":api_password,
-                        "language":api_lang,
-                        "mandator":api_mandator},
-                    "email":requestors},
-                "id":"1",
-                "jsonrpc":"2.0"};
+        if (typeof requestors != 'undefined') {
+            if (requestors.length > 0) {
+                data = {
+                    "method":"cmdb.workstation_components",
+                    "params":{
+                        "session":{
+                            "username":api_user,
+                            "password":api_password,
+                            "language":api_lang,
+                            "mandator":api_mandator},
+                        "email":requestors},
+                    "id":"1",
+                    "jsonrpc":"2.0"};
 
-            idoit_ajax(data, function(response) {
-                // First we check for errors.
-                if (response.error == null) {
-                    current_treeview_data = response.result;
-                    window.render_treeview();
-                } else {
-                    window.error_notice('Error while loading objects by email.');
-                }
-            });
+                idoit_ajax(data, function(response) {
+                    // First we check for errors.
+                    if (response.error == null) {
+                        current_treeview_data = response.result;
+                        window.render_treeview();
+                    } else {
+                        window.error_notice('Error while loading objects by email.');
+                    }
+                });
+            }
         }
     };
 
@@ -375,7 +382,7 @@ datatable_lang = {
 
         itemview_table.fnClearTable();
         $.each($('#data-store').data(), function(i, e) {
-            itemview_table.fnAddData(['<a href="#" class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')">#' + i + ' Entfernen</a>', e.name, e.type]);
+            itemview_table.fnAddData(['<a href="#i-doit-objectbrowser" class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')">#' + i + ' Entfernen</a>', e.name, e.type]);
 
             data_array.push(i);
         });
@@ -474,6 +481,14 @@ unless($cf->id) {
     push @{$results}, $msg;
 }
 $IDoitObjects = 'Object-RT::Ticket--CustomField-' . $cf->id . '-Values';
+
+$IDoitDefaultView = RT->Config->Get('IDoitDefaultView');
+unless($IDoitDefaultView) {
+    my $msg = loc('Default view for i-doit\'s API is not configured.');
+    RT::Logger->error($msg);
+    $$skip_create = 1;
+    push @{$results}, $msg;
+}
 </%INIT>
 
 <%ARGS>
@@ -486,6 +501,7 @@ $IDoitUser => undef
 $IDoitPassword => undef
 $IDoitMandator => undef
 $IDoitObjects => undef
+$IDoitDefaultView => undef
 
 # TODO Make field for email addresses configurable (current status: 'Requestors').
 </%ARGS>

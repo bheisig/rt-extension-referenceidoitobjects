@@ -52,6 +52,8 @@ i-doit has a built-in API based on JSON-RPC. To call this API set its URL:
 
     Set($IDoitLanguage, 'en');
 
+    Set($IDoitDefaultView, 'tree'); # 'object', 'tree' or 'item'
+
 The password is MD5 encoded. It's highly recommended to establish an encrypted
 connection between RT and i-doit, e. g. TLS over HTTP (HTTPS). You also need a
 mandator who owns the objects, but this is handled while creating a ticket.
