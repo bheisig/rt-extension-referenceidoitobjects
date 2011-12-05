@@ -8,8 +8,10 @@
             <li><a href="#tab-itemview">Gewählte Objekte</a></li>
         </ul>
 
-        <div id="loading-screen" style="position: absolute; right: 15px; top:12px; opacity: 0;">
-            <img src="<% RT->Config->Get('WebPath') %>/NoAuth/images/jquery_ui/ui-anim_basic_16x16.gif" alt="Loading" />
+        <a href="<% RT->Config->Get('IDoitURL') %>" title="Go to i-doit"><img src="<% RT->Config->Get('WebPath') %>/NoAuth/images/i-doit.png" alt="i-doit" style="position: absolute; right: 15px; top:12px;" /></a>
+
+        <div id="loading-screen" style="position:absolute; opacity:0; background:#000; z-index:100;">
+            <img src="<% RT->Config->Get('WebPath') %>/NoAuth/images/ajaxload.gif" alt="Loading" height="32" width="32" />
         </div>
 		
         <img src="<% RT->Config->Get('WebPath') %>/NoAuth/images/i-doit.png" alt="Loading" style="position: absolute; top: 3px; right: 8px; height: 28px;" />
@@ -402,7 +404,7 @@ datatable_lang = {
                 }
 
                 check = '<input type="checkbox" value="' + e.id + '" name="i-doit-objectbrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' /> ' + e.id;
-				title = '<a href="###IDOIT-URL###?objID=' + e.id + '">' + e.title + '</a>';
+				title = '<a href="<% RT->Config->Get('IDoitURL') %>?objID=' + e.id + '">' + e.title + '</a>';
                 objectview_table.fnAddData([check, title]);
             }
         });
@@ -466,7 +468,7 @@ datatable_lang = {
 
         itemview_table.fnClearTable();
         $.each($('#data-store').data(), function(i, e) {	
-			var title = '<a href="###IDOIT-URL###?objID=' + i + '">' + e.name + '</a>';
+			var title = '<a href="<% RT->Config->Get('IDoitURL') %>?objID=' + i + '">' + e.name + '</a>';
 			
 			itemview_table.fnAddData(['<a href="#i-doit-objectbrowser" class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')">Entfernen</a>', i, title, e.type]);
             data_array.push(i);
