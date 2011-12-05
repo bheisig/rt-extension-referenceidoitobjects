@@ -1,22 +1,20 @@
 <&| /Widgets/TitleBox, title => loc('i-doit'), class => 'ticket-info-basics' &>
-    <table width="100%" border="0">
-        <& /Ticket/Elements/EditIDoitObject,
-            InTable => 1,
-            fields  => [
-                {
-                    name => 'IDoitObject',
-                    comp => '/Ticket/Elements/ShowIDoitObject',
-                    args => {
-                        Name => 'IDoitObjectBrowser',
-                        Default => $ARGS{IDoitObjectBrowser},
-                        DefaultValue => 0,
-                        SkipDeleted => 1,
-                        QueueObj => $QueueObj,
-                    }
+    <& /Ticket/Elements/EditIDoitObject,
+        InTable => 1,
+        fields  => [
+            {
+                name => 'IDoitObject',
+                comp => '/Ticket/Elements/ShowIDoitObject',
+                args => {
+                    Name => 'IDoitObjectBrowser',
+                    Default => $ARGS{IDoitObjectBrowser},
+                    DefaultValue => 0,
+                    SkipDeleted => 1,
+                    QueueObj => $QueueObj,
                 }
-            ]
-        &>
-    </table>
+            }
+        ]
+    &>
 </&>
 
 <%INIT>

@@ -1,9 +1,4 @@
-<table>
-  <tr>
-    <td class="label"><&|/l&>i-doit</&>:</td>
-    <td class="value"><& /Elements/ShowIDoitObject &></td>
-  </tr>
-</table>
+<& /Elements/ShowIDoitObject &>
 
 <%ARGS>
 

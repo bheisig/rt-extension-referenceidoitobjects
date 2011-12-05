@@ -3,12 +3,7 @@
     (($can_modify || $can_modify_idoitobject) ? (title_href => RT->Config->Get('WebPath')."/Ticket/ModifyIDoitObject.html?id=".$Ticket->Id) : ()),
     class => 'ticket-info-basics'
 &>
-<table>
-  <tr>
-    <td class="labeltop"><&|/l&>i-doit</&>:</td>
-    <td class="value"><& /Ticket/Elements/ShowIDoitObject, Ticket => $Ticket &></td>
-  </tr>
-</table>
+<& /Ticket/Elements/ShowIDoitObject, Ticket => $Ticket &>
 </&>
 
 <%INIT>
