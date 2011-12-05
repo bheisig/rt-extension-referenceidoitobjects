@@ -1,3 +1,7 @@
+<style type="text/css">
+.css_right {float:right;}
+</style>
+
 <div id="i-doit-objectbrowser" style="position: relative; min-width: 400px;">
     <div id="data-store" style="display:none;"></div>
 	<div id="i-doit-mandator-notice">Bitte wählen Sie einen Mandanten aus.</div>
@@ -115,8 +119,8 @@ datatable_lang = {
 			return
 		}
 	
-		browser_mandator_field.slideUp(500);
-		$('#i-doit-objectbrowser-content').animate({height: '600px'}, 500);
+		browser_mandator_field.css({display: 'none'});
+		$('#i-doit-objectbrowser-content').css({display: 'block'});
 
 		// Here we get our preselection data and cast the ID's to integer.
 		var data = {};
