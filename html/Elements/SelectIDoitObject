@@ -1,7 +1,6 @@
-<div id="i-doit-objectbrowser" style="position: relative; margin: 20px auto; min-width: 400px; border:2px solid #888;">
+<div id="i-doit-objectbrowser" style="position: relative; min-width: 400px;">
     <div id="data-store" style="display:none;"></div>
 
-    <input id="i-doit-objectbrowser-button" class="button" value="Open Browser" type="button" />
     <div id="i-doit-objectbrowser-content" style="display:none;">
         <ul>
             <li><a href="#tab-objectview">Objektansicht</a></li>
@@ -95,14 +94,20 @@ datatable_lang = {
      *
      * @author  Leonard Fischer <lfischer@synetics.de>
      */
-    $('#i-doit-objectbrowser-button').click(function() {
-            $(this).slideUp(400);
+    window.init_browser = function() {
             $('#i-doit-objectbrowser-content').slideDown(400);
 
             // Here we get our preselection data and cast the ID's to integer.
-            var preselection = $('#<% $IDoitObjects %>').val().replace(/(\s|[^\d,])/g, ''),
+            var preselection = $('textarea[name="<% $IDoitObjects %>"]').val(),
                 requestors = $('#Requestors').val().replace(/(\s)/g, ''),
                 data = {};
+
+			if (typeof preselection == 'undefined') {
+				window.error_notice("i-doit objects field could not be found.");
+				return;
+			}
+			
+			preselection = preselection.replace(/(\s|[^\d,])/g, '')
 
             // We look if the preselection field is filled.
             if (preselection != '') {
@@ -164,7 +169,7 @@ datatable_lang = {
                     window.error_notice('Error while loading object-types.');
                 }
             });
-    });
+    };
 
     /**
      * Callback function for selecting an object-type.
@@ -375,7 +380,7 @@ datatable_lang = {
             data_array.push(i);
         });
 
-        $('#<% $IDoitObjects %>').val(data_array.join("\n"));
+        $('textarea[name="<% $IDoitObjects %>"]').val(data_array.join("\n"));
     };
 
     /**
@@ -400,6 +405,9 @@ datatable_lang = {
         alert(msg);
     }
 
+	// Start the browser
+	window.init_browser();
+	
     // Initialize our data object.
     $('#data-store').data();
 
