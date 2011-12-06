@@ -515,7 +515,8 @@ datatable_lang = {
 	 */
     window.error_notice = function(msg) {
 		var notice = $('<div></div>').addClass('ui-corner-all').css({background: '#FFB1AD', borderColor: '#FF6D68', color: '#A04341'}).html(msg);
-        $('#i-doit-browser-notice').append(notice).slideDown(300).delay(2000).slideUp(300);
+        $('#i-doit-browser-notice').after(notice);
+		notice.slideDown(300).delay(2000).slideUp(300).delay(300).remove();
     }
 
 
