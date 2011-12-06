@@ -277,7 +277,8 @@ datatable_lang = {
 							"password":api_password,
 							"language":api_lang,
 							"mandator":api_mandator},
-						"email":requestors},
+						"filter":{
+							"emails":requestors}},
 					"id":"1",
 					"jsonrpc":"2.0"};
 
@@ -364,36 +365,37 @@ datatable_lang = {
 	 */
     window.render_treeview = function() {
         $('#tab-treeview div').html('');
-
-        // We iterate through the email-addresses.
+		
+        // We iterate through the first level (email-addresses).
         $.each(current_treeview_data, function(i, e) {
-            $('#tab-treeview div.workplaces').append('<b>' + i + '</b><br />');
+            $('#tab-treeview div.workplaces').append('<a href="<% RT->Config->Get('IDoitURL') %>?objID=' + i + '"><b>' + e.data.title + '</b></a><br />');
 
-            // We iterate through the workplaces.
-            $.each(e, function(i, e) {
-                var selected = false;
-                if (typeof $('#data-store').data(e.data.id) != 'undefined') {
-                    selected = true;
-                }
-
-                $('#tab-treeview div.workplaces').append('<div class="workplace"><input type="checkbox" value="' + e.data.id + '" ' + ((selected) ? 'checked="checked"' : '') + ' name="i-doit-treebrowser-obj[]" /><span class="obj-name">' + e.data.title + '</span> (<span class="obj-type">Arbeitsplatz</span>)<br />');
-
-                if (e.childs) {
-                    // Finally we iterate through the single assigned objects.
-                    $.each(e.childs, function(i, e) {
-                        var selected = false;
-                        if (typeof $('#data-store').data(e.id) != 'undefined') {
-                            selected = true;
-                        }
-
-                        $('#tab-treeview div.workplaces div.workplace:last').append('<input type="checkbox" value="' + e.id + '" ' + ((selected) ? 'checked="checked"' : '') + ' name="i-doit-treebrowser-obj[]" style="margin-left:20px;" /><span class="obj-name">' + e.title + '</span> (<span class="obj-type">' + e.objecttype + '</span>)<br />');
-                    });
-                }
-
-                $('#tab-treeview div.workplaces').append('</div>');
-            });
+			if (e.children != false) {
+				window.render_treeview_recursion(e.children, 1);
+			}
         });
     };
+	
+	
+	window.render_treeview_recursion = function(data, level) {
+		$.each(data, function(i, e) {
+			var selected = false;
+			if (typeof $('#data-store').data(i) != 'undefined') {
+				selected = true;
+			}
+		
+			var output = '<input type="checkbox" value="' + i + '" name="i-doit-treebrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' style="margin-left:' + (level * 20) + 'px;"> ' +
+				'<span class="obj-name">' + e.data.title + '</span>' +
+				' (<span class="obj-type">' + e.data.type + '</span>)<br />';
+				
+			$('#tab-treeview').append(output);
+			
+			if (e.children != false) {
+				window.render_treeview_recursion(e.children, (level + 1));
+			}
+		});
+	};
+	
 
     /**
      * Function for rendering the object-table.
