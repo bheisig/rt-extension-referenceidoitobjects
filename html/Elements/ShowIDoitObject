@@ -118,40 +118,8 @@ datatable_lang = {
 		// Here we load the requestor data (workplaces and assigned objects).
 		window.load_requestor_data();
 
-		data = {
-			"method":"cmdb.object_types",
-			"params":{
-				"session":{
-					"username":api_user,
-					"password":api_password,
-					"language":api_lang,
-					"mandator":api_mandator},
-                "order_by":"title"},
-			"id":"1",
-			"jsonrpc":"2.0"};
-
-		idoit_ajax(data, function(response) {
-			if (response.error == null) {
-				$('#i-doit-objectbrowser select.object-type').html('');
-				$.each(response.result, function(i, e) {
-					$('<option value="' + e.id + '">' + e.title + '</option>').appendTo('#i-doit-objectbrowser select.object-type');
-				});
-
-				// Trigger the event.
-				$('#i-doit-objectbrowser select.object-type').change();
-			} else {
-				window.error_notice('Error while loading object-types.');
-			}
-		});
-    };
-
-	
-	/**
-	 * Loads and displays the preselection-data.
-	 *
-	 * @author  Leonard Fischer <lfischer@synetics.de>
-	 */
-	window.load_preselection_data = function() {
+		
+		
 		var preselection = browser_preselection_field.val();
 
 		if (typeof preselection != 'undefined') {
@@ -163,8 +131,6 @@ datatable_lang = {
 				});
 
 				if (preselection.length > 0) {
-					window.display_loading();
-					// We first request the preselected ID's so we can display them correctly inside the "selected objects" list (ID, Name, Type).
 					data = {
 						"method":"cmdb.objects",
 						"params":{
@@ -179,23 +145,26 @@ datatable_lang = {
 						"jsonrpc":"2.0"};
 
 					idoit_ajax(data, function(response) {
-							window.remove_loading();
-							if (response.error == null) {
-								window.remove_all_objects();
+						if (response.error == null) {
+							
+							itemview_table.fnClearTable();
+							
+							$.each($('#data-store').data(), function(i, e) {
+								var title = '<a href="<% RT->Config->Get('IDoitURL') %>?objID=' + i + '">' + e.name + '</a>';
 
-								$.each(response.result, function(i, e) {
-									window.add_object(e.id, e.title, e.objecttype);
-								});
-							} else {
-								window.error_notice('Error while preselecting objects.');
-							}
-						});
+								itemview_table.fnAddData([i, title, e.type]);
+								data_array.push(i);
+							});
+						} else {
+							window.error_notice('Error while loading object-types.');
+						}
+					});
 				}
 			}
-        }
+		}
     };
 
-
+	
     /**
      * Function for rendering the "selected objects" list. Will be used when adding or removing an object.
      *

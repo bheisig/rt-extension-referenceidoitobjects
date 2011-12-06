@@ -118,7 +118,8 @@ datatable_lang = {
     window.init_browser = function() {
 		api_mandator = browser_mandator_field.val();
 		if (api_mandator == 0 || api_mandator == "") {
-			return
+			$('#i-doit-browser-notice').html('Bitte wählen Sie einen Mandanten aus.');
+			return;
 		}
 
 		$('#i-doit-browser-notice').css({display: 'none'});
@@ -383,6 +384,10 @@ datatable_lang = {
 			if (typeof $('#data-store').data(i) != 'undefined') {
 				selected = true;
 			}
+		
+		console.log('-->');
+		console.log(i);
+		console.log(e);
 		
 			var output = '<input type="checkbox" value="' + i + '" name="i-doit-treebrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' style="margin-left:' + (level * 20) + 'px;"> ' +
 				'<span class="obj-name">' + e.data.title + '</span>' +
