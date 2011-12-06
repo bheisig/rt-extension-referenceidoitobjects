@@ -1,10 +1,11 @@
 <style type="text/css">
 .css_right {float:right;}
+#i-doit-mandator-notice {background:#FFEDB5; border:1px solid #FFD12D;}
 </style>
 
 <div id="i-doit-objectbrowser" style="position: relative; min-width: 400px;">
     <div id="data-store" style="display:none;"></div>
-	<div id="i-doit-mandator-notice">Bitte wählen Sie einen Mandanten aus.</div>
+	<div id="i-doit-browser-notice" class="ui-corner-all">Bitte wählen Sie einen Mandanten aus.</div>
     <div id="i-doit-objectbrowser-content" style="display:none;">
         <ul>
             <li><a href="#tab-objectview">Objektansicht</a></li>
@@ -120,7 +121,7 @@ datatable_lang = {
 			return
 		}
 
-		$('#i-doit-mandator-notice').css({display: 'none'});
+		$('#i-doit-browser-notice').css({display: 'none'});
 		$('#i-doit-objectbrowser-content').css({display: 'block'});
 
 		// Here we get our preselection data and cast the ID's to integer.
@@ -513,7 +514,7 @@ datatable_lang = {
 	 * @author  Leonard Fischer <lfischer@synetics.de>
 	 */
     window.error_notice = function(msg) {
-        alert(msg);
+        $('#i-doit-browser-notice').css({background: '#FFB1AD', borderColor: '#FF6D68', color: '#FF6D68'}).slideDown(300).delay(1500).slideUp(300);
     }
 
 
