@@ -374,6 +374,8 @@ datatable_lang = {
 			if (e.children != false) {
 				window.render_treeview_recursion(e.children, 1);
 			}
+			
+			$('#tab-treeview div.workplaces').append('<br />');
         });
     };
 	
@@ -385,15 +387,11 @@ datatable_lang = {
 				selected = true;
 			}
 		
-		console.log('-->');
-		console.log(i);
-		console.log(e);
-		
 			var output = '<input type="checkbox" value="' + i + '" name="i-doit-treebrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' style="margin-left:' + (level * 20) + 'px;"> ' +
 				'<span class="obj-name">' + e.data.title + '</span>' +
 				' (<span class="obj-type">' + e.data.type + '</span>)<br />';
 				
-			$('#tab-treeview').append(output);
+			$('#tab-treeview div.workplaces').append(output);
 			
 			if (e.children != false) {
 				window.render_treeview_recursion(e.children, (level + 1));
