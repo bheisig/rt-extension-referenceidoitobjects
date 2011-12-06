@@ -217,8 +217,8 @@ datatable_lang = {
      */
     $('input[name="i-doit-treebrowser-obj[]"]').live('change', function() {
         if ($(this).attr('checked')) {
-            var name = $(this).find('span.obj-name').text(),
-                type = $(this).find('span.obj-type').text();
+            var name = $(this).next(0).text(),
+                type = $(this).next(1).text();
 
             window.add_object($(this).val(), name, type);
         } else {
@@ -389,7 +389,7 @@ datatable_lang = {
 		
 			var output = '<input type="checkbox" value="' + i + '" name="i-doit-treebrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' style="margin-left:' + (level * 20) + 'px;"> ' +
 				'<span class="obj-name">' + e.data.title + '</span>' +
-				' (<span class="obj-type">' + e.data.type + '</span>)<br />';
+				' (<span class="obj-type">' + e.data.type_title + '</span>)<br />';
 				
 			$('#tab-treeview div.workplaces').append(output);
 			
