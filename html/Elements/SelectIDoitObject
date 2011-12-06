@@ -1,8 +1,16 @@
 <style type="text/css">
 .css_right {float:right;}
+
 #i-doit-browser-notice {background:#FFEDB5; border:1px solid #FFD12D; color:#C19C22; padding:3px;}
-span.relation-button {cursor:pointer}
-span.relation-button:hover {text-decoration:underline;}
+
+span.relation-button, 
+requestor-reload, 
+.i-doit-objectbrowser-remover {cursor:pointer}
+
+span.relation-button:hover, 
+requestor-reload:hover
+.i-doit-objectbrowser-remover:hover {text-decoration:underline;}
+
 div.workplaces {position:relative;}
 </style>
 
@@ -38,7 +46,7 @@ div.workplaces {position:relative;}
         </div>
         <div id="tab-treeview">
             <div class="workplaces"></div>
-            <a href="" id="requestor-reload">Neu laden</a>
+            <span id="requestor-reload">Neu laden</span>
         </div>
         <div id="tab-itemview">
             Ausgewählte Objekte
@@ -530,7 +538,7 @@ datatable_lang = {
         $.each($('#data-store').data(), function(i, e) {
 			var title = '<a href="<% RT->Config->Get('IDoitURL') %>?objID=' + i + '">' + e.name + '</a>';
 
-			itemview_table.fnAddData(['<a href="" class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')">Entfernen</a>', i, title, e.type]);
+			itemview_table.fnAddData(['<span class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')">Entfernen</span>', i, title, e.type]);
             data_array.push(i);
         });
 
