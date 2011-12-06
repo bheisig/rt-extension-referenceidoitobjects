@@ -38,7 +38,7 @@ div.workplaces {position:relative;}
         </div>
         <div id="tab-treeview">
             <div class="workplaces"></div>
-            <a href="#" id="requestor-reload">Neu laden</a>
+            <a href="" id="requestor-reload">Neu laden</a>
         </div>
         <div id="tab-itemview">
             Ausgewählte Objekte
@@ -364,6 +364,7 @@ datatable_lang = {
 	 */
 	browser_mandator_field.live('change', function() {
 		api_mandator = browser_mandator_field.val();
+		window.remove_all_objects();
 		window.init_browser();
 	});
 
@@ -529,7 +530,7 @@ datatable_lang = {
         $.each($('#data-store').data(), function(i, e) {
 			var title = '<a href="<% RT->Config->Get('IDoitURL') %>?objID=' + i + '">' + e.name + '</a>';
 
-			itemview_table.fnAddData(['<a href="#i-doit-objectbrowser" class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')">Entfernen</a>', i, title, e.type]);
+			itemview_table.fnAddData(['<a href="" class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')">Entfernen</a>', i, title, e.type]);
             data_array.push(i);
         });
 
