@@ -216,8 +216,8 @@ datatable_lang = {
      */
     $('input[name="i-doit-treebrowser-obj[]"]').live('change', function() {
         if ($(this).attr('checked')) {
-            var name = $(this).next('span.obj-name').text(),
-                type = $(this).next('span.obj-type').text();
+            var name = $(this).find('span.obj-name').text(),
+                type = $(this).find('span.obj-type').text();
 
             window.add_object($(this).val(), name, type);
         } else {
@@ -514,7 +514,8 @@ datatable_lang = {
 	 * @author  Leonard Fischer <lfischer@synetics.de>
 	 */
     window.error_notice = function(msg) {
-        $('#i-doit-browser-notice').css({background: '#FFB1AD', borderColor: '#FF6D68', color: '#A04341'}).html(msg).slideDown(300).delay(2000).slideUp(300);
+		var notice = $('div').addClass('ui-corner-all').css({background: '#FFB1AD', borderColor: '#FF6D68', color: '#A04341'}).html(msg);
+        $('#i-doit-browser-notice').append(notice).slideDown(300).delay(2000).slideUp(300);
     }
 
 
