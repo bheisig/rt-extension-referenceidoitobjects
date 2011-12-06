@@ -176,7 +176,7 @@ datatable_lang = {
      * @author  Leonard Fischer <lfischer@synetics.de>
      */
     $('#i-doit-objectbrowser select.object-type').change(function() {
-			window.display_loading();
+		window.display_loading();
         var data = {
             "method":"cmdb.objects",
             "params":{
@@ -193,7 +193,7 @@ datatable_lang = {
 
         idoit_ajax(data, function(response) {
             if (response.error == null) {
-						window.remove_loading();
+				window.remove_loading();
                 // Clear the table from our old entries.
                 current_objectview_data = response.result;
                 window.render_objectview();
@@ -413,8 +413,8 @@ datatable_lang = {
 	$('span.relation-button').live('click', function() {
 		window.display_loading();
 		
-		var id = $(this).closest('input').val(),
-			div = $(this).closest('div');
+		var id = $(this).prev().prev().prev().val(),
+			div = $(this).parent();
 		
 		console.log(id);
 		
