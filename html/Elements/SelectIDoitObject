@@ -73,6 +73,8 @@ browser_mandator_field = null;
 current_objectview_data = {};
 current_treeview_data = {};
 
+initialized = false;
+
 datatable_lang = {
     "sProcessing":   "Bitte warten...",
     "sLengthMenu":   "_MENU_ Einträge anzeigen",
@@ -122,9 +124,11 @@ datatable_lang = {
 		api_mandator = browser_mandator_field.val();
 		if (api_mandator == 0 || api_mandator == "") {
 			$('#i-doit-browser-notice').html('Bitte wählen Sie einen Mandanten aus.');
+			initialized = false;
 			return;
 		}
 
+		initialized = true;
 		$('#i-doit-browser-notice').css({display: 'none'});
 		$('#i-doit-objectbrowser-content').css({display: 'block'});
 
@@ -245,7 +249,7 @@ datatable_lang = {
 	 * @author  Leonard Fischer <lfischer@synetics.de>
 	 */
 	$('#Requestors').live('change', function() {
-		window.load_requestor_data();
+		if (initialized) window.load_requestor_data();
 	});
 
 
@@ -392,8 +396,8 @@ datatable_lang = {
 		
 			var output = '<div><input type="checkbox" value="' + i + '" name="i-doit-treebrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' style="margin-left:' + (level * 20) + 'px;"> ' +
 				'<span class="obj-name">' + e.data.title + '</span>' +
-				' (<span class="obj-type">' + e.data.type_title + '</span>) ' + 
-				'<span class="relation-button">[Beziehungen darstellen]</span></div>';
+				' (<span class="obj-type">' + e.data.type_title + '</span>) - ' + 
+				'<span class="relation-button">Beziehungen laden</span></div>';
 				
 			$('#tab-treeview div.workplaces').append(output);
 			
@@ -402,6 +406,43 @@ datatable_lang = {
 			}
 		});
 	};
+	
+	
+	$('span.relation-button').live('click', function() {
+		window.display_loading();
+		
+		var id = $(this).closest('input').value,
+			div = $(this).closest('div');
+		
+		console.log(id);
+		
+		data = {
+			"method":"cmdb.objects_by_relation",
+			"params":{
+				"session":{
+					"username":api_user,
+					"password":api_password,
+					"language":api_lang,
+					"mandator":api_mandator},
+				"id":id,
+				"relation_type":"C__RELATION_TYPE__SOFTWARE"},
+			"id":"1",
+			"jsonrpc":"2.0"};
+
+		idoit_ajax(data, function(response) {
+				window.remove_loading();
+				if (response.error == null) {
+					window.remove_all_objects();
+
+					$.each(response.result, function(i, e) {
+						div.append(i + '<br />');
+					});
+				} else {
+					window.error_notice('Error while preselecting objects.');
+				}
+			}.bind(this));
+	});
+	
 	
 
     /**
