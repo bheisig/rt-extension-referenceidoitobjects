@@ -1,10 +1,11 @@
 <style type="text/css">
 .css_right {float:right;}
+#i-doit-browser-notice {background:#FFEDB5; border:1px solid #FFD12D; color:#C19C22; padding:3px;}
 </style>
 
 <div id="i-doit-objectbrowser" style="position: relative; min-width: 400px;">
     <div id="data-store" style="display:none;"></div>
-	<div id="i-doit-mandator-notice">Bitte wählen Sie einen Mandanten aus.</div>
+	<div id="i-doit-browser-notice" class="ui-corner-all">Bitte wählen Sie einen Mandanten aus.</div>
     <div id="i-doit-objectbrowser-content" style="display:none;">
         <ul>
             <li><a href="#tab-objectview">Objektansicht</a></li>
@@ -23,7 +24,8 @@
             <table class="object-table" style="width:100%;">
                 <thead>
                     <tr>
-                        <th width="20%">ID</th>
+                        <th width="5%"></th>
+                        <th width="15%">ID</th>
                         <th width="80%">Name</th>
                     </tr>
                 </thead>
@@ -40,10 +42,10 @@
             <table class="object-table" style="width:100%;">
                 <thead>
                     <tr>
-                        <th width="10%"></th>
+                        <th width="10%">Aktion</th>
                         <th width="10%">ID</th>
                         <th width="40%">Name</th>
-                        <th width="30%">Typ</th>
+                        <th width="40%">Typ</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -89,10 +91,10 @@ datatable_lang = {
 (function($) {
     browser_preselection_field = $('textarea[name="<% $IDoitObjects %>"]');
 	browser_mandator_field = $('select[name="<% $IDoitMandator %>"]');
-	
+
     // Initialize the data table.
     var objectview_table = $('#i-doit-objectbrowser #tab-objectview table.object-table').dataTable({
-        "bJQueryUI": true, 
+        "bJQueryUI": true,
         "bAutoWidth": false,
         "bLengthChange": false,
         "iDisplayLength": 20,
@@ -100,7 +102,7 @@ datatable_lang = {
         "oLanguage": datatable_lang
     }),
     itemview_table = $('#i-doit-objectbrowser #tab-itemview table.object-table').dataTable({
-        "bJQueryUI": true, 
+        "bJQueryUI": true,
         "bAutoWidth": false,
         "bPaginate": false,
         "bLengthChange": false,
@@ -118,8 +120,8 @@ datatable_lang = {
 		if (api_mandator == 0 || api_mandator == "") {
 			return
 		}
-	
-		$('#i-doit-mandator-notice').css({display: 'none'});
+
+		$('#i-doit-browser-notice').css({display: 'none'});
 		$('#i-doit-objectbrowser-content').css({display: 'block'});
 
 		// Here we get our preselection data and cast the ID's to integer.
@@ -282,7 +284,7 @@ datatable_lang = {
 				idoit_ajax(data, function(response) {
 					// First we check for errors.
 					window.remove_loading();
-					
+
 					if (response.error == null) {
 						current_treeview_data = response.result;
 						window.render_treeview();
@@ -293,7 +295,7 @@ datatable_lang = {
 			}
 		}
 	};
-		
+
 	/**
 	 * Loads and displays the preselection-data.
 	 *
@@ -301,15 +303,15 @@ datatable_lang = {
 	 */
 	window.load_preselection_data = function() {
 		var preselection = browser_preselection_field.val();
-		
+
 		if (typeof preselection != 'undefined') {
 			preselection = preselection.split("\n")
-			
+
 			if (preselection != '') {
 				preselection = preselection.map(function(i) {
 					return (!isNaN(parseInt(i)) ? parseInt(i) : 0);
 				});
-				
+
 				if (preselection.length > 0) {
 					window.display_loading();
 					// We first request the preselected ID's so we can display them correctly inside the "selected objects" list (ID, Name, Type).
@@ -325,12 +327,12 @@ datatable_lang = {
 								"ids":preselection}},
 						"id":"1",
 						"jsonrpc":"2.0"};
-					
+
 					idoit_ajax(data, function(response) {
 							window.remove_loading();
 							if (response.error == null) {
 								window.remove_all_objects();
-							
+
 								$.each(response.result, function(i, e) {
 									window.add_object(e.id, e.title, e.objecttype);
 								});
@@ -343,18 +345,18 @@ datatable_lang = {
         }
     };
 
-	
+
 	/**
 	 * Event for initializing the object browser, when changing the mandator.
-	 * 
+	 *
 	 * @author  Leonard Fischer <lfischer@synetics.de>
 	 */
 	browser_mandator_field.live('change', function() {
 		api_mandator = browser_mandator_field.val();
 		window.init_browser();
 	});
-	
-		
+
+
 	/**
 	 * This function is used to render the tree view. This is needed to update the selected ID's.
 	 *
@@ -402,15 +404,19 @@ datatable_lang = {
         objectview_table.fnClearTable();
         $.each(current_objectview_data, function(i, e) {
             if (e.status == 2) {
-                var check = '', selected = false, title = '';
+                var check,
+					selected = false,
+					title,
+					id;
 
                 if (typeof $('#data-store').data(e.id) != 'undefined') {
                     selected = true;
                 }
 
-                check = '<input type="checkbox" value="' + e.id + '" name="i-doit-objectbrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' /> ' + e.id;
+                check = '<input type="checkbox" value="' + e.id + '" name="i-doit-objectbrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' />';
+                id = e.id;
 				title = '<a href="<% RT->Config->Get('IDoitURL') %>?objID=' + e.id + '">' + e.title + '</a>';
-                objectview_table.fnAddData([check, title]);
+                objectview_table.fnAddData([check, id, title]);
             }
         });
     };
@@ -425,7 +431,7 @@ datatable_lang = {
         $('#data-store').removeData(id);
 
         window.render_selected_items();
-			
+
 		// Instead of rendering the lists new, we can to something like this:
 		$('input[name="i-doit-objectbrowser-obj[]"][value="' + id + '"]').attr('checked', false);
 		$('input[name="i-doit-treebrowser-obj[]"][value="' + id + '"]').attr('checked', false);
@@ -439,7 +445,7 @@ datatable_lang = {
 	 */
 	window.remove_all_objects = function() {
 		$('#data-store').removeData();
-		
+
 		window.render_selected_items();
         window.render_objectview();
         window.render_treeview();
@@ -457,7 +463,7 @@ datatable_lang = {
         $('#data-store').data(id, {"name": name, "type": type});
 
         window.render_selected_items();
-			
+
 			// Instead of rendering the tables new, we can to something like this:
 			$('input[name="i-doit-objectbrowser-obj[]"][value="' + id + '"]').attr('checked', 'checked');
 			$('input[name="i-doit-treebrowser-obj[]"][value="' + id + '"]').attr('checked', 'checked');
@@ -472,9 +478,9 @@ datatable_lang = {
         var data_array = [];
 
         itemview_table.fnClearTable();
-        $.each($('#data-store').data(), function(i, e) {	
+        $.each($('#data-store').data(), function(i, e) {
 			var title = '<a href="<% RT->Config->Get('IDoitURL') %>?objID=' + i + '">' + e.name + '</a>';
-			
+
 			itemview_table.fnAddData(['<a href="#i-doit-objectbrowser" class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')">Entfernen</a>', i, title, e.type]);
             data_array.push(i);
         });
@@ -500,7 +506,7 @@ datatable_lang = {
         });
     };
 
-		
+
 	/**
 	 * You may implement an own method to display errors here.
 	 *
@@ -508,10 +514,10 @@ datatable_lang = {
 	 * @author  Leonard Fischer <lfischer@synetics.de>
 	 */
     window.error_notice = function(msg) {
-        alert(msg);
+        $('#i-doit-browser-notice').css({background: '#FFB1AD', borderColor: '#FF6D68', color: '#A04341'}).html(msg).slideDown(300).delay(2000).slideUp(300);
     }
 
-		
+
 	/**
 	 * Function for displaying the "loading" screen.
 	 *
@@ -521,8 +527,8 @@ datatable_lang = {
 		$('#loading-screen').stop().fadeTo(300, 1);
 		$('#i-doit-objectbrowser-content').stop().fadeTo(300, 0.3);
 	}
-	
-	
+
+
 	/**
 	 * Function for removing the "loading" screen.
 	 *
@@ -533,8 +539,9 @@ datatable_lang = {
 		$('#i-doit-objectbrowser-content').stop().fadeTo(300, 1);
 	}
 
+
 	// Hide the preselection field.
-	browser_preselection_field.parent(2).hide();
+	browser_preselection_field.parent().parent().hide();
 
 	// Initialize our data object.
 	$('#data-store').data();
