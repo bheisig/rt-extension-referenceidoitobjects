@@ -202,9 +202,9 @@ datatable_lang = {
     $('input[name="i-doit-objectbrowser-obj[]"]').live('change', function() {
         if ($(this).attr('checked')) {
             var name = $(this).closest('tr').find('td:eq(2)').text(),
-                type = $('#i-doit-objectbrowser select.object-type option:selected').text();
+                type_title = $('#i-doit-objectbrowser select.object-type option:selected').text();
 
-            window.add_object($(this).val(), name, type);
+            window.add_object($(this).val(), name, type_title);
         } else {
             window.remove_object($(this).val());
         }
@@ -218,9 +218,9 @@ datatable_lang = {
     $('input[name="i-doit-treebrowser-obj[]"]').live('change', function() {
         if ($(this).attr('checked')) {
             var name = $(this).next('.obj-name').text(),
-                type = $(this).next('.obj-type').text();
+                type_title = $(this).next('.obj-type').text();
 
-            window.add_object($(this).val(), name, type);
+            window.add_object($(this).val(), name, type_title);
         } else {
             window.remove_object($(this).val());
         }
