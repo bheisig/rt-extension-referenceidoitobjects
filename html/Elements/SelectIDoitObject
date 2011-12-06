@@ -217,8 +217,8 @@ datatable_lang = {
      */
     $('input[name="i-doit-treebrowser-obj[]"]').live('change', function() {
         if ($(this).attr('checked')) {
-            var name = $(this).next(0).text(),
-                type = $(this).next(1).text();
+            var name = $(this).next('.obj-name').text(),
+                type = $(this).next('.obj-type').text();
 
             window.add_object($(this).val(), name, type);
         } else {
