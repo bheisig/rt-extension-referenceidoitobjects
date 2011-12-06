@@ -1,5 +1,5 @@
 <&| /Widgets/TitleBox,
-    title => loc('i-doit'),
+    title => loc('Referenced i-doit objects'),
     (($can_modify || $can_modify_idoitobject) ? (title_href => RT->Config->Get('WebPath')."/Ticket/ModifyIDoitObject.html?id=".$Ticket->Id) : ()),
     class => 'ticket-info-basics'
 &>
