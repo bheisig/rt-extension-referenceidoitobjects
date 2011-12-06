@@ -1,4 +1,4 @@
-<&| /Widgets/TitleBox, title => loc('i-doit'), class => 'ticket-info-basics' &>
+<&| /Widgets/TitleBox, title => loc('Referenced i-doit objects'), class => 'ticket-info-basics' &>
     <& /Ticket/Elements/EditIDoitObject,
         InTable => 1,
         fields  => [

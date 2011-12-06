@@ -9,8 +9,8 @@ our $VERSION = '0.1';
 
 =head1 NAME
 
-RT::Extension::ReferenceIDoitObject - Create a ticket in relation to an i-doit
-object
+RT::Extension::ReferenceIDoitObject - Create a ticket in relation to one or more
+i-doit objects
 
 
 =head1 DESCRIPTION
