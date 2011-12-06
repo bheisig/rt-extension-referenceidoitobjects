@@ -211,9 +211,9 @@ datatable_lang = {
     $('input[name="i-doit-objectbrowser-obj[]"]').live('change', function() {
         if ($(this).attr('checked')) {
             var name = $(this).closest('tr').find('td:eq(2)').text(),
-                type_title = $('#i-doit-objectbrowser select.object-type option:selected').text();
+                type = $('#i-doit-objectbrowser select.object-type option:selected').text();
 
-            window.add_object($(this).val(), name, type_title);
+            window.add_object($(this).val(), name, type);
         } else {
             window.remove_object($(this).val());
         }
@@ -226,10 +226,10 @@ datatable_lang = {
      */
     $('input[name="i-doit-treebrowser-obj[]"]').live('change', function() {
         if ($(this).attr('checked')) {
-            var name = $(this).next('.obj-name').text(),
-                type_title = $(this).next('.obj-type').text();
+            var name = $(this).next().text(),
+                type = $(this).next().next().text();
 
-            window.add_object($(this).val(), name, type_title);
+            window.add_object($(this).val(), name, type);
         } else {
             window.remove_object($(this).val());
         }
@@ -261,7 +261,7 @@ datatable_lang = {
 	 * @author  Leonard Fischer <lfischer@synetics.de>
 	 */
 	browser_preselection_field.live('change', function() {
-		window.load_preselection_data();
+		if (initialized) window.load_preselection_data();
 	});
 
     /**
@@ -398,8 +398,8 @@ datatable_lang = {
 		
 			var output = '<div><input type="checkbox" value="' + i + '" name="i-doit-treebrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' style="margin-left:' + (level * 20) + 'px;"> ' +
 				'<span class="obj-name">' + e.data.title + '</span>' +
-				' (<span class="obj-type">' + e.data.type_title + '</span>) - ' + 
-				'<span class="relation-button">Beziehungen laden</span></div>';
+				' (<span class="obj-type">' + e.data.type_title + '</span>) ' + 
+				'<span class="relation-button">&raquo; Softwarebeziehungen</span></div>';
 				
 			$('#tab-treeview div.workplaces').append(output);
 			
@@ -415,8 +415,6 @@ datatable_lang = {
 		
 		var id = $(this).prev().prev().prev().val(),
 			div = $(this).parent();
-		
-		console.log(id);
 		
 		data = {
 			"method":"cmdb.objects_by_relation",
