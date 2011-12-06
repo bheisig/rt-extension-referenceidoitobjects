@@ -1,6 +1,6 @@
 <style type="text/css">
 .css_right {float:right;}
-#i-doit-mandator-notice {background:#FFEDB5; border:1px solid #FFD12D;}
+#i-doit-browser-notice {background:#FFEDB5; border:1px solid #FFD12D; color:#C19C22; padding:3px;}
 </style>
 
 <div id="i-doit-objectbrowser" style="position: relative; min-width: 400px;">
@@ -514,7 +514,7 @@ datatable_lang = {
 	 * @author  Leonard Fischer <lfischer@synetics.de>
 	 */
     window.error_notice = function(msg) {
-        $('#i-doit-browser-notice').css({background: '#FFB1AD', borderColor: '#FF6D68', color: '#FF6D68'}).slideDown(300).delay(1500).slideUp(300);
+        $('#i-doit-browser-notice').css({background: '#FFB1AD', borderColor: '#FF6D68', color: '#A04341'}).html(msg).slideDown(300).delay(2000).slideUp(300);
     }
 
 
