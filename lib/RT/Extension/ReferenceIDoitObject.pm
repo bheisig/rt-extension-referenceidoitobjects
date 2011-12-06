@@ -54,7 +54,11 @@ i-doit has a built-in API based on JSON-RPC. To call this API set its URL:
 
     Set($IDoitLanguage, 'en');
 
+    Set($IDoitDefaultMandator, 1); # Optional. Defaults to no pre-selection.
+
     Set($IDoitDefaultView, 'tree'); # 'object', 'tree' or 'item'
+
+    Set($IDoitShowCustomFields, 1); # 1 ('yes') or 0 ('no')
 
 The password is MD5 encoded. It's highly recommended to establish an encrypted
 connection between RT and i-doit, e. g. TLS over HTTP (HTTPS). You also need a
