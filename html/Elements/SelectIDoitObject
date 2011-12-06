@@ -200,7 +200,7 @@ datatable_lang = {
      */
     $('input[name="i-doit-objectbrowser-obj[]"]').live('change', function() {
         if ($(this).attr('checked')) {
-            var name = $(this).closest('tr').find('td:eq(1)').text(),
+            var name = $(this).closest('tr').find('td:eq(2)').text(),
                 type = $('#i-doit-objectbrowser select.object-type option:selected').text();
 
             window.add_object($(this).val(), name, type);
