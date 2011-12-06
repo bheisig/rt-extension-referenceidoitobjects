@@ -413,8 +413,8 @@ datatable_lang = {
 	$('span.relation-button').live('click', function() {
 		window.display_loading();
 		
-		var id = $(this).closest('input').value,
-			div = $(this).closest('div');
+		var id = $(this).prev('input').value,
+			div = $(this).parent();
 		
 		console.log(id);
 		
