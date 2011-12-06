@@ -514,7 +514,7 @@ datatable_lang = {
 	 * @author  Leonard Fischer <lfischer@synetics.de>
 	 */
     window.error_notice = function(msg) {
-		var notice = $('div').addClass('ui-corner-all').css({background: '#FFB1AD', borderColor: '#FF6D68', color: '#A04341'}).html(msg);
+		var notice = $('<div></div>').addClass('ui-corner-all').css({background: '#FFB1AD', borderColor: '#FF6D68', color: '#A04341'}).html(msg);
         $('#i-doit-browser-notice').append(notice).slideDown(300).delay(2000).slideUp(300);
     }
 
