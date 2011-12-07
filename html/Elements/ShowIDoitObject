@@ -2,7 +2,7 @@
     <div id="data-store" style="display:none;"></div>
 	<div id="i-doit-browser-notice" class="ui-corner-all"></div>
     <div id="i-doit-content" style="display:none;">
-		<b>Ausgew&auml;hlte Objekte</b>
+		<b><% loc('Selected objects') %></b>
 		
 		<table class="object-table" style="width:100%;">
 			<thead>
@@ -40,7 +40,7 @@
 		"LC_ERR_LOADING_OBJECTS_BY_OBJ_TYPE": "<% loc('Error while loading objects by object type') %>",
 		"LC_ERR_LOADING_OBJECTS_BY_EMAIL": "<% loc('Error while loading objects by email.') %>",
 		"LC_ERR_LOADING_OBJECTS_BY_PRESELECTION": "<% loc('Error while pre-selecting objects.') %>",
-		"LC_ERR_LOADING_SOFTWARE_RELATIONS": "Error while loading relation objects."
+		"LC_ERR_LOADING_SOFTWARE_RELATIONS": "<% loc('Error while loading relation objects.') %>"
 	};
 	
 	datatable_lang = {
@@ -189,6 +189,12 @@ unless($cf->id) {
 $IDoitObjects = 'CF-' . $cf->id . '-ShowRow';
 
 $IDoitShowCustomFields = RT->Config->Get('IDoitShowCustomFields');
+unless($IDoitShowCustomFields) {
+    my $msg = loc('Configuration option to show/hide i-doit related custom fields is not set.');
+    RT::Logger->error($msg);
+    $$skip_create = 1;
+    push @{$results}, $msg;
+}
 </%INIT>
 
 <%ARGS>

@@ -97,7 +97,7 @@
 		"LC_ERR_LOADING_OBJECTS_BY_OBJ_TYPE": "<% loc('Error while loading objects by object type') %>",
 		"LC_ERR_LOADING_OBJECTS_BY_EMAIL": "<% loc('Error while loading objects by email.') %>",
 		"LC_ERR_LOADING_OBJECTS_BY_PRESELECTION": "<% loc('Error while pre-selecting objects.') %>",
-		"LC_ERR_LOADING_SOFTWARE_RELATIONS": "<% loc('Error while loading relation objects.') %>"
+		"LC_ERR_LOADING_SOFTWARE_RELATIONS": "<% loc('Error while loading relation objects.') %>",
 		"LC_IDOIT_LINK_NAME": "<% loc('i-doit link') %>"
 	};
 </script>
