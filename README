@@ -1,6 +1,6 @@
 NAME
-    RT::Extension::ReferenceIDoitObject - Create a ticket in relation to an
-    i-doit object
+    RT::Extension::ReferenceIDoitObject - Create a ticket in relation to one
+    or more i-doit objects
 
 DESCRIPTION
     FIXME
@@ -37,7 +37,11 @@ CONFIGURATION
 
         Set($IDoitLanguage, 'en');
 
+        Set($IDoitDefaultMandator, -1);
+
         Set($IDoitDefaultView, 'tree'); # 'object', 'tree' or 'item'
+
+        Set($IDoitShowCustomFields, 1); # 1 ('yes') or 0 ('no')
 
     The password is MD5 encoded. It's highly recommended to establish an
     encrypted connection between RT and i-doit, e. g. TLS over HTTP (HTTPS).

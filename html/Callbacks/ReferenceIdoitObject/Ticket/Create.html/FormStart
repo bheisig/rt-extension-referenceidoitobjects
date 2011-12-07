@@ -1,0 +1,33 @@
+<%INIT>
+my $ARGSRef = $ARGS{'ARGSRef'};
+my $IDoitDefaultMandator = RT->Config->Get('IDoitDefaultMandator');
+
+unless ($IDoitDefaultMandator) {
+    my $msg = loc('Default mandator is not configured.');
+    RT::Logger->error($msg);
+    $$skip_create = 1;
+    push @{$results}, $msg;
+}
+
+my $cfMandator = 'i-doit mandator';
+my $cf = RT::CustomField->new($RT::SystemUser);
+$cf->LoadByNameAndQueue(Name => $cfMandator, Queue => '0');
+
+unless ($cf->id) {
+    my $msg = loc('Custom field "' . $cfMandator . '" does not exist.');
+    RT::Logger->error($msg);
+    $$skip_create = 1;
+    push @{$results}, $msg;
+}
+
+$IDoitMandator = 'Object-RT::Ticket--CustomField-' . $cf->id . '-Values';
+
+if ((!$$ARGSRef{$IDoitMandator}) || ($$ARGSRef{$IDoitMandator} =~ /^[ \t]*$/)) {
+    $$ARGSRef{$IDoitMandator} = $IDoitDefaultMandator;
+}
+</%INIT>
+
+<%ARGS> 
+$skip_create => undef
+$results => undef
+</%ARGS>

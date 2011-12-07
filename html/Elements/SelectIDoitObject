@@ -57,7 +57,6 @@
 	api_user = '<% $IDoitUser %>';
 	api_password = '<% $IDoitPassword %>';
 	api_mandator = 0;
-	api_default_mandator = <% $IDoitDefaultMandator %>;
 	api_default_view = '<% $IDoitView %>';
 
 	show_custom_fields = <% $IDoitShowCustomFields %>;
@@ -103,11 +102,6 @@
 <script type="text/javascript" src="<% RT->Config->Get('WebPath') %>/NoAuth/js/i-doit-objectbrowser.js"></script>
 
 <script type="text/javascript">
-	// Load default mandator:
-	if (api_default_mandator >= 0) {
-		browser_mandator_field.selected = api_default_mandator;
-	}
-
 	// Hide custom fields:
 	if (show_custom_fields == 0) {
 		browser_preselection_field.parent().parent().hide();
@@ -171,9 +165,7 @@ my $cfMandator = 'i-doit mandator';
 my $cf = RT::CustomField->new($RT::SystemUser);
 $cf->LoadByNameAndQueue(Name => $cfMandator, Queue => '0');
 unless($cf->id) {
-    $$skip_create = 1;
-    push @{$results}, loc('Custom field ' . $cfMandator . ' does not exist.');
-    my $msg = loc('URL for i-doit\'s API is not configured.');
+    my $msg = loc('Custom field "' . $cfMandator . '" does not exist.');
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
@@ -184,19 +176,12 @@ my $cfObjects = 'i-doit objects';
 $cf = RT::CustomField->new($RT::SystemUser);
 $cf->LoadByNameAndQueue(Name => $cfObjects, Queue => '0');
 unless($cf->id) {
-    $$skip_create = 1;
-    push @{$results}, loc('Custom field ' . $cfObjects . ' does not exist.');
-    my $msg = loc('URL for i-doit\'s API is not configured.');
+    my $msg = loc('Custom field "' . $cfObjects . '" does not exist.');
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
 }
 $IDoitObjects = 'Object-RT::Ticket--CustomField-' . $cf->id . '-Values';
-
-$IDoitDefaultMandator = RT->Config->Get('IDoitDefaultMandator');
-unless($IDoitDefaultMandator) {
-    $IDoitDefaultMandator = -1;
-}
 
 $IDoitDefaultView = RT->Config->Get('IDoitDefaultView');
 unless($IDoitDefaultView) {
@@ -225,7 +210,6 @@ $IDoitUser => undef
 $IDoitPassword => undef
 $IDoitMandator => undef
 $IDoitObjects => undef
-$IDoitDefaultMandator => undef
 $IDoitDefaultView => undef
 $IDoitView => undef
 $IDoitShowCustomFields => undef

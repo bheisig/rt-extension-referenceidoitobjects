@@ -54,7 +54,7 @@ i-doit has a built-in API based on JSON-RPC. To call this API set its URL:
 
     Set($IDoitLanguage, 'en');
 
-    Set($IDoitDefaultMandator, 1); # Optional. Defaults to no pre-selection.
+    Set($IDoitDefaultMandator, -1);
 
     Set($IDoitDefaultView, 'tree'); # 'object', 'tree' or 'item'
 
