@@ -2,7 +2,19 @@
     <div id="data-store" style="display:none;"></div>
 	<div id="i-doit-browser-notice" class="ui-corner-all"></div>
     <div id="i-doit-content" style="display:none;">
-		<b>Ausgew&auml;hlte Objekte</b><br />
+		<b>Ausgew&auml;hlte Objekte</b>
+		
+		<table class="object-table" style="width:100%;">
+			<thead>
+				<tr>
+					<th width="10%"><% loc('ID') %></th>
+					<th width="40%"><% loc('Name') %></th>
+					<th width="40%"><% loc('Type') %></th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
     </div>
 </div>
 
@@ -31,7 +43,24 @@
 		"LC_ERR_LOADING_SOFTWARE_RELATIONS": "Error while loading relation objects."
 	};
 	
-	datatable_lang = {};
+	datatable_lang = {
+		"sProcessing":   "<% loc('Please wait...') %>",
+		"sLengthMenu":   "_MENU_ Einträge anzeigen",
+		"sZeroRecords":  "<% loc('No objects has been selected yet.') %>",
+		"sInfo":         "_START_ bis _END_ von _TOTAL_ Einträgen",
+		"sInfoEmpty":    "0 bis 0 von 0 Einträgen",
+		"sInfoFiltered": "(gefiltert von _MAX_ Einträgen)",
+		"sInfoPostFix":  "",
+		"sSearch":       "<% loc('Search') %>",
+		"sUrl":          "",
+		"oPaginate": {
+			"sFirst":    "&laquo;",
+			"sPrevious": "&lsaquo;",
+			"sNext":     "&rsaquo;",
+			"sLast":     "&raquo;"
+		}
+	};
+	
 	preselection = [];
 </script>
 
@@ -41,6 +70,15 @@
 	(function($) {
 		browser_preselection_field = $(browser_preselection_field);
 		browser_mandator_field = $(browser_mandator_field);
+		
+		list = $('#i-doit-content table.object-table').dataTable({
+			"bJQueryUI": true,
+			"bAutoWidth": false,
+			"bPaginate": false,
+			"bLengthChange": false,
+			"bSort": false,
+			"oLanguage": datatable_lang
+		});
 		
 		$.each(browser_preselection_field.find('ul li'), function(i, e) {
 			preselection.push($(e).text().replace(/[\n\s]/g, ''));
@@ -67,8 +105,7 @@
 					$('#i-doit-content').css({display: 'block'});
 					
 					$.each(response.result, function(i, e) {
-						console.log('write... ' + e.title + ' (' + e.id + ')');
-						$('#i-doit-content').append('<br />' + e.title + ' (' + e.id + ')');
+						list.fnAddData([e.id, e.title, '##typ##']);
 					});
 				} else {
 					window.error_notice(objectbrowser_lang.LC_ERR_LOADING_OBJECTS_BY_PRESELECTION);
