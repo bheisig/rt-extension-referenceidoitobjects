@@ -10,6 +10,7 @@
 					<th width="10%"><% loc('ID') %></th>
 					<th width="40%"><% loc('Name') %></th>
 					<th width="40%"><% loc('Type') %></th>
+					<th width="10%">###link###</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -32,24 +33,6 @@
 
 	browser_preselection_field = 'tr#<% $IDoitObjects %>';
 	browser_mandator_field = 'tr#<% $IDoitMandator %>';
-	
-	datatable_lang = {
-		"sProcessing":   "<% loc('Please wait...') %>",
-		"sLengthMenu":   "_MENU_ Einträge anzeigen",
-		"sZeroRecords":  "<% loc('No objects has been selected yet.') %>",
-		"sInfo":         "_START_ bis _END_ von _TOTAL_ Einträgen",
-		"sInfoEmpty":    "0 bis 0 von 0 Einträgen",
-		"sInfoFiltered": "(gefiltert von _MAX_ Einträgen)",
-		"sInfoPostFix":  "",
-		"sSearch":       "<% loc('Search') %>",
-		"sUrl":          "",
-		"oPaginate": {
-			"sFirst":    "&laquo;",
-			"sPrevious": "&lsaquo;",
-			"sNext":     "&rsaquo;",
-			"sLast":     "&raquo;"
-		}
-	};
 	
 	preselection = [];
 </script>
@@ -95,7 +78,8 @@
 					$('#i-doit-content').css({display: 'block'});
 					
 					$.each(response.result, function(i, e) {
-						list.fnAddData([e.id, e.title, e.type_title]);
+						var link = '<a href="' + idoit_url + '?objID=' + e.id + '" title="<% loc("Go to i-doit") %>" target="_blank"><% loc("i-doit link") %></a>';
+						list.fnAddData([e.id, e.title, e.type_title, link]);
 					});
 				} else {
 					window.error_notice(objectbrowser_lang.LC_ERR_LOADING_OBJECTS_BY_PRESELECTION);

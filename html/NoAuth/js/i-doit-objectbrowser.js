@@ -1,6 +1,24 @@
 (function($) {
     browser_preselection_field = $(browser_preselection_field);
 	browser_mandator_field = $(browser_mandator_field);
+	
+	datatable_lang = {
+		"sProcessing":   "<% loc('Please wait...') %>",
+		"sLengthMenu":   "<% loc('Show _MENU_ objects') %>",
+		"sZeroRecords":  "<% loc('No objects has been selected yet.') %>",
+		"sInfo":         "<% loc('_START_ to _END_ of _TOTAL_ objects') %>",
+		"sInfoEmpty":    "<% loc('0 to 0 of 0 objects') %>",
+		"sInfoFiltered": "<% loc('(filtered from _MAX_ objects)') %>",
+		"sInfoPostFix":  "",
+		"sSearch":       "<% loc('Search') %>",
+		"sUrl":          "",
+		"oPaginate": {
+			"sFirst":    "&laquo;",
+			"sPrevious": "&lsaquo;",
+			"sNext":     "&rsaquo;",
+			"sLast":     "&raquo;"
+		}
+	};
 
     // Initialize the data table.
     var objectview_table = $('#i-doit-objectbrowser #tab-objectview table.object-table').dataTable({
