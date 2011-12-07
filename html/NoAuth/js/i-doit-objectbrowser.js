@@ -298,8 +298,15 @@
 			$('#tab-treeview div.workplaces').append('<br />');
         });
     };
-	
-	
+
+
+	/**
+	 * This function is used to render the tree with it's recursions.
+	 *
+	 * @param   array    data  The data from the parents "children" array.
+	 * @param   integer  level  With this variable, we can determine how "deep" inside recursion we are and display it with "level * 20px" margin.
+	 * @author  Leonard Fischer <lfischer@synetics.de>
+	 */
 	window.render_treeview_recursion = function(data, level) {
 		$.each(data, function(i, e) {
 			var selected = false;
@@ -310,7 +317,7 @@
 			var output = '<div><input type="checkbox" value="' + i + '" name="i-doit-treebrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' style="margin-left:' + (level * 20) + 'px;"> ' +
 				'<span class="obj-name">' + e.data.title + '</span>' +
 				' (<span class="obj-type">' + e.data.type_title + '</span>) ' + 
-				'<span class="relation-button">&raquo; Softwarebeziehungen</span></div>';
+				'<span class="relation-button">&raquo; ' + objectbrowser_lang.LC_SOFTWARE_RELATION + '</span></div>';
 				
 			$('#tab-treeview div.workplaces').append(output);
 			
@@ -319,8 +326,13 @@
 			}
 		});
 	};
-	
-	
+
+
+	/**
+	 * This event will call all the objects software-relations.
+	 *
+	 * @author  Leonard Fischer <lfischer@synetics.de>
+	 */
 	$('span.relation-button').live('click', function() {
 		window.display_loading();
 		
@@ -351,8 +363,7 @@
 				}
 			}.bind(this));
 	});
-	
-	
+
 
     /**
      * Function for rendering the object-table.
@@ -379,6 +390,7 @@
             }
         });
     };
+
 
     /**
      * Function for removing an item from the selected data.
@@ -410,6 +422,7 @@
         window.render_treeview();
     };
 
+
     /**
      * Function for removing an item from the selected data.
      *
@@ -427,6 +440,7 @@
 			$('input[name="i-doit-objectbrowser-obj[]"][value="' + id + '"]').attr('checked', 'checked');
 			$('input[name="i-doit-treebrowser-obj[]"][value="' + id + '"]').attr('checked', 'checked');
     };
+
 
     /**
      * Function for rendering the "selected objects" list. Will be used when adding or removing an object.
@@ -446,6 +460,7 @@
 
         browser_preselection_field.val(data_array.join("\n"));
     };
+
 
     /**
      * Function for sending requests to idoit.
@@ -499,6 +514,7 @@
 		$('#loading-screen').stop().fadeTo(300, 0);
 		$('#i-doit-objectbrowser-content').stop().fadeTo(300, 1);
 	}
+
 
     // Load default mandator:
     if (api_default_mandator >= 0) {

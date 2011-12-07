@@ -91,6 +91,7 @@ datatable_lang = {
 };
 
 objectbrowser_lang = {
+	"LC_SOFTWARE_RELATION": "Softwarebeziehungen",
 	"LC_PLEASE_SELECT_MANDATOR": "Bitte wählen Sie einen Mandanten aus.",
 	"LC_ERR_LOADING_OBJ_TYPES": "Error while loading object-types.",
 	"LC_ERR_LOADING_OBJECTS_BY_OBJ_TYPE": "Error while loading objects by object-type",
