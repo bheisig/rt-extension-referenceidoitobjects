@@ -382,7 +382,7 @@
 						}
 					
 						div.append('<br /><input type="checkbox" style="margin-left:' + (span + 20) +'px;" value="' + e.id + '" name="i-doit-treebrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + '/> ' + 
-							'<span class="obj-name">' + e.related_object_title) + '</span> (<span class="obj-type">' + e.type_title + '</span>)';
+							'<span class="obj-name">' + e.related_object_title) + '</span> (<span class="obj-type">' + e.type_title + '</span>)');
 					});
 				} else {
                   window.error_notice('<% loc("Error while loading relation objects") %>');
