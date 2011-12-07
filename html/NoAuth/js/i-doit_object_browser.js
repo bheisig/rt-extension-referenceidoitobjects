@@ -306,6 +306,10 @@
     window.render_treeview = function() {
         $('#tab-treeview div').html('');
 
+		if (current_treeview_data.length == 0) {
+			$('#tab-treeview div').html('<% loc("This requestor could not be found in i-doit.") %>');
+		}
+		
         // We iterate through the first level (email-addresses).
         $.each(current_treeview_data, function(i, e) {
             $('#tab-treeview div.workplaces').append('<a href="' + idoit_url + '?objID=' + i + '"><b>' + e.data.title + ' &lt;' + e.data.email + '&gt;</b></a><br />');
