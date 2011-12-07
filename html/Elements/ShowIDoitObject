@@ -2,7 +2,7 @@
     <div id="data-store" style="display:none;"></div>
 	<div id="i-doit-browser-notice" class="ui-corner-all"></div>
     <div id="i-doit-content" style="display:none;">
-		<b>Ausgew&auml;hlte Objekte</b>
+		<b><% loc('Selected objects') %></b>
 		
 		<table class="object-table" style="width:100%;">
 			<thead>
@@ -32,16 +32,6 @@
 
 	browser_preselection_field = 'tr#<% $IDoitObjects %>';
 	browser_mandator_field = 'tr#<% $IDoitMandator %>';
-	
-	objectbrowser_lang = {
-		"LC_SOFTWARE_RELATION": "<% loc('Software relations') %>",
-		"LC_PLEASE_SELECT_MANDATOR": "<% loc('Please select an i-doit mandator.') %>",
-		"LC_ERR_LOADING_OBJ_TYPES": "<% loc('Error while loading object types.') %>",
-		"LC_ERR_LOADING_OBJECTS_BY_OBJ_TYPE": "<% loc('Error while loading objects by object type') %>",
-		"LC_ERR_LOADING_OBJECTS_BY_EMAIL": "<% loc('Error while loading objects by email.') %>",
-		"LC_ERR_LOADING_OBJECTS_BY_PRESELECTION": "<% loc('Error while pre-selecting objects.') %>",
-		"LC_ERR_LOADING_SOFTWARE_RELATIONS": "Error while loading relation objects."
-	};
 	
 	datatable_lang = {
 		"sProcessing":   "<% loc('Please wait...') %>",
@@ -170,7 +160,7 @@ my $cfMandator = 'i-doit mandator';
 my $cf = RT::CustomField->new($RT::SystemUser);
 $cf->LoadByNameAndQueue(Name => $cfMandator, Queue => '0');
 unless($cf->id) {
-    my $msg = loc('Custom field "' . $cfMandator . '" does not exist.');
+    my $msg = loc(sprintf('Custom field "%s" does not exist.', $cfMandator));
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
@@ -181,7 +171,7 @@ my $cfObjects = 'i-doit objects';
 $cf = RT::CustomField->new($RT::SystemUser);
 $cf->LoadByNameAndQueue(Name => $cfObjects, Queue => '0');
 unless($cf->id) {
-    my $msg = loc('Custom field "' . $cfObjects . '" does not exist.');
+    my $msg = loc(sprintf('Custom field "%s" does not exist.', $cfObjects));
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
@@ -189,6 +179,12 @@ unless($cf->id) {
 $IDoitObjects = 'CF-' . $cf->id . '-ShowRow';
 
 $IDoitShowCustomFields = RT->Config->Get('IDoitShowCustomFields');
+unless($IDoitShowCustomFields) {
+    my $msg = loc('Configuration option to show/hide i-doit related custom fields is not set.');
+    RT::Logger->error($msg);
+    $$skip_create = 1;
+    push @{$results}, $msg;
+}
 </%INIT>
 
 <%ARGS>

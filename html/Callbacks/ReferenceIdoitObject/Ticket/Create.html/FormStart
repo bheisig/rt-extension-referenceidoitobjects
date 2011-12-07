@@ -4,7 +4,7 @@ my $cf = RT::CustomField->new($RT::SystemUser);
 $cf->LoadByNameAndQueue(Name => $IDoitMandator, Queue => '0');
 
 unless ($cf->id) {
-    my $msg = loc('Custom field "' . $IDoitMandator . '" does not exist.');
+    my $msg = loc(sprintf('Custom field "%s" does not exist.', $IDoitMandator));
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
