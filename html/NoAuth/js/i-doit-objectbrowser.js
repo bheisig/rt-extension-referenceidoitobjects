@@ -20,6 +20,7 @@
         "oLanguage": datatable_lang
     });
 
+
     /**
      * This event will initialize the browser.
      *
@@ -68,10 +69,11 @@
 				// Trigger the event.
 				$('#i-doit-objectbrowser select.object-type').change();
 			} else {
-				window.error_notice('Error while loading object-types.');
+				window.error_notice(objectbrowser_lang.LC_ERR_LOADING_OBJ_TYPES);
 			}
 		});
     };
+
 
     /**
      * Callback function for selecting an object-type.
@@ -101,10 +103,11 @@
                 current_objectview_data = response.result;
                 window.render_objectview();
             } else {
-                window.error_notice('Error while loading objects by object-type');
+                window.error_notice(objectbrowser_lang.LC_ERR_LOADING_OBJECTS_BY_OBJ_TYPE);
             }
         });
     });
+
 
     /**
      * This event will store the added ID's from the object-view.
@@ -122,6 +125,7 @@
         }
     });
 
+
     /**
      * This event will store the added ID's from the tree-view.
      *
@@ -137,6 +141,7 @@
             window.remove_object($(this).val());
         }
     });
+
 
     /**
      * Function for loading the requestor - This can be used if a new requestor has been added to the "Requestor" field.
@@ -166,6 +171,7 @@
 	browser_preselection_field.live('change', function() {
 		if (initialized) window.load_preselection_data();
 	});
+
 
     /**
      * Loads and displays the requestor-data (workplace, assigned objects, ...).
@@ -203,12 +209,13 @@
 						current_treeview_data = response.result;
 						window.render_treeview();
 					} else {
-						window.error_notice('Error while loading objects by email.');
+						window.error_notice(objectbrowser_lang.LC_ERR_LOADING_OBJECTS_BY_EMAIL);
 					}
 				});
 			}
 		}
 	};
+
 
 	/**
 	 * Loads and displays the preselection-data.
@@ -251,7 +258,7 @@
 									window.add_object(e.id, e.title, e.objecttype);
 								});
 							} else {
-								window.error_notice('Error while preselecting objects.');
+								window.error_notice(objectbrowser_lang.LC_ERR_LOADING_OBJECTS_BY_PRESELECTION);
 							}
 						});
 				}
