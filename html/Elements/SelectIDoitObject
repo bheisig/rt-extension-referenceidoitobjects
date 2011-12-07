@@ -40,7 +40,8 @@
                         <th width="10%"></th>
                         <th width="10%"><% loc('ID') %></th>
                         <th width="40%"><% loc('Name') %></th>
-                        <th width="40%"><% loc('Type') %></th>
+                        <th width="30%"><% loc('Type') %></th>
+                        <th width="10%"><% loc('Link') %></th>
                     </tr>
                 </thead>
                 <tbody>
