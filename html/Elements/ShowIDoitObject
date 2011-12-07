@@ -37,6 +37,9 @@
 
 	browser_preselection_field = 'tr#<% $IDoitObjects %>';
 	browser_mandator_field = 'tr#<% $IDoitMandator %>';
+	
+	datatable_lang = {};
+	preselection = [];
 </script>
 
 <script type="text/javascript" src="<% RT->Config->Get('WebPath') %>/NoAuth/js/i-doit-objectbrowser.js"></script>
@@ -47,11 +50,10 @@
 		browser_mandator_field = $(browser_mandator_field);
 		
 		$.each(browser_preselection_field.find('ul li'), function(i, e) {
-			console.log('---');
-			console.log(i);
-			console.log(e);
-			preselection[] = $(e).text();
+			preselection.push($(e).text());
 		});
+		
+		api_mandator = browser_mandator_field.find('td.value').text();
 
 		data = {
 			"method":"cmdb.objects",
@@ -68,6 +70,9 @@
 
 		idoit_ajax(data, function(response) {
 				if (response.error == null) {
+					$('#i-doit-browser-notice').css({display: 'none'});
+					$('#i-doit-objectbrowser-content').css({display: 'block'});
+					
 					$.each(response.result, function(i, e) {
 						$('#i-doit-content').append('<br />' + e.title + ' (' + e.id + ')');
 					});
