@@ -372,12 +372,17 @@
 			"id":"1",
 			"jsonrpc":"2.0"};
 
-			
 		idoit_ajax(data, function(response) {
 				window.remove_loading();
 				if (response.error == null) {
+console.log(span);
 					$.each(response.result, function(i, e) {
-						div.append('<br /><input type="checkbox" style="margin-left:' + (span + 20) +'px;" />' + i);
+						var selected = false;
+						if (typeof $('#data-store').data(e.id) != 'undefined') {
+							selected = true;
+						}
+					
+						div.append('<br /><input type="checkbox" style="margin-left:' + (span + 20) +'px;" value="' + e.id + '" name="i-doit-treebrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + '/> ' + e.related_object_title);
 					});
 				} else {
                   window.error_notice('<% loc("Error while loading relation objects") %>');
