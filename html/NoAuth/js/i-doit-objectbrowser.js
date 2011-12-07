@@ -515,25 +515,4 @@
 		$('#loading-screen').stop().fadeTo(300, 0);
 		$('#i-doit-objectbrowser-content').stop().fadeTo(300, 1);
 	}
-
-
-    // Load default mandator:
-    if (api_default_mandator >= 0) {
-        browser_mandator_field.selected = api_default_mandator;
-    }
-
-	// Hide custom fields:
-    if (show_custom_fields == 0) {
-        browser_preselection_field.parent().parent().hide();
-        browser_mandator_field.parent().parent().hide();
-    }
-
-	// Initialize our data object.
-	$('#data-store').data();
-
-	// Initialize our tabs.
-	$('#i-doit-objectbrowser-content').tabs({selected: api_default_view});
-
-	// Start the browser.
-	window.init_browser();
 })(jQuery);

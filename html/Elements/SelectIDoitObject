@@ -51,56 +51,78 @@
 </div>
 
 <script type="text/javascript">
-// Global variables (without "var").
-api_url = '<% $IDoitAPI %>';
-api_lang = '<% $IDoitLanguage %>';
-api_user = '<% $IDoitUser %>';
-api_password = '<% $IDoitPassword %>';
-api_mandator = 0;
-api_default_mandator = <% $IDoitDefaultMandator %>;
-api_default_view = '<% $IDoitView %>';
+	// Global variables (without "var").
+	api_url = '<% $IDoitAPI %>';
+	api_lang = '<% $IDoitLanguage %>';
+	api_user = '<% $IDoitUser %>';
+	api_password = '<% $IDoitPassword %>';
+	api_mandator = 0;
+	api_default_mandator = <% $IDoitDefaultMandator %>;
+	api_default_view = '<% $IDoitView %>';
 
-show_custom_fields = <% $IDoitShowCustomFields %>;
+	show_custom_fields = <% $IDoitShowCustomFields %>;
 
-idoit_url = '<% RT->Config->Get('IDoitURL') %>';
+	idoit_url = '<% RT->Config->Get('IDoitURL') %>';
 
-browser_preselection_field = 'textarea[name="<% $IDoitObjects %>"]';
-browser_mandator_field = 'select[name="<% $IDoitMandator %>"]';
+	browser_preselection_field = 'textarea[name="<% $IDoitObjects %>"]';
+	browser_mandator_field = 'select[name="<% $IDoitMandator %>"]';
 
-current_objectview_data = {};
-current_treeview_data = {};
+	current_objectview_data = {};
+	current_treeview_data = {};
 
-initialized = false;
+	initialized = false;
 
-datatable_lang = {
-    "sProcessing":   "Bitte warten...",
-    "sLengthMenu":   "_MENU_ Einträge anzeigen",
-    "sZeroRecords":  "Keine Einträge vorhanden.",
-    "sInfo":         "_START_ bis _END_ von _TOTAL_ Einträgen",
-    "sInfoEmpty":    "0 bis 0 von 0 Einträgen",
-    "sInfoFiltered": "(gefiltert von _MAX_ Einträgen)",
-    "sInfoPostFix":  "",
-    "sSearch":       "Suchen",
-    "sUrl":          "",
-    "oPaginate": {
-        "sFirst":    "&laquo;",
-        "sPrevious": "&lsaquo;",
-        "sNext":     "&rsaquo;",
-        "sLast":     "&raquo;"
-    }
-};
+	datatable_lang = {
+		"sProcessing":   "Bitte warten...",
+		"sLengthMenu":   "_MENU_ Einträge anzeigen",
+		"sZeroRecords":  "Keine Einträge vorhanden.",
+		"sInfo":         "_START_ bis _END_ von _TOTAL_ Einträgen",
+		"sInfoEmpty":    "0 bis 0 von 0 Einträgen",
+		"sInfoFiltered": "(gefiltert von _MAX_ Einträgen)",
+		"sInfoPostFix":  "",
+		"sSearch":       "Suchen",
+		"sUrl":          "",
+		"oPaginate": {
+			"sFirst":    "&laquo;",
+			"sPrevious": "&lsaquo;",
+			"sNext":     "&rsaquo;",
+			"sLast":     "&raquo;"
+		}
+	};
 
-objectbrowser_lang = {
-	"LC_SOFTWARE_RELATION": "Softwarebeziehungen",
-	"LC_PLEASE_SELECT_MANDATOR": "Bitte wählen Sie einen Mandanten aus.",
-	"LC_ERR_LOADING_OBJ_TYPES": "Error while loading object-types.",
-	"LC_ERR_LOADING_OBJECTS_BY_OBJ_TYPE": "Error while loading objects by object-type",
-	"LC_ERR_LOADING_OBJECTS_BY_EMAIL": "Error while loading objects by email.",
-	"LC_ERR_LOADING_OBJECTS_BY_PRESELECTION": "Error while preselecting objects."
-};
+	objectbrowser_lang = {
+		"LC_SOFTWARE_RELATION": "Softwarebeziehungen",
+		"LC_PLEASE_SELECT_MANDATOR": "Bitte wählen Sie einen Mandanten aus.",
+		"LC_ERR_LOADING_OBJ_TYPES": "Error while loading object-types.",
+		"LC_ERR_LOADING_OBJECTS_BY_OBJ_TYPE": "Error while loading objects by object-type",
+		"LC_ERR_LOADING_OBJECTS_BY_EMAIL": "Error while loading objects by email.",
+		"LC_ERR_LOADING_OBJECTS_BY_PRESELECTION": "Error while preselecting objects."
+	};
 </script>
 
 <script type="text/javascript" src="<% RT->Config->Get('WebPath') %>/NoAuth/js/i-doit-objectbrowser.js"></script>
+
+<script type="text/javascript">
+	// Load default mandator:
+	if (api_default_mandator >= 0) {
+		browser_mandator_field.selected = api_default_mandator;
+	}
+
+	// Hide custom fields:
+	if (show_custom_fields == 0) {
+		browser_preselection_field.parent().parent().hide();
+		browser_mandator_field.parent().parent().hide();
+	}
+
+	// Initialize our data object.
+	$('#data-store').data();
+
+	// Initialize our tabs.
+	$('#i-doit-objectbrowser-content').tabs({selected: api_default_view});
+
+	// Start the browser.
+	window.init_browser();
+</script>
 
 <%INIT>
 use Switch;
