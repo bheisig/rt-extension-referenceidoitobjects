@@ -7,7 +7,7 @@ span.relation-button,
 .i-doit-objectbrowser-remover {cursor:pointer}
 
 span.relation-button:hover,
-#requestor-reload:hover
+#requestor-reload:hover,
 .i-doit-objectbrowser-remover:hover {text-decoration:underline;}
 
 div.workplaces {position:relative;}

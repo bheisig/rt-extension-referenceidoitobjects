@@ -29,7 +29,8 @@
     window.init_browser = function() {
 		api_mandator = browser_mandator_field.val();
 		if (api_mandator == 0 || api_mandator == "") {
-			$('#i-doit-browser-notice').html(objectbrowser_lang.LC_PLEASE_SELECT_MANDATOR);
+			$('#i-doit-browser-notice').html(objectbrowser_lang.LC_PLEASE_SELECT_MANDATOR).css({display: 'block'});
+			$('#i-doit-objectbrowser-content').css({display: 'none'});
 			initialized = false;
 			return;
 		}
