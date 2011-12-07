@@ -105,7 +105,7 @@
 					$('#i-doit-content').css({display: 'block'});
 					
 					$.each(response.result, function(i, e) {
-						list.fnAddData([e.id, e.title, '##typ##']);
+						list.fnAddData([e.id, e.title, e.type_title]);
 					});
 				} else {
 					window.error_notice(objectbrowser_lang.LC_ERR_LOADING_OBJECTS_BY_PRESELECTION);

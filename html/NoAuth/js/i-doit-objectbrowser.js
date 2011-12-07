@@ -218,6 +218,22 @@
 		}
 	};
 
+	
+	/**
+	 * This event will select an object, when clicking it's row.
+	 *
+	 * @author  Leonard Fischer <lfischer@synetics.de>
+	 */
+	$('#i-doit-objectbrowser-content #tab-objectview table.object-table tbody tr').live('click', function() {
+		var check = $(this).find('td input[name="i-doit-objectbrowser-obj[]"]');
+		
+		if (check.attr('checked')) {
+			check.attr('checked', false);
+		} else {
+			check.attr('checked', 'checked');
+		}
+	});
+	
 
 	/**
 	 * Loads and displays the preselection-data.
@@ -257,7 +273,7 @@
 								window.remove_all_objects();
 
 								$.each(response.result, function(i, e) {
-									window.add_object(e.id, e.title, e.objecttype);
+									window.add_object(e.id, e.title, e.type_title);
 								});
 							} else {
 								window.error_notice(objectbrowser_lang.LC_ERR_LOADING_OBJECTS_BY_PRESELECTION);
@@ -378,7 +394,8 @@
                 var check,
 					selected = false,
 					title,
-					id;
+					id,
+					link;
 
                 if (typeof $('#data-store').data(e.id) != 'undefined') {
                     selected = true;
@@ -386,8 +403,10 @@
 
                 check = '<input type="checkbox" value="' + e.id + '" name="i-doit-objectbrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' />';
                 id = e.id;
-				title = '<a href="' + idoit_url + '?objID=' + e.id + '">' + e.title + '</a>';
-                objectview_table.fnAddData([check, id, title]);
+				title = e.title;
+				link = '<a href="' + idoit_url + '?objID=' + e.id + '">' + objectbrowser_lang.LC_IDOIT_LINK_NAME + '</a>';
+				
+                objectview_table.fnAddData([check, id, title, link]);
             }
         });
     };
