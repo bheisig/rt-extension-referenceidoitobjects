@@ -2,8 +2,6 @@
     <div id="data-store" style="display:none;"></div>
 	<div id="i-doit-browser-notice" class="ui-corner-all"></div>
     <div id="i-doit-content" style="display:none;">
-		<b><% loc('Selected objects') %></b>
-		
 		<table class="object-table" style="width:100%;">
 			<thead>
 				<tr>
