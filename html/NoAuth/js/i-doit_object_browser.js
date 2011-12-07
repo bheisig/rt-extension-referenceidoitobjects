@@ -509,7 +509,7 @@
 	 * @author  Leonard Fischer <lfischer@synetics.de>
 	 */
     window.error_notice = function(msg) {
-		var notice = $('<div></div>').addClass('ui-corner-all').css({background: '#FFB1AD', borderColor: '#FF6D68', color: '#A04341'}).html(msg);
+		var notice = $('<div></div>').addClass('ui-corner-all').css({background: '#FFB1AD', borderColor: '#FF6D68', color: '#A04341', opacity: 1}).html(msg);
 		
 		$('#i-doit-browser-notice').html('<% loc("Please select an i-doit mandator.") %>').css({display: 'block'});
 		$('#i-doit-objectbrowser-content').css({display: 'none'});
