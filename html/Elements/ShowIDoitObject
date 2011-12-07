@@ -37,6 +37,8 @@
 
 	browser_preselection_field = 'tr#<% $IDoitObjects %>';
 	browser_mandator_field = 'tr#<% $IDoitMandator %>';
+	
+	datatable_lang = {};
 </script>
 
 <script type="text/javascript" src="<% RT->Config->Get('WebPath') %>/NoAuth/js/i-doit-objectbrowser.js"></script>
@@ -50,7 +52,7 @@
 			console.log('---');
 			console.log(i);
 			console.log(e);
-			preselection[] = $(e).text();
+//			preselection.push($(e).text());
 		});
 
 		data = {
