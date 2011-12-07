@@ -43,10 +43,10 @@
 		browser_mandator_field = $(browser_mandator_field);
 		
 		$.each(browser_preselection_field.find('ul li'), function(i, e) {
-			preselection.push($(e).text());
+			preselection.push($(e).html());
 		});
 		
-		api_mandator = browser_mandator_field.find('td.value').text();
+		api_mandator = browser_mandator_field.find('td.value').html();
 
 		data = {
 			"method":"cmdb.objects",
