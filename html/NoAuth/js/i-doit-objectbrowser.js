@@ -290,7 +290,7 @@
 
         // We iterate through the first level (email-addresses).
         $.each(current_treeview_data, function(i, e) {
-            $('#tab-treeview div.workplaces').append('<a href="' + idoit_url + '?objID=' + i + '"><b>' + e.data.title + '</b></a><br />');
+            $('#tab-treeview div.workplaces').append('<a href="' + idoit_url + '?objID=' + i + '"><b>' + e.data.title + ' &lt;' + e.data.email + '&gt;</b></a><br />');
 
 			if (e.children != false) {
 				window.render_treeview_recursion(e.children, 1);
