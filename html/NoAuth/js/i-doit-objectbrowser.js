@@ -218,24 +218,6 @@
 		}
 	};
 
-	
-	/**
-	 * This event will select an object, when clicking it's row.
-	 *
-	 * @author  Leonard Fischer <lfischer@synetics.de>
-	 */
-	$('#i-doit-objectbrowser-content #tab-objectview table.object-table tbody tr').not('input').live('click', function() {
-		var check = $(this).find('td input[name="i-doit-objectbrowser-obj[]"]');
-		
-		if (check.attr('checked')) {
-			check.attr('checked', false);
-		} else {
-			check.attr('checked', 'checked');
-		}
-		
-		check.change();
-	});
-	
 
 	/**
 	 * Loads and displays the preselection-data.
@@ -474,9 +456,10 @@
 
         itemview_table.fnClearTable();
         $.each($('#data-store').data(), function(i, e) {
-			var title = '<a href="' + idoit_url + '?objID=' + i + '">' + e.name + '</a>';
+			var title = e.name,
+				link = '<a href="' + idoit_url + '?objID=' + i + '"><% loc("i-doit link") %></a>';
 
-			itemview_table.fnAddData(['<span class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')"><% loc("Delete") %></span>', i, title, e.type]);
+			itemview_table.fnAddData(['<span class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')"><% loc("Delete") %></span>', i, title, e.type, link]);
             data_array.push(i);
         });
 
