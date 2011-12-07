@@ -286,7 +286,7 @@
 	 */
     window.render_treeview = function() {
         $('#tab-treeview div').html('');
-		
+
         // We iterate through the first level (email-addresses).
         $.each(current_treeview_data, function(i, e) {
             $('#tab-treeview div.workplaces').append('<a href="' + idoit_url + '?objID=' + i + '"><b>' + e.data.title + '</b></a><br />');
@@ -294,7 +294,7 @@
 			if (e.children != false) {
 				window.render_treeview_recursion(e.children, 1);
 			}
-			
+
 			$('#tab-treeview div.workplaces').append('<br />');
         });
     };
@@ -313,14 +313,14 @@
 			if (typeof $('#data-store').data(i) != 'undefined') {
 				selected = true;
 			}
-		
+
 			var output = '<div><input type="checkbox" value="' + i + '" name="i-doit-treebrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' style="margin-left:' + (level * 20) + 'px;"> ' +
 				'<span class="obj-name">' + e.data.title + '</span>' +
-				' (<span class="obj-type">' + e.data.type_title + '</span>) ' + 
-				'<span class="relation-button">&raquo; ' + objectbrowser_lang.LC_SOFTWARE_RELATION + '</span></div>';
-				
+				' (<span class="obj-type">' + e.data.type_title + '</span>) &raquo; ' +
+				'<span class="relation-button">' + objectbrowser_lang.LC_SOFTWARE_RELATION + '</span></div>';
+
 			$('#tab-treeview div.workplaces').append(output);
-			
+
 			if (e.children != false) {
 				window.render_treeview_recursion(e.children, (level + 1));
 			}
@@ -335,10 +335,10 @@
 	 */
 	$('span.relation-button').live('click', function() {
 		window.display_loading();
-		
+
 		var id = $(this).prev().prev().prev().val(),
 			div = $(this).parent();
-		
+
 		data = {
 			"method":"cmdb.objects_by_relation",
 			"params":{
