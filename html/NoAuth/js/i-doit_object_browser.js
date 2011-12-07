@@ -307,7 +307,7 @@
         $('#tab-treeview div').html('');
 
 		if (current_treeview_data.length == 0) {
-			$('#tab-treeview div').html('<% loc("This requestor could not be found in i-doit.") %>');
+			$('#tab-treeview div').html('<% loc("Given requestor(s) could not be found in i-doit.") %>');
 		}
 		
         // We iterate through the first level (email-addresses).
