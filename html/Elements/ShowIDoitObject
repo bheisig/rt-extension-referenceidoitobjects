@@ -110,7 +110,7 @@ unless($IDoitURL) {
 
 $IDoitAPI = RT->Config->Get('IDoitAPI');
 unless($IDoitAPI) {
-    my $msg = loc('URL for i-doit\'s API is not configured.');
+    my $msg = loc("URL for i-doit's API is not configured.");
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
@@ -118,7 +118,7 @@ unless($IDoitAPI) {
 
 $IDoitLanguage = RT->Config->Get('IDoitLanguage');
 unless($IDoitLanguage) {
-    my $msg = loc('Language for i-doit\'s API is not configured.');
+    my $msg = loc("Language for i-doit's API is not configured.");
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
@@ -126,7 +126,7 @@ unless($IDoitLanguage) {
 
 $IDoitUser = RT->Config->Get('IDoitUser');
 unless($IDoitUser) {
-    my $msg = loc('User for i-doit\'s API is not configured.');
+    my $msg = loc("User for i-doit's API is not configured.");
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
@@ -134,7 +134,7 @@ unless($IDoitUser) {
 
 $IDoitPassword = RT->Config->Get('IDoitPassword');
 unless($IDoitPassword) {
-    my $msg = loc('Password for i-doit\'s API is not configured.');
+    my $msg = loc("Password for i-doit's API is not configured.");
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
@@ -144,7 +144,7 @@ my $cfMandator = 'i-doit mandator';
 my $cf = RT::CustomField->new($RT::SystemUser);
 $cf->LoadByNameAndQueue(Name => $cfMandator, Queue => '0');
 unless($cf->id) {
-    my $msg = loc(sprintf('Custom field "%s" does not exist.', $cfMandator));
+    my $msg = sprintf(loc("Custom field %s does not exist."), $cfMandator);
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
@@ -155,7 +155,7 @@ my $cfObjects = 'i-doit objects';
 $cf = RT::CustomField->new($RT::SystemUser);
 $cf->LoadByNameAndQueue(Name => $cfObjects, Queue => '0');
 unless($cf->id) {
-    my $msg = loc(sprintf('Custom field "%s" does not exist.', $cfObjects));
+    my $msg = sprintf(loc("Custom field %s does not exist."), $cfObjects);
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;

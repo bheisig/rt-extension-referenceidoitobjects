@@ -1,0 +1,92 @@
+msgid ""
+msgstr ""
+
+msgid "Referenced i-doit objects"
+msgstr "Referenzierte Objekte aus i-doit"
+
+msgid "Default mandator is not configured."
+msgstr "Standard-Mandant ist nicht konfiguriert."
+
+msgid "Please select an i-doit mandator."
+msgstr "Bitte wählen Sie einen i-doit-Mandanten."
+
+msgid "Object view"
+msgstr "Objektansicht"
+
+msgid "Tree view"
+msgstr "Baumansicht"
+
+msgid "Selected objects"
+msgstr "Ausgewählte Objekte"
+
+msgid "Go to i-doit"
+msgstr "Gehe zu i-doit"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Reload"
+msgstr "Neuladen"
+
+msgid "URL for i-doit is not configured."
+msgstr "URL zu i-doit ist nicht konfiguriert."
+
+msgid "URL for i-doit's API is not configured."
+msgstr "URL zur API von i-doit ist nicht konfiguriert."
+
+msgid "Language for i-doit's API is not configured."
+msgstr "Sprache der API von i-doit ist nicht konfiguriert."
+
+msgid "User for i-doit's API is not configured."
+msgstr "Benutzername für die API von i-doit ist nicht konfiguriert."
+
+msgid "Password for i-doit's API is not configured."
+msgstr "Passwort für die API von i-doit ist nicht konfiguriert."
+
+msgid "Custom field %s does not exist."
+msgstr "Benutzerdefiniertes Feld %s existiert nicht."
+
+msgid "Default view for referenced i-doit objects is not configured."
+msgstr "Standardansicht für referenzierte Objekte aus i-doit ist nicht konfiguriert."
+
+msgid "Configuration option to show/hide i-doit related custom fields is not set."
+msgstr "Option zum Anzeigen/Verstecken von auf i-doit bezogene benutzerdefinierte Feldern ist nicht konfiguriert."
+
+msgid "Show _MENU_ objects"
+msgstr "Zeige _MENU_ Objekte"
+
+msgid "No objects has been selected yet."
+msgstr "Es wurden noch keine Objekte gewählt."
+
+msgid "_START_ to _END_ of _TOTAL_ objects"
+msgstr "_START_ bis _END_ von _TOTAL_ Objekte(n)"
+
+msgid "0 to 0 of 0 objects"
+msgstr "0 bis 0 von 0 Objekten"
+
+msgid "(filtered from _MAX_ objects)"
+msgstr "(gefiltert von _MAX_ Objekten)"
+
+msgid "Error while loading object types"
+msgstr "Fehler beim Laden der Objekttypen"
+
+msgid "Error while loading objects by object type"
+msgstr "Fehler beim Laden der Objekte zu einem Objekttyp"
+
+msgid "Error while loading objects by email"
+msgstr "Fehler beim Laden von Objekten anhand von E-Mail-Adressen"
+
+msgid "Error while pre-selecting objects"
+msgstr "Fehler beim Vorselektieren von Objekten"
+
+msgid "Software relations"
+msgstr "Software-Beziehungen"
+
+msgid "Error while loading relation objects"
+msgstr "Fehler beim Laden von Beziehungsobjekten"
+
+msgid "Modify referenced i-doit object for #[_1]"
+msgstr "Bearbeite referenzierte Objekte aus i-doit für #[_1]"
+
+msgid "Modify referenced i-doit object for ticket # [_1]"
+msgstr "Bearbeite referenzierte Objekte aus i-doit für Ticket #[_1]"

@@ -3,7 +3,7 @@
 	browser_mandator_field = $(browser_mandator_field);
 	
 	datatable_lang = {
-		"sProcessing":   "<% loc('Please wait...') %>",
+		"sProcessing":   "<% loc('Loading...') %>",
 		"sLengthMenu":   "<% loc('Show _MENU_ objects') %>",
 		"sZeroRecords":  "<% loc('No objects has been selected yet.') %>",
 		"sInfo":         "<% loc('_START_ to _END_ of _TOTAL_ objects') %>",
@@ -89,7 +89,7 @@
 				// Trigger the event.
 				$('#i-doit-objectbrowser select.object-type').change();
 			} else {
-              window.error_notice('<% loc("Error while loading object types.") %>');
+              window.error_notice('<% loc("Error while loading object types") %>');
 			}
 		});
     };
@@ -229,7 +229,7 @@
 						current_treeview_data = response.result;
 						window.render_treeview();
 					} else {
-                      window.error_notice('<% loc("Error while loading objects by email.") %>');
+                      window.error_notice('<% loc("Error while loading objects by email") %>');
 					}
 				});
 			}
@@ -278,7 +278,7 @@
 									window.add_object(e.id, e.title, e.type_title);
 								});
 							} else {
-                              window.error_notice('<% loc("Error while pre-selecting objects.") %>');
+                              window.error_notice('<% loc("Error while pre-selecting objects") %>');
 							}
 						});
 				}
@@ -378,7 +378,7 @@
 						div.append(i + '<br />');
 					});
 				} else {
-                  window.error_notice('<% loc("Error while loading relation objects.") %>');
+                  window.error_notice('<% loc("Error while loading relation objects") %>');
 				}
 			}.bind(this));
 	});
@@ -406,7 +406,7 @@
                 check = '<input type="checkbox" value="' + e.id + '" name="i-doit-objectbrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' />';
                 id = e.id;
 				title = e.title;
-                link = '<a href="' + idoit_url + '?objID=' + e.id + '" title="<% loc("Go to i-doit") %>" target="_blank"><% loc("i-doit link") %></a>';
+                link = '<a href="' + idoit_url + '?objID=' + e.id + '" target="_blank"><% loc("Go to i-doit") %></a>';
 				
                 objectview_table.fnAddData([check, id, title, link]);
             }
@@ -475,7 +475,7 @@
         itemview_table.fnClearTable();
         $.each($('#data-store').data(), function(i, e) {
 			var title = e.name,
-				link = '<a href="' + idoit_url + '?objID=' + i + '"><% loc("i-doit link") %></a>';
+            link = '<a href="' + idoit_url + '?objID=' + i + '"><% loc("Go to i-doit") %></a>';
 
 			itemview_table.fnAddData(['<span class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')"><% loc("Delete") %></span>', i, title, e.type, link]);
             data_array.push(i);
