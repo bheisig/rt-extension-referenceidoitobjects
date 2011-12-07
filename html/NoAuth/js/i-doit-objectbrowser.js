@@ -273,7 +273,7 @@
 								window.remove_all_objects();
 
 								$.each(response.result, function(i, e) {
-									window.add_object(e.id, e.title, e.objecttype);
+									window.add_object(e.id, e.title, e.type_title);
 								});
 							} else {
 								window.error_notice(objectbrowser_lang.LC_ERR_LOADING_OBJECTS_BY_PRESELECTION);
