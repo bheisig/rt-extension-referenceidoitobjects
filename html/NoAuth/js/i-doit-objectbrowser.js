@@ -1,6 +1,6 @@
 (function($) {
-    browser_preselection_field = $('textarea[name="<% $IDoitObjects %>"]');
-	browser_mandator_field = $('select[name="<% $IDoitMandator %>"]');
+    browser_preselection_field = $(browser_preselection_field);
+	browser_mandator_field = $(browser_mandator_field);
 
     // Initialize the data table.
     var objectview_table = $('#i-doit-objectbrowser #tab-objectview table.object-table').dataTable({
@@ -282,7 +282,7 @@
 		
         // We iterate through the first level (email-addresses).
         $.each(current_treeview_data, function(i, e) {
-            $('#tab-treeview div.workplaces').append('<a href="<% RT->Config->Get('IDoitURL') %>?objID=' + i + '"><b>' + e.data.title + '</b></a><br />');
+            $('#tab-treeview div.workplaces').append('<a href="' + idoit_url + '?objID=' + i + '"><b>' + e.data.title + '</b></a><br />');
 
 			if (e.children != false) {
 				window.render_treeview_recursion(e.children, 1);
@@ -367,7 +367,7 @@
 
                 check = '<input type="checkbox" value="' + e.id + '" name="i-doit-objectbrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' />';
                 id = e.id;
-				title = '<a href="<% RT->Config->Get('IDoitURL') %>?objID=' + e.id + '">' + e.title + '</a>';
+				title = '<a href="' + idoit_url + '?objID=' + e.id + '">' + e.title + '</a>';
                 objectview_table.fnAddData([check, id, title]);
             }
         });
@@ -431,7 +431,7 @@
 
         itemview_table.fnClearTable();
         $.each($('#data-store').data(), function(i, e) {
-			var title = '<a href="<% RT->Config->Get('IDoitURL') %>?objID=' + i + '">' + e.name + '</a>';
+			var title = '<a href="' + idoit_url + '?objID=' + i + '">' + e.name + '</a>';
 
 			itemview_table.fnAddData(['<span class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')">Entfernen</span>', i, title, e.type]);
             data_array.push(i);

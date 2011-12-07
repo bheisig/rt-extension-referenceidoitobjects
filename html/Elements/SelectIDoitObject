@@ -61,8 +61,11 @@ api_default_mandator = <% $IDoitDefaultMandator %>;
 api_default_view = '<% $IDoitView %>';
 
 show_custom_fields = <% $IDoitShowCustomFields %>;
-browser_preselection_field = null;
-browser_mandator_field = null;
+
+idoit_url = '<% RT->Config->Get('IDoitURL') %>';
+
+browser_preselection_field = 'textarea[name="<% $IDoitObjects %>"]';
+browser_mandator_field = 'select[name="<% $IDoitMandator %>"]';
 
 current_objectview_data = {};
 current_treeview_data = {};
