@@ -1,8 +1,3 @@
-<style type="text/css">
-.css_right {float:right;}
-#i-doit-browser-notice {background:#FFEDB5; border:1px solid #FFD12D; color:#C19C22; padding:3px;}
-</style>
-
 <div id="i-doit-objectbrowser" style="position: relative; min-width: 400px;">
     <div id="data-store" style="display:none;"></div>
 	<div id="i-doit-browser-notice" class="ui-corner-all"></div>
@@ -29,202 +24,37 @@
 </div>
 
 <script type="text/javascript">
-// Global variables (without "var").
-api_url = '<% $IDoitAPI %>';
-api_lang = '<% $IDoitLanguage %>';
-api_user = '<% $IDoitUser %>';
-api_password = '<% $IDoitPassword %>';
-api_mandator = 0;
-api_default_view = '<% $IDoitView %>';
+	// Global variables (without "var").
+	api_url = '<% $IDoitAPI %>';
+	api_lang = '<% $IDoitLanguage %>';
+	api_user = '<% $IDoitUser %>';
+	api_password = '<% $IDoitPassword %>';
+	api_mandator = 0;
 
-show_custom_fields = <% $IDoitShowCustomFields %>;
+	show_custom_fields = <% $IDoitShowCustomFields %>;
 
-browser_preselection_field = null;
-browser_mandator_field = null;
+	idoit_url = '<% RT->Config->Get('IDoitURL') %>';
 
-current_objectview_data = {};
-current_treeview_data = {};
+	browser_preselection_field = 'textarea[name="<% $IDoitObjects %>"]';
+	browser_mandator_field = 'select[name="<% $IDoitMandator %>"]';
+</script>
 
-datatable_lang = {
-    "sProcessing":   "Bitte warten...",
-    "sLengthMenu":   "_MENU_ Einträge anzeigen",
-    "sZeroRecords":  "Keine Einträge vorhanden.",
-    "sInfo":         "_START_ bis _END_ von _TOTAL_ Einträgen",
-    "sInfoEmpty":    "0 bis 0 von 0 Einträgen",
-    "sInfoFiltered": "(gefiltert von _MAX_ Einträgen)",
-    "sInfoPostFix":  "",
-    "sSearch":       "Suchen",
-    "sUrl":          "",
-    "oPaginate": {
-        "sFirst":    "&laquo;",
-        "sPrevious": "&lsaquo;",
-        "sNext":     "&rsaquo;",
-        "sLast":     "&raquo;"
-    }
-};
+<script type="text/javascript" src="<% RT->Config->Get('WebPath') %>/NoAuth/js/i-doit-objectbrowser.js"></script>
 
-(function($) {
-    browser_preselection_field = $('tr#CF-11-ShowRow');
-	browser_mandator_field = $('select[name="<% $IDoitMandator %>"]');
+<script type="text/javascript">
+	(function($) {
+		// Load default mandator:
+		api_mandator = $(browser_mandator_field).text();
 
-    // Initialize the data table.
-    var itemview_table = $('#i-doit-objectbrowser table.object-table').dataTable({
-        "bJQueryUI": true,
-        "bAutoWidth": false,
-        "bPaginate": false,
-        "bLengthChange": false,
-        "bSort": false,
-        "oLanguage": datatable_lang
-    });
-
-    /**
-     * This event will initialize the browser.
-     *
-     * @author  Leonard Fischer <lfischer@synetics.de>
-     */
-    window.init_browser = function() {
-		api_mandator = browser_mandator_field.val();
-		if (api_mandator == 0 || api_mandator == "") {
-			return
+		// Hide custom fields:
+		if (show_custom_fields == 0) {
+			browser_preselection_field.parent().parent().hide();
+			browser_mandator_field.parent().parent().hide();
 		}
 
-		$('#i-doit-browser-notice').css({display: 'none'});
-		$('#i-doit-objectbrowser-content').css({display: 'block'});
-
-		// Here we get our preselection data and cast the ID's to integer.
-		var data = {};
-
-		// We look if the preselection field is filled.
-		window.load_preselection_data();
-
-		// Here we load the requestor data (workplaces and assigned objects).
-		window.load_requestor_data();
-
-		
-		
-		var preselection = browser_preselection_field.val();
-
-		if (typeof preselection != 'undefined') {
-			preselection = preselection.split("\n")
-
-			if (preselection != '') {
-				preselection = preselection.map(function(i) {
-					return (!isNaN(parseInt(i)) ? parseInt(i) : 0);
-				});
-
-				if (preselection.length > 0) {
-					data = {
-						"method":"cmdb.objects",
-						"params":{
-							"session":{
-								"username":api_user,
-								"password":api_password,
-								"language":api_lang,
-								"mandator":api_mandator},
-							"filter":{
-								"ids":preselection}},
-						"id":"1",
-						"jsonrpc":"2.0"};
-
-					idoit_ajax(data, function(response) {
-						if (response.error == null) {
-							
-							itemview_table.fnClearTable();
-							
-							$.each($('#data-store').data(), function(i, e) {
-								var title = '<a href="<% RT->Config->Get('IDoitURL') %>?objID=' + i + '">' + e.name + '</a>';
-
-								itemview_table.fnAddData([i, title, e.type]);
-								data_array.push(i);
-							});
-						} else {
-							window.error_notice('Error while loading object-types.');
-						}
-					});
-				}
-			}
-		}
-    };
-
-	
-    /**
-     * Function for rendering the "selected objects" list. Will be used when adding or removing an object.
-     *
-     * @author  Leonard Fischer <lfischer@synetics.de>
-     */
-    window.render_selected_items = function() {
-        var data_array = [];
-
-        itemview_table.fnClearTable();
-        $.each($('#data-store').data(), function(i, e) {
-			var title = '<a href="<% RT->Config->Get('IDoitURL') %>?objID=' + i + '">' + e.name + '</a>';
-
-			itemview_table.fnAddData(['<a href="#i-doit-objectbrowser" class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')">Entfernen</a>', i, title, e.type]);
-            data_array.push(i);
-        });
-
-        browser_preselection_field.val(data_array.join("\n"));
-    };
-
-    /**
-     * Function for sending requests to idoit.
-     *
-     * @param   json      data      A json-object with the data, you want to send with the request.
-     * @param   function  callback  A callback to assign to the "success" of an request.
-     * @author  Leonard Fischer <lfischer@synetics.de>
-     */
-    window.idoit_ajax = function(data, callback) {
-        $.ajax({
-            url: api_url,
-            data: JSON.stringify(data),
-            contentType: 'application/json',
-            type: 'POST',
-            dataType: 'json',
-            success: callback
-        });
-    };
-
-
-	/**
-	 * You may implement an own method to display errors here.
-	 *
-	 * @param   string  msg  The error message.
-	 * @author  Leonard Fischer <lfischer@synetics.de>
-	 */
-    window.error_notice = function(msg) {
-		var notice = $('<div></div>').addClass('ui-corner-all').css({background: '#FFB1AD', borderColor: '#FF6D68', color: '#A04341'}).html(msg);
-        $('#i-doit-browser-notice').after(notice);
-		notice.slideDown(300).delay(2000).slideUp(300).delay(300).remove();
-    }
-
-
-	/**
-	 * Function for displaying the "loading" screen.
-	 *
-	 * @author  Leonard Fischer <lfischer@synetics.de>
-	 */
-	window.display_loading = function() {
-		$('#loading-screen').stop().fadeTo(300, 1);
-		$('#i-doit-objectbrowser-content').stop().fadeTo(300, 0.3);
-	}
-
-
-	/**
-	 * Function for removing the "loading" screen.
-	 *
-	 * @author  Leonard Fischer <lfischer@synetics.de>
-	 */
-	window.remove_loading = function() {
-		$('#loading-screen').stop().fadeTo(300, 0);
-		$('#i-doit-objectbrowser-content').stop().fadeTo(300, 1);
-	}
-
-	// Hide the preselection field.
-//	browser_preselection_field.parent().parent().hide();
-
-	// Start the browser.
-	window.init_browser();
-})(jQuery);
+		// Start the browser.
+		window.init_browser();
+	})(jQuery);
 </script>
 
 <%INIT>
