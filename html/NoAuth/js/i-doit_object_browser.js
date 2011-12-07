@@ -47,17 +47,6 @@
     window.init_browser = function() {
 		api_mandator = browser_mandator_field.val();
 
-		if (api_mandator == 0 || api_mandator == "") {
-          $('#i-doit-browser-notice').html('<% loc("Please select an i-doit mandator.") %>').css({display: 'block'});
-			$('#i-doit-objectbrowser-content').css({display: 'none'});
-			initialized = false;
-			return;
-		}
-
-		initialized = true;
-		$('#i-doit-browser-notice').css({display: 'none'});
-		$('#i-doit-objectbrowser-content').css({display: 'block'});
-
 		// Here we get our preselection data and cast the ID's to integer.
 		var data = {};
 
@@ -81,6 +70,10 @@
 
 		idoit_ajax(data, function(response) {
 			if (response.error == null) {
+				initialized = true;
+				$('#i-doit-browser-notice').css({display: 'none'});
+				$('#i-doit-objectbrowser-content').css({display: 'block'});
+				
 				$('#i-doit-objectbrowser select.object-type').html('');
 				$.each(response.result, function(i, e) {
 					$('<option value="' + e.id + '">' + e.title + '</option>').appendTo('#i-doit-objectbrowser select.object-type');
@@ -89,7 +82,8 @@
 				// Trigger the event.
 				$('#i-doit-objectbrowser select.object-type').change();
 			} else {
-              window.error_notice('<% loc("Error while loading object types") %>');
+				initialized = false;
+				window.error_notice('<% loc("Error while loading object types") %>');
 			}
 		});
     };
@@ -516,8 +510,12 @@
 	 */
     window.error_notice = function(msg) {
 		var notice = $('<div></div>').addClass('ui-corner-all').css({background: '#FFB1AD', borderColor: '#FF6D68', color: '#A04341'}).html(msg);
+		
+		$('#i-doit-browser-notice').html('<% loc("Please select an i-doit mandator.") %>').css({display: 'block'});
+		$('#i-doit-objectbrowser-content').css({display: 'none'});
+		
         $('#i-doit-browser-notice').after(notice);
-		notice.slideDown(300).delay(2000).slideUp(300).delay(300).remove();
+		notice.show().delay(2000).slideUp(300).delay(300).remove();
     }
 
 
