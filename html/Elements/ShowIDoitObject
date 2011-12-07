@@ -35,15 +35,23 @@
 
 	show_custom_fields = <% $IDoitShowCustomFields %>;
 
-	browser_preselection_field = 'textarea[name="<% $IDoitObjects %>"]';
-	browser_mandator_field = 'select[name="<% $IDoitMandator %>"]';
+	browser_preselection_field = 'tr#<% $IDoitObjects %>';
+	browser_mandator_field = 'tr#<% $IDoitMandator %>';
 </script>
 
 <script type="text/javascript" src="<% RT->Config->Get('WebPath') %>/NoAuth/js/i-doit-objectbrowser.js"></script>
 
 <script type="text/javascript">
 	(function($) {
-		preselection = $(browser_preselection_field).text().split("\n");
+		browser_preselection_field = $(browser_preselection_field);
+		browser_mandator_field = $(browser_mandator_field);
+		
+		$.each(browser_preselection_field.find('ul li'), function(i, e) {
+			console.log('---');
+			console.log(i);
+			console.log(e);
+			preselection[] = $(e).text();
+		});
 
 		data = {
 			"method":"cmdb.objects",
@@ -131,7 +139,7 @@ unless($cf->id) {
     $$skip_create = 1;
     push @{$results}, $msg;
 }
-$IDoitMandator = 'Object-RT::Ticket--CustomField-' . $cf->id . '-Values';
+$IDoitMandator = 'CF-' . $cf->id . '-ShowRow';
 
 my $cfObjects = 'i-doit objects';
 $cf = RT::CustomField->new($RT::SystemUser);
@@ -142,28 +150,7 @@ unless($cf->id) {
     $$skip_create = 1;
     push @{$results}, $msg;
 }
-$IDoitObjects = 'Object-RT::Ticket--CustomField-' . $cf->id . '-Values';
-
-$IDoitDefaultMandator = RT->Config->Get('IDoitDefaultMandator');
-unless ($IDoitDefaultMandator) {
-    my $msg = loc('Default mandator is not configured.');
-    RT::Logger->error($msg);
-    $$skip_create = 1;
-    push @{$results}, $msg;
-}
-
-$IDoitDefaultView = RT->Config->Get('IDoitDefaultView');
-unless($IDoitDefaultView) {
-    my $msg = loc('Default view for i-doit\'s API is not configured.');
-    RT::Logger->error($msg);
-    $$skip_create = 1;
-    push @{$results}, $msg;
-}
-switch ($IDoitDefaultView) {
-    case 'object' { $IDoitView = 0; }
-    case 'tree' { $IDoitView = 1; }
-    case 'item' { $IDoitView = 2; }
-}
+$IDoitObjects = 'CF-' . $cf->id . '-ShowRow';
 
 $IDoitShowCustomFields = RT->Config->Get('IDoitShowCustomFields');
 </%INIT>
@@ -179,8 +166,6 @@ $IDoitUser => undef
 $IDoitPassword => undef
 $IDoitMandator => undef
 $IDoitObjects => undef
-$IDoitDefaultMandator => undef
-$IDoitDefaultView => undef
 $IDoitView => undef
 $IDoitShowCustomFields => undef
 </%ARGS>
