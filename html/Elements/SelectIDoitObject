@@ -1,11 +1,11 @@
 <div id="i-doit-objectbrowser" style="position: relative; min-width: 400px;">
     <div id="data-store" style="display:none;"></div>
-	<div id="i-doit-browser-notice" class="ui-corner-all">Bitte wählen Sie einen Mandanten aus.</div>
+	<div id="i-doit-browser-notice" class="ui-corner-all"><% loc('Please select an i-doit mandator.') %></div>
     <div id="i-doit-objectbrowser-content" style="display:none;">
         <ul>
-            <li><a href="#tab-objectview">Objektansicht</a></li>
-            <li><a href="#tab-treeview">Baumansicht</a></li>
-            <li><a href="#tab-itemview">Gew&auml;hlte Objekte</a></li>
+            <li><a href="#tab-objectview"><% loc('Object view') %></a></li>
+            <li><a href="#tab-treeview"><% loc('Tree view') %></a></li>
+            <li><a href="#tab-itemview"><% loc('Selected objects') %></a></li>
         </ul>
 
         <a href="<% RT->Config->Get('IDoitURL') %>" title="<% loc('Go to i-doit') %>" target="_blank">
@@ -33,7 +33,7 @@
             <span id="requestor-reload"><% loc('Reload') %></span>
         </div>
         <div id="tab-itemview">
-            Ausgewählte Objekte
+            <% loc('Selected objects') %>
             <table class="object-table" style="width:100%;">
                 <thead>
                     <tr>
@@ -74,7 +74,7 @@
 	datatable_lang = {
 		"sProcessing":   "<% loc('Please wait...') %>",
 		"sLengthMenu":   "_MENU_ Einträge anzeigen",
-		"sZeroRecords":  "Keine Einträge vorhanden.",
+		"sZeroRecords":  "<% loc('No objects has been selected yet.') %>",
 		"sInfo":         "_START_ bis _END_ von _TOTAL_ Einträgen",
 		"sInfoEmpty":    "0 bis 0 von 0 Einträgen",
 		"sInfoFiltered": "(gefiltert von _MAX_ Einträgen)",
@@ -200,6 +200,12 @@ switch ($IDoitDefaultView) {
 }
 
 $IDoitShowCustomFields = RT->Config->Get('IDoitShowCustomFields');
+unless($IDoitShowCustomFields) {
+    my $msg = loc('Configuration option to show/hide i-doit related custom fields is not set.');
+    RT::Logger->error($msg);
+    $$skip_create = 1;
+    push @{$results}, $msg;
+}
 </%INIT>
 
 <%ARGS>
