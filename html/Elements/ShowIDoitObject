@@ -80,7 +80,7 @@
 						list.fnAddData([e.id, e.title, e.type_title, link]);
 					});
 				} else {
-					window.error_notice(objectbrowser_lang.LC_ERR_LOADING_OBJECTS_BY_PRESELECTION);
+					window.error_notice('<% loc("Error while loading pre-selecting objects") %>');
 				}
 			});
 

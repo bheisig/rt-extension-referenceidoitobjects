@@ -76,7 +76,7 @@ msgstr "Fehler beim Laden der Objekte zu einem Objekttyp"
 msgid "Error while loading objects by email"
 msgstr "Fehler beim Laden von Objekten anhand von E-Mail-Adressen"
 
-msgid "Error while pre-selecting objects"
+msgid "Error while loading pre-selecting objects"
 msgstr "Fehler beim Vorselektieren von Objekten"
 
 msgid "Software relations"
