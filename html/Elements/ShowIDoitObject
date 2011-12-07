@@ -49,10 +49,7 @@
 		browser_mandator_field = $(browser_mandator_field);
 		
 		$.each(browser_preselection_field.find('ul li'), function(i, e) {
-			console.log('---');
-			console.log(i);
-			console.log(e);
-//			preselection.push($(e).text());
+			preselection.push($(e).text());
 		});
 
 		data = {
@@ -70,6 +67,9 @@
 
 		idoit_ajax(data, function(response) {
 				if (response.error == null) {
+					$('#i-doit-browser-notice').css({display: 'none'});
+					$('#i-doit-objectbrowser-content').css({display: 'block'});
+					
 					$.each(response.result, function(i, e) {
 						$('#i-doit-content').append('<br />' + e.title + ' (' + e.id + ')');
 					});
