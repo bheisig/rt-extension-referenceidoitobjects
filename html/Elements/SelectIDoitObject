@@ -22,7 +22,7 @@
                         <th width="5%"></th>
                         <th width="15%"><% loc('ID') %></th>
                         <th width="70%"><% loc('Name') %></th>
-                        <th width="10%">Link</th>
+                        <th width="10%"><% loc('Link') %></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,7 +34,6 @@
             <span id="requestor-reload"><% loc('Reload') %></span>
         </div>
         <div id="tab-itemview">
-            <% loc('Selected objects') %>
             <table class="object-table" style="width:100%;">
                 <thead>
                     <tr>
@@ -76,8 +75,8 @@
 		"sProcessing":   "<% loc('Please wait...') %>",
 		"sLengthMenu":   "<% loc('Show _MENU_ objects') %>",
 		"sZeroRecords":  "<% loc('No objects has been selected yet.') %>",
-		"sInfo":         "<% loc('_START_ till _END_ of _TOTAL_ objects') %>",
-		"sInfoEmpty":    "<% loc('0 till 0 of 0 objects') %>",
+		"sInfo":         "<% loc('_START_ to _END_ of _TOTAL_ objects') %>",
+		"sInfoEmpty":    "<% loc('0 to 0 of 0 objects') %>",
 		"sInfoFiltered": "<% loc('(filtered from _MAX_ objects)') %>",
 		"sInfoPostFix":  "",
 		"sSearch":       "<% loc('Search') %>",
@@ -88,17 +87,6 @@
 			"sNext":     "&rsaquo;",
 			"sLast":     "&raquo;"
 		}
-	};
-
-	objectbrowser_lang = {
-		"LC_SOFTWARE_RELATION": "<% loc('Software relations') %>",
-		"LC_PLEASE_SELECT_MANDATOR": "<% loc('Please select an i-doit mandator.') %>",
-		"LC_ERR_LOADING_OBJ_TYPES": "<% loc('Error while loading object types.') %>",
-		"LC_ERR_LOADING_OBJECTS_BY_OBJ_TYPE": "<% loc('Error while loading objects by object type') %>",
-		"LC_ERR_LOADING_OBJECTS_BY_EMAIL": "<% loc('Error while loading objects by email.') %>",
-		"LC_ERR_LOADING_OBJECTS_BY_PRESELECTION": "<% loc('Error while pre-selecting objects.') %>",
-		"LC_ERR_LOADING_SOFTWARE_RELATIONS": "<% loc('Error while loading relation objects.') %>",
-		"LC_IDOIT_LINK_NAME": "<% loc('i-doit link') %>"
 	};
 </script>
 

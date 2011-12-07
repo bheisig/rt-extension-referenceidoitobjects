@@ -30,7 +30,7 @@
 		api_mandator = browser_mandator_field.val();
 
 		if (api_mandator == 0 || api_mandator == "") {
-			$('#i-doit-browser-notice').html(objectbrowser_lang.LC_PLEASE_SELECT_MANDATOR).css({display: 'block'});
+          $('#i-doit-browser-notice').html('<% loc("Please select an i-doit mandator.") %>').css({display: 'block'});
 			$('#i-doit-objectbrowser-content').css({display: 'none'});
 			initialized = false;
 			return;
@@ -71,7 +71,7 @@
 				// Trigger the event.
 				$('#i-doit-objectbrowser select.object-type').change();
 			} else {
-				window.error_notice(objectbrowser_lang.LC_ERR_LOADING_OBJ_TYPES);
+              window.error_notice('<% loc("Error while loading object types.") %>');
 			}
 		});
     };
@@ -105,7 +105,7 @@
                 current_objectview_data = response.result;
                 window.render_objectview();
             } else {
-                window.error_notice(objectbrowser_lang.LC_ERR_LOADING_OBJECTS_BY_OBJ_TYPE);
+              window.error_notice('<% loc("Error while loading objects by object type") %>');
             }
         });
     });
@@ -211,7 +211,7 @@
 						current_treeview_data = response.result;
 						window.render_treeview();
 					} else {
-						window.error_notice(objectbrowser_lang.LC_ERR_LOADING_OBJECTS_BY_EMAIL);
+                      window.error_notice('<% loc("Error while loading objects by email.") %>');
 					}
 				});
 			}
@@ -276,7 +276,7 @@
 									window.add_object(e.id, e.title, e.type_title);
 								});
 							} else {
-								window.error_notice(objectbrowser_lang.LC_ERR_LOADING_OBJECTS_BY_PRESELECTION);
+                              window.error_notice('<% loc("Error while pre-selecting objects.") %>');
 							}
 						});
 				}
@@ -334,7 +334,7 @@
 			var output = '<div><input type="checkbox" value="' + i + '" name="i-doit-treebrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' style="margin-left:' + (level * 20) + 'px;"> ' +
 				'<span class="obj-name">' + e.data.title + '</span>' +
 				' (<span class="obj-type">' + e.data.type_title + '</span>) &raquo; ' +
-				'<span class="relation-button">' + objectbrowser_lang.LC_SOFTWARE_RELATION + '</span></div>';
+                '<span class="relation-button"><% loc("Software relations") %></span></div>';
 
 			$('#tab-treeview div.workplaces').append(output);
 
@@ -376,7 +376,7 @@
 						div.append(i + '<br />');
 					});
 				} else {
-					window.error_notice(objectbrowser_lang.LC_ERR_LOADING_SOFTWARE_RELATIONS);
+                  window.error_notice('<% loc("Error while loading relation objects.") %>');
 				}
 			}.bind(this));
 	});
@@ -404,7 +404,7 @@
                 check = '<input type="checkbox" value="' + e.id + '" name="i-doit-objectbrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' />';
                 id = e.id;
 				title = e.title;
-				link = '<a href="' + idoit_url + '?objID=' + e.id + '">' + objectbrowser_lang.LC_IDOIT_LINK_NAME + '</a>';
+                link = '<a href="' + idoit_url + '?objID=' + e.id + '" title="<% loc("Go to i-doit") %>" target="_blank"><% loc("i-doit link") %></a>';
 				
                 objectview_table.fnAddData([check, id, title, link]);
             }
@@ -474,7 +474,7 @@
         $.each($('#data-store').data(), function(i, e) {
 			var title = '<a href="' + idoit_url + '?objID=' + i + '">' + e.name + '</a>';
 
-			itemview_table.fnAddData(['<span class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')">Entfernen</span>', i, title, e.type]);
+			itemview_table.fnAddData(['<span class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')"><% loc("Delete") %></span>', i, title, e.type]);
             data_array.push(i);
         });
 

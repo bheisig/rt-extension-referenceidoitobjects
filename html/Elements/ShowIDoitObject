@@ -33,16 +33,6 @@
 	browser_preselection_field = 'tr#<% $IDoitObjects %>';
 	browser_mandator_field = 'tr#<% $IDoitMandator %>';
 	
-	objectbrowser_lang = {
-		"LC_SOFTWARE_RELATION": "<% loc('Software relations') %>",
-		"LC_PLEASE_SELECT_MANDATOR": "<% loc('Please select an i-doit mandator.') %>",
-		"LC_ERR_LOADING_OBJ_TYPES": "<% loc('Error while loading object types.') %>",
-		"LC_ERR_LOADING_OBJECTS_BY_OBJ_TYPE": "<% loc('Error while loading objects by object type') %>",
-		"LC_ERR_LOADING_OBJECTS_BY_EMAIL": "<% loc('Error while loading objects by email.') %>",
-		"LC_ERR_LOADING_OBJECTS_BY_PRESELECTION": "<% loc('Error while pre-selecting objects.') %>",
-		"LC_ERR_LOADING_SOFTWARE_RELATIONS": "<% loc('Error while loading relation objects.') %>"
-	};
-	
 	datatable_lang = {
 		"sProcessing":   "<% loc('Please wait...') %>",
 		"sLengthMenu":   "_MENU_ Einträge anzeigen",
