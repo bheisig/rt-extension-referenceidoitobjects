@@ -554,7 +554,7 @@ datatable_lang = {
 
     // Load default mandator:
     if (api_default_mandator >= 0) {
-        browser_mandator_field.selected = api_default_mandator;
+        $('select[name="<% $IDoitMandator %>"] input[value="' + api_default_mandator + '"]').attr('selected', 'selected');
     }
 
 	// Hide custom fields:
@@ -662,9 +662,6 @@ switch ($IDoitDefaultView) {
 }
 
 $IDoitShowCustomFields = RT->Config->Get('IDoitShowCustomFields');
-unless($IDoitShowCustomFields) {
-    $IDoitShowCustomFields = 1;
-}
 </%INIT>
 
 <%ARGS>
