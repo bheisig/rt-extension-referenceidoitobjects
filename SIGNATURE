@@ -15,7 +15,7 @@ not run its Makefile.PL or Build.PL.
 Hash: SHA1
 
 SHA1 41f6c7a237d8966853431f17b452e963cd4fdce4 Changes
-SHA1 57442ac97bb50696b6cae05a0f652c1fea7e57c0 MANIFEST
+SHA1 bd3ab43e89ba0c5dce3552a2ce6c6d6ce1f47cc5 MANIFEST
 SHA1 69d2b215f62dfd629f52b86840cf855322e5296f META.yml
 SHA1 1397b0915ed9dac1a4e4db9e8d008c902ec86779 Makefile.PL
 SHA1 5f9451610cdd0b41e05d49c9d47964293e50e1cc README
@@ -25,13 +25,13 @@ SHA1 30d9eb575b6a53579728a35aa0af3e0990cc3fdb html/Callbacks/ReferenceIdoitObjec
 SHA1 2350298306103d29310d724fd4710104bf9ad4b1 html/Callbacks/ReferenceIdoitObject/Ticket/Create.html/AfterBasics
 SHA1 b9c6b2a41f799bb5e2e564a9ac55ee6b89d2a6b6 html/Callbacks/ReferenceIdoitObject/Ticket/Create.html/FormStart
 SHA1 0ebc27a05e3231743baf54e0eb1f7b0a52848f0d html/Callbacks/ReferenceIdoitObject/Ticket/Elements/ShowSummary/LeftColumn
-SHA1 2a68ebe776bf1c3617c3087b5617eb0a58dd36ca html/Elements/SelectIDoitObject
-SHA1 726750643f8a0e43b5656540330c1473d3f355ab html/Elements/ShowIDoitObject
+SHA1 df2150093baceb28d50dfe3bd6f4a1fa295c655f html/Elements/SelectIDoitObject
+SHA1 6291ab4b056995332b6fe1bb04346b2d6c831feb html/Elements/ShowIDoitObject
 SHA1 faf56d314fefe40211b3db8fb305dedec3861bab html/NoAuth/css/demo_table.css
 SHA1 63c5b31231d04e9ec86200d05b4525c76535d4a4 html/NoAuth/css/demo_table_jui.css
 SHA1 fb65abf5080927de6af8648ace3f67f86a4b7159 html/NoAuth/css/i-doit_object_browser.css
 SHA1 21117f74c1256a9045626a08027068ea0e930842 html/NoAuth/images/i-doit.png
-SHA1 5461eb87ff6bbe3f44f37ca0c801ffb5351270e3 html/NoAuth/js/i-doit-objectbrowser.js
+SHA1 5461eb87ff6bbe3f44f37ca0c801ffb5351270e3 html/NoAuth/js/i-doit_object_browser.js
 SHA1 6f6c12b01532eeebefde965a5fa832a9d441122c html/NoAuth/js/jquery.dataTables.min.js
 SHA1 ab59aad6fe49994741b061f72785b4114fb37c94 html/Ticket/Elements/EditIDoitObject
 SHA1 1c995c787e19a65d75b5c16805628b9cf9c1aa43 html/Ticket/Elements/ShowIDoitObject
@@ -59,7 +59,7 @@ SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAk7fcfcACgkQWFkxZRfLwXKitACg02xC9k0LT8QgN0zrpNl8/Bo7
-XU4AoKejXB4wym268gZEWyK/KopnelM6
-=J6Ol
+iEYEARECAAYFAk7fco0ACgkQWFkxZRfLwXIT2wCgpA/f+MbuRjE96/P3Kkk1fCOP
+kmQAnRZ6w0tTNlmZMWQY9OkTr5GWGsST
+=zqsf
 -----END PGP SIGNATURE-----
