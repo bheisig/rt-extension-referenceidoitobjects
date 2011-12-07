@@ -56,10 +56,10 @@ msgid "Show _MENU_ objects"
 msgstr "Zeige _MENU_ Objekte"
 
 msgid "No objects has been selected yet."
-msgstr "Es wurden noch keine Objekte gewählt."
+msgstr "Es wurden noch keine Objekte ausgewählt."
 
 msgid "_START_ to _END_ of _TOTAL_ objects"
-msgstr "_START_ bis _END_ von _TOTAL_ Objekte(n)"
+msgstr "_START_ bis _END_ von _TOTAL_ Objekt(en)"
 
 msgid "0 to 0 of 0 objects"
 msgstr "0 bis 0 von 0 Objekten"
@@ -93,3 +93,6 @@ msgstr "Bearbeite referenzierte Objekte aus i-doit für Ticket #[_1]"
 
 msgid "Given requestor(s) could not be found in i-doit."
 msgstr "In i-doit wurde keiner der angegebenen Klienten gefunden."
+
+msgid "Object type"
+msgstr "Objekttyp"

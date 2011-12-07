@@ -15,7 +15,7 @@
         <img id="loading-screen" src="<% RT->Config->Get('WebPath') %>/NoAuth/images/jquery_ui/ui-anim_basic_16x16.gif" alt="<% loc('Loading...') %>" height="16" width="16" style="position: absolute; opacity: 0; z-index: 100; right: 80px; top: 12px;" />
 
         <div id="tab-objectview">
-            Objekt Typ <select class="object-type"></select><br />
+            <% loc('Object type') %>: <select class="object-type"></select><br />
             <table class="object-table" style="width:100%;">
                 <thead>
                     <tr>
