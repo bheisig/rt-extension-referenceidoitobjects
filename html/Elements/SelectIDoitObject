@@ -21,8 +21,8 @@
                     <tr>
                         <th width="5%"></th>
                         <th width="15%"><% loc('ID') %></th>
-                        <th width="80%"><% loc('Name') %></th>
-                        <th width="80%">Link</th>
+                        <th width="70%"><% loc('Name') %></th>
+                        <th width="10%">Link</th>
                     </tr>
                 </thead>
                 <tbody>
