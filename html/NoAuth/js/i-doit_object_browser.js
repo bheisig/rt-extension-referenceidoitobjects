@@ -354,7 +354,10 @@
 		window.display_loading();
 
 		var id = $(this).prev().prev().prev().val(),
-			div = $(this).parent();
+			div = $(this).parent(),
+			span = $(this).prev().prev().prev().css('margin-left');
+
+		$(this).remove();
 
 		data = {
 			"method":"cmdb.objects_by_relation",
@@ -369,11 +372,12 @@
 			"id":"1",
 			"jsonrpc":"2.0"};
 
+			
 		idoit_ajax(data, function(response) {
 				window.remove_loading();
 				if (response.error == null) {
 					$.each(response.result, function(i, e) {
-						div.append(i + '<br />');
+						div.append('<br /><input type="checkbox" style="margin-left:' + (span + 20) +'px;" />' + i);
 					});
 				} else {
                   window.error_notice('<% loc("Error while loading relation objects") %>');
