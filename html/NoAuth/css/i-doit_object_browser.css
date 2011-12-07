@@ -2,6 +2,8 @@
 
 #i-doit-browser-notice {background:#FFEDB5; border:1px solid #FFD12D; color:#C19C22; padding:3px;}
 
+.i-doit-objectbrowser-remover {color:#f00;}
+
 span.relation-button,
 #requestor-reload,
 .i-doit-objectbrowser-remover {cursor:pointer}
