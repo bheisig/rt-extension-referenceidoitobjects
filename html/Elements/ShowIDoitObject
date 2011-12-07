@@ -25,6 +25,8 @@
 
 <script type="text/javascript">
 	// Global variables (without "var").
+    idoit_url = '<% $IDoitURL %>';
+
 	api_url = '<% $IDoitAPI %>';
 	api_lang = '<% $IDoitLanguage %>';
 	api_user = '<% $IDoitUser %>';
@@ -32,8 +34,6 @@
 	api_mandator = 0;
 
 	show_custom_fields = <% $IDoitShowCustomFields %>;
-
-	idoit_url = '<% RT->Config->Get('IDoitURL') %>';
 
 	browser_preselection_field = 'textarea[name="<% $IDoitObjects %>"]';
 	browser_mandator_field = 'select[name="<% $IDoitMandator %>"]';
