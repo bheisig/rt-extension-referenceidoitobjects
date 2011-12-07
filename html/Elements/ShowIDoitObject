@@ -1,25 +1,8 @@
 <div id="i-doit-objectbrowser" style="position: relative; min-width: 400px;">
     <div id="data-store" style="display:none;"></div>
 	<div id="i-doit-browser-notice" class="ui-corner-all"></div>
-    <div id="i-doit-objectbrowser-content" style="display:none;">
-        <a href="<% RT->Config->Get('IDoitURL') %>" title="Go to i-doit" target="_blank">
-			<img src="<% RT->Config->Get('WebPath') %>/NoAuth/images/i-doit.png" alt="i-doit" style="position: absolute; top: 5px; right: 8px; height: 28px;" />
-		</a>
-
-        <img id="loading-screen" src="<% RT->Config->Get('WebPath') %>/NoAuth/images/ajaxload.gif" alt="Loading" height="32" width="32" style="position: absolute; opacity: 0; z-index: 100; right: 80px; top: 5px;" />
-
-		Ausgewählte Objekte
-		<table class="object-table" style="width:100%;">
-			<thead>
-				<tr>
-					<th width="10%">ID</th>
-					<th width="50%">Name</th>
-					<th width="40%">Typ</th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
+    <div id="i-doit-content" style="display:none;">
+		<b>Ausgew&auml;hlte Objekte</b><br />
     </div>
 </div>
 
@@ -81,9 +64,10 @@
 		idoit_ajax(data, function(response) {
 				if (response.error == null) {
 					$('#i-doit-browser-notice').css({display: 'none'});
-					$('#i-doit-objectbrowser-content').css({display: 'block'});
+					$('#i-doit-content').css({display: 'block'});
 					
 					$.each(response.result, function(i, e) {
+						console.log('write... ' + e.title + ' (' + e.id + ')');
 						$('#i-doit-content').append('<br />' + e.title + ' (' + e.id + ')');
 					});
 				} else {
