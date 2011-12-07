@@ -360,7 +360,7 @@
 						div.append(i + '<br />');
 					});
 				} else {
-					window.error_notice('Error while loading relation objects.');
+					window.error_notice(objectbrowser_lang.LC_ERR_LOADING_SOFTWARE_RELATIONS);
 				}
 			}.bind(this));
 	});
