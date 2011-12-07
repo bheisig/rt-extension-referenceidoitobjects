@@ -355,7 +355,7 @@
 
 		var id = $(this).prev().prev().prev().val(),
 			div = $(this).parent(),
-			span = $(this).prev().prev().prev().css('margin-left');
+			span = parseInt($(this).prev().prev().prev().css('margin-left'));
 
 		$(this).remove();
 
@@ -375,7 +375,6 @@
 		idoit_ajax(data, function(response) {
 				window.remove_loading();
 				if (response.error == null) {
-console.log(span);
 					$.each(response.result, function(i, e) {
 						var selected = false;
 						if (typeof $('#data-store').data(e.id) != 'undefined') {
