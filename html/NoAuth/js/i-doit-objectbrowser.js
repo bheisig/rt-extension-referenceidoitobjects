@@ -224,7 +224,7 @@
 	 *
 	 * @author  Leonard Fischer <lfischer@synetics.de>
 	 */
-	$('#i-doit-objectbrowser-content #tab-objectview table.object-table tbody tr').live('click', function() {
+	$('#i-doit-objectbrowser-content #tab-objectview table.object-table tbody tr').not('input').live('click', function() {
 		var check = $(this).find('td input[name="i-doit-objectbrowser-obj[]"]');
 		
 		if (check.attr('checked')) {
@@ -232,6 +232,8 @@
 		} else {
 			check.attr('checked', 'checked');
 		}
+		
+		check.change();
 	});
 	
 
