@@ -95,7 +95,7 @@ objectbrowser_lang = {
 };
 </script>
 
-<script type="text/javascript" src="<% RT->Config->Get('WebPath') %>/NoAuth/js/i-doit-objectbrowser"></script>
+<script type="text/javascript" src="<% RT->Config->Get('WebPath') %>/NoAuth/js/i-doit-objectbrowser.js"></script>
 
 <%INIT>
 use Switch;
