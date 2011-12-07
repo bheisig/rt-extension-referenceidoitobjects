@@ -73,11 +73,11 @@
 
 	datatable_lang = {
 		"sProcessing":   "<% loc('Please wait...') %>",
-		"sLengthMenu":   "_MENU_ Einträge anzeigen",
+		"sLengthMenu":   "<% loc('Show _MENU_ objects') %>",
 		"sZeroRecords":  "<% loc('No objects has been selected yet.') %>",
-		"sInfo":         "_START_ bis _END_ von _TOTAL_ Einträgen",
-		"sInfoEmpty":    "0 bis 0 von 0 Einträgen",
-		"sInfoFiltered": "(gefiltert von _MAX_ Einträgen)",
+		"sInfo":         "<% loc('_START_ till _END_ of _TOTAL_ objects') %>",
+		"sInfoEmpty":    "<% loc('0 till 0 of 0 objects') %>",
+		"sInfoFiltered": "<% loc('(filtered from _MAX_ objects)') %>",
 		"sInfoPostFix":  "",
 		"sSearch":       "<% loc('Search') %>",
 		"sUrl":          "",
@@ -96,7 +96,7 @@
 		"LC_ERR_LOADING_OBJECTS_BY_OBJ_TYPE": "<% loc('Error while loading objects by object type') %>",
 		"LC_ERR_LOADING_OBJECTS_BY_EMAIL": "<% loc('Error while loading objects by email.') %>",
 		"LC_ERR_LOADING_OBJECTS_BY_PRESELECTION": "<% loc('Error while pre-selecting objects.') %>",
-		"LC_ERR_LOADING_SOFTWARE_RELATIONS": "Error while loading relation objects."
+		"LC_ERR_LOADING_SOFTWARE_RELATIONS": "<% loc('Error while loading relation objects.') %>"
 	};
 </script>
 
@@ -168,7 +168,7 @@ my $cfMandator = 'i-doit mandator';
 my $cf = RT::CustomField->new($RT::SystemUser);
 $cf->LoadByNameAndQueue(Name => $cfMandator, Queue => '0');
 unless($cf->id) {
-    my $msg = loc('Custom field "' . $cfMandator . '" does not exist.');
+    my $msg = loc(sprintf('Custom field "%s" does not exist.', $cfMandator));
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
@@ -179,7 +179,7 @@ my $cfObjects = 'i-doit objects';
 $cf = RT::CustomField->new($RT::SystemUser);
 $cf->LoadByNameAndQueue(Name => $cfObjects, Queue => '0');
 unless($cf->id) {
-    my $msg = loc('Custom field "' . $cfObjects . '" does not exist.');
+    my $msg = loc(sprintf('Custom field "%s" does not exist.', $cfObjects));
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
