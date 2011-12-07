@@ -4,21 +4,21 @@
 
     // Initialize the data table.
     var objectview_table = $('#i-doit-objectbrowser #tab-objectview table.object-table').dataTable({
-        "bJQueryUI": true,
-        "bAutoWidth": false,
-        "bLengthChange": false,
-        "iDisplayLength": 20,
-        "sPaginationType": "full_numbers",
-        "oLanguage": datatable_lang
-    }),
-    itemview_table = $('#i-doit-objectbrowser #tab-itemview table.object-table').dataTable({
-        "bJQueryUI": true,
-        "bAutoWidth": false,
-        "bPaginate": false,
-        "bLengthChange": false,
-        "bSort": false,
-        "oLanguage": datatable_lang
-    });
+			"bJQueryUI": true,
+			"bAutoWidth": false,
+			"bLengthChange": false,
+			"iDisplayLength": 20,
+			"sPaginationType": "full_numbers",
+			"oLanguage": datatable_lang
+		}),
+		itemview_table = $('#i-doit-objectbrowser #tab-itemview table.object-table').dataTable({
+			"bJQueryUI": true,
+			"bAutoWidth": false,
+			"bPaginate": false,
+			"bLengthChange": false,
+			"bSort": false,
+			"oLanguage": datatable_lang
+		});
 
 
     /**
