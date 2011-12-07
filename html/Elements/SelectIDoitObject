@@ -185,9 +185,6 @@ switch ($IDoitDefaultView) {
 }
 
 $IDoitShowCustomFields = RT->Config->Get('IDoitShowCustomFields');
-unless($IDoitShowCustomFields) {
-    $IDoitShowCustomFields = 1;
-}
 </%INIT>
 
 <%ARGS>
