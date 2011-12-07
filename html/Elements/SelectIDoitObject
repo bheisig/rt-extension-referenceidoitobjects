@@ -103,20 +103,22 @@
 <script type="text/javascript" src="<% RT->Config->Get('WebPath') %>/NoAuth/js/i-doit-objectbrowser.js"></script>
 
 <script type="text/javascript">
-	// Hide custom fields:
-	if (show_custom_fields == 0) {
-		browser_preselection_field.parent().parent().hide();
-		browser_mandator_field.parent().parent().hide();
-	}
+	(function($) {
+		// Hide custom fields:
+		if (show_custom_fields == 0) {
+			browser_preselection_field.parent().parent().hide();
+			browser_mandator_field.parent().parent().hide();
+		}
 
-	// Initialize our data object.
-	$('#data-store').data();
+		// Initialize our data object.
+		$('#data-store').data();
 
-	// Initialize our tabs.
-	$('#i-doit-objectbrowser-content').tabs({selected: api_default_view});
+		// Initialize our tabs.
+		$('#i-doit-objectbrowser-content').tabs({selected: api_default_view});
 
-	// Start the browser.
-	window.init_browser();
+		// Start the browser.
+		window.init_browser();
+	})(jQuery);
 </script>
 
 <%INIT>

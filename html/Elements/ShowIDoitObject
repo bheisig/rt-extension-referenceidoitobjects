@@ -43,8 +43,30 @@
 
 <script type="text/javascript">
 	(function($) {
-		// Load default mandator:
-		api_mandator = $(browser_mandator_field).text();
+		preselection = $(browser_preselection_field).text().split("\n");
+
+		data = {
+			"method":"cmdb.objects",
+			"params":{
+				"session":{
+					"username":api_user,
+					"password":api_password,
+					"language":api_lang,
+					"mandator":api_mandator},
+				"filter":{
+					"ids":preselection}},
+			"id":"1",
+			"jsonrpc":"2.0"};
+
+		idoit_ajax(data, function(response) {
+				if (response.error == null) {
+					$.each(response.result, function(i, e) {
+						$('#i-doit-content').append('<br />' + e.title + ' (' + e.id + ')');
+					});
+				} else {
+					window.error_notice(objectbrowser_lang.LC_ERR_LOADING_OBJECTS_BY_PRESELECTION);
+				}
+			});
 
 		// Hide custom fields:
 		if (show_custom_fields == 0) {

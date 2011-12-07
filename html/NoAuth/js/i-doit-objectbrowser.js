@@ -28,6 +28,7 @@
      */
     window.init_browser = function() {
 		api_mandator = browser_mandator_field.val();
+		console.log(api_mandator);
 		if (api_mandator == 0 || api_mandator == "") {
 			$('#i-doit-browser-notice').html(objectbrowser_lang.LC_PLEASE_SELECT_MANDATOR).css({display: 'block'});
 			$('#i-doit-objectbrowser-content').css({display: 'none'});
@@ -274,7 +275,6 @@
 	 * @author  Leonard Fischer <lfischer@synetics.de>
 	 */
 	browser_mandator_field.live('change', function() {
-		api_mandator = browser_mandator_field.val();
 		window.remove_all_objects();
 		window.init_browser();
 	});
