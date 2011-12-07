@@ -1,22 +1,3 @@
-<input type="hidden" id="<% $Name %>" name="<% $Name %>" value="<% $Value %>" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div id="i-doit-objectbrowser" style="position: relative; min-width: 400px;">
     <div id="data-store" style="display:none;"></div>
 	<div id="i-doit-browser-notice" class="ui-corner-all"></div>
@@ -44,6 +25,8 @@
 
 <script type="text/javascript">
 	// Global variables (without "var").
+    idoit_url = '<% $IDoitURL %>';
+
 	api_url = '<% $IDoitAPI %>';
 	api_lang = '<% $IDoitLanguage %>';
 	api_user = '<% $IDoitUser %>';
@@ -51,8 +34,6 @@
 	api_mandator = 0;
 
 	show_custom_fields = <% $IDoitShowCustomFields %>;
-
-	idoit_url = '<% RT->Config->Get('IDoitURL') %>';
 
 	browser_preselection_field = 'textarea[name="<% $IDoitObjects %>"]';
 	browser_mandator_field = 'select[name="<% $IDoitMandator %>"]';
@@ -76,32 +57,108 @@
 	})(jQuery);
 </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <%INIT>
-$Value = $Value || $Default;
+use Switch;
+
+$IDoitURL = RT->Config->Get('IDoitURL');
+unless($IDoitURL) {
+    my $msg = loc('URL for i-doit is not configured.');
+    RT::Logger->error($msg);
+    $$skip_create = 1;
+    push @{$results}, $msg;
+}
+
+$IDoitAPI = RT->Config->Get('IDoitAPI');
+unless($IDoitAPI) {
+    my $msg = loc('URL for i-doit\'s API is not configured.');
+    RT::Logger->error($msg);
+    $$skip_create = 1;
+    push @{$results}, $msg;
+}
+
+$IDoitLanguage = RT->Config->Get('IDoitLanguage');
+unless($IDoitLanguage) {
+    my $msg = loc('Language for i-doit\'s API is not configured.');
+    RT::Logger->error($msg);
+    $$skip_create = 1;
+    push @{$results}, $msg;
+}
+
+$IDoitUser = RT->Config->Get('IDoitUser');
+unless($IDoitUser) {
+    my $msg = loc('User for i-doit\'s API is not configured.');
+    RT::Logger->error($msg);
+    $$skip_create = 1;
+    push @{$results}, $msg;
+}
+
+$IDoitPassword = RT->Config->Get('IDoitPassword');
+unless($IDoitPassword) {
+    my $msg = loc('Password for i-doit\'s API is not configured.');
+    RT::Logger->error($msg);
+    $$skip_create = 1;
+    push @{$results}, $msg;
+}
+
+my $cfMandator = 'i-doit mandator';
+my $cf = RT::CustomField->new($RT::SystemUser);
+$cf->LoadByNameAndQueue(Name => $cfMandator, Queue => '0');
+unless($cf->id) {
+    my $msg = loc('Custom field "' . $cfMandator . '" does not exist.');
+    RT::Logger->error($msg);
+    $$skip_create = 1;
+    push @{$results}, $msg;
+}
+$IDoitMandator = 'Object-RT::Ticket--CustomField-' . $cf->id . '-Values';
+
+my $cfObjects = 'i-doit objects';
+$cf = RT::CustomField->new($RT::SystemUser);
+$cf->LoadByNameAndQueue(Name => $cfObjects, Queue => '0');
+unless($cf->id) {
+    my $msg = loc('Custom field "' . $cfObjects . '" does not exist.');
+    RT::Logger->error($msg);
+    $$skip_create = 1;
+    push @{$results}, $msg;
+}
+$IDoitObjects = 'Object-RT::Ticket--CustomField-' . $cf->id . '-Values';
+
+$IDoitDefaultMandator = RT->Config->Get('IDoitDefaultMandator');
+unless ($IDoitDefaultMandator) {
+    my $msg = loc('Default mandator is not configured.');
+    RT::Logger->error($msg);
+    $$skip_create = 1;
+    push @{$results}, $msg;
+}
+
+$IDoitDefaultView = RT->Config->Get('IDoitDefaultView');
+unless($IDoitDefaultView) {
+    my $msg = loc('Default view for i-doit\'s API is not configured.');
+    RT::Logger->error($msg);
+    $$skip_create = 1;
+    push @{$results}, $msg;
+}
+switch ($IDoitDefaultView) {
+    case 'object' { $IDoitView = 0; }
+    case 'tree' { $IDoitView = 1; }
+    case 'item' { $IDoitView = 2; }
+}
+
+$IDoitShowCustomFields = RT->Config->Get('IDoitShowCustomFields');
 </%INIT>
 
 <%ARGS>
-$Default => 0
-$Value => 0
-$Name => 'IDoitObjectBrowser'
+$skip_create => undef
+$results => undef
+
+$IDoitURL => undef
+$IDoitAPI => undef
+$IDoitLanguage => undef
+$IDoitUser => undef
+$IDoitPassword => undef
+$IDoitMandator => undef
+$IDoitObjects => undef
+$IDoitDefaultMandator => undef
+$IDoitDefaultView => undef
+$IDoitView => undef
+$IDoitShowCustomFields => undef
 </%ARGS>

@@ -20,8 +20,8 @@
                 <thead>
                     <tr>
                         <th width="5%"></th>
-                        <th width="15%">ID</th>
-                        <th width="80%">Name</th>
+                        <th width="15%"><% loc('ID') %></th>
+                        <th width="80%"><% loc('Name') %></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,17 +30,17 @@
         </div>
         <div id="tab-treeview">
             <div class="workplaces"></div>
-            <span id="requestor-reload">Neu laden</span>
+            <span id="requestor-reload"><% loc('Reload') %></span>
         </div>
         <div id="tab-itemview">
             Ausgewählte Objekte
             <table class="object-table" style="width:100%;">
                 <thead>
                     <tr>
-                        <th width="10%">Aktion</th>
-                        <th width="10%">ID</th>
-                        <th width="40%">Name</th>
-                        <th width="40%">Typ</th>
+                        <th width="10%"><% loc('Action') %></th>
+                        <th width="10%"><% loc('ID') %></th>
+                        <th width="40%"><% loc('Name') %></th>
+                        <th width="40%"><% loc('Type') %></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,17 +52,16 @@
 
 <script type="text/javascript">
 	// Global variables (without "var").
+    idoit_url = '<% $IDoitURL %>';
+
 	api_url = '<% $IDoitAPI %>';
 	api_lang = '<% $IDoitLanguage %>';
 	api_user = '<% $IDoitUser %>';
 	api_password = '<% $IDoitPassword %>';
 	api_mandator = 0;
-	api_default_mandator = <% $IDoitDefaultMandator %>;
 	api_default_view = '<% $IDoitView %>';
 
 	show_custom_fields = <% $IDoitShowCustomFields %>;
-
-	idoit_url = '<% RT->Config->Get('IDoitURL') %>';
 
 	browser_preselection_field = 'textarea[name="<% $IDoitObjects %>"]';
 	browser_mandator_field = 'select[name="<% $IDoitMandator %>"]';
@@ -73,14 +72,14 @@
 	initialized = false;
 
 	datatable_lang = {
-		"sProcessing":   "Bitte warten...",
+		"sProcessing":   "<% loc('Please wait...') %>",
 		"sLengthMenu":   "_MENU_ Einträge anzeigen",
 		"sZeroRecords":  "Keine Einträge vorhanden.",
 		"sInfo":         "_START_ bis _END_ von _TOTAL_ Einträgen",
 		"sInfoEmpty":    "0 bis 0 von 0 Einträgen",
 		"sInfoFiltered": "(gefiltert von _MAX_ Einträgen)",
 		"sInfoPostFix":  "",
-		"sSearch":       "Suchen",
+		"sSearch":       "<% loc('Search') %>",
 		"sUrl":          "",
 		"oPaginate": {
 			"sFirst":    "&laquo;",
@@ -91,23 +90,18 @@
 	};
 
 	objectbrowser_lang = {
-		"LC_SOFTWARE_RELATION": "Softwarebeziehungen",
-		"LC_PLEASE_SELECT_MANDATOR": "Bitte w&auml;hlen Sie einen Mandanten aus.",
-		"LC_ERR_LOADING_OBJ_TYPES": "Error while loading object-types.",
-		"LC_ERR_LOADING_OBJECTS_BY_OBJ_TYPE": "Error while loading objects by object-type",
-		"LC_ERR_LOADING_OBJECTS_BY_EMAIL": "Error while loading objects by email.",
-		"LC_ERR_LOADING_OBJECTS_BY_PRESELECTION": "Error while preselecting objects."
+		"LC_SOFTWARE_RELATION": "<% loc('Software relations') %>",
+		"LC_PLEASE_SELECT_MANDATOR": "<% loc('Please select an i-doit mandator.') %>",
+		"LC_ERR_LOADING_OBJ_TYPES": "<% loc('Error while loading object types.') %>",
+		"LC_ERR_LOADING_OBJECTS_BY_OBJ_TYPE": "<% loc('Error while loading objects by object type') %>",
+		"LC_ERR_LOADING_OBJECTS_BY_EMAIL": "<% loc('Error while loading objects by email.') %>",
+		"LC_ERR_LOADING_OBJECTS_BY_PRESELECTION": "<% loc('Error while pre-selecting objects.') %>"
 	};
 </script>
 
 <script type="text/javascript" src="<% RT->Config->Get('WebPath') %>/NoAuth/js/i-doit-objectbrowser.js"></script>
 
 <script type="text/javascript">
-	// Load default mandator:
-	if (api_default_mandator >= 0) {
-		browser_mandator_field.selected = api_default_mandator;
-	}
-
 	// Hide custom fields:
 	if (show_custom_fields == 0) {
 		browser_preselection_field.parent().parent().hide();
@@ -171,9 +165,7 @@ my $cfMandator = 'i-doit mandator';
 my $cf = RT::CustomField->new($RT::SystemUser);
 $cf->LoadByNameAndQueue(Name => $cfMandator, Queue => '0');
 unless($cf->id) {
-    $$skip_create = 1;
-    push @{$results}, loc('Custom field ' . $cfMandator . ' does not exist.');
-    my $msg = loc('URL for i-doit\'s API is not configured.');
+    my $msg = loc('Custom field "' . $cfMandator . '" does not exist.');
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
@@ -184,19 +176,12 @@ my $cfObjects = 'i-doit objects';
 $cf = RT::CustomField->new($RT::SystemUser);
 $cf->LoadByNameAndQueue(Name => $cfObjects, Queue => '0');
 unless($cf->id) {
-    $$skip_create = 1;
-    push @{$results}, loc('Custom field ' . $cfObjects . ' does not exist.');
-    my $msg = loc('URL for i-doit\'s API is not configured.');
+    my $msg = loc('Custom field "' . $cfObjects . '" does not exist.');
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
 }
 $IDoitObjects = 'Object-RT::Ticket--CustomField-' . $cf->id . '-Values';
-
-$IDoitDefaultMandator = RT->Config->Get('IDoitDefaultMandator');
-unless($IDoitDefaultMandator) {
-    $IDoitDefaultMandator = -1;
-}
 
 $IDoitDefaultView = RT->Config->Get('IDoitDefaultView');
 unless($IDoitDefaultView) {
@@ -225,7 +210,6 @@ $IDoitUser => undef
 $IDoitPassword => undef
 $IDoitMandator => undef
 $IDoitObjects => undef
-$IDoitDefaultMandator => undef
 $IDoitDefaultView => undef
 $IDoitView => undef
 $IDoitShowCustomFields => undef
