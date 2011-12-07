@@ -90,3 +90,6 @@ msgstr "Bearbeite referenzierte Objekte aus i-doit für #[_1]"
 
 msgid "Modify referenced i-doit object for ticket # [_1]"
 msgstr "Bearbeite referenzierte Objekte aus i-doit für Ticket #[_1]"
+
+msgid "Given requestor(s) could not be found in i-doit."
+msgstr "In i-doit wurde keiner der angegebenen Klienten gefunden."
