@@ -34,6 +34,7 @@ lib/RT/Extension/ReferenceIDoitObject.pm
 Makefile.PL
 MANIFEST
 META.yml
+po/po.de
 README
 SIGNATURE
 t/00-load.t

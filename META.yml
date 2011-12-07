@@ -21,6 +21,7 @@ no_index:
     - etc
     - html
     - inc
+    - po
     - t
 resources:
   license: http://dev.perl.org/licenses/
