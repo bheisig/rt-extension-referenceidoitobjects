@@ -5,7 +5,7 @@
         <ul>
             <li><a href="#tab-objectview">Objektansicht</a></li>
             <li><a href="#tab-treeview">Baumansicht</a></li>
-            <li><a href="#tab-itemview">Gewählte Objekte</a></li>
+            <li><a href="#tab-itemview">Gew&auml;hlte Objekte</a></li>
         </ul>
 
         <a href="<% RT->Config->Get('IDoitURL') %>" title="<% loc('Go to i-doit') %>" target="_blank">
@@ -92,7 +92,7 @@
 
 	objectbrowser_lang = {
 		"LC_SOFTWARE_RELATION": "Softwarebeziehungen",
-		"LC_PLEASE_SELECT_MANDATOR": "Bitte wählen Sie einen Mandanten aus.",
+		"LC_PLEASE_SELECT_MANDATOR": "Bitte w&auml;hlen Sie einen Mandanten aus.",
 		"LC_ERR_LOADING_OBJ_TYPES": "Error while loading object-types.",
 		"LC_ERR_LOADING_OBJECTS_BY_OBJ_TYPE": "Error while loading objects by object-type",
 		"LC_ERR_LOADING_OBJECTS_BY_EMAIL": "Error while loading objects by email.",
