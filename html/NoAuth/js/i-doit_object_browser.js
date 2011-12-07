@@ -272,7 +272,7 @@
 									window.add_object(e.id, e.title, e.type_title);
 								});
 							} else {
-                              window.error_notice('<% loc("Error while pre-selecting objects") %>');
+                              window.error_notice('<% loc("Error while loading pre-selecting objects") %>');
 							}
 						});
 				}
@@ -332,7 +332,7 @@
 			}
 
 			var output = '<div><input type="checkbox" value="' + i + '" name="i-doit-treebrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' style="margin-left:' + (level * 20) + 'px;"> ' +
-				'<span class="obj-name">' + e.data.title + '</span>' +
+                '<span class="obj-name"><a href="' + idoit_url + '?objID=' + i + '" target="_blank">' + e.data.title + '</a></span>' +
 				' (<span class="obj-type">' + e.data.type_title + '</span>) &raquo; ' +
                 '<span class="relation-button"><% loc("Software relations") %></span></div>';
 
