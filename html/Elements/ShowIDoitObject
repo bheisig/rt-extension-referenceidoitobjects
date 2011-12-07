@@ -39,6 +39,7 @@
 	browser_mandator_field = 'tr#<% $IDoitMandator %>';
 	
 	datatable_lang = {};
+	preselection = [];
 </script>
 
 <script type="text/javascript" src="<% RT->Config->Get('WebPath') %>/NoAuth/js/i-doit-objectbrowser.js"></script>
@@ -51,6 +52,8 @@
 		$.each(browser_preselection_field.find('ul li'), function(i, e) {
 			preselection.push($(e).text());
 		});
+		
+		api_mandator = browser_mandator_field.find('td.value').text();
 
 		data = {
 			"method":"cmdb.objects",
