@@ -4,21 +4,22 @@
 
     // Initialize the data table.
     var objectview_table = $('#i-doit-objectbrowser #tab-objectview table.object-table').dataTable({
-        "bJQueryUI": true,
-        "bAutoWidth": false,
-        "bLengthChange": false,
-        "iDisplayLength": 20,
-        "sPaginationType": "full_numbers",
-        "oLanguage": datatable_lang
-    }),
-    itemview_table = $('#i-doit-objectbrowser #tab-itemview table.object-table').dataTable({
-        "bJQueryUI": true,
-        "bAutoWidth": false,
-        "bPaginate": false,
-        "bLengthChange": false,
-        "bSort": false,
-        "oLanguage": datatable_lang
-    });
+			"bJQueryUI": true,
+			"bAutoWidth": false,
+			"bLengthChange": false,
+			"iDisplayLength": 20,
+			"sPaginationType": "full_numbers",
+			"oLanguage": datatable_lang
+		}),
+		itemview_table = $('#i-doit-objectbrowser #tab-itemview table.object-table').dataTable({
+			"bJQueryUI": true,
+			"bAutoWidth": false,
+			"bPaginate": false,
+			"bLengthChange": false,
+			"bSort": false,
+			"oLanguage": datatable_lang
+		});
+
 
     /**
      * This event will initialize the browser.
@@ -28,7 +29,8 @@
     window.init_browser = function() {
 		api_mandator = browser_mandator_field.val();
 		if (api_mandator == 0 || api_mandator == "") {
-			$('#i-doit-browser-notice').html(objectbrowser_lang.LC_PLEASE_SELECT_MANDATOR);
+			$('#i-doit-browser-notice').html(objectbrowser_lang.LC_PLEASE_SELECT_MANDATOR).css({display: 'block'});
+			$('#i-doit-objectbrowser-content').css({display: 'none'});
 			initialized = false;
 			return;
 		}
@@ -68,10 +70,11 @@
 				// Trigger the event.
 				$('#i-doit-objectbrowser select.object-type').change();
 			} else {
-				window.error_notice('Error while loading object-types.');
+				window.error_notice(objectbrowser_lang.LC_ERR_LOADING_OBJ_TYPES);
 			}
 		});
     };
+
 
     /**
      * Callback function for selecting an object-type.
@@ -101,10 +104,11 @@
                 current_objectview_data = response.result;
                 window.render_objectview();
             } else {
-                window.error_notice('Error while loading objects by object-type');
+                window.error_notice(objectbrowser_lang.LC_ERR_LOADING_OBJECTS_BY_OBJ_TYPE);
             }
         });
     });
+
 
     /**
      * This event will store the added ID's from the object-view.
@@ -122,6 +126,7 @@
         }
     });
 
+
     /**
      * This event will store the added ID's from the tree-view.
      *
@@ -137,6 +142,7 @@
             window.remove_object($(this).val());
         }
     });
+
 
     /**
      * Function for loading the requestor - This can be used if a new requestor has been added to the "Requestor" field.
@@ -166,6 +172,7 @@
 	browser_preselection_field.live('change', function() {
 		if (initialized) window.load_preselection_data();
 	});
+
 
     /**
      * Loads and displays the requestor-data (workplace, assigned objects, ...).
@@ -203,12 +210,13 @@
 						current_treeview_data = response.result;
 						window.render_treeview();
 					} else {
-						window.error_notice('Error while loading objects by email.');
+						window.error_notice(objectbrowser_lang.LC_ERR_LOADING_OBJECTS_BY_EMAIL);
 					}
 				});
 			}
 		}
 	};
+
 
 	/**
 	 * Loads and displays the preselection-data.
@@ -251,7 +259,7 @@
 									window.add_object(e.id, e.title, e.objecttype);
 								});
 							} else {
-								window.error_notice('Error while preselecting objects.');
+								window.error_notice(objectbrowser_lang.LC_ERR_LOADING_OBJECTS_BY_PRESELECTION);
 							}
 						});
 				}
@@ -279,7 +287,7 @@
 	 */
     window.render_treeview = function() {
         $('#tab-treeview div').html('');
-		
+
         // We iterate through the first level (email-addresses).
         $.each(current_treeview_data, function(i, e) {
             $('#tab-treeview div.workplaces').append('<a href="' + idoit_url + '?objID=' + i + '"><b>' + e.data.title + '</b></a><br />');
@@ -287,39 +295,51 @@
 			if (e.children != false) {
 				window.render_treeview_recursion(e.children, 1);
 			}
-			
+
 			$('#tab-treeview div.workplaces').append('<br />');
         });
     };
-	
-	
+
+
+	/**
+	 * This function is used to render the tree with it's recursions.
+	 *
+	 * @param   array    data  The data from the parents "children" array.
+	 * @param   integer  level  With this variable, we can determine how "deep" inside recursion we are and display it with "level * 20px" margin.
+	 * @author  Leonard Fischer <lfischer@synetics.de>
+	 */
 	window.render_treeview_recursion = function(data, level) {
 		$.each(data, function(i, e) {
 			var selected = false;
 			if (typeof $('#data-store').data(i) != 'undefined') {
 				selected = true;
 			}
-		
+
 			var output = '<div><input type="checkbox" value="' + i + '" name="i-doit-treebrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' style="margin-left:' + (level * 20) + 'px;"> ' +
 				'<span class="obj-name">' + e.data.title + '</span>' +
-				' (<span class="obj-type">' + e.data.type_title + '</span>) ' + 
-				'<span class="relation-button">&raquo; Softwarebeziehungen</span></div>';
-				
+				' (<span class="obj-type">' + e.data.type_title + '</span>) &raquo; ' +
+				'<span class="relation-button">' + objectbrowser_lang.LC_SOFTWARE_RELATION + '</span></div>';
+
 			$('#tab-treeview div.workplaces').append(output);
-			
+
 			if (e.children != false) {
 				window.render_treeview_recursion(e.children, (level + 1));
 			}
 		});
 	};
-	
-	
+
+
+	/**
+	 * This event will call all the objects software-relations.
+	 *
+	 * @author  Leonard Fischer <lfischer@synetics.de>
+	 */
 	$('span.relation-button').live('click', function() {
 		window.display_loading();
-		
+
 		var id = $(this).prev().prev().prev().val(),
 			div = $(this).parent();
-		
+
 		data = {
 			"method":"cmdb.objects_by_relation",
 			"params":{
@@ -344,8 +364,7 @@
 				}
 			}.bind(this));
 	});
-	
-	
+
 
     /**
      * Function for rendering the object-table.
@@ -372,6 +391,7 @@
             }
         });
     };
+
 
     /**
      * Function for removing an item from the selected data.
@@ -403,6 +423,7 @@
         window.render_treeview();
     };
 
+
     /**
      * Function for removing an item from the selected data.
      *
@@ -420,6 +441,7 @@
 			$('input[name="i-doit-objectbrowser-obj[]"][value="' + id + '"]').attr('checked', 'checked');
 			$('input[name="i-doit-treebrowser-obj[]"][value="' + id + '"]').attr('checked', 'checked');
     };
+
 
     /**
      * Function for rendering the "selected objects" list. Will be used when adding or removing an object.
@@ -439,6 +461,7 @@
 
         browser_preselection_field.val(data_array.join("\n"));
     };
+
 
     /**
      * Function for sending requests to idoit.
@@ -492,6 +515,7 @@
 		$('#loading-screen').stop().fadeTo(300, 0);
 		$('#i-doit-objectbrowser-content').stop().fadeTo(300, 1);
 	}
+
 
     // Load default mandator:
     if (api_default_mandator >= 0) {
