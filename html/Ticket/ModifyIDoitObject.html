@@ -1,19 +1,19 @@
 <& /Elements/Header, Title => loc('Modify referenced i-doit objects for #[_1]', $TicketObj->Id) &>
 <& /Elements/Tabs &>
 
-<& /Elements/ListActions, actions => \@results &>
+<& /Elements/ListActions, actions => \@{$results} &>
 
 <form method="post" action="ModifyIDoitObject.html">
 <&| /Widgets/TitleBox,title => loc('Modify referenced i-doit objects for ticket # [_1]', $TicketObj->Id), class=> 'ticket-info-basic' &>
-  <& Elements/EditIDoitObject, TicketObj => $TicketObj &>
   <& Elements/EditCustomFields, TicketObj => $TicketObj &>
+  <& Elements/EditIDoitObject, TicketObj => $TicketObj &>
 </&>
 <& /Elements/Submit, Name => 'SubmitTicket', Label => loc('Save Changes') &>  
 </form>
 
 <%INIT>
 my $TicketObj = LoadTicket($id);
-push @results, ProcessObjectCustomFieldUpdates(Object => $TicketObj, ARGSRef => \%ARGS);
+push @{$results}, ProcessObjectCustomFieldUpdates(Object => $TicketObj, ARGSRef => \%ARGS);
 $TicketObj->ApplyTransactionBatch;
 </%INIT>
 
