@@ -151,7 +151,7 @@ unless($cf->id) {
     $$skip_create = 1;
     push @{$results}, $msg;
 }
-$IDoitMandator = 'Object-RT::Ticket-' . $ticketID->Id . '-CustomField-' . $cf->id . '-Values';
+$IDoitMandator = 'Object-RT::Ticket-' . $ticketID . '-CustomField-' . $cf->id . '-Values';
 
 my $cfObjects = 'i-doit objects';
 $cf = RT::CustomField->new($RT::SystemUser);
