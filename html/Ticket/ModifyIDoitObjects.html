@@ -5,7 +5,7 @@
 
 <& /Elements/ListActions, actions => \@results &>
 
-<form method="post" action="ModifyIDoitObject.html">
+<form method="post" action="ModifyIDoitObjects.html">
     <input type="hidden" class="hidden" name="id" value="<% $TicketObj->Id %>" />
     <input type="hidden" id="Requestors" name="Requestory" value="<% $TicketObj->RequestorAddresses %>" />
     <&| /Widgets/TitleBox, title => loc('These fields are needed to modify referenced i-doit objects.'), class=>'ticket-info-basics' &>
