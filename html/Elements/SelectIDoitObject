@@ -137,6 +137,11 @@ unless($IDoitPassword) {
     push @{$results}, $msg;
 }
 
+my $ticketID = '';
+if ($TicketObj) {
+    $ticketID = $TicketObj->Id;
+}
+
 my $cfMandator = 'i-doit mandator';
 my $cf = RT::CustomField->new($RT::SystemUser);
 $cf->LoadByNameAndQueue(Name => $cfMandator, Queue => '0');
@@ -146,7 +151,7 @@ unless($cf->id) {
     $$skip_create = 1;
     push @{$results}, $msg;
 }
-$IDoitMandator = 'Object-RT::Ticket--CustomField-' . $cf->id . '-Values';
+$IDoitMandator = 'Object-RT::Ticket-' . $ticketID->Id . '-CustomField-' . $cf->id . '-Values';
 
 my $cfObjects = 'i-doit objects';
 $cf = RT::CustomField->new($RT::SystemUser);
@@ -157,7 +162,7 @@ unless($cf->id) {
     $$skip_create = 1;
     push @{$results}, $msg;
 }
-$IDoitObjects = 'Object-RT::Ticket--CustomField-' . $cf->id . '-Values';
+$IDoitObjects = 'Object-RT::Ticket-' . $ticketID . '-CustomField-' . $cf->id . '-Values';
 
 $IDoitDefaultView = RT->Config->Get('IDoitDefaultView');
 unless($IDoitDefaultView) {
@@ -184,6 +189,8 @@ unless($IDoitShowCustomFields) {
 <%ARGS>
 $skip_create => undef
 $results => undef
+
+$TicketObj => undef
 
 $IDoitURL => undef
 $IDoitAPI => undef

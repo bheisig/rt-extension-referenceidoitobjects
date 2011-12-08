@@ -1,5 +1,4 @@
 TODO
 
-* Broken UTF-8 encoding in po files.
 * Add user/group right to modify referenced i-doit objects.
 * Make field for email addresses configurable (currently only 'Requestors').
