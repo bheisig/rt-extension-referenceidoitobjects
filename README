@@ -1,9 +1,12 @@
 NAME
-    RT::Extension::ReferenceIDoitObject - Create a ticket in relation to one
-    or more i-doit objects
+    RT::Extension::ReferenceIDoitObjects - Create a ticket in relation to
+    one or more i-doit objects
 
 DESCRIPTION
-    FIXME
+    This extension gives you the opportunity to combine an issue tracker
+    like RT with an IT documentation tool / CMDB like i-doit. It uses
+    i-doit's API to relate a ticket with one or more CIs / objects managed
+    by i-doit.
 
 INSTALLATION
     This extension requires RT >= 4.0.0 and a running i-doit >= 0.9.9-8
@@ -22,7 +25,7 @@ CONFIGURATION
     To enabled this condition edit the RT site configuration based in
     "RT_HOME/etc/RT_SiteConfig":
 
-        Set(@Plugins,qw(RT::Extension::ReferenceIDoitObject));
+        Set(@Plugins,qw(RT::Extension::ReferenceIDoitObjects));
 
     i-doit has a built-in API based on JSON-RPC. To call this API set its
     URL:
@@ -64,26 +67,26 @@ AUTHOR
 SUPPORT AND DOCUMENTATION
     You can find documentation for this module with the "perldoc" command.
 
-        perldoc RT::Extension::EscalationDates
+        perldoc RT::Extension::ReferenceIDoitObjects
 
     You can also look for information at:
 
     *   Search CPAN
 
-        <http://search.cpan.org/dist/RT-Extension-ReferenceIDoitObject/>
+        <http://search.cpan.org/dist/RT-Extension-ReferenceIDoitObjects/>
 
     *   RT: CPAN's request tracker
 
         <http://rt.cpan.org/NoAuth/Bugs.html?Dist=RT-Extension-ReferenceIDoi
-        tObject>
+        tObjects>
 
     *   AnnoCPAN: Annotated CPAN documentation
 
-        <http://annocpan.org/dist/RT-Extension-ReferenceIDoitObject>
+        <http://annocpan.org/dist/RT-Extension-ReferenceIDoitObjects>
 
     *   CPAN Ratings
 
-        <http://cpanratings.perl.org/d/RT-Extension-ReferenceIDoitObject>
+        <http://cpanratings.perl.org/d/RT-Extension-ReferenceIDoitObjects>
 
 BUGS
     Please report any bugs or feature requests to the author.

@@ -48,7 +48,7 @@ TODO: {
     "placeholder date/time"       => qr(Date/time)
   );
 
-  module_boilerplate_ok('lib/RT/Extension/ReferenceIDoitObject.pm');
+  module_boilerplate_ok('lib/RT/Extension/ReferenceIDoitObjects.pm');
 
 
 }

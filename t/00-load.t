@@ -3,7 +3,7 @@
 use Test::More tests => 1;
 
 BEGIN {
-    use_ok( 'RT::Extension::ReferenceIDoitObject' );
+    use_ok( 'RT::Extension::ReferenceIDoitObjects' );
 }
 
-diag( "Testing RT::Extension::ReferenceIDoitObject $RT::Extension::ReferenceIDoitObject::VERSION, Perl $], $^X" );
+diag( "Testing RT::Extension::ReferenceIDoitObjects $RT::Extension::ReferenceIDoitObjects::VERSION, Perl $], $^X" );
