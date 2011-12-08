@@ -15,27 +15,28 @@ not run its Makefile.PL or Build.PL.
 Hash: SHA1
 
 SHA1 41f6c7a237d8966853431f17b452e963cd4fdce4 Changes
-SHA1 bd3ab43e89ba0c5dce3552a2ce6c6d6ce1f47cc5 MANIFEST
+SHA1 58ad71b00f49615cde32fdc3462dbef51c071521 MANIFEST
 SHA1 69d2b215f62dfd629f52b86840cf855322e5296f META.yml
 SHA1 1397b0915ed9dac1a4e4db9e8d008c902ec86779 Makefile.PL
 SHA1 5f9451610cdd0b41e05d49c9d47964293e50e1cc README
+SHA1 9934106352314afa0bbc52dfbe4b7e626c571a10 TODO
 SHA1 f93b52d570be35795e64baec99ee9459e231af32 etc/i-doit_api_proxy.php
 SHA1 e1e604e5d2bbb842d030132c60f56692f814a468 etc/initialdata
 SHA1 30d9eb575b6a53579728a35aa0af3e0990cc3fdb html/Callbacks/ReferenceIdoitObject/Elements/Header/Head
 SHA1 2350298306103d29310d724fd4710104bf9ad4b1 html/Callbacks/ReferenceIdoitObject/Ticket/Create.html/AfterBasics
 SHA1 b9c6b2a41f799bb5e2e564a9ac55ee6b89d2a6b6 html/Callbacks/ReferenceIdoitObject/Ticket/Create.html/FormStart
 SHA1 0ebc27a05e3231743baf54e0eb1f7b0a52848f0d html/Callbacks/ReferenceIdoitObject/Ticket/Elements/ShowSummary/LeftColumn
-SHA1 df2150093baceb28d50dfe3bd6f4a1fa295c655f html/Elements/SelectIDoitObject
-SHA1 6291ab4b056995332b6fe1bb04346b2d6c831feb html/Elements/ShowIDoitObject
+SHA1 0a1c6e700e538a4d706da5fe3ea264dc3ea725e8 html/Elements/SelectIDoitObject
+SHA1 cff9eaed3f7c12aa874384b55ae1638088776f32 html/Elements/ShowIDoitObject
 SHA1 faf56d314fefe40211b3db8fb305dedec3861bab html/NoAuth/css/demo_table.css
 SHA1 63c5b31231d04e9ec86200d05b4525c76535d4a4 html/NoAuth/css/demo_table_jui.css
 SHA1 fb65abf5080927de6af8648ace3f67f86a4b7159 html/NoAuth/css/i-doit_object_browser.css
 SHA1 21117f74c1256a9045626a08027068ea0e930842 html/NoAuth/images/i-doit.png
-SHA1 5461eb87ff6bbe3f44f37ca0c801ffb5351270e3 html/NoAuth/js/i-doit_object_browser.js
+SHA1 5bb44c13998d745a640b5f684abaa6fc259f7927 html/NoAuth/js/i-doit_object_browser.js
 SHA1 6f6c12b01532eeebefde965a5fa832a9d441122c html/NoAuth/js/jquery.dataTables.min.js
-SHA1 ab59aad6fe49994741b061f72785b4114fb37c94 html/Ticket/Elements/EditIDoitObject
-SHA1 1c995c787e19a65d75b5c16805628b9cf9c1aa43 html/Ticket/Elements/ShowIDoitObject
-SHA1 d39c7e64587f64432e3f06e5c124f63dc5ab1edb html/Ticket/ModifyIDoitObject.html
+SHA1 81ed240700905a37462b3bae6969b87e7588b0da html/Ticket/Elements/EditIDoitObject
+SHA1 693fd0db45b7de8af779daf05a784cff2f440922 html/Ticket/Elements/ShowIDoitObject
+SHA1 94974b12c339910861b36aa86805ee0a3227a84f html/Ticket/ModifyIDoitObject.html
 SHA1 59e69e8b99149999c0c74e6031def042569410aa inc/Module/AutoInstall.pm
 SHA1 eba6465ce5287959acc940e75b080205960b7ac6 inc/Module/Install.pm
 SHA1 9dc7102b5e2c3a791205ecc4f9d84a56632253ef inc/Module/Install/AutoInstall.pm
@@ -51,7 +52,7 @@ SHA1 dc972927565015ffbbaae806ff44634cae6fa1d2 inc/Module/Install/ReadmeFromPod.p
 SHA1 0ae795f0a9b6783872d393f92f9dc7173f7632e9 inc/Module/Install/Win32.pm
 SHA1 2ad05d85780f32385e90fc76da59f635d453e29a inc/Module/Install/WriteAll.pm
 SHA1 7a3054661e2fd6192a621e19bde53ae6f127a53b lib/RT/Extension/ReferenceIDoitObject.pm
-SHA1 609a517844fe3b2beb427c558fdb796e88122818 po/po.de
+SHA1 49b26958ac63e483a00bb50d2f889bd5700bcb00 po/de.po
 SHA1 02abf7e881101b9455dce0756eb364b7ed69d7d0 t/00-load.t
 SHA1 56a1a2c7bd6ca715cc9304119bbdd22ab31f8dfd t/boilerplate.t
 SHA1 0b1c5a2d59be6bfa7d60c64cd964fea6a0331705 t/pod-coverage.t
@@ -59,7 +60,7 @@ SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAk7fco0ACgkQWFkxZRfLwXIT2wCgpA/f+MbuRjE96/P3Kkk1fCOP
-kmQAnRZ6w0tTNlmZMWQY9OkTr5GWGsST
-=zqsf
+iEYEARECAAYFAk7gm/wACgkQWFkxZRfLwXKRegCg2jccIj/uAp29mJvC41rgSfGU
+UuwAnRvBGvlZyqlgSs1nomZXhMgjmGsJ
+=4FHs
 -----END PGP SIGNATURE-----

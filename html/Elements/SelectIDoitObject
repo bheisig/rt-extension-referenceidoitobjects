@@ -195,6 +195,4 @@ $IDoitObjects => undef
 $IDoitDefaultView => undef
 $IDoitView => undef
 $IDoitShowCustomFields => undef
-
-# TODO Make field for email addresses configurable (current status: 'Requestors').
 </%ARGS>

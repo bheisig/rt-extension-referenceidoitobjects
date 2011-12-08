@@ -76,7 +76,7 @@
 					$('#i-doit-content').css({display: 'block'});
 					
 					$.each(response.result, function(i, e) {
-						var link = '<a href="' + idoit_url + '?objID=' + e.id + '" title="<% loc("Go to i-doit") %>" target="_blank"><% loc("i-doit link") %></a>';
+						var link = '<a href="' + idoit_url + '?objID=' + e.id + '" target="_blank"><% loc("Go to i-doit") %></a>';
 						list.fnAddData([e.id, e.title, e.type_title, link]);
 					});
 				} else {

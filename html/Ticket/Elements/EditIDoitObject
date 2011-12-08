@@ -1,5 +1,1 @@
-<& /Elements/SelectIDoitObject &>
-
-<%ARGS>
-
-</%ARGS>
+<& /Elements/SelectIDoitObject, TicketObj => $TicketObj &>
