@@ -13,7 +13,7 @@
     </&>
     <br />
     <&| /Widgets/TitleBox,title => loc('Modify referenced i-doit objects for ticket #[_1]', $TicketObj->Id), class=> 'ticket-info-basic' &>
-        <& Elements/EditIDoitObject, TicketObj => $TicketObj &>
+        <& Elements/EditIDoitObjects, TicketObj => $TicketObj &>
     </&>
     <& /Elements/Submit, Name => 'SubmitTicket', Label => loc('Save Changes') &>  
 </form>
