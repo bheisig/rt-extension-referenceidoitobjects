@@ -373,21 +373,32 @@
 			"jsonrpc":"2.0"};
 
 		idoit_ajax(data, function(response) {
-				window.remove_loading();
-				if (response.error == null) {
-					$.each(response.result, function(i, e) {
-						var selected = false;
-						if (typeof $('#data-store').data(e.id) != 'undefined') {
-							selected = true;
-						}
-					
-						div.append('<br /><input type="checkbox" style="margin-left:' + (span + 20) +'px;" value="' + e.id + '" name="i-doit-treebrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + '/> ' + 
-							'<span class="obj-name">' + e.related_object_title + '</span> (<span class="obj-type">' + e.type_title + '</span>)');
-					});
-				} else {
-                  window.error_notice('<% loc("Error while loading relation objects") %>');
-				}
-			}.bind(this));
+            window.remove_loading();
+            if (response.error == null) {
+                $.each(response.result, function(i, e) {
+                    var selected = false;
+
+                    if (typeof $('#data-store').data(e.data.id) != 'undefined') {
+                        selected = true;
+                    }
+
+                    div.append(
+                        '<br /><input type="checkbox" style="margin-left:' +
+                        (span + 20) +'px;" value="' + e.data.id +
+                        '" name="i-doit-treebrowser-obj[]" ' +
+                        ((selected) ? 'checked="checked"' : '') + '/> ' + 
+                        '<span class="obj-name"><a href="' + idoit_url +
+                        '?objID=' + e.data.id +
+                        '" target="_blank" title="<% loc("Go to i-doit") %>">' +
+                        e.data.related_title +
+                        '</a></span> (<span class="obj-type">' +
+                        e.data.related_type_title + '</span>)'
+                    );
+                });
+            } else {
+              window.error_notice('<% loc("Error while loading relation objects") %>');
+            }
+        }.bind(this));
 	});
 
 
