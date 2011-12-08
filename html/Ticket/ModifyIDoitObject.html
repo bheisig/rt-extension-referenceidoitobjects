@@ -8,8 +8,7 @@
 <form method="post" action="ModifyIDoitObject.html">
     <input type="hidden" class="hidden" name="id" value="<% $TicketObj->Id %>" />
     <input type="hidden" id="Requestors" name="Requestory" value="<% $TicketObj->RequestorAddresses %>" />
-    <&| /Widgets/TitleBox, title => loc('Modify ticket # [_1]', $Ticket->Id), class=>'ticket-info-basics' &>
-        <p><% loc("These fields are needed for the i-doit object browser.") %></p>
+    <&| /Widgets/TitleBox, title => loc('These fields are needed to modify referenced i-doit objects.'), class=>'ticket-info-basics' &>
         <& Elements/EditCustomFields, TicketObj => $TicketObj &>
     </&>
     <br />

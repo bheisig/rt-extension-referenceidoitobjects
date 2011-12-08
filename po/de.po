@@ -96,3 +96,6 @@ msgstr "In i-doit wurde keiner der angegebenen Klienten gefunden."
 
 msgid "Object type"
 msgstr "Objekttyp"
+
+msgid "These fields are needed to modify referenced i-doit objects."
+msgstr "Diese Felder werden zum Bearbeiten von referenzierten Objekten aus i-doit benötigt."
