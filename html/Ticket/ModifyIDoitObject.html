@@ -1,4 +1,4 @@
-<& /Elements/Header, Title => loc('Modify referenced i-doit objects for #[_1]', $TicketObj->Id) &>
+<& /Elements/Header, Title => loc('Modify referenced i-doit objects for ticket #[_1]', $TicketObj->Id) &>
 <& /Elements/Tabs &>
 
 % $m->callback(CallbackName => 'BeforeActionList', Actions => \@results, ARGSRef => \%ARGS, Ticket => $TicketObj);
@@ -8,9 +8,12 @@
 <form method="post" action="ModifyIDoitObject.html">
     <input type="hidden" class="hidden" name="id" value="<% $TicketObj->Id %>" />
     <input type="hidden" id="Requestors" name="Requestory" value="<% $TicketObj->RequestorAddresses %>" />
-    <&| /Widgets/TitleBox,title => loc('Modify referenced i-doit objects for ticket # [_1]', $TicketObj->Id), class=> 'ticket-info-basic' &>
+    <&| /Widgets/TitleBox, title => loc('Modify ticket # [_1]', $Ticket->Id), class=>'ticket-info-basics' &>
+        <p><% loc("These fields are needed for the i-doit object browser.") %></p>
         <& Elements/EditCustomFields, TicketObj => $TicketObj &>
-        <br />
+    </&>
+    <br />
+    <&| /Widgets/TitleBox,title => loc('Modify referenced i-doit objects for ticket #[_1]', $TicketObj->Id), class=> 'ticket-info-basic' &>
         <& Elements/EditIDoitObject, TicketObj => $TicketObj &>
     </&>
     <& /Elements/Submit, Name => 'SubmitTicket', Label => loc('Save Changes') &>  

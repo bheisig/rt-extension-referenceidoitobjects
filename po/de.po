@@ -88,9 +88,6 @@ msgstr "Software-Beziehungen"
 msgid "Error while loading relation objects"
 msgstr "Fehler beim Laden von Beziehungsobjekten"
 
-msgid "Modify referenced i-doit objects for #%1"
-msgstr "Bearbeite referenzierte Objekte aus i-doit für #%1"
-
 msgid "Modify referenced i-doit objects for ticket #%1"
 msgstr "Bearbeite referenzierte Objekte aus i-doit für Ticket #%1"
 
