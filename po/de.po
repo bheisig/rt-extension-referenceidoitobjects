@@ -88,11 +88,11 @@ msgstr "Software-Beziehungen"
 msgid "Error while loading relation objects"
 msgstr "Fehler beim Laden von Beziehungsobjekten"
 
-msgid "Modify referenced i-doit objects for #[_1]"
-msgstr "Bearbeite referenzierte Objekte aus i-doit für #[_1]"
+msgid "Modify referenced i-doit objects for #%1"
+msgstr "Bearbeite referenzierte Objekte aus i-doit für #%1"
 
-msgid "Modify referenced i-doit objects for ticket # [_1]"
-msgstr "Bearbeite referenzierte Objekte aus i-doit für Ticket #[_1]"
+msgid "Modify referenced i-doit objects for ticket #%1"
+msgstr "Bearbeite referenzierte Objekte aus i-doit für Ticket #%1"
 
 msgid "Given requestor(s) could not be found in i-doit."
 msgstr "In i-doit wurde keiner der angegebenen Klienten gefunden."
