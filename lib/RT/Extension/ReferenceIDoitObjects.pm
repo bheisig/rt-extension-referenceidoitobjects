@@ -1,4 +1,4 @@
-package RT::Extension::ReferenceIDoitObject;
+package RT::Extension::ReferenceIDoitObjects;
 
 use 5.010;
 use warnings;
@@ -9,13 +9,15 @@ our $VERSION = '0.1';
 
 =head1 NAME
 
-RT::Extension::ReferenceIDoitObject - Create a ticket in relation to one or more
-i-doit objects
+RT::Extension::ReferenceIDoitObjects - Create a ticket in relation to one or
+more i-doit objects
 
 
 =head1 DESCRIPTION
 
-FIXME
+This extension gives you the opportunity to combine an issue tracker like RT
+with an IT documentation tool / CMDB like i-doit. It uses i-doit's API to relate
+a ticket with one or more CIs / objects managed by i-doit.
 
 
 =head1 INSTALLATION
@@ -40,7 +42,7 @@ To install this extension, run the following commands:
 To enabled this condition edit the RT site configuration based in
 C<RT_HOME/etc/RT_SiteConfig>:
 
-    Set(@Plugins,qw(RT::Extension::ReferenceIDoitObject));
+    Set(@Plugins,qw(RT::Extension::ReferenceIDoitObjects));
 
 i-doit has a built-in API based on JSON-RPC. To call this API set its URL:
 
@@ -84,7 +86,7 @@ Leonard Fischer, E<lt>lfischer@synetics.deE<gt>
 
 You can find documentation for this module with the C<perldoc> command.
 
-    perldoc RT::Extension::EscalationDates
+    perldoc RT::Extension::ReferenceIDoitObjects
 
 You can also look for information at:
 
@@ -92,19 +94,19 @@ You can also look for information at:
 
 =item * Search CPAN
 
-L<http://search.cpan.org/dist/RT-Extension-ReferenceIDoitObject/>
+L<http://search.cpan.org/dist/RT-Extension-ReferenceIDoitObjects/>
 
 =item * RT: CPAN's request tracker
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=RT-Extension-ReferenceIDoitObject>
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=RT-Extension-ReferenceIDoitObjects>
 
 =item * AnnoCPAN: Annotated CPAN documentation
 
-L<http://annocpan.org/dist/RT-Extension-ReferenceIDoitObject>
+L<http://annocpan.org/dist/RT-Extension-ReferenceIDoitObjects>
 
 =item * CPAN Ratings
 
-L<http://cpanratings.perl.org/d/RT-Extension-ReferenceIDoitObject>
+L<http://cpanratings.perl.org/d/RT-Extension-ReferenceIDoitObjects>
 
 =back
 

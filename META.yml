@@ -15,7 +15,7 @@ license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
-name: RT-Extension-ReferenceIDoitObject
+name: RT-Extension-ReferenceIDoitObjects
 no_index:
   directory:
     - etc
@@ -25,5 +25,5 @@ no_index:
     - t
 resources:
   license: http://dev.perl.org/licenses/
-  repository: git://git.benjaminheisig.net/rt-extension-referenceidoitobject.git
+  repository: git://git.benjaminheisig.net/rt-extension-referenceidoitobjects.git
 version: 0.1

@@ -1,10 +1,10 @@
 <&| /Widgets/TitleBox, title => loc('Referenced i-doit objects'), class => 'ticket-info-basics' &>
-    <& /Ticket/Elements/EditIDoitObject,
+    <& /Ticket/Elements/EditIDoitObjects,
         InTable => 1,
         fields  => [
             {
                 name => 'IDoitObject',
-                comp => '/Ticket/Elements/ShowIDoitObject',
+                comp => '/Ticket/Elements/ShowIDoitObjects',
                 args => {
                     Name => 'IDoitObjectBrowser',
                     Default => $ARGS{IDoitObjectBrowser},

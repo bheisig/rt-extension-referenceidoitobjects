@@ -1,5 +1,0 @@
-<& /Elements/SelectIDoitObject, TicketObj => $TicketObj &>
-
-<%ARGS>
-$TicketObj => undef
-</%ARGS>

@@ -1,9 +1,9 @@
 <&| /Widgets/TitleBox,
     title => loc('Referenced i-doit objects'),
-    (($can_modify || $can_modify_idoitobject) ? (title_href => RT->Config->Get('WebPath')."/Ticket/ModifyIDoitObject.html?id=".$Ticket->Id) : ()),
+    (($can_modify || $can_modify_idoitobject) ? (title_href => RT->Config->Get('WebPath')."/Ticket/ModifyIDoitObjects.html?id=".$Ticket->Id) : ()),
     class => 'ticket-info-basics'
 &>
-<& /Ticket/Elements/ShowIDoitObject &>
+<& /Ticket/Elements/ShowIDoitObjects &>
 </&>
 
 <%INIT>
