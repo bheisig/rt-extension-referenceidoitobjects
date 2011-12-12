@@ -40,7 +40,7 @@ To install this extension, run the following commands:
 =head2 RT SITE CONFIGURATION
 
 To enabled this condition edit the RT site configuration based in
-C<RT_HOME/etc/RT_SiteConfig>:
+C<RT_HOME/etc/RT_SiteConfig.pm>:
 
     Set(@Plugins,qw(RT::Extension::ReferenceIDoitObjects));
 

@@ -23,7 +23,7 @@ INSTALLATION
 CONFIGURATION
   RT SITE CONFIGURATION
     To enabled this condition edit the RT site configuration based in
-    "RT_HOME/etc/RT_SiteConfig":
+    "RT_HOME/etc/RT_SiteConfig.pm":
 
         Set(@Plugins,qw(RT::Extension::ReferenceIDoitObjects));
 

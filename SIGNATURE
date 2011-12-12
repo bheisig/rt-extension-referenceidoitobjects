@@ -18,7 +18,7 @@ SHA1 d064b6dc868a576001bf4d21d944af6f137705c4 Changes
 SHA1 1a28a64c4f29c697d97e9d6edbeedcd137728341 MANIFEST
 SHA1 53702f17203b37e2fa24a52585c2bd176fb740e8 META.yml
 SHA1 55c1c2b04636604129ee745ecdcc306f69b8c713 Makefile.PL
-SHA1 7344efe79ebfb2195d498649642c87a0653f38f8 README
+SHA1 7efa97ae5c49910bdfa4f1de98491db5e9c70165 README
 SHA1 37edea600ffd2c45d5ee1740d185ee0f4a800fd3 TODO
 SHA1 f93b52d570be35795e64baec99ee9459e231af32 etc/i-doit_api_proxy.php
 SHA1 e1e604e5d2bbb842d030132c60f56692f814a468 etc/initialdata
@@ -36,7 +36,7 @@ SHA1 5bb44c13998d745a640b5f684abaa6fc259f7927 html/NoAuth/js/i-doit_object_brows
 SHA1 6f6c12b01532eeebefde965a5fa832a9d441122c html/NoAuth/js/jquery.dataTables.min.js
 SHA1 b848aa76a2e0851f9877c1e89abb424330d809c0 html/Ticket/Elements/EditIDoitObjects
 SHA1 071c3ebd07ceb5dcdf76006fc4885dde993a1de8 html/Ticket/Elements/ShowIDoitObjects
-SHA1 20c9cd8390ab4cc7ef9e7a20b510c2541bdba229 html/Ticket/ModifyIDoitObjects.html
+SHA1 2b21a637ebf57647634b408eb1774a396d2ea6b6 html/Ticket/ModifyIDoitObjects.html
 SHA1 59e69e8b99149999c0c74e6031def042569410aa inc/Module/AutoInstall.pm
 SHA1 eba6465ce5287959acc940e75b080205960b7ac6 inc/Module/Install.pm
 SHA1 9dc7102b5e2c3a791205ecc4f9d84a56632253ef inc/Module/Install/AutoInstall.pm
@@ -51,7 +51,7 @@ SHA1 5c589819986050dd79faf8572992a9790ae89f2e inc/Module/Install/RTx/Factory.pm
 SHA1 dc972927565015ffbbaae806ff44634cae6fa1d2 inc/Module/Install/ReadmeFromPod.pm
 SHA1 0ae795f0a9b6783872d393f92f9dc7173f7632e9 inc/Module/Install/Win32.pm
 SHA1 2ad05d85780f32385e90fc76da59f635d453e29a inc/Module/Install/WriteAll.pm
-SHA1 c8818f97459709681f39591c16eb0b3ccfd62770 lib/RT/Extension/ReferenceIDoitObjects.pm
+SHA1 0d1c10b59a0b176d9b3884f4959800507814bd8d lib/RT/Extension/ReferenceIDoitObjects.pm
 SHA1 3a03123011793f04858c79644b12c3485fe1441b po/de.po
 SHA1 3987a51914e4ffa806ad31ce27fedd752468e3bf t/00-load.t
 SHA1 f7be47a0678c02f3c2a037ee4095907442a245c7 t/boilerplate.t
@@ -60,7 +60,7 @@ SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAk7g0PIACgkQWFkxZRfLwXLWfACgs3Qwsg9FuOU/9FkICPaiNxEG
-JuYAoNKQ6KRZj5SkDcJnTqoBeyutCLM6
-=R7pU
+iEYEARECAAYFAk7lxUkACgkQWFkxZRfLwXL99ACg1NMXK8XTx6O44AZ6785OOCvj
+ZWUAoJ6nNcwFLoEa3Fgn49c0a0Mn61r9
+=EwDS
 -----END PGP SIGNATURE-----
