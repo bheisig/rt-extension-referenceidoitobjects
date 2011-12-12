@@ -1,3 +1,12 @@
+%# RT::Extension::ReferenceIDoitObjects
+%#
+%# Copyright 2011 synetics GmbH, http://i-doit.org/
+%#
+%# This program is free software; you can redistribute it and/or modify it under
+%# the same terms as Perl itself.
+%#
+%# Request Tracker (RT) is Copyright Best Practical Solutions, LLC.
+
 (function($) {
     browser_preselection_field = $(browser_preselection_field);
 	browser_mandator_field = $(browser_mandator_field);
