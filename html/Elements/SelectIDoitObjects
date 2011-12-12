@@ -40,7 +40,7 @@
         </div>
         <div id="tab-treeview">
             <div class="workplaces"></div>
-            <span id="requestor-reload"><% loc('Reload') %></span>
+            <span id="requestor-reload"><% loc('Refresh') %></span>
         </div>
         <div id="tab-itemview">
             <table class="object-table" style="width:100%;">

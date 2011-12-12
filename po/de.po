@@ -28,8 +28,8 @@ msgstr "Gehe zu i-doit"
 msgid "ID"
 msgstr "ID"
 
-msgid "Reload"
-msgstr "Neuladen"
+msgid "Refresh"
+msgstr "Aktualisieren"
 
 msgid "URL for i-doit is not configured."
 msgstr "URL zu i-doit ist nicht konfiguriert."
@@ -82,8 +82,8 @@ msgstr "Fehler beim Laden von Objekten anhand von E-Mail-Adressen"
 msgid "Error while loading pre-selecting objects"
 msgstr "Fehler beim Vorselektieren von Objekten"
 
-msgid "Software relations"
-msgstr "Software-Beziehungen"
+msgid "show installed software"
+msgstr "installierte Software anzeigen"
 
 msgid "Error while loading relation objects"
 msgstr "Fehler beim Laden von Beziehungsobjekten"

@@ -73,7 +73,8 @@
 					"password":api_password,
 					"language":api_lang,
 					"mandator":api_mandator},
-                "order_by":"title"},
+                "order_by":"title",
+                "enabled":"true"},
 			"id":"1",
 			"jsonrpc":"2.0"};
 
@@ -343,7 +344,7 @@
 			var output = '<div><input type="checkbox" value="' + i + '" name="i-doit-treebrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' style="margin-left:' + (level * 20) + 'px;"> ' +
                 '<span class="obj-name"><a href="' + idoit_url + '?objID=' + i + '" target="_blank">' + e.data.title + '</a></span>' +
 				' (<span class="obj-type">' + e.data.type_title + '</span>) &raquo; ' +
-                '<span class="relation-button"><% loc("Software relations") %></span></div>';
+                '<span class="relation-button"><% loc("show installed software") %></span></div>';
 
 			$('#tab-treeview div.workplaces').append(output);
 

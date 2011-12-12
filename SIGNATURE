@@ -26,13 +26,13 @@ SHA1 90d1eaeb9b849c6f03c91251ca7cd6b1ca209c92 html/Callbacks/ReferenceIdoitObjec
 SHA1 6a69aaa9fcef174d245e228dded495b97231473f html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/AfterBasics
 SHA1 b0ca9c856e60400245a5c0af96f25576b128609d html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/FormStart
 SHA1 32e2cb539148a607e663efe7167c2eac33d657bb html/Callbacks/ReferenceIdoitObjects/Ticket/Elements/ShowSummary/LeftColumn
-SHA1 eb2f2df6d8114e45a615e2d986a96856ee71f97a html/Elements/SelectIDoitObjects
+SHA1 c89d1041f424dc04f473052b2679c8ab4b744928 html/Elements/SelectIDoitObjects
 SHA1 f468f6edbf161a90275283b66a9a134654ebc05b html/Elements/ShowIDoitObjects
 SHA1 faf56d314fefe40211b3db8fb305dedec3861bab html/NoAuth/css/demo_table.css
 SHA1 63c5b31231d04e9ec86200d05b4525c76535d4a4 html/NoAuth/css/demo_table_jui.css
 SHA1 31960b8912f8fe3b381c4cc8098c45eee947e77d html/NoAuth/css/i-doit_object_browser.css
 SHA1 21117f74c1256a9045626a08027068ea0e930842 html/NoAuth/images/i-doit.png
-SHA1 1dc4ded463cce02d7e8ab115f2dc966b4d38a17a html/NoAuth/js/i-doit_object_browser.js
+SHA1 1b60fa6fb166d07a4059c3a720268e28ae33bea8 html/NoAuth/js/i-doit_object_browser.js
 SHA1 6f6c12b01532eeebefde965a5fa832a9d441122c html/NoAuth/js/jquery.dataTables.min.js
 SHA1 1796cb665aa5153061d5f2bf026d3adae3d6ebf8 html/Ticket/Elements/EditIDoitObjects
 SHA1 71df95ee451b4804feeee3314cda826ca963af37 html/Ticket/Elements/ShowIDoitObjects
@@ -52,7 +52,7 @@ SHA1 dc972927565015ffbbaae806ff44634cae6fa1d2 inc/Module/Install/ReadmeFromPod.p
 SHA1 0ae795f0a9b6783872d393f92f9dc7173f7632e9 inc/Module/Install/Win32.pm
 SHA1 2ad05d85780f32385e90fc76da59f635d453e29a inc/Module/Install/WriteAll.pm
 SHA1 0d1c10b59a0b176d9b3884f4959800507814bd8d lib/RT/Extension/ReferenceIDoitObjects.pm
-SHA1 3a03123011793f04858c79644b12c3485fe1441b po/de.po
+SHA1 44b82e2a8299c67df57fb8ae0c9c4b09745eec70 po/de.po
 SHA1 3987a51914e4ffa806ad31ce27fedd752468e3bf t/00-load.t
 SHA1 f7be47a0678c02f3c2a037ee4095907442a245c7 t/boilerplate.t
 SHA1 0b1c5a2d59be6bfa7d60c64cd964fea6a0331705 t/pod-coverage.t
@@ -60,7 +60,7 @@ SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAk7lyOUACgkQWFkxZRfLwXIuDACgrb9p/U2vPYA2DGiyvwl9aEQY
-E3cAoKFnQ0d7cal0w611omzU99pok3K8
-=wEeW
+iEYEARECAAYFAk7l00kACgkQWFkxZRfLwXLifACeNo2g+oZqq0/Y9saGpr/R62my
+OGsAoKfZYVZdIlbY9R7dCMlslIbjknwf
+=ywI7
 -----END PGP SIGNATURE-----
