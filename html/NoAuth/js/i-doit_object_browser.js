@@ -60,12 +60,6 @@
 		// Here we get our preselection data and cast the ID's to integer.
 		var data = {};
 
-		// We look if the preselection field is filled.
-		window.load_preselection_data();
-
-		// Here we load the requestor data (workplaces and assigned objects).
-		window.load_requestor_data();
-
 		data = {
 			"method":"cmdb.object_types",
 			"params":{
@@ -82,6 +76,13 @@
 		idoit_ajax(data, function(response) {
 			if (response.error == null) {
 				initialized = true;
+				
+				// We look if the preselection field is filled.
+				window.load_preselection_data();
+
+				// Here we load the requestor data (workplaces and assigned objects).
+				window.load_requestor_data();
+				
 				$('#i-doit-browser-notice').css({display: 'none'});
 				$('#i-doit-objectbrowser-content').css({display: 'block'});
 				
