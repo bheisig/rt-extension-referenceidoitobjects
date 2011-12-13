@@ -188,6 +188,13 @@
 		if (initialized) window.load_requestor_data();
 	});
 
+	
+	$('#Requestors').autocomplete({
+		select: function() {
+			window.load_requestor_data();
+		}
+	});
+	
 
 	/**
 	 * Function for reloading the preselection - This will be fired when the preselection field is beeing changed.
@@ -197,7 +204,7 @@
 	browser_preselection_field.live('change', function() {
 		if (initialized) window.load_preselection_data();
 	});
-
+	
 
     /**
      * Loads and displays the requestor-data (workplace, assigned objects, ...).
