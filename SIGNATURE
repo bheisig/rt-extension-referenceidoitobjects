@@ -16,10 +16,10 @@ Hash: SHA1
 
 SHA1 d064b6dc868a576001bf4d21d944af6f137705c4 Changes
 SHA1 1a28a64c4f29c697d97e9d6edbeedcd137728341 MANIFEST
-SHA1 53702f17203b37e2fa24a52585c2bd176fb740e8 META.yml
+SHA1 03f83bdce64b3c6c2edfc53bf560971dcab60335 META.yml
 SHA1 55c1c2b04636604129ee745ecdcc306f69b8c713 Makefile.PL
 SHA1 7efa97ae5c49910bdfa4f1de98491db5e9c70165 README
-SHA1 37edea600ffd2c45d5ee1740d185ee0f4a800fd3 TODO
+SHA1 50d3af1c87602fbfff29213ba5e289c5ecd4b871 TODO
 SHA1 f93b52d570be35795e64baec99ee9459e231af32 etc/i-doit_api_proxy.php
 SHA1 e1e604e5d2bbb842d030132c60f56692f814a468 etc/initialdata
 SHA1 90d1eaeb9b849c6f03c91251ca7cd6b1ca209c92 html/Callbacks/ReferenceIdoitObjects/Elements/Header/Head
@@ -27,12 +27,12 @@ SHA1 6a69aaa9fcef174d245e228dded495b97231473f html/Callbacks/ReferenceIdoitObjec
 SHA1 b0ca9c856e60400245a5c0af96f25576b128609d html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/FormStart
 SHA1 32e2cb539148a607e663efe7167c2eac33d657bb html/Callbacks/ReferenceIdoitObjects/Ticket/Elements/ShowSummary/LeftColumn
 SHA1 c89d1041f424dc04f473052b2679c8ab4b744928 html/Elements/SelectIDoitObjects
-SHA1 f468f6edbf161a90275283b66a9a134654ebc05b html/Elements/ShowIDoitObjects
+SHA1 9089a453f9f469e910e58bcfe292514167296d7d html/Elements/ShowIDoitObjects
 SHA1 faf56d314fefe40211b3db8fb305dedec3861bab html/NoAuth/css/demo_table.css
 SHA1 63c5b31231d04e9ec86200d05b4525c76535d4a4 html/NoAuth/css/demo_table_jui.css
 SHA1 31960b8912f8fe3b381c4cc8098c45eee947e77d html/NoAuth/css/i-doit_object_browser.css
 SHA1 21117f74c1256a9045626a08027068ea0e930842 html/NoAuth/images/i-doit.png
-SHA1 1b60fa6fb166d07a4059c3a720268e28ae33bea8 html/NoAuth/js/i-doit_object_browser.js
+SHA1 0fc29e59576059aca79be91a0cf54bbd97d0616c html/NoAuth/js/i-doit_object_browser.js
 SHA1 6f6c12b01532eeebefde965a5fa832a9d441122c html/NoAuth/js/jquery.dataTables.min.js
 SHA1 1796cb665aa5153061d5f2bf026d3adae3d6ebf8 html/Ticket/Elements/EditIDoitObjects
 SHA1 71df95ee451b4804feeee3314cda826ca963af37 html/Ticket/Elements/ShowIDoitObjects
@@ -60,7 +60,7 @@ SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAk7l00kACgkQWFkxZRfLwXLifACeNo2g+oZqq0/Y9saGpr/R62my
-OGsAoKfZYVZdIlbY9R7dCMlslIbjknwf
-=ywI7
+iEUEARECAAYFAk7nd6UACgkQWFkxZRfLwXI4vwCY0v86dFE/5F/7ddF8uQIk5VFX
+DgCgg2Zywx9VRrNBlXCp9tUfeAP4lUk=
+=IHC4
 -----END PGP SIGNATURE-----

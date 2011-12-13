@@ -17,6 +17,8 @@ meta-spec:
   version: 1.4
 name: RT-Extension-ReferenceIDoitObjects
 no_index:
+  file:
+    - TODO
   directory:
     - etc
     - html
