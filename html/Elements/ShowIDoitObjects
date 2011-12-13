@@ -48,59 +48,61 @@
 
 <script type="text/javascript">
 	(function($) {
-		browser_preselection_field = $(browser_preselection_field);
-		browser_mandator_field = $(browser_mandator_field);
-		
-		list = $('#i-doit-content table.object-table').dataTable({
-			"bJQueryUI": true,
-			"bAutoWidth": false,
-			"bPaginate": false,
-			"bLengthChange": false,
-			"bSort": false,
-			"oLanguage": datatable_lang
-		});
-		
-		$.each(browser_preselection_field.find('ul li'), function(i, e) {
-			preselection.push($(e).text().replace(/[\n\s]/g, ''));
-		});
-		
-		api_mandator = browser_mandator_field.find('td.value').text().replace(/[\n\s]/g, '');
-
-		data = {
-			"method":"cmdb.objects",
-			"params":{
-				"session":{
-					"username":api_user,
-					"password":api_password,
-					"language":api_lang,
-					"mandator":api_mandator},
-				"filter":{
-					"ids":preselection}},
-			"id":"1",
-			"jsonrpc":"2.0"};
-
-		idoit_ajax(data, function(response) {
-				if (response.error == null) {
-					$('#i-doit-browser-notice').css({display: 'none'});
-					$('#i-doit-content').css({display: 'block'});
-					
-					$.each(response.result, function(i, e) {
-						var link = '<a href="' + idoit_url + '?objID=' + e.id + '" target="_blank"><% loc("Go to i-doit") %></a>';
-						list.fnAddData([e.id, e.title, e.type_title, link]);
-					});
-				} else {
-					window.error_notice('<% loc("Error while loading pre-selecting objects") %>');
-				}
+		$(document).ready(function() {
+			browser_preselection_field = $(browser_preselection_field);
+			browser_mandator_field = $(browser_mandator_field);
+			
+			list = $('#i-doit-content table.object-table').dataTable({
+				"bJQueryUI": true,
+				"bAutoWidth": false,
+				"bPaginate": false,
+				"bLengthChange": false,
+				"bSort": false,
+				"oLanguage": datatable_lang
 			});
+			
+			$.each(browser_preselection_field.find('ul li'), function(i, e) {
+				preselection.push($(e).text().replace(/[\n\s]/g, ''));
+			});
+			
+			api_mandator = browser_mandator_field.find('td.value').text().replace(/[\n\s]/g, '');
 
-		// Hide custom fields:
-		if (show_custom_fields == 0) {
-			browser_preselection_field.hide();
-			browser_mandator_field.hide();
-		}
+			data = {
+				"method":"cmdb.objects",
+				"params":{
+					"session":{
+						"username":api_user,
+						"password":api_password,
+						"language":api_lang,
+						"mandator":api_mandator},
+					"filter":{
+						"ids":preselection}},
+				"id":"1",
+				"jsonrpc":"2.0"};
 
-		// Start the browser.
-		window.init_browser();
+			idoit_ajax(data, function(response) {
+					if (response.error == null) {
+						$('#i-doit-browser-notice').css({display: 'none'});
+						$('#i-doit-content').css({display: 'block'});
+						
+						$.each(response.result, function(i, e) {
+							var link = '<a href="' + idoit_url + '?objID=' + e.id + '" target="_blank"><% loc("Go to i-doit") %></a>';
+							list.fnAddData([e.id, e.title, e.type_title, link]);
+						});
+					} else {
+						window.error_notice('<% loc("Error while loading pre-selecting objects") %>');
+					}
+				});
+
+			// Hide custom fields:
+			if (show_custom_fields == 0) {
+				browser_preselection_field.hide();
+				browser_mandator_field.hide();
+			}
+
+			// Start the browser.
+			window.init_browser();
+		});
 	})(jQuery);
 </script>
 
