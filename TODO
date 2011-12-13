@@ -2,3 +2,5 @@ TODO
 
 * Add user/group right to modify referenced i-doit objects.
 * Make field for email addresses configurable (currently only 'Requestors').
+* Add check box in table header to select all objects in list.
+* Add button/link in table header to remove all selected objects from list.
