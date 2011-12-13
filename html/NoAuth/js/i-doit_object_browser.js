@@ -189,10 +189,13 @@
 	});
 
 	
-	$('#Requestors').autocomplete({
-		select: function() {
-			window.load_requestor_data();
-		}
+	/**
+	 * With this, we can catch the requestor-selection callback to load the new treeview.
+	 *
+	 * @author  Leonard Fischer <lfischer@synetics.de>
+	 */
+	$('#Requestors').live('autocompleteselect', function() {
+		window.load_requestor_data();
 	});
 	
 
