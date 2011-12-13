@@ -206,7 +206,7 @@
      */
 	window.load_requestor_data = function() {
 		requestors = $('#Requestors').val();
-console.log(requestors);
+
 		if (typeof requestors == 'string') {
 			requestors = requestors.replace(/(\s)/g, '').split(',');
 		}
@@ -545,7 +545,7 @@ console.log(requestors);
 		
 		$('#i-doit-browser-notice').html('<% loc("Please select an i-doit mandator.") %>').css({display: 'block'});
 		$('#i-doit-objectbrowser-content').css({display: 'none'});
-console.log(notice);
+
         $('#i-doit-browser-notice').after(notice);
 		notice.show().delay(2000).slideUp(300).delay(300).remove();
     }
