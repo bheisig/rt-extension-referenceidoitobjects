@@ -10,6 +10,7 @@
 (function($) {
     browser_preselection_field = $(browser_preselection_field);
 	browser_mandator_field = $(browser_mandator_field);
+	initialized = false;
 	
 	datatable_lang = {
 		"sProcessing":   "<% loc('Loading...') %>",
