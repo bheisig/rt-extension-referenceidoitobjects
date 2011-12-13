@@ -195,7 +195,7 @@
 	 * @author  Leonard Fischer <lfischer@synetics.de>
 	 */
 	$('#Requestors').live('autocompleteselect', function() {
-		window.load_requestor_data();
+		window.setTimeout(function() {window.load_requestor_data();}, 100);
 	});
 	
 
