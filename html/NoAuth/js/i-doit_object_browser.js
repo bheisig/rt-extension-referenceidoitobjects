@@ -204,7 +204,7 @@
      */
 	window.load_requestor_data = function() {
 		requestors = $('#Requestors').val();
-
+console.log(requestors);
 		if (typeof requestors == 'string') {
 			requestors = requestors.replace(/(\s)/g, '').split(',');
 		}
