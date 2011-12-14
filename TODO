@@ -1,6 +1,9 @@
-TODO
+TODO for RT-Extension-ReferenceIDoitObjects
 
+* Show link to modify referenced i-doit objects in the page navigation.
 * Add user/group right to modify referenced i-doit objects.
 * Make field for email addresses configurable (currently only 'Requestors').
 * Add check box in table header to select all objects in list.
 * Add button/link in table header to remove all selected objects from list.
+* Add new tab to search for i-doit objects.
+* DataTables: Filter only by some columns.
