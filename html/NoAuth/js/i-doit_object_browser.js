@@ -375,9 +375,9 @@
 	$('span.relation-button').live('click', function() {
 		window.display_loading();
 
-		var id = $(this).prev().prev().prev().val(),
-			div = $(this).parent(),
-			span = parseInt($(this).prev().prev().prev().css('margin-left'));
+		id = $(this).prev().prev().prev().val();
+		div = $(this).parent();
+		span = parseInt($(this).prev().prev().prev().css('margin-left'));
 
 		$(this).remove();
 
@@ -420,7 +420,7 @@
             } else {
               window.error_notice('<% loc("Error while loading relation objects") %>');
             }
-        }.bind(this));
+        });
 	});
 
 
