@@ -37,9 +37,6 @@ msgstr "URL zu i-doit ist nicht konfiguriert."
 msgid "URL for i-doit's API is not configured."
 msgstr "URL zur API von i-doit ist nicht konfiguriert."
 
-msgid "Language for i-doit's API is not configured."
-msgstr "Sprache der API von i-doit ist nicht konfiguriert."
-
 msgid "User for i-doit's API is not configured."
 msgstr "Benutzername für die API von i-doit ist nicht konfiguriert."
 

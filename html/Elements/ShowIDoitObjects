@@ -31,7 +31,7 @@
     idoit_url = '<% $IDoitURL %>';
 
 	api_url = '<% $IDoitAPI %>';
-	api_lang = '<% $IDoitLanguage %>';
+	api_lang = '<% $Language %>';
 	api_user = '<% $IDoitUser %>';
 	api_password = '<% $IDoitPassword %>';
 	api_mandator = 0;
@@ -125,14 +125,6 @@ unless($IDoitAPI) {
     push @{$results}, $msg;
 }
 
-$IDoitLanguage = RT->Config->Get('IDoitLanguage');
-unless($IDoitLanguage) {
-    my $msg = loc("Language for i-doit's API is not configured.");
-    RT::Logger->error($msg);
-    $$skip_create = 1;
-    push @{$results}, $msg;
-}
-
 $IDoitUser = RT->Config->Get('IDoitUser');
 unless($IDoitUser) {
     my $msg = loc("User for i-doit's API is not configured.");
@@ -178,15 +170,18 @@ unless($IDoitShowCustomFields) {
     $$skip_create = 1;
     push @{$results}, $msg;
 }
+
+$Language = substr($session{CurrentUser}->UserObj->Lang, 0, 2);
 </%INIT>
 
 <%ARGS>
 $skip_create => undef
 $results => undef
 
+$Language => undef
+
 $IDoitURL => undef
 $IDoitAPI => undef
-$IDoitLanguage => undef
 $IDoitUser => undef
 $IDoitPassword => undef
 $IDoitMandator => undef
