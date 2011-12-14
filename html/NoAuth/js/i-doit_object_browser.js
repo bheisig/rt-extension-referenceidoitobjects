@@ -185,19 +185,9 @@
 	 * @author  Leonard Fischer <lfischer@synetics.de>
 	 */
 	$('#Requestors').live('change', function() {
-		if (initialized) window.load_requestor_data();
+		if (initialized) window.setTimeout(function() {window.load_requestor_data();}, 100);
 	});
 
-	
-	/**
-	 * With this, we can catch the requestor-selection callback to load the new treeview.
-	 *
-	 * @author  Leonard Fischer <lfischer@synetics.de>
-	 */
-	$('#Requestors').live('autocompleteselect', function() {
-		window.setTimeout(function() {window.load_requestor_data();}, 100);
-	});
-	
 
 	/**
 	 * Function for reloading the preselection - This will be fired when the preselection field is beeing changed.
