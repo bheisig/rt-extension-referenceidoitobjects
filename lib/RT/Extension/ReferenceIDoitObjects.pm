@@ -54,7 +54,7 @@ i-doit has a built-in API based on JSON-RPC. To call this API set its URL:
 
     Set($IDoitPassword, '21232f297a57a5a743894a0e4a801fc3'); # 'admin'
 
-    Set($IDoitDefaultMandator, -1);
+    Set($IDoitDefaultMandator, 1);
 
     Set($IDoitDefaultView, 'tree'); # 'object', 'tree' or 'item'
 

@@ -164,7 +164,7 @@ unless($cf->id) {
 $IDoitObjects = 'CF-' . $cf->id . '-ShowRow';
 
 $IDoitShowCustomFields = RT->Config->Get('IDoitShowCustomFields');
-unless($IDoitShowCustomFields) {
+if ($IDoitShowCustomFields < 0 || $IDoitShowCustomFields > 1) {
     my $msg = loc('Configuration option to show/hide i-doit related custom fields is not set.');
     RT::Logger->error($msg);
     $$skip_create = 1;

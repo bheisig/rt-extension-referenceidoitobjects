@@ -19,15 +19,15 @@ SHA1 1a28a64c4f29c697d97e9d6edbeedcd137728341 MANIFEST
 SHA1 03f83bdce64b3c6c2edfc53bf560971dcab60335 META.yml
 SHA1 55c1c2b04636604129ee745ecdcc306f69b8c713 Makefile.PL
 SHA1 dae30a96b72ee3ef1e9fa9752aa7398009a438d6 README
-SHA1 7c46c9752f7c5bd089ad0175c0ba0b1fc0dcdc9a TODO
+SHA1 893d5635b6b98c05e0d25268a47d896402a803bc TODO
 SHA1 f93b52d570be35795e64baec99ee9459e231af32 etc/i-doit_api_proxy.php
 SHA1 e1e604e5d2bbb842d030132c60f56692f814a468 etc/initialdata
 SHA1 90d1eaeb9b849c6f03c91251ca7cd6b1ca209c92 html/Callbacks/ReferenceIdoitObjects/Elements/Header/Head
 SHA1 6a69aaa9fcef174d245e228dded495b97231473f html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/AfterBasics
 SHA1 b0ca9c856e60400245a5c0af96f25576b128609d html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/FormStart
 SHA1 32e2cb539148a607e663efe7167c2eac33d657bb html/Callbacks/ReferenceIdoitObjects/Ticket/Elements/ShowSummary/LeftColumn
-SHA1 fd72e53cfa3d5eb83e00631987cba44fbd56ac4b html/Elements/SelectIDoitObjects
-SHA1 652c918a32ffa78af2f6a8e61fc51f9d73197822 html/Elements/ShowIDoitObjects
+SHA1 2f191fd2fbf03d7b2a68fb9bacaf5622fc9a229c html/Elements/SelectIDoitObjects
+SHA1 67e9d39542ab9ea8c363a158ae3b1b8a88807e9a html/Elements/ShowIDoitObjects
 SHA1 faf56d314fefe40211b3db8fb305dedec3861bab html/NoAuth/css/demo_table.css
 SHA1 63c5b31231d04e9ec86200d05b4525c76535d4a4 html/NoAuth/css/demo_table_jui.css
 SHA1 31960b8912f8fe3b381c4cc8098c45eee947e77d html/NoAuth/css/i-doit_object_browser.css
@@ -51,7 +51,7 @@ SHA1 5c589819986050dd79faf8572992a9790ae89f2e inc/Module/Install/RTx/Factory.pm
 SHA1 dc972927565015ffbbaae806ff44634cae6fa1d2 inc/Module/Install/ReadmeFromPod.pm
 SHA1 0ae795f0a9b6783872d393f92f9dc7173f7632e9 inc/Module/Install/Win32.pm
 SHA1 2ad05d85780f32385e90fc76da59f635d453e29a inc/Module/Install/WriteAll.pm
-SHA1 5d6dff505235a464fe5e804015b95fe8375dc264 lib/RT/Extension/ReferenceIDoitObjects.pm
+SHA1 d802ccc265c2cdfee90d84a26f5e6580c5710901 lib/RT/Extension/ReferenceIDoitObjects.pm
 SHA1 c63fc9b2330b64200fa270075d75466ae8b6f98d po/de.po
 SHA1 3987a51914e4ffa806ad31ce27fedd752468e3bf t/00-load.t
 SHA1 f7be47a0678c02f3c2a037ee4095907442a245c7 t/boilerplate.t
@@ -60,7 +60,7 @@ SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAk7ov9gACgkQWFkxZRfLwXIjSwCgiazvqkWXx5VxWpaQtu+axJBW
-Z0wAoITBRHugXlwDsIX45FIzuppY1Dqj
-=n4In
+iEYEARECAAYFAk7zJ5gACgkQWFkxZRfLwXI59wCgoiOjAEEFtXqFvIIpzsAmslM8
+1tYAnjpi+JuiSINgXLc2BGyhbT9P06PB
+=a3ry
 -----END PGP SIGNATURE-----
