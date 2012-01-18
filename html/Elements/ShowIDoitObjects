@@ -99,9 +99,6 @@
 				browser_preselection_field.hide();
 				browser_mandator_field.hide();
 			}
-
-			// Start the browser.
-			window.init_browser();
 		});
 	})(jQuery);
 </script>
