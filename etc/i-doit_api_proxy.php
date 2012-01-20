@@ -8,7 +8,7 @@
  * @package i-doit
  * @subpackage API
  * @author Benjamin Heisig <bheisig@synetics.de>
- * @version 0.1
+ * @version 0.2
  * @copyright synetics GmbH
  * @license This program is free software; you can redistribute it and/or modify
  * it under the same terms as Perl itself.

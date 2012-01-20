@@ -28,4 +28,4 @@ no_index:
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://git.benjaminheisig.net/rt-extension-referenceidoitobjects.git
-version: 0.1
+version: 0.2
