@@ -61,9 +61,13 @@
 				"oLanguage": datatable_lang
 			});
 			
-			$.each(browser_preselection_field.find('ul li'), function(i, e) {
-				preselection.push($(e).text().replace(/[\n\s]/g, ''));
-			});
+            if (browser_preselection_field.has('ul li').length) {
+              $.each(browser_preselection_field.find('ul li'), function(i, e) {
+                preselection.push($(e).text().replace(/[\n\s]/g, ''));
+              });
+            } else {
+              preselection.push(browser_preselection_field.find('td.value').text().replace(/[\n\s]/g, ''));
+            }
 			
 			api_mandator = browser_mandator_field.find('td.value').text().replace(/[\n\s]/g, '');
 

@@ -10,7 +10,8 @@
  * @author Benjamin Heisig <bheisig@synetics.de>
  * @version 0.1
  * @copyright synetics GmbH
- * @license http://www.i-doit.com/license
+ * @license This program is free software; you can redistribute it and/or modify
+ * it under the same terms as Perl itself.
  */
 
 // URL to i-doit's API:

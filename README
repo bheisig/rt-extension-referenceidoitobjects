@@ -38,7 +38,7 @@ CONFIGURATION
 
         Set($IDoitPassword, '21232f297a57a5a743894a0e4a801fc3'); # 'admin'
 
-        Set($IDoitDefaultMandator, -1);
+        Set($IDoitDefaultMandator, 1);
 
         Set($IDoitDefaultView, 'tree'); # 'object', 'tree' or 'item'
 
@@ -67,33 +67,13 @@ SUPPORT AND DOCUMENTATION
 
         perldoc RT::Extension::ReferenceIDoitObjects
 
-    You can also look for information at:
-
-    *   Search CPAN
-
-        <http://search.cpan.org/dist/RT-Extension-ReferenceIDoitObjects/>
-
-    *   RT: CPAN's request tracker
-
-        <http://rt.cpan.org/NoAuth/Bugs.html?Dist=RT-Extension-ReferenceIDoi
-        tObjects>
-
-    *   AnnoCPAN: Annotated CPAN documentation
-
-        <http://annocpan.org/dist/RT-Extension-ReferenceIDoitObjects>
-
-    *   CPAN Ratings
-
-        <http://cpanratings.perl.org/d/RT-Extension-ReferenceIDoitObjects>
-
 BUGS
     Please report any bugs or feature requests to the author.
 
 COPYRIGHT AND LICENSE
     Copyright 2011 synetics GmbH, <http://i-doit.org/>
 
-    This program is free software; you can redistribute it and/or modify it
-    under the same terms as Perl itself.
+    License: <http://www.i-doit.com/license>
 
     Request Tracker (RT) is Copyright Best Practical Solutions, LLC.
 

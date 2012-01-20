@@ -39,7 +39,7 @@ To install this extension, run the following commands:
 
 =head2 RT SITE CONFIGURATION
 
-To enabled this condition edit the RT site configuration based in
+To enable this extension edit the RT site configuration based in
 C<RT_HOME/etc/RT_SiteConfig.pm>:
 
     Set(@Plugins,qw(RT::Extension::ReferenceIDoitObjects));
@@ -73,7 +73,7 @@ This is an example for deleting the mason cache and restarting the Apache HTTP
 web server on a Debian GNU/Linux based operating system.
 
 
-=head1 AUTHOR
+=head1 AUTHORS
 
 Benjamin Heisig, E<lt>bheisig@synetics.deE<gt>
 
@@ -87,6 +87,7 @@ You can find documentation for this module with the C<perldoc> command.
     perldoc RT::Extension::ReferenceIDoitObjects
 
 You can also look for information at:
+
 
 =over 4
 
@@ -111,7 +112,7 @@ L<http://cpanratings.perl.org/d/RT-Extension-ReferenceIDoitObjects>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to the L<author|/"AUTHOR">.
+Please report any bugs or feature requests to the L<authors|/"AUTHORS">.
 
 
 =head1 COPYRIGHT AND LICENSE
