@@ -1,11 +1,8 @@
 TODO for RT-Extension-ReferenceIDoitObjects
 
-* [Bug] Whenever API sends information about more than 1.500 objects browser's
-  JSengine gets a problem.
-* [Bug] If initial loading takes too much time => show loading animation.
-* [Feature] Show link to modify referenced i-doit objects in the page
-  navigation.
-* [Bug] Add user/group right to modify referenced i-doit objects.
+* [Bug] Show link to modify referenced i-doit objects in the page navigation.
+* [Feature] If initial loading takes too much time => show loading animation.
+* [Feature] Add user/group right to modify referenced i-doit objects.
 * [Feature] Make field for email addresses configurable (currently only
   'Requestors').
 * [Feature] Add check box in table header to select all objects in list.

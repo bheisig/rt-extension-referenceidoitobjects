@@ -7,4 +7,8 @@
 %#
 %# Request Tracker (RT) is Copyright Best Practical Solutions, LLC.
 
-<& /Elements/ShowIDoitObjects &>
+<& /Elements/ShowIDoitObjects, ticket => $ticket &>
+
+<%ARGS>
+$ticket => undef
+</%ARGS>

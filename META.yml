@@ -1,21 +1,22 @@
 --- #YAML:1.0
-abstract: 'Create a ticket in relation to one or more i-doit objects'
-author:
-  - 'Benjamin Heisig <bheisig@synetics.de>'
-  - 'Leonard Fischer <lfischer@synetics.de>'
-build_requires:
-  ExtUtils::MakeMaker: 6.42
-configure_requires:
-  ExtUtils::MakeMaker: 6.42
-requires:
-  perl: 5.10.0
-  rt: 4.0.0
-distribution_type: module
-license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: RT-Extension-ReferenceIDoitObjects
+version: 0.3
+abstract: 'Create a ticket in relation to one or more i-doit objects'
+author:
+  - 'Benjamin Heisig <bheisig@synetics.de>'
+  - 'Leonard Fischer <lfischer@synetics.de>'
+license: perl
+distribution_type: module
+requires:
+  perl: 5.10.0
+  rt: 4.0.0
+build_requires:
+  ExtUtils::MakeMaker: 6.42
+configure_requires:
+  ExtUtils::MakeMaker: 6.42
 no_index:
   file:
     - TODO
@@ -25,7 +26,15 @@ no_index:
     - inc
     - po
     - t
+keywords:
+  - RT
+  - Request Tracker
+  - i-doit
+  - IT documentation
+  - CMDB
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://git.benjaminheisig.net/rt-extension-referenceidoitobjects.git
-version: 0.2
+  bugtracker: http://rt.cpan.org/NoAuth/Bugs.html?Dist=RT-Extension-ReferenceIDoitObjects
+  homepage: http://i-doit.org/
+generated_by: Benjamin Heisig <bheisig@synetics.de>

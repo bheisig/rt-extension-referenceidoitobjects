@@ -34,13 +34,13 @@
 	api_lang = '<% $Language %>';
 	api_user = '<% $IDoitUser %>';
 	api_password = '<% $IDoitPassword %>';
-	api_mandator = 0;
+	api_mandator = '<% $IDoitMandator %>';
 
 	show_custom_fields = <% $IDoitShowCustomFields %>;
 
-	browser_preselection_field = 'tr#<% $IDoitObjects %>';
-	browser_mandator_field = 'tr#<% $IDoitMandator %>';
-	
+	browser_preselection_field = 'tr#<% $IDoitObjectsField %>';
+	browser_mandator_field = 'tr#<% $IDoitMandatorField %>';
+
 	preselection = [];
 </script>
 
@@ -51,7 +51,7 @@
 		$(document).ready(function() {
 			browser_preselection_field = $(browser_preselection_field);
 			browser_mandator_field = $(browser_mandator_field);
-			
+
 			list = $('#i-doit-content table.object-table').dataTable({
 				"bJQueryUI": true,
 				"bAutoWidth": false,
@@ -60,7 +60,7 @@
 				"bSort": false,
 				"oLanguage": datatable_lang
 			});
-			
+
             if (browser_preselection_field.has('ul li').length) {
               $.each(browser_preselection_field.find('ul li'), function(i, e) {
                 preselection.push($(e).text().replace(/[\n\s]/g, ''));
@@ -68,8 +68,6 @@
             } else {
               preselection.push(browser_preselection_field.find('td.value').text().replace(/[\n\s]/g, ''));
             }
-			
-			api_mandator = browser_mandator_field.find('td.value').text().replace(/[\n\s]/g, '');
 
 			data = {
 				"method":"cmdb.objects",
@@ -143,6 +141,19 @@ unless($IDoitPassword) {
 }
 
 my $cfMandator = 'i-doit mandator';
+
+$IDoitMandator = $ticket->FirstCustomFieldValue($cfMandator);
+unless($IDoitMandator) {
+    $IDoitMandator = RT->Config->Get('IDoitDefaultMandator');
+
+    unless ($IDoitMandator) {
+        my $msg = loc('Default mandator is not configured.');
+        RT::Logger->error($msg);
+        $$skip_create = 1;
+        push @{$results}, $msg;
+    }
+}
+
 my $cf = RT::CustomField->new($RT::SystemUser);
 $cf->LoadByNameAndQueue(Name => $cfMandator, Queue => '0');
 unless($cf->id) {
@@ -151,9 +162,12 @@ unless($cf->id) {
     $$skip_create = 1;
     push @{$results}, $msg;
 }
-$IDoitMandator = 'CF-' . $cf->id . '-ShowRow';
+$IDoitMandatorField = 'CF-' . $cf->id . '-ShowRow';
 
 my $cfObjects = 'i-doit objects';
+
+$IDoitObjects = $ticket->FirstCustomFieldValue($cfObjects);
+
 $cf = RT::CustomField->new($RT::SystemUser);
 $cf->LoadByNameAndQueue(Name => $cfObjects, Queue => '0');
 unless($cf->id) {
@@ -162,7 +176,7 @@ unless($cf->id) {
     $$skip_create = 1;
     push @{$results}, $msg;
 }
-$IDoitObjects = 'CF-' . $cf->id . '-ShowRow';
+$IDoitObjectsField = 'CF-' . $cf->id . '-ShowRow';
 
 $IDoitShowCustomFields = RT->Config->Get('IDoitShowCustomFields');
 if ($IDoitShowCustomFields < 0 || $IDoitShowCustomFields > 1) {
@@ -179,6 +193,8 @@ $Language = substr($session{CurrentUser}->UserObj->Lang, 0, 2);
 $skip_create => undef
 $results => undef
 
+$ticket => undef
+
 $Language => undef
 
 $IDoitURL => undef
@@ -186,7 +202,9 @@ $IDoitAPI => undef
 $IDoitUser => undef
 $IDoitPassword => undef
 $IDoitMandator => undef
+$IDoitMandatorField => undef
 $IDoitObjects => undef
+$IDoitObjectsField => undef
 $IDoitView => undef
 $IDoitShowCustomFields => undef
 </%ARGS>
