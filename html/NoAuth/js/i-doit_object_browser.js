@@ -434,7 +434,7 @@
             }
 
             check = '<input type="checkbox" value="' + e.id + '" name="i-doit-objectbrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' />';
-            link = '<a href="' + idoit_url + '?objID=' + e.id + '" target="_blank"><% loc("Go to i-doit") %></a>';
+            link = '<a href="' + idoit_url + '?objID=' + e.id + '" target="_blank" title="<% loc('Go to i-doit') %>">&raquo; i-doit</a>';
 
             entities.push([check, e.id, e.title, link]);
         });
@@ -505,7 +505,7 @@
         itemview_table.fnClearTable();
         var data = $('#data-store').data();
         $.each(data, function(i, e) {
-            var link = '<a href="' + idoit_url + '?objID=' + i + '"><% loc("Go to i-doit") %></a>';
+            var link = '<a href="' + idoit_url + '?objID=' + i + '" title="<% loc('Go to i-doit') %>">&raquo; i-doit</a>';
 
             entities.push(['<span class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')"><% loc("Delete") %></span>', i, e.name, e.type, link]);
             data_array.push(i);

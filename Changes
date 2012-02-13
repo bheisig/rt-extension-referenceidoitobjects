@@ -1,6 +1,6 @@
 Revision history for RT-Extension-ReferenceIDoitObjects
 
-0.3     Mon, 13 Feb 2012 12:14:33 +0100
+0.3     Mon, 13 Feb 2012 13:28:50 +0100
         Performance boost when rendering tables
         Fixed API call when viewing a ticket created by email
         Improved error messages
