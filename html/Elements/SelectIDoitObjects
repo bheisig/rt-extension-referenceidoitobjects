@@ -9,7 +9,7 @@
 
 <div id="i-doit-objectbrowser" style="position: relative; min-width: 400px;">
     <div id="data-store" style="display:none;"></div>
-	<div id="i-doit-browser-notice" class="ui-corner-all"><% loc('Please select an i-doit mandator.') %></div>
+	<div id="i-doit-browser-notice" class="ui-corner-all" style="display: none;"></div>
     <div id="i-doit-objectbrowser-content" style="display:none;">
         <ul>
             <li><a href="#tab-objectview"><% loc('Object view') %></a></li>
@@ -86,20 +86,27 @@
 
 <script type="text/javascript">
 	(function($) {
+        // Select mandator:
+        api_mandator = browser_mandator_field.val();
+
 		// Hide custom fields:
 		if (show_custom_fields == 0) {
 			browser_preselection_field.parent().parent().hide();
 			browser_mandator_field.parent().parent().hide();
 		}
 
-		// Initialize our data object.
-		$('#data-store').data();
+        if (isNaN(parseInt(api_mandator)) || api_mandator <= 0) {
+            window.error_notice('<% loc("Please select an i-doit mandator.") %>');
+        } else {
+            // Initialize our data object.
+            $('#data-store').data();
 
-		// Initialize our tabs.
-		$('#i-doit-objectbrowser-content').tabs({selected: api_default_view});
+            // Initialize our tabs.
+            $('#i-doit-objectbrowser-content').tabs({selected: api_default_view});
 
-		// Start the browser.
-		window.init_browser();
+            // Start the browser.
+            window.init_browser();
+        }
 	})(jQuery);
 </script>
 

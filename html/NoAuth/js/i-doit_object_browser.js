@@ -55,8 +55,6 @@
      * @author  Leonard Fischer <lfischer@synetics.de>
      */
     window.init_browser = function() {
-		api_mandator = browser_mandator_field.val();
-
 		// Here we get our preselection data and cast the ID's to integer.
 		var data = {};
 
@@ -300,6 +298,7 @@
 	 */
 	browser_mandator_field.live('change', function() {
 		window.remove_all_objects();
+        api_mandator = browser_mandator_field.val();
 		window.init_browser();
 	});
 
@@ -544,13 +543,8 @@
 	 * @author  Leonard Fischer <lfischer@synetics.de>
 	 */
     window.error_notice = function(msg) {
-		var notice = $('<div></div>').addClass('ui-corner-all').css({background: '#FFB1AD', borderColor: '#FF6D68', color: '#A04341', opacity: 1}).html(msg);
-		
-		$('#i-doit-browser-notice').html('<% loc("Please select an i-doit mandator.") %>').css({display: 'block'});
+		$('#i-doit-browser-notice').html(msg).fadeIn(500);
 		$('#i-doit-objectbrowser-content').css({display: 'none'});
-
-        $('#i-doit-browser-notice').after(notice);
-		notice.show().delay(2000).slideUp(300).delay(300).remove();
     }
 
 
