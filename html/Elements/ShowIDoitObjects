@@ -84,10 +84,14 @@
                             $('#i-doit-browser-notice').css({display: 'none'});
                             $('#i-doit-content').css({display: 'block'});
 
+                            var entities = [];
+
                             $.each(response.result, function(i, e) {
                                 var link = '<a href="' + idoit_url + '?objID=' + e.id + '" title="<% loc('Go to i-doit') %>" target="_blank">&raquo; i-doit</a>';
-                                list.fnAddData([e.id, e.title, e.type_title, link]);
+                                entities.push([e.id, e.title, e.type_title, link]);
                             });
+
+                            list.fnAddData(entities);
                         } else {
                             window.error_notice('<% loc("Error while loading pre-selecting objects") %>');
                         }

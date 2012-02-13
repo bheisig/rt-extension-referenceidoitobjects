@@ -20,7 +20,7 @@
 		"sInfoEmpty":    "<% loc('0 to 0 of 0 objects') %>",
 		"sInfoFiltered": "<% loc('(filtered from _MAX_ objects)') %>",
 		"sInfoPostFix":  "",
-		"sSearch":       "<% loc('Search') %>",
+		"sSearch":       "<% loc('Filter') %>",
 		"sUrl":          "",
 		"oPaginate": {
 			"sFirst":    "&laquo;",

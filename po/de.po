@@ -25,6 +25,9 @@ msgstr "Ausgewählte Objekte"
 msgid "Go to i-doit"
 msgstr "Gehe zu i-doit"
 
+msgid "Filter"
+msgstr "Filter"
+
 msgid "ID"
 msgstr "ID"
 
