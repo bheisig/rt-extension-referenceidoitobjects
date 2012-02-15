@@ -8,6 +8,11 @@
 %# Request Tracker (RT) is Copyright Best Practical Solutions, LLC.
 
 <%INIT>
+
+my $ARGSRef = $ARGS{'ARGSRef'};
+
+## Mandator:
+
 my $IDoitMandator = 'i-doit mandator';
 my $cf = RT::CustomField->new($RT::SystemUser);
 $cf->LoadByNameAndQueue(Name => $IDoitMandator, Queue => '0');
@@ -19,9 +24,14 @@ unless ($cf->id) {
     push @{$results}, $msg;
 }
 
-my $ARGSRef = $ARGS{'ARGSRef'};
 my $cfIDoitMandator = 'CustomField-' . $cf->id;
 
+## Try to fetch mandator from HTTP GET:
+if ($$ARGSRef{'IDoitMandator'}) {
+    $$ARGSRef{$cfIDoitMandator} = $$ARGSRef{'IDoitMandator'};
+}
+
+## Try to fetch default mandator:
 if ((!$$ARGSRef{$cfIDoitMandator}) || ($$ARGSRef{$cfIDoitMandator} =~ /^[ \t]*$/)) {
     my $IDoitDefaultMandator = RT->Config->Get('IDoitDefaultMandator');
 
@@ -34,6 +44,27 @@ if ((!$$ARGSRef{$cfIDoitMandator}) || ($$ARGSRef{$cfIDoitMandator} =~ /^[ \t]*$/
 
     $$ARGSRef{$cfIDoitMandator} = $IDoitDefaultMandator;
 }
+
+## Objects:
+
+my $IDoitObjects = 'i-doit objects';
+$cf = RT::CustomField->new($RT::SystemUser);
+$cf->LoadByNameAndQueue(Name => $IDoitObjects, Queue => '0');
+
+unless ($cf->id) {
+    my $msg = loc(sprintf('Custom field "%s" does not exist.', $IDoitObjects));
+    RT::Logger->error($msg);
+    $$skip_create = 1;
+    push @{$results}, $msg;
+}
+
+my $cfIDoitObjects = 'CustomField-' . $cf->id;
+
+## Try to fetch objects from HTTP GET:
+if ($$ARGSRef{'IDoitObjects'}) {
+    $$ARGSRef{$cfIDoitObjects} = $$ARGSRef{'IDoitObjects'};
+}
+
 </%INIT>
 
 <%ARGS> 
