@@ -1,5 +1,11 @@
 Revision history for RT-Extension-ReferenceIDoitObjects
 
+0.5     Mon, 23 Apr 2012 13:22:37 +0200
+        When creating a ticket assign mandator and objects from HTTP GET.
+        Bug fixing.
+
+0.4     skipped
+
 0.3     Mon, 13 Feb 2012 13:28:50 +0100
         Performance boost when rendering tables
         Fixed API call when viewing a ticket created by email

@@ -72,7 +72,7 @@
 			"jsonrpc":"2.0"};
 
 		idoit_ajax(data, function(response) {
-			if (response.error == null) {
+			if (response != null && response.error == null) {
 				initialized = true;
 				
 				// We look if the preselection field is filled.
