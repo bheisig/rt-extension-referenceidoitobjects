@@ -1,5 +1,8 @@
 Revision history for RT-Extension-ReferenceIDoitObjects
 
+0.6     tba
+        Write logbook entries within i-doit when objects are added or removed.
+
 0.5     Mon, 23 Apr 2012 13:22:37 +0200
         When creating a ticket assign mandator and objects from HTTP GET.
         Bug fixing.

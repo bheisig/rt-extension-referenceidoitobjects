@@ -568,4 +568,58 @@
 		$('#loading-screen').stop().fadeTo(300, 0);
 		$('#i-doit-objectbrowser-content').stop().fadeTo(300, 1);
 	}
+
+    /**
+     * Logs added and/or removed objects.
+     *
+     * An AJAX request will be sent to i-doit to add a new logbook entry for new
+     * selected objects or removed previous ones.
+     *
+     * @author Benjamin Heisig <bheisig@synetics.de>
+     */
+    window.log_changed_objects = function() {
+        var preselection = browser_preselection_field.val();
+
+        if (typeof preselection != 'undefined') {
+            preselection = preselection.split("\n")
+
+            if (preselection != '') {
+                preselection = preselection.map(function(i) {
+                    return (!isNaN(parseInt(i)) ? parseInt(i) : 0);
+                });
+
+                if (preselection.length > 0) {
+                    window.display_loading();
+
+                    $.each(preselection, function(index, value) { 
+                        data = {
+                            "method":"cmdb.logbook",
+                            "params":{
+                                "session":{
+                                    "username":api_user,
+                                    "password":api_password,
+                                    "language":api_lang,
+                                    "mandator":api_mandator
+                                },
+                                "object_id":value,
+                                "message":'hello, world',
+                                "source":'C__LOGBOOK_SOURCE__RT'
+                                "description":'no description'
+                                "comment":'no comment'
+                            },
+                            "id":index,
+                            "jsonrpc":"2.0"
+                        };
+
+                        idoit_ajax(data, function(response) {
+                            if (response.error != null) {
+                                window.error_notice('<% loc("Error while calling i-doit logbook.") %>');
+                            }
+                        });
+                    });
+                }
+            }
+        }
+    }
+
 })(jQuery);

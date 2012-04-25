@@ -26,6 +26,15 @@
     &>
 </&>
 
+<script type="text/javascript">
+    (function($) {
+        $('form[name="TicketCreate"]').submit(function() {
+            window.log_changed_objects();
+            return true;
+        });
+    })(jQuery);
+</script>
+
 <%INIT>
 
 </%INIT>
