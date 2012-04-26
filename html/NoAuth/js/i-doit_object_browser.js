@@ -55,6 +55,8 @@
      * @author  Leonard Fischer <lfischer@synetics.de>
      */
     window.init_browser = function() {
+        window.error_notice('<% loc("Loading...") %>');
+
 		// Here we get our preselection data and cast the ID's to integer.
 		var data = {};
 

@@ -66,6 +66,8 @@
             } else if (preselection.length == 0) {
                 window.error_notice('<% loc("No objects has been selected yet.") %>');
             } else {
+                window.error_notice('<% loc("Loading...") %>');
+
                 data = {
                     "method":"cmdb.objects",
                     "params":{
