@@ -99,3 +99,12 @@ msgstr "Objekttyp"
 
 msgid "These fields are needed to modify referenced i-doit objects."
 msgstr "Diese Felder werden zum Bearbeiten von referenzierten Objekten aus i-doit benötigt."
+
+msgid "Ticket was edited."
+msgstr "Ticket wurde editiert."
+
+msgid "Ticket was created."
+msgstr "Ticket wurde erstellt."
+
+msgid "Error while creating i-doit logbook entry"
+msgstr "Fehler beim Erstellen eines Logbuch-Eintrags in i-doit"

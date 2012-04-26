@@ -14,9 +14,10 @@
 
 <& /Elements/ListActions, actions => \@results &>
 
-<form id="ModifyReferencedIDoitObjects" method="post" action="ModifyIDoitObjects.html">
+<form name="ModifyReferencedIDoitObjects" method="post" action="ModifyIDoitObjects.html?id=<% $TicketObj->Id %>">
     <input type="hidden" class="hidden" name="id" value="<% $TicketObj->Id %>" />
     <input type="hidden" id="Requestors" name="Requestory" value="<% $TicketObj->RequestorAddresses %>" />
+    <input type="hidden" id="Subject" name="Subject" value="<% $TicketObj->Subject %>" />
     <&| /Widgets/TitleBox, title => loc('These fields are needed to modify referenced i-doit objects.'), class=>'ticket-info-basics' &>
         <& Elements/EditCustomFields, TicketObj => $TicketObj &>
     </&>
@@ -29,8 +30,8 @@
 
 <script type="text/javascript">
     (function($) {
-        $('ModifyReferencedIDoitObjects').submit(function() {
-            window.log_changed_objects();
+        $('form[name="ModifyReferencedIDoitObjects"]').submit(function() {
+            window.log_changed_objects(true);
             return true;
         });
     })(jQuery);

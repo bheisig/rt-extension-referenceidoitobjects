@@ -11,7 +11,7 @@
     browser_preselection_field = $(browser_preselection_field);
 	browser_mandator_field = $(browser_mandator_field);
 	initialized = false;
-	
+
 	datatable_lang = {
 		"sProcessing":   "<% loc('Loading...') %>",
 		"sLengthMenu":   "<% loc('Show _MENU_ objects') %>",
@@ -95,7 +95,7 @@
 				initialized = false;
 				window.error_notice('<% loc("Error while loading object types") %>');
 			}
-		});
+		}, true);
     };
 
 
@@ -129,7 +129,7 @@
             } else {
               window.error_notice('<% loc("Error while loading objects by object type") %>');
             }
-        });
+        }, true);
     });
 
 
@@ -235,7 +235,7 @@
 					} else {
                       window.error_notice('<% loc("Error while loading objects by email") %>');
 					}
-				});
+                }, true);
 			}
 		}
 	};
@@ -274,17 +274,17 @@
 						"jsonrpc":"2.0"};
 
 					idoit_ajax(data, function(response) {
-							window.remove_loading();
-							if (response.error == null) {
-								window.remove_all_objects();
+                        window.remove_loading();
+                        if (response.error == null) {
+                            window.remove_all_objects();
 
-								$.each(response.result, function(i, e) {
-									window.add_object(e.id, e.title, e.type_title);
-								});
-							} else {
-                              window.error_notice('<% loc("Error while loading pre-selecting objects") %>');
-							}
-						});
+                            $.each(response.result, function(i, e) {
+                                window.add_object(e.id, e.title, e.type_title);
+                            });
+                        } else {
+                            window.error_notice('<% loc("Error while loading pre-selecting objects") %>');
+                        }
+                    }, true);
 				}
 			}
         }
@@ -411,7 +411,7 @@
             } else {
               window.error_notice('<% loc("Error while loading relation objects") %>');
             }
-        });
+        }, true);
 	});
 
 
@@ -518,20 +518,87 @@
 
 
     /**
+     * Logs added and/or removed objects.
+     *
+     * An AJAX request will be sent to i-doit to add a new logbook entry for new
+     * selected objects or removed previous ones.
+     *
+     * @author Benjamin Heisig <bheisig@synetics.de>
+     */
+    window.log_changed_objects = function(edit) {
+        var preselection = browser_preselection_field.val();
+
+        if (typeof preselection != 'undefined') {
+            preselection = preselection.split("\n")
+
+            if (preselection != '') {
+                preselection = preselection.map(function(i) {
+                    return (!isNaN(parseInt(i)) ? parseInt(i) : 0);
+                });
+
+                if (preselection.length > 0) {
+                    window.display_loading();
+
+                    var subject = $('input[name="Subject"]').val();
+                    var message;
+                    var comment;
+
+                    // Was ticket created or updated?
+                    if (edit == true) {
+                        message = '<% loc("Ticket was edited.") %>';
+                        comment = $('input[name="id"]').val();
+                    } else {
+                        message = '<% loc("Ticket was created.") %>';
+                        // comment is 'new'
+                    }
+
+                    data = {
+                        "method":"cmdb.logbook.create",
+                        "params":{
+                            "session":{
+                                "username":api_user,
+                                "password":api_password,
+                                "language":api_lang,
+                                "mandator":api_mandator
+                            },
+                            "object_ids":preselection,
+                            "message":message,
+                            "source":'C__LOGBOOK_SOURCE__RT',
+                            "comment":comment,
+                            "description":subject
+                        },
+                        "id":1,
+                        "jsonrpc":"2.0"
+                    };
+
+                    idoit_ajax(data, function(response) {
+                        if (response.error != null) {
+                            alert('halt');
+                            window.error_notice('<% loc("Error while creating i-doit logbook entry") %>');
+                        }
+                    }, false);
+                }
+            }
+        }
+    }
+
+
+    /**
      * Function for sending requests to idoit.
      *
      * @param   json      data      A json-object with the data, you want to send with the request.
      * @param   function  callback  A callback to assign to the "success" of an request.
      * @author  Leonard Fischer <lfischer@synetics.de>
      */
-    window.idoit_ajax = function(data, callback) {
+    window.idoit_ajax = function(data, callback, async) {
         $.ajax({
             url: api_url,
             data: JSON.stringify(data),
             contentType: 'application/json',
             type: 'POST',
             dataType: 'json',
-            success: callback
+            success: callback,
+            async: async
         });
     };
 
@@ -554,8 +621,8 @@
 	 * @author  Leonard Fischer <lfischer@synetics.de>
 	 */
 	window.display_loading = function() {
-		$('#loading-screen').stop().fadeTo(300, 1);
-		$('#i-doit-objectbrowser-content').stop().fadeTo(300, 0.3);
+		$('#loading-screen').stop().fadeTo(0, 1);
+		$('#i-doit-objectbrowser-content').stop().fadeTo(0, 0.3);
 	}
 
 
@@ -568,58 +635,5 @@
 		$('#loading-screen').stop().fadeTo(300, 0);
 		$('#i-doit-objectbrowser-content').stop().fadeTo(300, 1);
 	}
-
-    /**
-     * Logs added and/or removed objects.
-     *
-     * An AJAX request will be sent to i-doit to add a new logbook entry for new
-     * selected objects or removed previous ones.
-     *
-     * @author Benjamin Heisig <bheisig@synetics.de>
-     */
-    window.log_changed_objects = function() {
-        var preselection = browser_preselection_field.val();
-
-        if (typeof preselection != 'undefined') {
-            preselection = preselection.split("\n")
-
-            if (preselection != '') {
-                preselection = preselection.map(function(i) {
-                    return (!isNaN(parseInt(i)) ? parseInt(i) : 0);
-                });
-
-                if (preselection.length > 0) {
-                    window.display_loading();
-
-                    $.each(preselection, function(index, value) { 
-                        data = {
-                            "method":"cmdb.logbook",
-                            "params":{
-                                "session":{
-                                    "username":api_user,
-                                    "password":api_password,
-                                    "language":api_lang,
-                                    "mandator":api_mandator
-                                },
-                                "object_id":value,
-                                "message":'hello, world',
-                                "source":'C__LOGBOOK_SOURCE__RT'
-                                "description":'no description'
-                                "comment":'no comment'
-                            },
-                            "id":index,
-                            "jsonrpc":"2.0"
-                        };
-
-                        idoit_ajax(data, function(response) {
-                            if (response.error != null) {
-                                window.error_notice('<% loc("Error while calling i-doit logbook.") %>');
-                            }
-                        });
-                    });
-                }
-            }
-        }
-    }
 
 })(jQuery);
