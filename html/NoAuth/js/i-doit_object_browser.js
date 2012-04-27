@@ -8,6 +8,7 @@
 %# Request Tracker (RT) is Copyright Best Practical Solutions, LLC.
 
 (function($) {
+
     browser_preselection_field = $(browser_preselection_field);
 	browser_mandator_field = $(browser_mandator_field);
 	initialized = false;
@@ -575,7 +576,6 @@
 
                     idoit_ajax(data, function(response) {
                         if (response.error != null) {
-                            alert('halt');
                             window.error_notice('<% loc("Error while creating i-doit logbook entry") %>');
                         }
                     }, false);
