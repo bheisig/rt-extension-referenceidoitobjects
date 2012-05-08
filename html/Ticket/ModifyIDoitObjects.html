@@ -43,8 +43,36 @@ my $TicketObj = LoadTicket($id);
 $m->callback( TicketObj => $TicketObj, ARGSRef => \%ARGS );
 push @results, ProcessObjectCustomFieldUpdates(Object => $TicketObj, ARGSRef => \%ARGS);
 $TicketObj->ApplyTransactionBatch;
+
+## Set default mandator if necessary:
+my $cfMandator = 'i-doit mandator';
+my $IDoitMandator = $TicketObj->FirstCustomFieldValue($cfMandator);
+unless ($IDoitMandator) {
+    $IDoitMandator = RT->Config->Get('IDoitDefaultMandator');
+
+    unless ($IDoitMandator) {
+        my $msg = loc('Default mandator is not configured.');
+        RT::Logger->error($msg);
+        $$skip_create = 1;
+        push @{$results}, $msg;
+    }
+
+    my $cf = RT::CustomField->new($RT::SystemUser);
+    $cf->LoadByNameAndQueue(Name => $cfMandator, Queue => $TicketObj->Queue);
+    unless ($cf->id) {
+        $cf->LoadByNameAndQueue(Name => $cfMandator, Queue => 0);
+    }
+
+    my ($val, $msg) = $TicketObj->AddCustomFieldValue(Field => $cf, Value => $IDoitMandator);
+    unless ($val) {
+        $RT::Logger->error('Could not set default mandator: ' . $msg);
+        return 0;
+    }
+}
 </%INIT>
 
 <%ARGS>
 $id => undef
+$skip_create => undef
+$results => undef
 </%ARGS>
