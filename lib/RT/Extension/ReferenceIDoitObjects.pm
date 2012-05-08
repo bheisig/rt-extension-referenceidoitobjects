@@ -13,7 +13,7 @@ use 5.010;
 use warnings;
 use strict;
 
-our $VERSION = '0.6';
+our $VERSION = '0.7';
 
 =head1 NAME
 

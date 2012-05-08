@@ -1,5 +1,8 @@
 Revision history for RT-Extension-ReferenceIDoitObjects
 
+0.7     tba
+        Use default mandator if necessary when modifying referenced i-doi objects.
+
 0.6     Fri, 27 Apr 2012 11:49:06 +0200
         Write logbook entries within i-doit when objects are added or removed.
         Show loading message when initiating the browser.
