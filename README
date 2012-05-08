@@ -54,7 +54,7 @@ CONFIGURATION
 
         Set($IDoitDefaultMandator, 1);
 
-        Set($IDoitDefaultView, 'tree'); # 'object', 'tree' or 'item'
+        Set($IDoitDefaultView, 'object'); # 'object', 'tree' or 'item'
 
         Set($IDoitShowCustomFields, 1); # 1 ('yes') or 0 ('no')
 
@@ -152,11 +152,14 @@ SUPPORT AND DOCUMENTATION
     CPAN Ratings
         <http://cpanratings.perl.org/d/RT-Extension-ReferenceIDoitObjects>
 
+    Repository
+        <https://github.com/bheisig/rt-extension-referenceidoitobjects>
+
 BUGS
     Please report any bugs or feature requests to the authors.
 
 COPYRIGHT AND LICENSE
-    Copyright 2011 synetics GmbH, <http://i-doit.org/>
+    Copyright 2011-12 synetics GmbH, <http://i-doit.org/>
 
     This program is free software; you can redistribute it and/or modify it
     under the same terms as Perl itself.
