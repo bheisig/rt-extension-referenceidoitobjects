@@ -68,11 +68,16 @@
 					"username":api_user,
 					"password":api_password,
 					"language":api_lang,
-					"mandator":api_mandator},
+					"mandator":api_mandator
+                },
                 "order_by":"title",
-                "enabled":"true"},
+                "filter":{
+                    "enabled":"true"
+                }
+            },
 			"id":"1",
-			"jsonrpc":"2.0"};
+			"jsonrpc":"2.0"
+        };
 
 		idoit_ajax(data, function(response) {
 			if (response != null && response.error == null) {
