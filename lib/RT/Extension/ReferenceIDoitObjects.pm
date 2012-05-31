@@ -32,7 +32,7 @@ i-doit's multi-mandator functionality.
 i-doit ("I document IT") is a web-based tool to document complex IT
 infrastructures. It provides several modules like a ITIL compliant Configuration
 Management Database (CMDB). More information about i-doit is available under
-L<http://www.i-doit.org/>. It's core is Free and Open Source Software. Visit
+L<http://www.i-doit.org/>. Its core is Free and Open Source Software. Visit
 L<http://www.i-doit.com/> for commercial support and additional services. Please
 note, that B<i-doit's API (which is essential for this extension) is currently
 only implemented in the commercial branch>.

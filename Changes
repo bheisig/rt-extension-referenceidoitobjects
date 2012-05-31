@@ -1,7 +1,8 @@
 Revision history for RT-Extension-ReferenceIDoitObjects
 
-0.7     tba
+0.7     Thu, 31 May 2012 10:01:16 +0200
         Use default mandator if necessary when modifying referenced i-doi objects.
+        Look only for enabled object types (bug fix).
 
 0.6     Fri, 27 Apr 2012 11:49:06 +0200
         Write logbook entries within i-doit when objects are added or removed.

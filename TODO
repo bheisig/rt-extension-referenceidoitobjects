@@ -12,3 +12,6 @@ TODO for RT-Extension-ReferenceIDoitObjects
 *   [Feature] Add more translations.
 *   [Feature] Manipulate HTML head only if needed.
 *   [Feature] Abtract from custom field names and put them into the lib.
+*   [Bug (unconfirmed)] no JavaScript/jQuery map() support in IE < 9;
+    workaround:
+    <https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/map>
