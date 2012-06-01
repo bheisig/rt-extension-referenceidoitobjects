@@ -1,0 +1,32 @@
+%# RT::Extension::ReferenceIDoitObjects
+%#
+%# Copyright 2011-12 synetics GmbH, http://i-doit.org/
+%#
+%# This program is free software; you can redistribute it and/or modify it under
+%# the same terms as Perl itself.
+%#
+%# Request Tracker (RT) is Copyright Best Practical Solutions, LLC.
+
+<%INIT>
+
+my $request_path = $HTML::Mason::Commands::r->path_info;
+
+my $query_string = sub {
+    my %args = @_;
+    my $u    = URI->new();
+    $u->query_form(%args);
+    return $u->query;
+};
+
+if ( $request_path =~ m{^/Ticket/} ) {
+    my $tabs = PageMenu();
+    $tabs->child(
+        'refidoitobj' => title => loc('Referenced i-doit objects'),
+        path => "/Ticket/ModifyIDoitObjects.html?" . $query_string->( %{ $m->request_args } )
+    );
+}
+
+</%INIT>
+
+<%ARGS>
+</%ARGS>
