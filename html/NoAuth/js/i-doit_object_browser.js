@@ -49,7 +49,6 @@
 			"oLanguage": datatable_lang
 		});
 
-
     /**
      * This event will initialize the browser.
      *
@@ -157,6 +156,12 @@
         }
     });
 
+    /**
+     * Selects all objects from object view.
+     */
+    $('#check_all_objects').click(function() {
+        $('input', objectview_table.fnGetNodes()).attr('checked',this.checked).change();
+    });
 
     /**
      * This event will store the added ID's from the tree-view.
