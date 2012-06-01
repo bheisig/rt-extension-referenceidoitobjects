@@ -2,6 +2,7 @@ Changes
 etc/i-doit_api_proxy.php
 etc/initialdata
 html/Callbacks/ReferenceIdoitObjects/Elements/Header/Head
+html/Callbacks/ReferenceIdoitObjects/Elements/Tabs/Privileged
 html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/AfterBasics
 html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/FormStart
 html/Callbacks/ReferenceIdoitObjects/Ticket/Elements/ShowSummary/LeftColumn

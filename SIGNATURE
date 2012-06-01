@@ -14,16 +14,17 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 bb02aada583bffa01151ec4cc6bb74882a6dcf36 Changes
-SHA1 adf7eabf1780af4c6728745d22c070b6ee292222 MANIFEST
+SHA1 933af56c60134a53a34bf0855f2528107f687e21 Changes
+SHA1 10003319a44dbd0677948ced3dce5111fa3c97ac MANIFEST
 SHA1 30732a5045c730baf75d689f6ffbce7669da7da6 MANIFEST.SKIP
-SHA1 598f6758cfe7d276d4a525b4d7439fa311f6149a META.yml
+SHA1 9fd02a478b381672c50f7da2df6f8427c2fdd45c META.yml
 SHA1 4894a510e5bc7202f9471782a495dcdf94111054 Makefile.PL
 SHA1 7e992e5e790e7a3bef6fdee89ac8df11a7107373 README
-SHA1 063297de50500559eddf032d6544b1533711fc5e TODO
+SHA1 9610357b9c95b46e9ad093dda560f451ef5405cf TODO
 SHA1 49701a1582499c03b668cb0607e6e2880fe71909 etc/i-doit_api_proxy.php
 SHA1 e1e604e5d2bbb842d030132c60f56692f814a468 etc/initialdata
 SHA1 6f2ce6614acb88ad87859528ad8770c3e09a2723 html/Callbacks/ReferenceIdoitObjects/Elements/Header/Head
+SHA1 e163c6c31431d31bee759dc75f91c6eef211399b html/Callbacks/ReferenceIdoitObjects/Elements/Tabs/Privileged
 SHA1 4c89e02668a080563ab94d5bd9c76c13d853524c html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/AfterBasics
 SHA1 480ad3b74dd93bc420497555fd0d7079dbb55a04 html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/FormStart
 SHA1 c71887d1107cdcfc9c83487d0ec0e70f32993c81 html/Callbacks/ReferenceIdoitObjects/Ticket/Elements/ShowSummary/LeftColumn
@@ -53,7 +54,7 @@ SHA1 5c589819986050dd79faf8572992a9790ae89f2e inc/Module/Install/RTx/Factory.pm
 SHA1 dc972927565015ffbbaae806ff44634cae6fa1d2 inc/Module/Install/ReadmeFromPod.pm
 SHA1 0ae795f0a9b6783872d393f92f9dc7173f7632e9 inc/Module/Install/Win32.pm
 SHA1 2ad05d85780f32385e90fc76da59f635d453e29a inc/Module/Install/WriteAll.pm
-SHA1 da3cace2585c4221906e481c25c9ddd9d4bd95fb lib/RT/Extension/ReferenceIDoitObjects.pm
+SHA1 edb0b32a581353c9f242221edc0aa0b04ddc7de9 lib/RT/Extension/ReferenceIDoitObjects.pm
 SHA1 a6795364ed0394b7a6b5225d0d74ac1cbdd2f01f po/de.po
 SHA1 3987a51914e4ffa806ad31ce27fedd752468e3bf t/00-load.t
 SHA1 f7be47a0678c02f3c2a037ee4095907442a245c7 t/boilerplate.t
@@ -62,7 +63,7 @@ SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAk/HJpcACgkQWFkxZRfLwXKeAwCeLHI6dTdBGVnqJ9QS4mP7K6hJ
-kpoAn3g94RkYTxM76nEArAObcx5UrZGo
-=SPh7
+iEYEARECAAYFAk/IscUACgkQWFkxZRfLwXK++wCguXbgrBa5PHHu2RZB7UU5u3+D
+fskAoK8nyQYuQLzd4RD3SD2ROs7T78S/
+=z3o9
 -----END PGP SIGNATURE-----

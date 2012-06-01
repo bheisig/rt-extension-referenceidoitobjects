@@ -3,7 +3,7 @@ meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: RT-Extension-ReferenceIDoitObjects
-version: 0.7
+version: 0.8
 abstract: 'Create a ticket in relation to one or more i-doit objects'
 author:
   - 'Benjamin Heisig <bheisig@synetics.de>'

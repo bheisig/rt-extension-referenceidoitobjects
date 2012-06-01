@@ -1,6 +1,5 @@
 TODO for RT-Extension-ReferenceIDoitObjects
 
-*   [Bug] Show link to modify referenced i-doit objects in the page navigation.
 *   [Feature] Add user/group right to modify referenced i-doit objects.
 *   [Feature] Make field for email addresses configurable (currently only
     'Requestors').
