@@ -14,13 +14,13 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 f3ba6f6a4e437507721a41eeb6e825475d9b06ef Changes
+SHA1 7e5926f5de2eeb55e2396b1d38036846eb38539f Changes
 SHA1 10003319a44dbd0677948ced3dce5111fa3c97ac MANIFEST
 SHA1 30732a5045c730baf75d689f6ffbce7669da7da6 MANIFEST.SKIP
 SHA1 047850603ee977d83d7580264c4d204776856f4a META.yml
 SHA1 4894a510e5bc7202f9471782a495dcdf94111054 Makefile.PL
 SHA1 7e992e5e790e7a3bef6fdee89ac8df11a7107373 README
-SHA1 da3a654938c5f671596765a028a8a0b3dd21ecb4 TODO
+SHA1 ca711258bd7f3ab1ec5c23aac7f5d0c02514cc92 TODO
 SHA1 49701a1582499c03b668cb0607e6e2880fe71909 etc/i-doit_api_proxy.php
 SHA1 e1e604e5d2bbb842d030132c60f56692f814a468 etc/initialdata
 SHA1 7bdd0131ceb8a370209167d1beff80bbfa7358ba html/Callbacks/ReferenceIdoitObjects/Elements/Header/Head
@@ -29,7 +29,7 @@ SHA1 4c89e02668a080563ab94d5bd9c76c13d853524c html/Callbacks/ReferenceIdoitObjec
 SHA1 480ad3b74dd93bc420497555fd0d7079dbb55a04 html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/FormStart
 SHA1 c71887d1107cdcfc9c83487d0ec0e70f32993c81 html/Callbacks/ReferenceIdoitObjects/Ticket/Elements/ShowSummary/LeftColumn
 SHA1 6400519ca504a4f5876e433691ea027dcfa20a2b html/Callbacks/ReferenceIdoitObjects/Ticket/ModifyAll.html/BeforeActionList
-SHA1 aed4f1bd879f4035cbf8e76e917b86ed3e71f98c html/Elements/SelectIDoitObjects
+SHA1 4ec3c295d6f7fb65d0cf43a98b512d70a5b3a1e9 html/Elements/SelectIDoitObjects
 SHA1 d87df61a7a5155cf3acca04c629f52ebfe4a8ec7 html/Elements/ShowIDoitObjects
 SHA1 faf56d314fefe40211b3db8fb305dedec3861bab html/NoAuth/css/demo_table.css
 SHA1 63c5b31231d04e9ec86200d05b4525c76535d4a4 html/NoAuth/css/demo_table_jui.css
@@ -63,7 +63,7 @@ SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAk/I2+EACgkQWFkxZRfLwXIaOwCbBrdI9HgJA35OEFpSSckYAnZ1
-jnMAoI/4sYUQt4RG1pBQL/RlBtoI734T
-=A0iJ
+iEYEARECAAYFAk/I4cEACgkQWFkxZRfLwXLk0gCeKKultmqfBEWmW2cHUG+pUSpT
+mtoAn3RR3X4L3582l+LT9ZWNxtGmoJIZ
+=2GWM
 -----END PGP SIGNATURE-----
