@@ -13,6 +13,7 @@ html/NoAuth/css/demo_table.css
 html/NoAuth/css/demo_table_jui.css
 html/NoAuth/css/i-doit_object_browser.css
 html/NoAuth/images/i-doit.png
+html/NoAuth/js/i-doit_ie_fix.js
 html/NoAuth/js/i-doit_object_browser.js
 html/NoAuth/js/jquery.dataTables.min.js
 html/Ticket/Elements/EditIDoitObjects

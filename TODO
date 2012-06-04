@@ -1,11 +1,9 @@
 TODO for RT-Extension-ReferenceIDoitObjects
 
-*   [Feature] Add user/group right to modify referenced i-doit objects.
+*   [Feature] Implement various tree views, e. g. physical location.
 *   [Feature] Make field for email addresses configurable (currently only
     'Requestors').
 *   [Feature] Add new tab to search for i-doit objects.
-*   [Feature] DataTables: Filter only by some columns.
-*   [Feature] Add more translations.
 *   [Feature] Abtract from custom field names and put them into the lib.
 *   [Bug (unconfirmed)] no JavaScript/jQuery map() support in IE < 9;
     workaround:
