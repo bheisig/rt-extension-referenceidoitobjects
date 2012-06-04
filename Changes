@@ -4,6 +4,7 @@ Revision history for RT-Extension-ReferenceIDoitObjects
         Include javascript and css only if needed.
         Added checkbox to select/unselect all objects from object view.
         Added link to remove all selected objects from list.
+        Implemented workaround for JavaScript's JSON object missing in IE < 9.
 
 0.8     Fri, 01 Jun 2012 14:12:24 +0200
         Show link in the page menu to modify referenced i-doit objects.
