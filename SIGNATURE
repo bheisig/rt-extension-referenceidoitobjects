@@ -14,7 +14,7 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 753985609af2d3cc86ba13c4d3947cf279d11845 Changes
+SHA1 5a7127084a185e3d6771e764e3b1e1b0a6314843 Changes
 SHA1 c808b8d17134cb0d6d7f8b333de675bb3df84f29 MANIFEST
 SHA1 30732a5045c730baf75d689f6ffbce7669da7da6 MANIFEST.SKIP
 SHA1 047850603ee977d83d7580264c4d204776856f4a META.yml
@@ -23,7 +23,7 @@ SHA1 7e992e5e790e7a3bef6fdee89ac8df11a7107373 README
 SHA1 80ccc30ae0b42d04e735b89a1c11f9c77ffca644 TODO
 SHA1 49701a1582499c03b668cb0607e6e2880fe71909 etc/i-doit_api_proxy.php
 SHA1 e1e604e5d2bbb842d030132c60f56692f814a468 etc/initialdata
-SHA1 65250bf9407807f08f75ad631fdeb4175991321b html/Callbacks/ReferenceIdoitObjects/Elements/Header/Head
+SHA1 8a587aebb1c722efe44a3940e247a82d2430bc6d html/Callbacks/ReferenceIdoitObjects/Elements/Header/Head
 SHA1 e163c6c31431d31bee759dc75f91c6eef211399b html/Callbacks/ReferenceIdoitObjects/Elements/Tabs/Privileged
 SHA1 4c89e02668a080563ab94d5bd9c76c13d853524c html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/AfterBasics
 SHA1 480ad3b74dd93bc420497555fd0d7079dbb55a04 html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/FormStart
@@ -56,7 +56,7 @@ SHA1 dc972927565015ffbbaae806ff44634cae6fa1d2 inc/Module/Install/ReadmeFromPod.p
 SHA1 0ae795f0a9b6783872d393f92f9dc7173f7632e9 inc/Module/Install/Win32.pm
 SHA1 2ad05d85780f32385e90fc76da59f635d453e29a inc/Module/Install/WriteAll.pm
 SHA1 89d98c2fde78c5fc66fcf33ce99fdacf37bf6e6a lib/RT/Extension/ReferenceIDoitObjects.pm
-SHA1 795fcfb9000f3f40b26dee38174078173e8eaab3 po/de.po
+SHA1 4b73bb903ecf361c17a7f6be9998b9f8095f0693 po/de.po
 SHA1 3987a51914e4ffa806ad31ce27fedd752468e3bf t/00-load.t
 SHA1 f7be47a0678c02f3c2a037ee4095907442a245c7 t/boilerplate.t
 SHA1 0b1c5a2d59be6bfa7d60c64cd964fea6a0331705 t/pod-coverage.t
@@ -64,7 +64,7 @@ SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAk/MrCMACgkQWFkxZRfLwXKWdgCgrwgIJdUSEz5loY1mFV2+70QA
-E2IAoNOAearFQUxnWhOhLXGAC/TMwoiq
-=6U7T
+iEYEARECAAYFAk/My2gACgkQWFkxZRfLwXId9wCgwYE/VbXht0Sc5yti8uQy1RyC
+QsIAn0WXRGiM5So2orqH6ah5lTrwr2WN
+=GDfr
 -----END PGP SIGNATURE-----

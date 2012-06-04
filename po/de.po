@@ -110,4 +110,4 @@ msgid "Error while creating i-doit logbook entry"
 msgstr "Fehler beim Erstellen eines Logbuch-Eintrags in i-doit"
 
 msgid "There is no requestor selected."
-msgstr "Es ist ein Klient ausgewählt."
+msgstr "Es ist kein Klient ausgewählt."
