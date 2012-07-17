@@ -118,7 +118,8 @@ The user's password is encoded as a MD5 hash.
 
 You need the identifier of a mandator who owns the objects, but this may also be
 set while creating a ticket. This identifier has be to added to the list of the
-corresponding custom field.
+corresponding custom field. For a list of (activated) mandators and their
+identifiers see i-doit's admin center.
 
 
 =item C<$IDoitDefaultView>
@@ -167,6 +168,14 @@ environment:
 
 This is an example for deleting the mason cache and restarting the Apache HTTP
 web server on a Debian GNU/Linux based operating system.
+
+
+=head1 USAGE
+
+Whenever you create a new ticket or edit an existing one you are able to
+reference this ticket with one or more objects in i-doit. An additional box
+with the so-called "object browser" will shown up. Just select the objects you
+need or unselect the objects you don't need.
 
 
 =head1 AUTHORS

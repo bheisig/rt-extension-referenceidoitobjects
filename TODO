@@ -1,5 +1,6 @@
 TODO for RT-Extension-ReferenceIDoitObjects
 
+*   [Feature] Integrate cross-site HTTP requests and make API proxy absolete.
 *   [Feature] Implement various tree views, e. g. physical location.
 *   [Feature] Make field for email addresses configurable (currently only
     'Requestors').
