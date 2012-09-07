@@ -1,5 +1,9 @@
 Revision history for RT-Extension-ReferenceIDoitObjects
 
+0.92    Fri, 07 Sep 2012 16:17:06 +0200
+        Implemented browser in "Jumbo update".
+        Removed buggy unused code.
+
 0.91    Fri, 07 Sep 2012 14:02:49 +0200
         Removed deprecated Switch.pm (important for newer Perl versions; thanks to Matthias).
         Described installation via CPAN.

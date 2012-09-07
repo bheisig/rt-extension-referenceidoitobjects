@@ -6,7 +6,7 @@ html/Callbacks/ReferenceIdoitObjects/Elements/Tabs/Privileged
 html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/AfterBasics
 html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/FormStart
 html/Callbacks/ReferenceIdoitObjects/Ticket/Elements/ShowSummary/LeftColumn
-html/Callbacks/ReferenceIdoitObjects/Ticket/ModifyAll.html/BeforeActionList
+html/Callbacks/ReferenceIdoitObjects/Ticket/ModifyAll.html/AfterBasics
 html/Elements/SelectIDoitObjects
 html/Elements/ShowIDoitObjects
 html/NoAuth/css/demo_table.css
