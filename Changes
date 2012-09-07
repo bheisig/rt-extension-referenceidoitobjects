@@ -1,5 +1,8 @@
 Revision history for RT-Extension-ReferenceIDoitObjects
 
+0.10    Fri, 07 Sep 2012 09:18:36 +0200
+        Removed deprecated Switch.pm.
+
 0.9     Mon, 04 Jun 2012 16:50:31 +0200
         Include javascript and css only if needed.
         Added checkbox to select/unselect all objects from object view.
@@ -11,7 +14,7 @@ Revision history for RT-Extension-ReferenceIDoitObjects
         Show link in the page menu to modify referenced i-doit objects.
 
 0.7     Thu, 31 May 2012 10:01:16 +0200
-        Use default mandator if necessary when modifying referenced i-doi objects.
+        Use default mandator if necessary when modifying referenced i-doit objects.
         Look only for enabled object types (bug fix).
 
 0.6     Fri, 27 Apr 2012 11:49:06 +0200

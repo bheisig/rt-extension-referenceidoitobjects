@@ -111,7 +111,7 @@
 </script>
 
 <%INIT>
-use Switch;
+use feature qw(switch);
 
 $IDoitURL = RT->Config->Get('IDoitURL');
 unless($IDoitURL) {
@@ -179,11 +179,12 @@ unless($IDoitDefaultView) {
     $$skip_create = 1;
     push @{$results}, $msg;
 }
-switch ($IDoitDefaultView) {
-    case 'object' { $IDoitView = 0; }
-    case 'tree' { $IDoitView = 1; }
-    case 'item' { $IDoitView = 2; }
+given ($IDoitDefaultView) {
+    when('object') { $IDoitView = 0; }
+    when('tree') { $IDoitView = 1; }
+    when('item') { $IDoitView = 2; }
 }
+
 
 $IDoitShowCustomFields = RT->Config->Get('IDoitShowCustomFields');
 if ($IDoitShowCustomFields < 0 || $IDoitShowCustomFields > 1) {

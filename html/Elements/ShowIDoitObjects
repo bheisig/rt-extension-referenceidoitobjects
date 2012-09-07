@@ -110,8 +110,6 @@
 </script>
 
 <%INIT>
-use Switch;
-
 $IDoitURL = RT->Config->Get('IDoitURL');
 unless($IDoitURL) {
     my $msg = loc('URL for i-doit is not configured.');
