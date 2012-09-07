@@ -14,7 +14,7 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 c9586f868834beb04ea1b6c70ab9da2b8e05ba76 Changes
+SHA1 9ee2d8244c34db38f9d45ff7b8ae749caf7cf07c Changes
 SHA1 47b16daddef5a1707ab0937569d6bdc8de2c5fee MANIFEST
 SHA1 30732a5045c730baf75d689f6ffbce7669da7da6 MANIFEST.SKIP
 SHA1 25bc9212b421d131d61d7f8e4bf133ae9e1eb307 META.yml
@@ -40,7 +40,7 @@ SHA1 744360fe7ad612bddab3537c9b6d9688f5d4af41 html/NoAuth/js/i-doit_object_brows
 SHA1 6f6c12b01532eeebefde965a5fa832a9d441122c html/NoAuth/js/jquery.dataTables.min.js
 SHA1 2e9f9445ac8e4abbae95fe092f9212810484872c html/Ticket/Elements/EditIDoitObjects
 SHA1 370b4e858d38606a6298c3aa26a92f03123959a3 html/Ticket/Elements/ShowIDoitObjects
-SHA1 79537aeef4ca90b668e01c5e6529d764eabd28ba html/Ticket/ModifyIDoitObjects.html
+SHA1 104c283adf9cc0b2afb4855918f647a4727afefd html/Ticket/ModifyIDoitObjects.html
 SHA1 59e69e8b99149999c0c74e6031def042569410aa inc/Module/AutoInstall.pm
 SHA1 eba6465ce5287959acc940e75b080205960b7ac6 inc/Module/Install.pm
 SHA1 9dc7102b5e2c3a791205ecc4f9d84a56632253ef inc/Module/Install/AutoInstall.pm
@@ -64,7 +64,7 @@ SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAlBKAfIACgkQWFkxZRfLwXKstQCgmXEQ0doQx2zMHhnYaiT7LNdo
-6hkAn0tQO8vLyktRi9BPhYP0GmSr3mpw
-=44dL
+iEYEARECAAYFAlBKDO4ACgkQWFkxZRfLwXK1pQCg1K7/2iZaqbiCyvLzyqr33oJ9
+zxIAniq77AkUa/DKdZZaVCJ4fLiZ5k4Q
+=lJhg
 -----END PGP SIGNATURE-----

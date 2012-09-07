@@ -21,6 +21,9 @@
     <&| /Widgets/TitleBox, title => loc('These fields are needed to modify referenced i-doit objects.'), class=>'ticket-info-basics' &>
         <& Elements/EditCustomFields, TicketObj => $TicketObj &>
     </&>
+    <script type="text/javascript">
+        rollup('TitleBox--_Ticket_ModifyIDoitObjects_html--ticket-info-basics----RGllc2UgRmVsZGVyIHdlcmRlbiB6dW0gQmVhcmJlaXRlbiB2b24gcmVmZXJlbnppZXJ0ZW4gT2JqZWt0ZW4gYXVzIGktZG9pdCBiZW7DtnRpZ3Qu---0');   
+    </script>
     <br />
     <&| /Widgets/TitleBox,title => loc('Modify referenced i-doit objects for ticket #[_1]', $TicketObj->Id), class=> 'ticket-info-basic' &>
         <& Elements/EditIDoitObjects, TicketObj => $TicketObj &>

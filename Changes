@@ -2,6 +2,7 @@ Revision history for RT-Extension-ReferenceIDoitObjects
 
 0.92    Fri, 07 Sep 2012 16:17:06 +0200
         Implemented browser in "Jumbo update".
+        Hide custom fields when modifying referenced objects.
         Removed buggy unused code.
 
 0.91    Fri, 07 Sep 2012 14:02:49 +0200
