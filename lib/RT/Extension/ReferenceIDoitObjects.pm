@@ -13,7 +13,7 @@ use 5.010;
 use warnings;
 use strict;
 
-our $VERSION = '0.10';
+our $VERSION = '0.91';
 
 =head1 NAME
 
@@ -54,11 +54,18 @@ To install this extension, run the following commands:
 Executing the last command creates 2 new custom fields, so please do it only
 once. These fields contain the i-doit mandator and the referenced objects.
 
+Another way to install the latest release is via CPAN:
+
+    cpan RT::Extension::ReferenceIDoitObjects
+    $RT_HOME/sbin/rt-setup-database --action insert --datafile /opt/rt4/local/plugins/RT-Extension-ReferenceIDoitObjects/etc/initialdata
+
+The second command is equivalent to C<make initdb>, but is unfortunately not executed automatically. C<$RT_HOME> is the path to your RT installation, for example C</opt/rt4>.
+
 
 =head1 CONFIGURATION
 
 To enable this extension edit the RT site configuration based in
-C<RT_HOME/etc/RT_SiteConfig.pm>:
+C<$RT_HOME/etc/RT_SiteConfig.pm>:
 
     Set(@Plugins,qw(RT::Extension::ReferenceIDoitObjects));
 

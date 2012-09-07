@@ -35,9 +35,18 @@ INSTALLATION
     only once. These fields contain the i-doit mandator and the referenced
     objects.
 
+    Another way to install the latest release is via CPAN:
+
+        cpan RT::Extension::ReferenceIDoitObjects
+        $RT_HOME/sbin/rt-setup-database --action insert --datafile /opt/rt4/local/plugins/RT-Extension-ReferenceIDoitObjects/etc/initialdata
+
+    The second command is equivalent to "make initdb", but is unfortunately
+    not executed automatically. $RT_HOME is the path to your RT
+    installation, for example "/opt/rt4".
+
 CONFIGURATION
     To enable this extension edit the RT site configuration based in
-    "RT_HOME/etc/RT_SiteConfig.pm":
+    "$RT_HOME/etc/RT_SiteConfig.pm":
 
         Set(@Plugins,qw(RT::Extension::ReferenceIDoitObjects));
 
