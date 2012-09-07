@@ -14,10 +14,10 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 5a7127084a185e3d6771e764e3b1e1b0a6314843 Changes
+SHA1 00d8d04cbb538b6b56feb4750c104b2874e7199a Changes
 SHA1 c808b8d17134cb0d6d7f8b333de675bb3df84f29 MANIFEST
 SHA1 30732a5045c730baf75d689f6ffbce7669da7da6 MANIFEST.SKIP
-SHA1 047850603ee977d83d7580264c4d204776856f4a META.yml
+SHA1 ec63f98a23d9c9db49e7aaf23b5033e53e697088 META.yml
 SHA1 4894a510e5bc7202f9471782a495dcdf94111054 Makefile.PL
 SHA1 1b9e9fdc965df2d62af172c7bcaebfdb0fa3f8dd README
 SHA1 676583b776bf7a2500ff9067ea3474fb005da96c TODO
@@ -29,8 +29,8 @@ SHA1 4c89e02668a080563ab94d5bd9c76c13d853524c html/Callbacks/ReferenceIdoitObjec
 SHA1 480ad3b74dd93bc420497555fd0d7079dbb55a04 html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/FormStart
 SHA1 c71887d1107cdcfc9c83487d0ec0e70f32993c81 html/Callbacks/ReferenceIdoitObjects/Ticket/Elements/ShowSummary/LeftColumn
 SHA1 6400519ca504a4f5876e433691ea027dcfa20a2b html/Callbacks/ReferenceIdoitObjects/Ticket/ModifyAll.html/BeforeActionList
-SHA1 4ec3c295d6f7fb65d0cf43a98b512d70a5b3a1e9 html/Elements/SelectIDoitObjects
-SHA1 d87df61a7a5155cf3acca04c629f52ebfe4a8ec7 html/Elements/ShowIDoitObjects
+SHA1 90ffec1d5d1a2877ae0e991cbbab7779565d7f5b html/Elements/SelectIDoitObjects
+SHA1 6049b1e731d7ec11f244edc36c4b79bff6c07b75 html/Elements/ShowIDoitObjects
 SHA1 faf56d314fefe40211b3db8fb305dedec3861bab html/NoAuth/css/demo_table.css
 SHA1 63c5b31231d04e9ec86200d05b4525c76535d4a4 html/NoAuth/css/demo_table_jui.css
 SHA1 d1ca3bb3874b847f323100f2ad790ecbb90ec646 html/NoAuth/css/i-doit_object_browser.css
@@ -55,7 +55,7 @@ SHA1 5c589819986050dd79faf8572992a9790ae89f2e inc/Module/Install/RTx/Factory.pm
 SHA1 dc972927565015ffbbaae806ff44634cae6fa1d2 inc/Module/Install/ReadmeFromPod.pm
 SHA1 0ae795f0a9b6783872d393f92f9dc7173f7632e9 inc/Module/Install/Win32.pm
 SHA1 2ad05d85780f32385e90fc76da59f635d453e29a inc/Module/Install/WriteAll.pm
-SHA1 ce6cbe7f5d719c9bee86ef2cd6b229f6bd626522 lib/RT/Extension/ReferenceIDoitObjects.pm
+SHA1 27a9ac58be0b0ccd6c5760b17247702355bdf567 lib/RT/Extension/ReferenceIDoitObjects.pm
 SHA1 4b73bb903ecf361c17a7f6be9998b9f8095f0693 po/de.po
 SHA1 3987a51914e4ffa806ad31ce27fedd752468e3bf t/00-load.t
 SHA1 f7be47a0678c02f3c2a037ee4095907442a245c7 t/boilerplate.t
@@ -64,7 +64,7 @@ SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAlAFdKYACgkQWFkxZRfLwXKhwgCeO9Jj81gbvPYB47VvK+gH5so3
-A2QAoNAnNjMwXndK/51Duua9PSRDbPoS
-=5qoH
+iEYEARECAAYFAlBJ2s0ACgkQWFkxZRfLwXKrgACg04vRy1WZ5dfnFoVCL+sSp8KI
+AhAAnj8BwfmAqhxg0UYll3dU0azKm3hJ
+=PgmK
 -----END PGP SIGNATURE-----
