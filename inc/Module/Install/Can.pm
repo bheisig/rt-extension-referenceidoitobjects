@@ -2,13 +2,12 @@ package Module::Install::Can;
 
 use strict;
 use Config                ();
-use File::Spec            ();
 use ExtUtils::MakeMaker   ();
 use Module::Install::Base ();
 
 use vars qw{$VERSION @ISA $ISCORE};
 BEGIN {
-	$VERSION = '1.04';
+	$VERSION = '1.06';
 	@ISA     = 'Module::Install::Base';
 	$ISCORE  = 1;
 }
@@ -28,7 +27,7 @@ sub can_use {
 	eval { require $mod; $pkg->VERSION($ver || 0); 1 };
 }
 
-# check if we can run some command
+# Check if we can run some command
 sub can_run {
 	my ($self, $cmd) = @_;
 
@@ -37,14 +36,88 @@ sub can_run {
 
 	for my $dir ((split /$Config::Config{path_sep}/, $ENV{PATH}), '.') {
 		next if $dir eq '';
-		my $abs = File::Spec->catfile($dir, $_[1]);
+		require File::Spec;
+		my $abs = File::Spec->catfile($dir, $cmd);
 		return $abs if (-x $abs or $abs = MM->maybe_command($abs));
 	}
 
 	return;
 }
 
-# can we locate a (the) C compiler
+# Can our C compiler environment build XS files
+sub can_xs {
+	my $self = shift;
+
+	# Ensure we have the CBuilder module
+	$self->configure_requires( 'ExtUtils::CBuilder' => 0.27 );
+
+	# Do we have the configure_requires checker?
+	local $@;
+	eval "require ExtUtils::CBuilder;";
+	if ( $@ ) {
+		# They don't obey configure_requires, so it is
+		# someone old and delicate. Try to avoid hurting
+		# them by falling back to an older simpler test.
+		return $self->can_cc();
+	}
+
+	# Do we have a working C compiler
+	my $builder = ExtUtils::CBuilder->new(
+		quiet => 1,
+	);
+	unless ( $builder->have_compiler ) {
+		# No working C compiler
+		return 0;
+	}
+
+	# Write a C file representative of what XS becomes
+	require File::Temp;
+	my ( $FH, $tmpfile ) = File::Temp::tempfile(
+		"compilexs-XXXXX",
+		SUFFIX => '.c',
+	);
+	binmode $FH;
+	print $FH <<'END_C';
+#include "EXTERN.h"
+#include "perl.h"
+#include "XSUB.h"
+
+int main(int argc, char **argv) {
+    return 0;
+}
+
+int boot_sanexs() {
+    return 1;
+}
+
+END_C
+	close $FH;
+
+	# Can the C compiler access the same headers XS does
+	my @libs   = ();
+	my $object = undef;
+	eval {
+		local $^W = 0;
+		$object = $builder->compile(
+			source => $tmpfile,
+		);
+		@libs = $builder->link(
+			objects     => $object,
+			module_name => 'sanexs',
+		);
+	};
+	my $result = $@ ? 0 : 1;
+
+	# Clean up all the build files
+	foreach ( $tmpfile, $object, @libs ) {
+		next unless defined $_;
+		1 while unlink;
+	}
+
+	return $result;
+}
+
+# Can we locate a (the) C compiler
 sub can_cc {
 	my $self   = shift;
 	my @chunks = split(/ /, $Config::Config{cc}) or return;
@@ -121,9 +194,16 @@ Returns true if so, or false (both in scalar and list context) if not.
 
   can_cc();
 
-The C<can_cc> function test the ability to locate a C compiler on the
-local system. Returns true if the C compiler can be found, or false
+The C<can_cc> function tests the ability to locate a functioning C compiler
+on the local system. Returns true if the C compiler can be found, or false
 (both in scalar and list context) if not.
+
+=head2 can_xs
+
+  can_xs();
+
+The C<can_xs> function tests for a functioning C compiler and the correct
+headers to build XS modules against the current instance of Perl.
 
 =head1 TO DO
 
@@ -146,7 +226,7 @@ L<Module::Install>, L<Class::Inspector>
 
 =head1 COPYRIGHT
 
-Copyright 2006 Audrey Tang, Adam Kennedy.
+Copyright 2006 - 2012 Audrey Tang, Adam Kennedy.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

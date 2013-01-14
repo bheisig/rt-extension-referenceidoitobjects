@@ -30,7 +30,7 @@ BEGIN {
 	# This is not enforced yet, but will be some time in the next few
 	# releases once we can make sure it won't clash with custom
 	# Module::Install extensions.
-	$VERSION = '1.04';
+	$VERSION = '1.06';
 
 	# Storage for the pseudo-singleton
 	$MAIN    = undef;
@@ -466,4 +466,4 @@ sub _CLASS ($) {
 
 1;
 
-# Copyright 2008 - 2011 Adam Kennedy.
+# Copyright 2008 - 2012 Adam Kennedy.
