@@ -1,47 +1,48 @@
 Revision history for RT-Extension-ReferenceIDoitObjects
 
-0.92    Fri, 07 Sep 2012 16:17:06 +0200
-        Implemented browser in "Jumbo update".
-        Hide custom fields when modifying referenced objects.
-        Removed buggy unused code.
+0.92    - unreleased -
+        *   Implemented browser in "Jumbo update"
+        *   Hide custom fields when modifying referenced objects
+        *   Removed buggy unused code
+        *   Updated to Module::Install 1.06 (thanks to Tatsuhiko Miyagawa)
 
 0.91    Fri, 07 Sep 2012 14:02:49 +0200
-        Removed deprecated Switch.pm (important for newer Perl versions; thanks to Matthias).
-        Described installation via CPAN.
+        *   Removed deprecated Switch.pm (important for newer Perl versions; thanks to Matthias)
+        *   Described installation via CPAN.
 
 0.9     Mon, 04 Jun 2012 16:50:31 +0200
-        Include javascript and css only if needed.
-        Added checkbox to select/unselect all objects from object view.
-        Added link to remove all selected objects from list.
-        Show message if no requestor is selected.
-        Implemented workaround for JavaScript's JSON object missing in IE < 9.
+        *   Include javascript and css only if needed
+        *   Added checkbox to select/unselect all objects from object view
+        *   Added link to remove all selected objects from list
+        *   Show message if no requestor is selected
+        *   Implemented workaround for JavaScript's JSON object missing in IE < 9
 
 0.8     Fri, 01 Jun 2012 14:12:24 +0200
-        Show link in the page menu to modify referenced i-doit objects.
+        *   Show link in the page menu to modify referenced i-doit objects
 
 0.7     Thu, 31 May 2012 10:01:16 +0200
-        Use default mandator if necessary when modifying referenced i-doit objects.
-        Look only for enabled object types (bug fix).
+        *   Use default mandator if necessary when modifying referenced i-doit objects
+        *   Look only for enabled object types (bug fix)
 
 0.6     Fri, 27 Apr 2012 11:49:06 +0200
-        Write logbook entries within i-doit when objects are added or removed.
-        Show loading message when initiating the browser.
-        Requires i-doit version 0.9.9-9 or higher.
+        *   Write logbook entries within i-doit when objects are added or removed
+        *   Show loading message when initiating the browser
+        *   Requires i-doit version 0.9.9-9 or higher
 
 0.5     Mon, 23 Apr 2012 13:22:37 +0200
-        When creating a ticket assign mandator and objects from HTTP GET.
-        Bug fixing.
+        *   When creating a ticket assign mandator and objects from HTTP GET
+        *   Bug fixing
 
 0.4     skipped
 
 0.3     Mon, 13 Feb 2012 13:28:50 +0100
-        Performance boost when rendering tables
-        Fixed API call when viewing a ticket created by email
-        Improved error messages
-        Improved meta information
+        *   Performance boost when rendering tables
+        *   Fixed API call when viewing a ticket created by email
+        *   Improved error messages
+        *   Improved meta information
 
 0.2     Fri, 20 Jan 2012 15:45:43 +0100
-        Bug fixing.
+        *   Bug fixing
 
 0.1     Wed, 14 Dec 2011 09:30:22 +0100
-        Initial release.
+        *   Initial release
