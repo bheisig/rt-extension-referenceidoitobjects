@@ -14,12 +14,12 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 beb68d41f0ddbdf0def3919a5c34a13247e5a2a7 Changes
+SHA1 5687284dab0c853b6ee8a85ca9724cbbcdce03c0 Changes
 SHA1 50334a73c918d80ad88264dba24efd7185fe83ec MANIFEST
 SHA1 30732a5045c730baf75d689f6ffbce7669da7da6 MANIFEST.SKIP
 SHA1 25bc9212b421d131d61d7f8e4bf133ae9e1eb307 META.yml
 SHA1 4894a510e5bc7202f9471782a495dcdf94111054 Makefile.PL
-SHA1 0dc967f7162dacff818cf00a9766aa5f686d5055 README
+SHA1 6f968cd2368ac8b350b53db7e003b9dd165fc241 README
 SHA1 676583b776bf7a2500ff9067ea3474fb005da96c TODO
 SHA1 49701a1582499c03b668cb0607e6e2880fe71909 etc/i-doit_api_proxy.php
 SHA1 e1e604e5d2bbb842d030132c60f56692f814a468 etc/initialdata
@@ -29,14 +29,14 @@ SHA1 4c89e02668a080563ab94d5bd9c76c13d853524c html/Callbacks/ReferenceIdoitObjec
 SHA1 480ad3b74dd93bc420497555fd0d7079dbb55a04 html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/FormStart
 SHA1 c71887d1107cdcfc9c83487d0ec0e70f32993c81 html/Callbacks/ReferenceIdoitObjects/Ticket/Elements/ShowSummary/LeftColumn
 SHA1 db1dbde793e20055f07087728016ab369af4f74d html/Callbacks/ReferenceIdoitObjects/Ticket/ModifyAll.html/AfterBasics
-SHA1 90ffec1d5d1a2877ae0e991cbbab7779565d7f5b html/Elements/SelectIDoitObjects
-SHA1 6049b1e731d7ec11f244edc36c4b79bff6c07b75 html/Elements/ShowIDoitObjects
+SHA1 6d6e156fbd1911d29d33b5c3c0d9ca37b187a4a7 html/Elements/SelectIDoitObjects
+SHA1 383d20604a1111d3e244a854ee53e9731c755755 html/Elements/ShowIDoitObjects
 SHA1 faf56d314fefe40211b3db8fb305dedec3861bab html/NoAuth/css/demo_table.css
 SHA1 63c5b31231d04e9ec86200d05b4525c76535d4a4 html/NoAuth/css/demo_table_jui.css
 SHA1 d1ca3bb3874b847f323100f2ad790ecbb90ec646 html/NoAuth/css/i-doit_object_browser.css
 SHA1 21117f74c1256a9045626a08027068ea0e930842 html/NoAuth/images/i-doit.png
 SHA1 658230fb99283dae82b6bb3a70f1007ed8ed6f23 html/NoAuth/js/i-doit_ie_fix.js
-SHA1 744360fe7ad612bddab3537c9b6d9688f5d4af41 html/NoAuth/js/i-doit_object_browser.js
+SHA1 46c736849f385ebfa92dca8951622caa6c63d621 html/NoAuth/js/i-doit_object_browser.js
 SHA1 6f6c12b01532eeebefde965a5fa832a9d441122c html/NoAuth/js/jquery.dataTables.min.js
 SHA1 2e9f9445ac8e4abbae95fe092f9212810484872c html/Ticket/Elements/EditIDoitObjects
 SHA1 370b4e858d38606a6298c3aa26a92f03123959a3 html/Ticket/Elements/ShowIDoitObjects
@@ -78,7 +78,7 @@ SHA1 8057872efd55c155d12f009cb190a81f7f775703 inc/Module/Install/Share.pm
 SHA1 3ef36786817df816cca65bcae5e987591512aeeb inc/Module/Install/Win32.pm
 SHA1 1349967ec3cd8c41a7717750ae23ede9824a2f39 inc/Module/Install/With.pm
 SHA1 b7fc200ced09546b337e460a29379e4bd6927ca2 inc/Module/Install/WriteAll.pm
-SHA1 957de860791a333fb9a77f0f7667779c43bce9b3 lib/RT/Extension/ReferenceIDoitObjects.pm
+SHA1 168a04e5e19f118353b582e11f5f225f6011cab2 lib/RT/Extension/ReferenceIDoitObjects.pm
 SHA1 4b73bb903ecf361c17a7f6be9998b9f8095f0693 po/de.po
 SHA1 3987a51914e4ffa806ad31ce27fedd752468e3bf t/00-load.t
 SHA1 f7be47a0678c02f3c2a037ee4095907442a245c7 t/boilerplate.t
@@ -87,7 +87,7 @@ SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAlD0CwUACgkQWFkxZRfLwXLuMgCglhtX6rJEK0LGjqKb5MkfCrNU
-xbsAnRBEuiffg2rodUzKYwrFjtLlqtXw
-=9BpY
+iEYEARECAAYFAlD1cvkACgkQWFkxZRfLwXKvsgCgiaon7uNF5voZ1abf8ZJ0StGz
+qncAoJxy1kHOzAypsVr5vn8XuZ13X5ew
+=PKoY
 -----END PGP SIGNATURE-----

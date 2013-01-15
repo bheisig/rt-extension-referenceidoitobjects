@@ -9,57 +9,58 @@
 
 <div id="i-doit-objectbrowser" style="position: relative; min-width: 400px;">
     <div id="data-store" style="display:none;"></div>
-	<div id="i-doit-browser-notice" class="ui-corner-all" style="display: none;"></div>
+    <div id="i-doit-browser-notice" class="ui-corner-all" style="display: none;"></div>
     <div id="i-doit-content" style="display:none;">
-		<table class="object-table" style="width:100%;">
-			<thead>
-				<tr>
-					<th width="10%"><% loc('ID') %></th>
-					<th width="40%"><% loc('Name') %></th>
-					<th width="40%"><% loc('Type') %></th>
-					<th width="10%"><% loc('Link') %></th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
+        <table class="object-table" style="width:100%;">
+            <thead>
+                <tr>
+                    <th width="5%"><% loc('ID') %></th>
+                    <th width="35%"><% loc('Name') %></th>
+                    <th width="35%"><% loc('Type') %></th>
+                    <th width="15%"><% loc('Location') %></th>
+                    <th width="10%"><% loc('Link') %></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </div>
 </div>
 
 <script type="text/javascript">
-	// Global variables (without "var").
+    // Global variables (without "var").
     idoit_url = '<% $IDoitURL %>';
 
-	api_url = '<% $IDoitAPI %>';
-	api_lang = '<% $Language %>';
-	api_user = '<% $IDoitUser %>';
-	api_password = '<% $IDoitPassword %>';
-	api_mandator = '<% $IDoitMandator %>';
+    api_url = '<% $IDoitAPI %>';
+    api_lang = '<% $Language %>';
+    api_user = '<% $IDoitUser %>';
+    api_password = '<% $IDoitPassword %>';
+    api_mandator = '<% $IDoitMandator %>';
 
-	show_custom_fields = <% $IDoitShowCustomFields %>;
+    show_custom_fields = <% $IDoitShowCustomFields %>;
 
-	browser_preselection_field = 'tr#<% $IDoitObjectsField %>';
-	browser_mandator_field = 'tr#<% $IDoitMandatorField %>';
+    browser_preselection_field = 'tr#<% $IDoitObjectsField %>';
+    browser_mandator_field = 'tr#<% $IDoitMandatorField %>';
 
-	preselection = [<% $IDoitObjects %>];
+    preselection = [<% $IDoitObjects %>];
 </script>
 
 <script type="text/javascript" src="<% RT->Config->Get('WebPath') %>/NoAuth/js/i-doit_object_browser.js"></script>
 
 <script type="text/javascript">
-	(function($) {
-		$(document).ready(function() {
-			browser_preselection_field = $(browser_preselection_field);
-			browser_mandator_field = $(browser_mandator_field);
+    (function($) {
+        $(document).ready(function() {
+            browser_preselection_field = $(browser_preselection_field);
+            browser_mandator_field = $(browser_mandator_field);
 
-			list = $('#i-doit-content table.object-table').dataTable({
-				"bJQueryUI": true,
-				"bAutoWidth": false,
-				"bPaginate": false,
-				"bLengthChange": false,
-				"bSort": false,
-				"oLanguage": datatable_lang
-			});
+            list = $('#i-doit-content table.object-table').dataTable({
+                "bJQueryUI": true,
+                "bAutoWidth": false,
+                "bPaginate": false,
+                "bLengthChange": false,
+                "bSort": false,
+                "oLanguage": datatable_lang
+            });
 
             if (isNaN(parseInt(api_mandator)) || api_mandator <= 0) {
                 window.error_notice('<% loc("Please select an i-doit mandator.") %>');
@@ -77,7 +78,9 @@
                             "language":api_lang,
                             "mandator":api_mandator},
                         "filter":{
-                            "ids":preselection}},
+                            "ids":preselection,
+                            "location": true
+                        }},
                     "id":"1",
                     "jsonrpc":"2.0"};
 
@@ -90,7 +93,7 @@
 
                             $.each(response.result, function(i, e) {
                                 var link = '<a href="' + idoit_url + '?objID=' + e.id + '" title="<% loc('Go to i-doit') %>" target="_blank">&raquo; i-doit</a>';
-                                entities.push([e.id, e.title, e.type_title, link]);
+                                entities.push([e.id, e.title, e.type_title, e.location, link]);
                             });
 
                             list.fnAddData(entities);
@@ -100,13 +103,13 @@
                     });
             }
 
-			// Hide custom fields:
-			if (show_custom_fields == 0) {
-				browser_preselection_field.hide();
-				browser_mandator_field.hide();
-			}
-		});
-	})(jQuery);
+            // Hide custom fields:
+            if (show_custom_fields == 0) {
+                browser_preselection_field.hide();
+                browser_mandator_field.hide();
+            }
+        });
+    })(jQuery);
 </script>
 
 <%INIT>

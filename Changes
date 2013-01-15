@@ -1,10 +1,13 @@
 Revision history for RT-Extension-ReferenceIDoitObjects
 
 0.92    - unreleased -
+        *   Object browser shows object location
         *   Implemented browser in "Jumbo update"
         *   Hide custom fields when modifying referenced objects
+        *   Fixed broken link in page menu for /Ticket/ModifyIDoitObjects.html after update
         *   Removed buggy unused code
         *   Updated to Module::Install 1.06 (thanks to Tatsuhiko Miyagawa)
+        *   Requires i-doit version 1.0.1 or higher
 
 0.91    Fri, 07 Sep 2012 14:02:49 +0200
         *   Removed deprecated Switch.pm (important for newer Perl versions; thanks to Matthias)

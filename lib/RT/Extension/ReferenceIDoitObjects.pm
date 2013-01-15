@@ -41,7 +41,7 @@ only implemented in the commercial branch>.
 =head1 INSTALLATION
 
 This extension requires RT 4.x or higher and a running installation of i-doit
-0.9.9-9 or higher.
+1.0.1 or higher.
 
 To install this extension, run the following commands:
 

@@ -112,7 +112,7 @@
      * @author  Leonard Fischer <lfischer@synetics.de>
      */
     $('#i-doit-objectbrowser select.object-type').change(function() {
-		window.display_loading();
+        window.display_loading();
         var data = {
             "method":"cmdb.objects",
             "params":{
@@ -122,14 +122,16 @@
                     "language":api_lang,
                     "mandator":api_mandator},
                 "filter":{
-                    "type":parseInt(this.value)},
+                    "type":parseInt(this.value),
+                    "location": true
+                },
                 "order_by":"title"},
             "id":"1",
             "jsonrpc":"2.0"};
 
         idoit_ajax(data, function(response) {
             if (response.error == null) {
-				window.remove_loading();
+                window.remove_loading();
                 // Clear the table from our old entries.
                 current_objectview_data = response.result;
                 window.render_objectview();
@@ -148,9 +150,10 @@
     $('input[name="i-doit-objectbrowser-obj[]"]').live('change', function() {
         if ($(this).attr('checked')) {
             var name = $(this).closest('tr').find('td:eq(2)').text(),
-                type = $('#i-doit-objectbrowser select.object-type option:selected').text();
+                type = $('#i-doit-objectbrowser select.object-type option:selected').text(),
+                location = $('#i-doit-objectbrowser select.location option:selected').text();
 
-            window.add_object($(this).val(), name, type);
+            window.add_object($(this).val(), name, type, location);
         } else {
             window.remove_object($(this).val());
         }
@@ -173,7 +176,7 @@
             var name = $(this).next().text(),
                 type = $(this).next().next().text();
 
-            window.add_object($(this).val(), name, type);
+            window.add_object($(this).val(), name, type, '');
         } else {
             window.remove_object($(this).val());
         }
@@ -283,7 +286,10 @@
 								"language":api_lang,
 								"mandator":api_mandator},
 							"filter":{
-								"ids":preselection}},
+								"ids":preselection,
+                                "location": true
+                            }
+                        },
 						"id":"1",
 						"jsonrpc":"2.0"};
 
@@ -293,7 +299,7 @@
                             window.remove_all_objects();
 
                             $.each(response.result, function(i, e) {
-                                window.add_object(e.id, e.title, e.type_title);
+                                window.add_object(e.id, e.title, e.type_title, e.location);
                             });
                         } else {
                             window.error_notice('<% loc("Error while loading pre-selecting objects") %>');
@@ -333,7 +339,7 @@
 		
         // We iterate through the first level (email-addresses).
         $.each(current_treeview_data, function(i, e) {
-            workplaces.append('<a href="' + idoit_url + '?objID=' + i + '" target="_blank" style="font-weight:bold;">' + e.data.title + ' &lt;' + e.data.email + '&gt;</a><br />');
+            workplaces.append('<a href="' + idoit_url + '?objID=' + i + '" target="_blank" title="<% loc("Go to i-doit") %>" style="font-weight:bold;">' + e.data.title + ' &lt;' + e.data.email + '&gt;</a><br />');
 
 			if (e.children != false) {
 				window.render_treeview_recursion(e.children, 1);
@@ -359,7 +365,7 @@
 			}
 
 			var output = '<div><input type="checkbox" value="' + i + '" name="i-doit-treebrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' style="margin-left:' + (level * 20) + 'px;"> ' +
-                '<span class="obj-name"><a href="' + idoit_url + '?objID=' + i + '" target="_blank">' + e.data.title + '</a></span>' +
+                '<span class="obj-name"><a href="' + idoit_url + '?objID=' + i + '" target="_blank" title="<% loc("Go to i-doit") %>">' + e.data.title + '</a></span>' +
 				' (<span class="obj-type">' + e.data.type_title + '</span>) &raquo; ' +
                 '<span class="relation-button"><% loc("show installed software") %></span></div>';
 
@@ -450,7 +456,7 @@
             check = '<input type="checkbox" value="' + e.id + '" name="i-doit-objectbrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' />';
             link = '<a href="' + idoit_url + '?objID=' + e.id + '" target="_blank" title="<% loc('Go to i-doit') %>">&raquo; i-doit</a>';
 
-            entities.push([check, e.id, e.title, link]);
+            entities.push([check, e.id, e.title, e.location, link]);
         });
 
         objectview_table.fnAddData(entities);
@@ -496,8 +502,8 @@
      * @param   integer  type  The object-type.
      * @author  Leonard Fischer <lfischer@synetics.de>
      */
-    window.add_object = function(id, name, type) {
-        $('#data-store').data(id, {"name": name, "type": type});
+    window.add_object = function(id, name, type, location) {
+        $('#data-store').data(id, {"name": name, "type": type, "location": location});
 
         window.render_selected_items();
 
@@ -521,7 +527,7 @@
         $.each(data, function(i, e) {
             var link = '<a href="' + idoit_url + '?objID=' + i + '" title="<% loc('Go to i-doit') %>">&raquo; i-doit</a>';
 
-            entities.push(['<span class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')"><% loc("Delete") %></span>', i, e.name, e.type, link]);
+            entities.push(['<span class="i-doit-objectbrowser-remover" onclick="window.remove_object(' + i + ')"><% loc("Delete") %></span>', i, e.name, e.type, e.location, link]);
             data_array.push(i);
         });
 

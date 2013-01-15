@@ -30,7 +30,8 @@
                     <tr>
                         <th width="5%" style="text-align: left;"><input type="checkbox" id="check_all_objects" name="check_all_objects"></th>
                         <th width="15%"><% loc('ID') %></th>
-                        <th width="70%"><% loc('Name') %></th>
+                        <th width="50%"><% loc('Name') %></th>
+                        <th width="25%"><% loc('Location') %></th>
                         <th width="10%"><% loc('Link') %></th>
                     </tr>
                 </thead>
@@ -47,9 +48,10 @@
                 <thead>
                     <tr>
                         <th width="10%" style="text-align: left;"><a href="javascript:window.remove_all_objects();"><% loc('Delete') %></a></th>
-                        <th width="10%"><% loc('ID') %></th>
-                        <th width="40%"><% loc('Name') %></th>
+                        <th width="5%"><% loc('ID') %></th>
+                        <th width="30%"><% loc('Name') %></th>
                         <th width="30%"><% loc('Type') %></th>
+                        <th width="15%"><% loc('Location') %></th>
                         <th width="10%"><% loc('Link') %></th>
                     </tr>
                 </thead>
