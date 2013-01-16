@@ -6,7 +6,7 @@ Revision history for RT-Extension-ReferenceIDoitObjects
         *   Hide custom fields when modifying referenced objects
         *   Fixed broken link in page menu for /Ticket/ModifyIDoitObjects.html after update
         *   Removed buggy unused code
-        *   Improves code documentation
+        *   Improved code documentation
         *   Updated to Module::Install 1.06 (thanks to Tatsuhiko Miyagawa)
         *   Requires i-doit version 1.0.1 or higher
 

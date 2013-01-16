@@ -1,11 +1,12 @@
 TODO for RT-Extension-ReferenceIDoitObjects
 
+*   [Bug] Switch to new i-doit API (with auth token etc.).
 *   [Feature] Integrate cross-site HTTP requests and make API proxy absolete.
 *   [Feature] Implement various tree views, e. g. physical location.
 *   [Feature] Make field for email addresses configurable (currently only
     'Requestors').
 *   [Feature] Add new tab to search for i-doit objects.
-*   [Feature] Abtract from custom field names and put them into the lib.
+*   [Feature] Abstract from custom field names and put them into the lib.
 *   [Bug (unconfirmed)] no JavaScript/jQuery map() support in IE < 9;
     workaround:
     <https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/map>
