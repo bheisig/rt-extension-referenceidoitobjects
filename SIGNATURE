@@ -14,7 +14,7 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 5687284dab0c853b6ee8a85ca9724cbbcdce03c0 Changes
+SHA1 8577f0c1d1507e52f5c8e9166e5da241b94e205a Changes
 SHA1 50334a73c918d80ad88264dba24efd7185fe83ec MANIFEST
 SHA1 30732a5045c730baf75d689f6ffbce7669da7da6 MANIFEST.SKIP
 SHA1 25bc9212b421d131d61d7f8e4bf133ae9e1eb307 META.yml
@@ -30,13 +30,13 @@ SHA1 480ad3b74dd93bc420497555fd0d7079dbb55a04 html/Callbacks/ReferenceIdoitObjec
 SHA1 c71887d1107cdcfc9c83487d0ec0e70f32993c81 html/Callbacks/ReferenceIdoitObjects/Ticket/Elements/ShowSummary/LeftColumn
 SHA1 db1dbde793e20055f07087728016ab369af4f74d html/Callbacks/ReferenceIdoitObjects/Ticket/ModifyAll.html/AfterBasics
 SHA1 6d6e156fbd1911d29d33b5c3c0d9ca37b187a4a7 html/Elements/SelectIDoitObjects
-SHA1 383d20604a1111d3e244a854ee53e9731c755755 html/Elements/ShowIDoitObjects
+SHA1 62ec579394c52b0b54579ecd7c3c17ba60beaf06 html/Elements/ShowIDoitObjects
 SHA1 faf56d314fefe40211b3db8fb305dedec3861bab html/NoAuth/css/demo_table.css
 SHA1 63c5b31231d04e9ec86200d05b4525c76535d4a4 html/NoAuth/css/demo_table_jui.css
 SHA1 d1ca3bb3874b847f323100f2ad790ecbb90ec646 html/NoAuth/css/i-doit_object_browser.css
 SHA1 21117f74c1256a9045626a08027068ea0e930842 html/NoAuth/images/i-doit.png
 SHA1 658230fb99283dae82b6bb3a70f1007ed8ed6f23 html/NoAuth/js/i-doit_ie_fix.js
-SHA1 46c736849f385ebfa92dca8951622caa6c63d621 html/NoAuth/js/i-doit_object_browser.js
+SHA1 2863344d06bdbc349c31cbdf67f530c9a46b2ba4 html/NoAuth/js/i-doit_object_browser.js
 SHA1 6f6c12b01532eeebefde965a5fa832a9d441122c html/NoAuth/js/jquery.dataTables.min.js
 SHA1 2e9f9445ac8e4abbae95fe092f9212810484872c html/Ticket/Elements/EditIDoitObjects
 SHA1 370b4e858d38606a6298c3aa26a92f03123959a3 html/Ticket/Elements/ShowIDoitObjects
@@ -87,7 +87,7 @@ SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAlD1cvkACgkQWFkxZRfLwXKvsgCgiaon7uNF5voZ1abf8ZJ0StGz
-qncAoJxy1kHOzAypsVr5vn8XuZ13X5ew
-=PKoY
+iEYEARECAAYFAlD2eHAACgkQWFkxZRfLwXI/ugCfZYRU/p9MXAgYuWKJcrHLO+hm
+a/MAoM/NbCdRjIFEWO4m5WoG7EIy9cjO
+=Pzs+
 -----END PGP SIGNATURE-----
