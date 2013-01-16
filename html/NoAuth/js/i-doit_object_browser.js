@@ -166,7 +166,7 @@
             var name = $(this).next().text(),
                 type = $(this).next().next().text();
 
-            window.add_object($(this).val(), name, type, '<% loc("unkown") %>');
+            window.add_object($(this).val(), name, type, '<% loc("Unkown") %>');
         } else {
             window.remove_object($(this).val());
         }
