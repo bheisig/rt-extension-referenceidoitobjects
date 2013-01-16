@@ -36,7 +36,7 @@ SHA1 63c5b31231d04e9ec86200d05b4525c76535d4a4 html/NoAuth/css/demo_table_jui.css
 SHA1 d1ca3bb3874b847f323100f2ad790ecbb90ec646 html/NoAuth/css/i-doit_object_browser.css
 SHA1 21117f74c1256a9045626a08027068ea0e930842 html/NoAuth/images/i-doit.png
 SHA1 658230fb99283dae82b6bb3a70f1007ed8ed6f23 html/NoAuth/js/i-doit_ie_fix.js
-SHA1 48f26f5b44e5f5e16964907cc2fa93e11ddbbc51 html/NoAuth/js/i-doit_object_browser.js
+SHA1 9d63dda055e39fab28313583d766df76af81ee69 html/NoAuth/js/i-doit_object_browser.js
 SHA1 6f6c12b01532eeebefde965a5fa832a9d441122c html/NoAuth/js/jquery.dataTables.min.js
 SHA1 2e9f9445ac8e4abbae95fe092f9212810484872c html/Ticket/Elements/EditIDoitObjects
 SHA1 370b4e858d38606a6298c3aa26a92f03123959a3 html/Ticket/Elements/ShowIDoitObjects
@@ -87,7 +87,7 @@ SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAlD2ewAACgkQWFkxZRfLwXLcRACgmf3Uu4GE0zq2tr3/rsE26gKE
-3mgAoM0qh9zn7iYT11pdvo1MqqWEanRc
-=u2bm
+iEYEARECAAYFAlD2iCoACgkQWFkxZRfLwXIp5wCgkTYw4Rle85mIgeWaZv3ISZkB
+n4cAoIjnUxgi+YlF1a06kqvFIVRIduyP
+=2Kbe
 -----END PGP SIGNATURE-----
