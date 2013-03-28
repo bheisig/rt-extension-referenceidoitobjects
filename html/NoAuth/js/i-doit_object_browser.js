@@ -335,8 +335,8 @@
 
             var output = '<div><input type="checkbox" value="' + i + '" name="i-doit-treebrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' style="margin-left:' + (level * 20) + 'px;"> ' +
                 '<span class="obj-name"><a href="' + idoit_url + '?objID=' + i + '" target="_blank" title="<% loc("Go to i-doit") %>">' + e.data.title + '</a></span>' +
-                ' (<span class="obj-type">' + e.data.type_title + '</span>) &raquo; ' +
-                '<span class="relation-button"><% loc("show installed software") %></span></div>';
+                ' (<span class="obj-type">' + e.data.type_title + '</span>) ' +
+                '<span class="relation-button">+</span></div>';
 
             $('#tab-treeview div.workplaces').append(output);
 
