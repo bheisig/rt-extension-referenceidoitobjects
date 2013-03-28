@@ -433,9 +433,8 @@
     window.render_location_tree = function(location_tree) {
         if (location_tree.length > 0) {
             // Trim location tree:
-            if (location_tree.length > 2) {
-                location_tree = location_tree.slice(-2)
-                location_tree.unshift('&hellip;');
+            if (location_tree.length > 3) {
+                location_tree = [location_tree[0], '&hellip;', location_tree.slice(-1)];
             }
             
             return location_tree.join(' &raquo; ');
