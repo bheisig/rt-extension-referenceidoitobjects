@@ -407,7 +407,7 @@
         var input = $(this).parent().find('input.treeCheckBox');
 
         if (input && $(this).attr('checked')) {
-            input.attr('checked', 'checked');
+            input.attr('checked', 'checked').change();
         }
     });
 
