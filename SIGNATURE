@@ -14,7 +14,7 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 52076d12d9047194c6ca479960e836ce0b982d5d Changes
+SHA1 b9413274e4da36a5e2ee84aacd490c1c01bd4b19 Changes
 SHA1 50334a73c918d80ad88264dba24efd7185fe83ec MANIFEST
 SHA1 30732a5045c730baf75d689f6ffbce7669da7da6 MANIFEST.SKIP
 SHA1 25bc9212b421d131d61d7f8e4bf133ae9e1eb307 META.yml
@@ -36,7 +36,7 @@ SHA1 63c5b31231d04e9ec86200d05b4525c76535d4a4 html/NoAuth/css/demo_table_jui.css
 SHA1 d1ca3bb3874b847f323100f2ad790ecbb90ec646 html/NoAuth/css/i-doit_object_browser.css
 SHA1 21117f74c1256a9045626a08027068ea0e930842 html/NoAuth/images/i-doit.png
 SHA1 658230fb99283dae82b6bb3a70f1007ed8ed6f23 html/NoAuth/js/i-doit_ie_fix.js
-SHA1 9d63dda055e39fab28313583d766df76af81ee69 html/NoAuth/js/i-doit_object_browser.js
+SHA1 00554d10dfd84f4d5f2c3aa3c48212475d284b15 html/NoAuth/js/i-doit_object_browser.js
 SHA1 6f6c12b01532eeebefde965a5fa832a9d441122c html/NoAuth/js/jquery.dataTables.min.js
 SHA1 2e9f9445ac8e4abbae95fe092f9212810484872c html/Ticket/Elements/EditIDoitObjects
 SHA1 370b4e858d38606a6298c3aa26a92f03123959a3 html/Ticket/Elements/ShowIDoitObjects
@@ -79,7 +79,7 @@ SHA1 3ef36786817df816cca65bcae5e987591512aeeb inc/Module/Install/Win32.pm
 SHA1 1349967ec3cd8c41a7717750ae23ede9824a2f39 inc/Module/Install/With.pm
 SHA1 b7fc200ced09546b337e460a29379e4bd6927ca2 inc/Module/Install/WriteAll.pm
 SHA1 168a04e5e19f118353b582e11f5f225f6011cab2 lib/RT/Extension/ReferenceIDoitObjects.pm
-SHA1 1be327f829dedc21b2a47a074bc61b18a7e6ccfd po/de.po
+SHA1 b29af03a6649ef70e135ba6d7d8dc6125fee1444 po/de.po
 SHA1 3987a51914e4ffa806ad31ce27fedd752468e3bf t/00-load.t
 SHA1 f7be47a0678c02f3c2a037ee4095907442a245c7 t/boilerplate.t
 SHA1 0b1c5a2d59be6bfa7d60c64cd964fea6a0331705 t/pod-coverage.t
@@ -87,7 +87,7 @@ SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAlD2iCoACgkQWFkxZRfLwXIp5wCgkTYw4Rle85mIgeWaZv3ISZkB
-n4cAoIjnUxgi+YlF1a06kqvFIVRIduyP
-=2Kbe
+iEYEARECAAYFAlGx0RYACgkQWFkxZRfLwXLK5ACgnjuLo0XWYXrWppWyD0lvMnES
+g/cAmgMFcq83FbD9XmQ4SZdSkTXBI0rF
+=m5rK
 -----END PGP SIGNATURE-----
