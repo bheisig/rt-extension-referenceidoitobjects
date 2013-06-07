@@ -4,6 +4,7 @@ Revision history for RT-Extension-ReferenceIDoitObjects
         *   Object browser shows object location
         *   Implemented browser in "Jumbo update"
         *   Hide custom fields when modifying referenced objects
+        *   Tree view: mark booth hard- and software if software is marked
         *   Fixed broken link in page menu for /Ticket/ModifyIDoitObjects.html after update
         *   Removed buggy unused code
         *   Improved code documentation

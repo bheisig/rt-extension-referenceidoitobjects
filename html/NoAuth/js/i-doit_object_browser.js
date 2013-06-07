@@ -333,10 +333,10 @@
                 selected = true;
             }
 
-            var output = '<div><input type="checkbox" value="' + i + '" name="i-doit-treebrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' style="margin-left:' + (level * 20) + 'px;"> ' +
+            var output = '<div><input type="checkbox" value="' + i + '" name="i-doit-treebrowser-obj[]" ' + ((selected) ? 'checked="checked"' : '') + ' style="margin-left:' + (level * 20) + 'px;" class="treeCheckBox"> ' +
                 '<span class="obj-name"><a href="' + idoit_url + '?objID=' + i + '" target="_blank" title="<% loc("Go to i-doit") %>">' + e.data.title + '</a></span>' +
                 ' (<span class="obj-type">' + e.data.type_title + '</span>) ' +
-                '<span class="relation-button">+</span></div>';
+                '<span class="relation-button" title="<% loc("Expand menu tree") %>">+</span></div>';
 
             $('#tab-treeview div.workplaces').append(output);
 
@@ -384,7 +384,7 @@
                     div.append(
                         '<br /><input type="checkbox" style="margin-left:' +
                         (span + 20) +'px;" value="' + e.data.id +
-                        '" name="i-doit-treebrowser-obj[]" ' +
+                        '" name="i-doit-treebrowser-obj[]" class="softwareCheckBox" ' +
                         ((selected) ? 'checked="checked"' : '') + '/> ' + 
                         '<span class="obj-name"><a href="' + idoit_url +
                         '?objID=' + e.data.id +
@@ -398,6 +398,17 @@
               window.error_notice('<% loc("Error while loading relation objects") %>');
             }
         }, true);
+    });
+
+    /**
+     * This events listens to clicks on installed software items in the tree view and marks their parent item (non-software) as checked.
+     */
+    $('input.softwareCheckBox').live('click', function () {
+        var input = $(this).parent().find('input.treeCheckBox');
+
+        if (input && $(this).attr('checked')) {
+            input.attr('checked', 'checked');
+        }
     });
 
     /**

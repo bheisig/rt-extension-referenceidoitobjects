@@ -111,3 +111,6 @@ msgstr "Es ist kein Klient ausgewählt."
 
 msgid "Unknown"
 msgstr "Unbekannt"
+
+msgid "Expand menu tree"
+msgstr "Menübaum ausklappen"
