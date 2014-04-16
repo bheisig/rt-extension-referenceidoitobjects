@@ -1,24 +1,35 @@
 %# RT::Extension::ReferenceIDoitObjects
 %#
-%# Copyright 2011-12 synetics GmbH, http://i-doit.org/
+%# Copyright (C) 2011-14 synetics GmbH, http://i-doit.org/
 %#
 %# This program is free software; you can redistribute it and/or modify it under
 %# the same terms as Perl itself.
 %#
 %# Request Tracker (RT) is Copyright Best Practical Solutions, LLC.
 
-.css_right {float:right;}
+#idoitNotice {
+    background: #FFEDB5;
+    border: 1px solid #FFD12D;
+    color: #C19C22;
+    padding: 3px;
+}
 
-#i-doit-browser-notice {background:#FFEDB5; border:1px solid #FFD12D; color:#C19C22; padding:3px;}
-
-.i-doit-objectbrowser-remover {color:#f00;}
+.idoitObjectBrowserRemover {
+    color: #f000000;
+}
 
 span.relation-button,
-#requestor-reload,
-.i-doit-objectbrowser-remover {cursor:pointer}
+#idoitCustomerReload,
+.idoitObjectBrowserRemover {
+    cursor: pointer
+}
 
 span.relation-button:hover,
-#requestor-reload:hover,
-.i-doit-objectbrowser-remover:hover {text-decoration:underline;}
+#idoitCustomerReload:hover,
+.idoitObjectBrowserRemover:hover {
+    text-decoration: underline;
+}
 
-div.workplaces {position:relative;}
+div.workplaces {
+    position: relative;
+}

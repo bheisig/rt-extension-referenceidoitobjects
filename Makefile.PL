@@ -7,7 +7,7 @@ license 'perl';
 readme_from;
 repository 'https://github.com/bheisig/rt-extension-referenceidoitobjects';
 
-requires_rt('4.0.0');
+requires_rt('4.2.0');
 auto_install();
 
 sign;

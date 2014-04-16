@@ -1,6 +1,6 @@
 %# RT::Extension::ReferenceIDoitObjects
 %#
-%# Copyright 2011-12 synetics GmbH, http://i-doit.org/
+%# Copyright (C) 2011-14 synetics GmbH, http://i-doit.org/
 %#
 %# This program is free software; you can redistribute it and/or modify it under
 %# the same terms as Perl itself.
@@ -33,8 +33,7 @@
 
     api_url = '<% $IDoitAPI %>';
     api_lang = '<% $Language %>';
-    api_user = '<% $IDoitUser %>';
-    api_password = '<% $IDoitPassword %>';
+    api_key = '<% $IDoitKey %>';
     api_mandator = '<% $IDoitMandator %>';
 
     show_custom_fields = <% $IDoitShowCustomFields %>;
@@ -45,7 +44,7 @@
     preselection = [<% $IDoitObjects %>];
 </script>
 
-<script type="text/javascript" src="<% RT->Config->Get('WebPath') %>/NoAuth/js/i-doit_object_browser.js"></script>
+<script type="text/javascript" src="<% RT->Config->Get('WebPath') %>/NoAuth/js/ReferenceIDoitObjects.js"></script>
 
 <script type="text/javascript">
     (function($) {
@@ -73,10 +72,9 @@
                     "method":"cmdb.objects",
                     "params":{
                         "session":{
-                            "username":api_user,
-                            "password":api_password,
                             "language":api_lang,
                             "mandator":api_mandator},
+                        "apikey":api_key,
                         "filter":{
                             "ids":preselection,
                             "location": true
@@ -129,17 +127,9 @@ unless($IDoitAPI) {
     push @{$results}, $msg;
 }
 
-$IDoitUser = RT->Config->Get('IDoitUser');
-unless($IDoitUser) {
-    my $msg = loc("User for i-doit's API is not configured.");
-    RT::Logger->error($msg);
-    $$skip_create = 1;
-    push @{$results}, $msg;
-}
-
-$IDoitPassword = RT->Config->Get('IDoitPassword');
-unless($IDoitPassword) {
-    my $msg = loc("Password for i-doit's API is not configured.");
+$IDoitKey = RT->Config->Get('IDoitKey');
+unless($IDoitKey) {
+    my $msg = loc("Key for i-doit's API is not configured.");
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
@@ -176,7 +166,7 @@ my @IDoitObjects;
 while (my $IDoitObjectValue = $IDoitObjectValues->Next) {
   push(@IDoitObjects, $IDoitObjectValue->Content);
 }
- 
+
 $IDoitObjects = join(', ', @IDoitObjects);
 
 $cf = RT::CustomField->new($RT::SystemUser);
@@ -210,8 +200,7 @@ $Language => undef
 
 $IDoitURL => undef
 $IDoitAPI => undef
-$IDoitUser => undef
-$IDoitPassword => undef
+$IDoitKey => undef
 $IDoitMandator => undef
 $IDoitMandatorField => undef
 $IDoitObjects => undef

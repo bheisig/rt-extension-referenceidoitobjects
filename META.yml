@@ -3,7 +3,7 @@ meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: RT-Extension-ReferenceIDoitObjects
-version: 0.92
+version: 0.93
 abstract: 'Create a ticket in relation to one or more i-doit objects'
 author:
   - 'Benjamin Heisig <bheisig@synetics.de>'
@@ -12,7 +12,7 @@ license: perl
 distribution_type: module
 requires:
   perl: 5.10.0
-  rt: 4.0.0
+  rt: 4.2.0
 build_requires:
   ExtUtils::MakeMaker: 6.42
 configure_requires:
