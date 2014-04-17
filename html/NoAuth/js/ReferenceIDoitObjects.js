@@ -201,8 +201,14 @@ ReferenceIDoitObjects = function (params) {
 
         that.showNotice(params.l10n['Loading...']);
 
+        // Initialize the data object.
+        that.dataStore.data();
+
         that.callIDoit(data, function (response) {
             if (response !== null && response.error === undefined) {
+                // Initialize the tabs.
+                that.content.tabs({selected: params.defaultView});
+
                 // Check whether the preselection field is filled out.
                 that.loadPreselectedData();
 
@@ -339,8 +345,14 @@ ReferenceIDoitObjects = function (params) {
      */
     this.changeMandator = function () {
         that.removeAllObjects();
+
         that.mandatorID = parseInt(that.mandator.val(), 10);
-        that.init();
+
+        if (isNaN(that.mandatorID) || that.mandatorID <= 0) {
+            that.showNotice(params.l10n['Please select an i-doit mandator.']);
+        } else {
+            that.init();
+        }
     };
 
     /**
@@ -482,7 +494,7 @@ ReferenceIDoitObjects = function (params) {
 
         that.renderSelectedObjects();
 
-        // Instead of rendering the tables new, we can to something like this:
+        // Instead of re-rendering the tables this is faster:
         $('input[name="idoitObjectBrowserObj[]"][value="' + id + '"]').attr('checked', 'checked');
         $('input[name="idoitWorkplacesObject[]"][value="' + id + '"]').attr('checked', 'checked');
     };
@@ -517,7 +529,17 @@ ReferenceIDoitObjects = function (params) {
 
         that.selectedObjectsTable.fnAddData(entities);
 
-        that.objects.val(',' + data.join(',') + ',');
+        switch (params.type) {
+            case 'otrs':
+                // This DynamicField is an input text with a comma-separated list if object
+                // idenfiers:
+                that.objects.val(',' + data.join(',') + ',');
+                break;
+            case 'rt':
+                // This CustomField is a textarea with one object identifer per line:
+                that.objects.val(data.join("\n"));
+                break;
+        }
     };
 
     /**
@@ -533,7 +555,17 @@ ReferenceIDoitObjects = function (params) {
             data = {};
 
         if (typeof preselection !== 'undefined') {
-            preselection = preselection.replace(/^,/, '').replace(/,$/, '').split(",");
+            switch (params.type) {
+                case 'otrs':
+                    // This DynamicField is an input text with a comma-separated list if object
+                    // idenfiers:
+                    preselection = preselection.replace(/^,/, '').replace(/,$/, '').split(",");
+                    break;
+                case 'rt':
+                    // This CustomField is a textarea with one object identifer per line:
+                    preselection = preselection.split("\n");
+                    break;
+            }
 
             if (preselection !== '') {
                 preselection = preselection.map(function (i) {
@@ -588,8 +620,7 @@ ReferenceIDoitObjects = function (params) {
         data.jsonrpc = '2.0';
 
         data.params.session = {
-            "language": params.language,
-            "mandator": that.mandatorID
+            "language": params.language
         };
 
         data.params.apikey = params.key;
@@ -1041,14 +1072,9 @@ ReferenceIDoitObjects = function (params) {
      * Initializes the object browser or displays error.
      */
     if (isNaN(that.mandatorID) || that.mandatorID <= 0) {
-        that.showNotice(params.l10n['Please select an i-doit mandator.']);
+        that.mandator.val(params.defaultMandator);
+        that.mandator.change();
     } else {
-        // Initialize the data object.
-        that.dataStore.data();
-
-        // Initialize the tabs.
-        that.content.tabs({selected: params.defaultView});
-
         // Initialize the browser.
         that.init();
     }

@@ -8,22 +8,7 @@
 %# Request Tracker (RT) is Copyright Best Practical Solutions, LLC.
 
 <&| /Widgets/TitleBox, title => loc('Referenced i-doit objects'), class => 'ticket-info-basics' &>
-    <& /Ticket/Elements/EditIDoitObjects,
-        InTable => 1,
-        fields  => [
-            {
-                name => 'IDoitObject',
-                comp => '/Ticket/Elements/ShowIDoitObjects',
-                args => {
-                    Name => 'IDoitObjectBrowser',
-                    Default => $ARGS{IDoitObjectBrowser},
-                    DefaultValue => 0,
-                    SkipDeleted => 1,
-                    QueueObj => $QueueObj,
-                }
-            }
-        ]
-    &>
+    <& /Ticket/Elements/EditIDoitObjects &>
 </&>
 
 <%INIT>
