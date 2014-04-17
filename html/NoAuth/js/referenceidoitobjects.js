@@ -8,9 +8,13 @@
  * @license http://www.gnu.org/licenses/agpl.txt AGPL
  */
 
+/** @module org/idoit/referenceidoitobjects */
+
 /**
  * Create a ticket in relation to one or more i-doit objects.
- * @param object params Options
+ *
+ * @class
+ * @param {object} params - Options
  */
 ReferenceIDoitObjects = function (params) {
 
@@ -18,85 +22,99 @@ ReferenceIDoitObjects = function (params) {
 
     /**
      * Selected objects (as jQuery object)
-     * @type object
+     *
+     * @type {object}
      */
     this.objects = $(params.objects);
 
     /**
      * Selected comma-separated list of customers (as jQuery object)
-     * @type object
+     *
+     * @type {object}
      */
     this.customers = $(params.customers);
 
     /**
      * Selected mandator (as jQuery object)
-     * @type object
+     *
+     * @type {object}
      */
     this.mandator = $(params.mandator);
 
     /**
      * Selected mandator identifier
-     * @type int
+     *
+     * @type {int}
      */
     this.mandatorID = parseInt(this.mandator.val(), 10);
 
     /**
      * Ticket title (subject)
-     * @type string
+     *
+     * @type {string}
      */
     this.ticketTitle = $(params.ticket.title).val();
 
     /**
      * Raw data for the view of all objects
-     * @type object
+     *
+     * @type {object}
      */
     this.objectsData = {};
 
     /**
      * Raw data for the view of workplaces
-     * @type object
+     *
+     * @type {object}
      */
     this.workplacesData = {};
 
     /**
      * Raw data for the view of linked devices
-     * @type object
+     *
+     * @type {object}
      */
     this.devicesViewData = {};
 
     /**
      * Is the browser initialized?
-     * @type bool Defaults to false.
+     *
+     * @type {bool} - Defaults to false.
      */
     this.initialized = false;
 
     /**
      * Data store (as jQuery object)
-     * @type object
+     *
+     * @type {object}
      */
     this.dataStore = $('#dataStore');
 
     /**
      * Content div (as jQuery object)
-     * @type object
+     *
+     * @type {object}
      */
     this.content = $('#idoitObjectBrowserContent');
 
     /**
      * Notice div (as jQuery object)
-     * @type object
+     *
+     * @type {object}
      */
     this.notice = $('#idoitNotice');
 
     /**
      * Object type selector (as jQuery object)
-     * @type object
+     *
+     * @type {object}
      */
     this.objectTypeSelector = $('#idoitObjectTypeSelector');
 
     /**
      * Loading sign (as jQuery object)
-     * @type object
+     *
+     * @type {object}
      */
     this.loadingSign = $('#idoitLoadingSign');
 
@@ -104,7 +122,8 @@ ReferenceIDoitObjects = function (params) {
 
     /**
      * l10n for jQuery plugin data table
-     * @type object
+     *
+     * @type {object}
      */
     this.dataTableL10N = {
         "sProcessing": params.l10n['Loading...'],
@@ -126,7 +145,8 @@ ReferenceIDoitObjects = function (params) {
 
     /**
      * Table for objects (as data table)
-     * @type object
+     *
+     * @type {object}
      */
     this.objectTable = $('#idoitAllObjectsTable').dataTable({
         "bJQueryUI": true,
@@ -139,7 +159,8 @@ ReferenceIDoitObjects = function (params) {
 
     /**
      * Table for selected objects (as data table)
-     * @type object
+     *
+     * @type {object}
      */
     this.selectedObjectsTable = $('#idoitSelectedObjectsTable').dataTable({
         "bJQueryUI": true,
@@ -152,7 +173,8 @@ ReferenceIDoitObjects = function (params) {
 
     /**
      * Table for linked devices (as data table)
-     * @type object
+     *
+     * @type {object}
      */
     this.devicesTable = $('#idoitDevicesTable').dataTable({
         "bJQueryUI": true,
@@ -165,7 +187,8 @@ ReferenceIDoitObjects = function (params) {
 
     /**
      * Table for installed applications (as data table)
-     * @type object
+     *
+     * @type {object}
      */
     this.installedApplicationTable = $('#idoitInstalledSoftwareTable').dataTable({
         "bJQueryUI": true,
@@ -392,8 +415,8 @@ ReferenceIDoitObjects = function (params) {
     /**
      * Renews sub trees for the view of workplaces recursively.
      *
-     * @param array data The data from the parents "children" array
-     * @param int level Identify how "deep" we are inside recursion and display it with
+     * @param {array} data - Data from the parents' "children" array
+     * @param {int} level - Identify how "deep" we are inside recursion and display it with
      * "level * 20px" margin.
      */
     this.renderSubTree = function (data, level) {
@@ -452,7 +475,7 @@ ReferenceIDoitObjects = function (params) {
     /**
      * Removes an object from the selected data.
      *
-     * @param int id The object id to remove from our selection.
+     * @param {int} id - Object identifier
      */
     this.removeObject = function (id) {
         that.dataStore.removeData(id);
@@ -480,9 +503,9 @@ ReferenceIDoitObjects = function (params) {
     /**
      * Adds object to the selected data.
      *
-     * @param int id Object ID
-     * @param string name Object title
-     * @param int type Object type
+     * @param {int} id - Object identifier
+     * @param {string} name - Object title
+     * @param {int} type - Object type
      */
     this.addObject = function (id, name, type) {
         if (typeof that.dataStore.data(id) !== 'undefined') {
@@ -547,6 +570,8 @@ ReferenceIDoitObjects = function (params) {
      *
      * An AJAX request will be sent to i-doit to add a new logbook entry for new selected objects or
      * removed previous ones.
+     *
+     * @param {bool} edit - Was the ticket edited? Otherwise it's created.
      */
     this.logChangedObjects = function (edit) {
         var preselection = that.objects.val(),
@@ -610,9 +635,9 @@ ReferenceIDoitObjects = function (params) {
     /**
      * Sends an AJAX request to i-doit.
      *
-     * @param object data Options in JSON format
-     * @param callback callback Callback fired after a successful requests
-     * @param bool async Send request asyncronously?
+     * @param {object} data - Options in JSON format
+     * @param {callback} callback - Callback fired after a successful requests
+     * @param {bool} async - Send request asyncronously?
      */
     this.callIDoit = function (data, callback, async) {
         data.id = '1';
@@ -639,7 +664,7 @@ ReferenceIDoitObjects = function (params) {
     /**
      * Displays a message.
      *
-     * @param string msg Message
+     * @param {string} msg - Message
      */
     this.showNotice = function (msg) {
         that.notice.html(msg).fadeIn(500);
@@ -751,10 +776,10 @@ ReferenceIDoitObjects = function (params) {
     /**
      * Renders the table for installed applications for a specific object.
      *
-     * @param int ident Object ID
-     * @param string assigned_title Object title
+     * @param {int} ident - Object identifier
+     * @param {string} linkedTitle - Object title
      */
-    this.renderInstalledApplicationTable = function (ident, assigned_title) {
+    this.renderInstalledApplicationTable = function (ident, linkedTitle) {
         var data = {};
 
         that.installedApplicationTable.fnClearTable();
@@ -764,7 +789,7 @@ ReferenceIDoitObjects = function (params) {
             return;
         }
 
-        $('#idoitInstalledSoftwareInfo span').html(assigned_title);
+        $('#idoitInstalledSoftwareInfo span').html(linkedTitle);
 
         if (params.installedSoftware === 'objects') {
             data = {
@@ -855,6 +880,8 @@ ReferenceIDoitObjects = function (params) {
 
     /**
      * Stores the added IDs from the object view.
+     *
+     * @param {object} ele - Element
      */
     this.checkCHKB = function (ele) {
         var name,
@@ -1045,9 +1072,8 @@ ReferenceIDoitObjects = function (params) {
         }
     });
 
-
     /**
-     * Reloads pre-selection. This will be fired if pre-selection field is beeing changed.
+     * Reloads pre-selection. This will be fired if pre-selection field is being changed.
      */
     that.objects.change(function () {
         if (that.initialized) {
@@ -1055,6 +1081,9 @@ ReferenceIDoitObjects = function (params) {
         }
     });
 
+    /**
+     * Saves ticket subject. This will be fired if subject field is being changed.
+     */
     $(params.ticket.title).change(function () {
         that.ticketTitle = $(params.ticket.title).val();
     });
@@ -1069,13 +1098,12 @@ ReferenceIDoitObjects = function (params) {
     });
 
     /**
-     * Initializes the object browser or displays error.
+     * Initializes the object browser or displays a message.
      */
     if (isNaN(that.mandatorID) || that.mandatorID <= 0) {
         that.mandator.val(params.defaultMandator);
         that.mandator.change();
     } else {
-        // Initialize the browser.
         that.init();
     }
 
