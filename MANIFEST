@@ -12,10 +12,10 @@ html/Elements/ShowIDoitObjects
 html/NoAuth/css/demo_table.css
 html/NoAuth/css/demo_table_jui.css
 html/NoAuth/css/i-doit_object_browser.css
-html/NoAuth/images/i-doit.png
+html/NoAuth/images/ui-anim_basic_16x16.gif
 html/NoAuth/js/i-doit_ie_fix.js
-html/NoAuth/js/i-doit_object_browser.js
 html/NoAuth/js/jquery.dataTables.min.js
+html/NoAuth/js/referenceidoitobjects.js
 html/Ticket/Elements/EditIDoitObjects
 html/Ticket/Elements/ShowIDoitObjects
 html/Ticket/ModifyIDoitObjects.html
@@ -64,6 +64,7 @@ META.yml
 po/de.po
 README
 SIGNATURE
+static/images/i-doit.png
 t/00-load.t
 t/boilerplate.t
 t/pod-coverage.t

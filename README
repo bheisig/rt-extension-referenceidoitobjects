@@ -149,7 +149,7 @@ CONFIGURATION
         Sometimes it's better to "clean up" the web user interface. Whenever
         you only have 1 mandator within i-doit and don't want to edit the
         object identifiers manually it's recommended to hide the used custom
-        fields.
+        fields. Select 1 to show them or 0 to hide them.
 
     After all your new configuration will take effect after restarting your
     RT environment:
