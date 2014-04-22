@@ -75,7 +75,10 @@ i-doit has a built-in API based on JSON-RPC. To call this API set its URL:
 
     Set($IDoitAPI, $IDoitURL . '?api=jsonrpc');
 
-    Set($IDoitKey, '');
+    Set(%IDoitMandatorKeys, (
+        'Mandator 1' => 'api key',
+        'Mandator 2' => 'api key'
+    ));
 
     Set($IDoitDefaultMandator, 1);
 
@@ -109,9 +112,10 @@ configuration C<$IDoitAPI> has to be set to this script, e. g.
 C<http://rt.example.org/path/to/i-doit_api_proxy.php>.
 
 
-=item C<$IDoitKey>
+=item C<$IDoitMandatorKeys>
 
-You need a valid i-doit API key for authentication.
+This is a list of mandators with their API keys. Just put the name and API key of every mandator in
+i-doit you like to relate to tickets.
 
 
 =item C<$IDoitPassword>
@@ -121,9 +125,9 @@ The user's password is encoded as a MD5 hash.
 
 =item C<$IDoitDefaultMandator>
 
-You need the identifier of a mandator who owns the objects. This may also be used while creating a
-new ticket. This identifier has be to added to the list of the corresponding custom field. For a
-list of (activated) mandators and their identifiers see i-doit's admin center.
+Choose a default mandator for every situation where it's needed. Use its name (or whatever you like)
+to identify the mandator. This name has be to added to the list of the corresponding custom field as
+well.
 
 
 =item C<$IDoitDefaultView>
@@ -142,13 +146,15 @@ Select objects provided by the API and filter them by type.
 Select users' workplaces and their related sub objects. Each user will be taken by the email address
 provided by RT's field "Requestors" if these users are documented in i-doit.
 
-i-doit gives you the possiblity to create relations between users, their workplaces and all equipment related to these workplaces.
+i-doit gives you the possiblity to create relations between users, their workplaces and all
+equipment related to these workplaces.
 
 Tip: You may synchronize user information between OTRS and i-doit via LDAP.
 
 =item C<devices>
 
-Select assigned devices for current requestor. Those devices are objects in i-doit which have this requestor as an assigend person.
+Select assigned devices for current requestor. Those devices are objects in i-doit which have this
+requestor as an assigend person.
 
 =item C<selected>
 
@@ -159,7 +165,8 @@ View and remove all selected items.
 
 =item C<$IDoitInstalledSoftware>
 
-Defines which type of objects will be shown for the installed software. There are two options: "objects" or "relations".
+Defines which type of objects will be shown for the installed software. There are two options:
+"objects" or "relations".
 
 
 =over 4

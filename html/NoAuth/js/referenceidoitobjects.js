@@ -644,13 +644,13 @@ ReferenceIDoitObjects = function (params) {
         data.params.apikey = params.mandatorKeys[that.mandator.val()];
 
         $.ajax({
-            url: params.api,
-            data: JSON.stringify(data),
-            contentType: 'application/json',
-            type: 'POST',
-            dataType: 'json',
-            success: callback,
-            async: async
+            "url": params.api,
+            "data": JSON.stringify(data),
+            "contentType": "application/json",
+            "type": "POST",
+            "dataType": "json",
+            "success": callback,
+            "async": async
         });
     };
 
@@ -873,6 +873,24 @@ ReferenceIDoitObjects = function (params) {
                 that.showNotice(params.l10n['Error while loading objects by email']);
             }
         }, true);
+    };
+
+    /**
+     * Renders object location tree. If too long tree will be trimmed.
+     *
+     * @param {array} tree Location tree
+     */
+    this.renderLocationTree = function (tree) {
+        if (tree.length > 0) {
+            // Trim location tree:
+            if (tree.length > 3) {
+                tree = [tree[0], '&hellip;', tree.slice(-1)];
+            }
+
+            return tree.join(' &raquo; ');
+        }
+
+        return '&ndash;';
     };
 
     /**

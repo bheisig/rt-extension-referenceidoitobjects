@@ -7,11 +7,17 @@
 %#
 %# Request Tracker (RT) is Copyright Best Practical Solutions, LLC.
 
-<div id="i-doit-objectbrowser" style="position: relative; min-width: 400px;">
-    <div id="data-store" style="display:none;"></div>
-    <div id="i-doit-browser-notice" class="ui-corner-all" style="display: none;"></div>
-    <div id="i-doit-content" style="display:none;">
-        <table class="object-table" style="width:100%;">
+<div id="idoitObjectBrowser" style="position: relative; min-width: 400px;">
+    <div id="dataStore" style="display: none;"></div>
+    <div id="idoitNotice" class="ui-corner-all" style="display: none;"></div>
+    <div id="idoitObjectBrowserContent" style="display: none;">
+        <a href="<% RT->Config->Get('IDoitURL') %>" title="<% loc('Go to i-doit') %>" target="_blank">
+            <img src="<% RT->Config->Get('WebPath') %>/static/images/i-doit.png" alt="i-doit" style="position: absolute; top: 5px; right: 8px; height: 28px;" border="0" />
+        </a>
+
+        <img id="idoitLoadingSign" src="<% RT->Config->Get('WebPath') %>/NoAuth/images/ui-anim_basic_16x16.gif" alt="<% loc('Loading...') %>" height="16" width="16" style="position: absolute; opacity: 0; z-index: 100; right: 80px; top: 12px;" border="0" />
+
+        <table id="idoitAllObjectsTable" style="width:100%;">
             <thead>
                 <tr>
                     <th width="5%"><% loc('ID') %></th>
@@ -28,89 +34,103 @@
 </div>
 
 <script type="text/javascript">
-    // Global variables (without "var").
-    idoit_url = '<% $IDoitURL %>';
-
-    api_url = '<% $IDoitAPI %>';
-    api_lang = '<% $Language %>';
-    api_key = '<% $IDoitKey %>';
-    api_mandator = '<% $IDoitMandator %>';
-
-    show_custom_fields = <% $IDoitShowCustomFields %>;
-
-    browser_preselection_field = 'tr#<% $IDoitObjectsField %>';
-    browser_mandator_field = 'tr#<% $IDoitMandatorField %>';
-
-    preselection = [<% $IDoitObjects %>];
-</script>
-
-<script type="text/javascript" src="<% RT->Config->Get('WebPath') %>/NoAuth/js/ReferenceIDoitObjects.js"></script>
-
-<script type="text/javascript">
-    (function($) {
-        $(document).ready(function() {
-            browser_preselection_field = $(browser_preselection_field);
-            browser_mandator_field = $(browser_mandator_field);
-
-            list = $('#i-doit-content table.object-table').dataTable({
+    window.addEventListener('load', function load (event) {
+        var $ = $ || jQuery,
+            showCustomFields = <% $IDoitShowCustomFields %>,
+            objectTable = $('#idoitAllObjectsTable').dataTable({
                 "bJQueryUI": true,
                 "bAutoWidth": false,
                 "bPaginate": false,
                 "bLengthChange": false,
                 "bSort": false,
-                "oLanguage": datatable_lang
-            });
+                "oLanguage": '<% $Language %>'
+            }),
+            objects = [<% $IDoitObjects %>],
+            apiKey = '<% $IDoitAPIKey %>',
+            notice = $('#idoitNotice'),
+            content = $('#idoitObjectBrowserContent'),
+            renderLocationTree = function (tree) {
+                if (tree.length > 0) {
+                    // Trim location tree:
+                    if (tree.length > 3) {
+                        tree = [tree[0], '&hellip;', tree.slice(-1)];
+                    }
 
-            if (isNaN(parseInt(api_mandator)) || api_mandator <= 0) {
-                window.error_notice('<% loc("Please select an i-doit mandator.") %>');
-            } else if (preselection.length == 0) {
-                window.error_notice('<% loc("No objects has been selected yet.") %>');
-            } else {
-                window.error_notice('<% loc("Loading...") %>');
+                    return tree.join(' &raquo; ');
+                }
 
-                data = {
-                    "method":"cmdb.objects",
-                    "params":{
-                        "session":{
-                            "language":api_lang,
-                            "mandator":api_mandator},
-                        "apikey":api_key,
-                        "filter":{
-                            "ids":preselection,
+                return '&ndash;';
+            };
+
+        // Hide custom fields:
+        if (showCustomFields === 0) {
+            $('tr#<% $IDoitObjectsField %> td.value').parent().hide();
+            $('tr#<% $IDoitMandatorField %> td.value').parent().hide();
+        }
+
+        if (apiKey.length === 0) {
+            notice.html(
+                '<% loc("Please select an i-doit mandator.") %>'
+            ).fadeIn(500);
+        } else if (objects.length === 0) {
+            notice.html(
+                '<% loc("No objects has been selected yet.") %>'
+            ).fadeIn(500);
+        } else {
+            notice.html(
+                '<% loc("Loading...") %>'
+            ).fadeIn(500);
+
+            $.ajax({
+                "url": '<% $IDoitAPI %>',
+                "data": JSON.stringify({
+                    "method": "cmdb.objects",
+                    "params": {
+                        "filter": {
+                            "ids": objects,
                             "location": true
-                        }},
-                    "id":"1",
-                    "jsonrpc":"2.0"};
+                        },
+                        "session": {
+                            "language": "<% $Language %>"
+                        },
+                        "apikey": "<% $Language %>"
+                    },
+                    "id": "1",
+                    "jsonrpc": "2.0",
+                }),
+                "contentType": "application/json",
+                "type": "POST",
+                "dataType": "json",
+                "async": true,
+                "success": function (response) {
+                    var entities = [];
 
-                idoit_ajax(data, function(response) {
-                        if (response.error == null) {
-                            $('#i-doit-browser-notice').css({display: 'none'});
-                            $('#i-doit-content').css({display: 'block'});
+                    if (response.error == null) {
+                        notice.hide();
+                        content.show();
 
-                            var entities = [];
+                        $.each(response.result, function (i, e) {
+                            var link = '<a href="<% $IDoitURL %>?objID=' + e.id + '" title="<% loc('Go to i-doit') %>" target="_blank">&raquo; i-doit</a>';
+                            entities.push([e.id, e.title, e.type_title, renderLocationTree(e.location), link]);
+                        });
 
-                            $.each(response.result, function(i, e) {
-                                var link = '<a href="' + idoit_url + '?objID=' + e.id + '" title="<% loc('Go to i-doit') %>" target="_blank">&raquo; i-doit</a>';
-                                entities.push([e.id, e.title, e.type_title, window.render_location_tree(e.location), link]);
-                            });
-
-                            list.fnAddData(entities);
-                        } else {
-                            window.error_notice('<% loc("Error while loading pre-selecting objects") %>');
-                        }
-                    });
-            }
-
-            // Hide custom fields:
-            if (show_custom_fields == 0) {
-                browser_preselection_field.hide();
-                browser_mandator_field.hide();
-            }
-        });
-    })(jQuery);
+                        objectTable.fnAddData(entities);
+                    } else {
+                        notice.html(
+                            '<% loc("Error while loading pre-selecting objects") %>'
+                        ).fadeIn(500);
+                        content.css({display: 'none'});
+                    }
+                }
+            });
+        }
+    }, false);
 </script>
 
 <%INIT>
+
+use JSON;
+
 $IDoitURL = RT->Config->Get('IDoitURL');
 unless($IDoitURL) {
     my $msg = loc('URL for i-doit is not configured.');
@@ -122,14 +142,6 @@ unless($IDoitURL) {
 $IDoitAPI = RT->Config->Get('IDoitAPI');
 unless($IDoitAPI) {
     my $msg = loc("URL for i-doit's API is not configured.");
-    RT::Logger->error($msg);
-    $$skip_create = 1;
-    push @{$results}, $msg;
-}
-
-$IDoitKey = RT->Config->Get('IDoitKey');
-unless($IDoitKey) {
-    my $msg = loc("Key for i-doit's API is not configured.");
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
@@ -149,8 +161,22 @@ unless($IDoitMandator) {
     }
 }
 
+%IDoitMandatorKeys = RT->Config->Get('IDoitMandatorKeys');
+unless(%IDoitMandatorKeys) {
+    my $msg = loc("Mandator keys for i-doit's API are not configured.");
+    RT::Logger->error($msg);
+    $$skip_create = 1;
+    push @{$results}, $msg;
+}
+while ( my ($key, $value) = each(%IDoitMandatorKeys) ) {
+    if ($key == $IDoitMandator) {
+        $IDoitAPIKey = $value;
+        last;
+    }
+}
+
 my $cf = RT::CustomField->new($RT::SystemUser);
-$cf->LoadByNameAndQueue(Name => $cfMandator, Queue => '0');
+$cf->LoadByName(Name => $cfMandator);
 unless($cf->id) {
     my $msg = sprintf(loc("Custom field %s does not exist."), $cfMandator);
     RT::Logger->error($msg);
@@ -167,10 +193,10 @@ while (my $IDoitObjectValue = $IDoitObjectValues->Next) {
   push(@IDoitObjects, $IDoitObjectValue->Content);
 }
 
-$IDoitObjects = join(', ', @IDoitObjects);
+$IDoitObjects = join(',', @IDoitObjects);
 
 $cf = RT::CustomField->new($RT::SystemUser);
-$cf->LoadByNameAndQueue(Name => $cfObjects, Queue => '0');
+$cf->LoadByName(Name => $cfObjects);
 unless($cf->id) {
     my $msg = sprintf(loc("Custom field %s does not exist."), $cfObjects);
     RT::Logger->error($msg);
@@ -187,7 +213,8 @@ if ($IDoitShowCustomFields < 0 || $IDoitShowCustomFields > 1) {
     push @{$results}, $msg;
 }
 
-$Language = substr($session{CurrentUser}->UserObj->Lang, 0, 2);
+$Language = substr($session{CurrentUser}->UserObj->Lang, 0, 2) || 'en';
+
 </%INIT>
 
 <%ARGS>
@@ -200,11 +227,11 @@ $Language => undef
 
 $IDoitURL => undef
 $IDoitAPI => undef
-$IDoitKey => undef
+$IDoitAPIKey => undef
+%IDoitMandatorKeys => undef
 $IDoitMandator => undef
 $IDoitMandatorField => undef
 $IDoitObjects => undef
 $IDoitObjectsField => undef
-$IDoitView => undef
 $IDoitShowCustomFields => undef
 </%ARGS>

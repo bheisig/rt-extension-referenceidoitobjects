@@ -182,7 +182,7 @@ unless($IDoitAPI) {
 
 %IDoitMandatorKeys = RT->Config->Get('IDoitMandatorKeys');
 unless(%IDoitMandatorKeys) {
-    my $msg = loc("Mandator keys for i-doit's API is not configured.");
+    my $msg = loc("Mandator keys for i-doit's API are not configured.");
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
