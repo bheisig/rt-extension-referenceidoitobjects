@@ -42,13 +42,6 @@ ReferenceIDoitObjects = function (params) {
     this.mandator = $(params.mandator);
 
     /**
-     * Selected mandator identifier
-     *
-     * @type {int}
-     */
-    this.mandatorID = parseInt(this.mandator.val(), 10);
-
-    /**
      * Ticket title (subject)
      *
      * @type {string}
@@ -248,7 +241,7 @@ ReferenceIDoitObjects = function (params) {
                 });
 
                 // Load assigned objects by contact
-                that.loadObjectsAssignedToPerson();
+                that.loadDevices();
 
                 // Trigger the event.
                 that.objectTypeSelector.change();
@@ -272,6 +265,7 @@ ReferenceIDoitObjects = function (params) {
 
         if (typeof customerList !== 'string' || customerList.length === 0) {
             $('#idoitWorkplacesTab div').html(params.l10n['There is no customer selected.']);
+            $('#idoitDevicesInfo').html(params.l10n['There is no customer selected.']);
             return;
         }
 
@@ -291,7 +285,6 @@ ReferenceIDoitObjects = function (params) {
                 };
 
                 that.callIDoit(data, function (response) {
-                    // First we check for errors.
                     that.hideLoadingSign();
 
                     if (response.error === undefined) {
@@ -367,11 +360,11 @@ ReferenceIDoitObjects = function (params) {
      * Will re-initialize the object browser if mandator is changed.
      */
     this.changeMandator = function () {
+        var key = that.mandator.val();
+
         that.removeAllObjects();
 
-        that.mandatorID = parseInt(that.mandator.val(), 10);
-
-        if (isNaN(that.mandatorID) || that.mandatorID <= 0) {
+        if (key === '') {
             that.showNotice(params.l10n['Please select an i-doit mandator.']);
         } else {
             that.init();
@@ -379,7 +372,7 @@ ReferenceIDoitObjects = function (params) {
     };
 
     /**
-     * Renews the view of workplaces. This is needed to update the selected ID's.
+     * Renews the view of workplaces.
      */
     this.renderWorkplacesView = function () {
         var workplaces;
@@ -409,7 +402,7 @@ ReferenceIDoitObjects = function (params) {
             workplaces.append('<br />');
         });
 
-        $('#idoitDevicesInfo span').html($('#linkToPerson').clone());
+        $('#idoitDevicesInfo').html($('#linkToPerson').clone());
     };
 
     /**
@@ -648,7 +641,7 @@ ReferenceIDoitObjects = function (params) {
             "language": params.language
         };
 
-        data.params.apikey = params.key;
+        data.params.apikey = params.mandatorKeys[that.mandator.val()];
 
         $.ajax({
             url: params.api,
@@ -690,7 +683,7 @@ ReferenceIDoitObjects = function (params) {
     /**
      * Fetches and displays all objects which are assigned in i-doit to the customer.
      */
-    this.loadObjectsAssignedToPerson = function () {
+    this.loadDevices = function () {
         var costumerList = that.customers.val(),
             customers = [],
             data = {};
@@ -734,43 +727,47 @@ ReferenceIDoitObjects = function (params) {
 
         that.devicesTable.fnClearTable();
 
-        if (typeof that.devicesViewData === 'undefined') {
-            return;
+        if (typeof that.devicesViewData === 'undefined' ||
+            Object.keys(that.devicesViewData).length === 0) {
+            $('#idoitDevicesTab').html(
+                params.l10n['There are no roles defined for given customer(s).']
+            );
+        } else {
+            $.each(that.devicesViewData, function (i, e) {
+                var selected = false,
+                    check = '',
+                    link = '',
+                    showSoftware = '';
+
+                if (typeof that.dataStore.data(e.id) !== 'undefined') {
+                    selected = true;
+                }
+
+                check = '<input type="checkbox" value="' + e.id +
+                    '" name="idoitObjectBrowserObj[]" ' + ((selected) ? 'checked="checked"' : '') +
+                    ' />';
+                link = '<a href="' + params.url + '?objID=' + e.id + '" target="_blank" title="' +
+                    params.l10n['Go to i-doit'] + '">&raquo; i-doit</a>';
+                showSoftware =
+                    '<span class="installed-apps-button"><a href="#" onclick="referenceIDoitObjects.renderInstalledApplicationTable(' +
+                    e.id + ', \'' + e.title + '\');">' + params.l10n['show installed software'] +
+                    '</a></span>';
+
+                devices.push([
+                    check,
+                    e.id,
+                    e.title,
+                    e.type_title,
+                    e.sysid,
+                    e.role,
+                    e.primary,
+                    showSoftware,
+                    link
+                ]);
+            });
+
+            that.devicesTable.fnAddData(devices);
         }
-
-        $.each(that.devicesViewData, function (i, e) {
-            var selected = false,
-                check = '',
-                link = '',
-                showSoftware = '';
-
-            if (typeof that.dataStore.data(e.id) !== 'undefined') {
-                selected = true;
-            }
-
-            check = '<input type="checkbox" value="' + e.id + '" name="idoitObjectBrowserObj[]" ' +
-                ((selected) ? 'checked="checked"' : '') + ' />';
-            link = '<a href="' + params.url + '?objID=' + e.id + '" target="_blank" title="' +
-                params.l10n['Go to i-doit'] + '">&raquo; i-doit</a>';
-            showSoftware =
-                '<span class="installed-apps-button"><a href="#" onclick="referenceIDoitObjects.renderInstalledApplicationTable(' +
-                e.id + ', \'' + e.title + '\');">' + params.l10n['show installed software'] +
-                '</a></span>';
-
-            devices.push([
-                check,
-                e.id,
-                e.title,
-                e.type_title,
-                e.sysid,
-                e.role,
-                e.primary,
-                showSoftware,
-                link
-            ]);
-        });
-
-        that.devicesTable.fnAddData(devices);
     };
 
     /**
@@ -1100,8 +1097,9 @@ ReferenceIDoitObjects = function (params) {
     /**
      * Initializes the object browser or displays a message.
      */
-    if (isNaN(that.mandatorID) || that.mandatorID <= 0) {
-        that.mandator.val(params.defaultMandator);
+    if (that.mandator.val() === '') {
+        that.mandator.find('option[text="' + params.defaultMandator + '"]').attr('selected', 'selected');
+
         that.mandator.change();
     } else {
         that.init();

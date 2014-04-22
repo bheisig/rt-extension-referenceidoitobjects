@@ -46,7 +46,7 @@
         </div>
 
         <div id="idoitDevicesTab">
-            <div id="idoitDevicesInfo"><% loc('Roles for') %> <span></span>:</div>
+            <div id="idoitDevicesInfo"></div>
             <table id="idoitDevicesTable" style="width:100%;">
                 <thead>
                     <tr>
@@ -121,7 +121,7 @@
             'url': '<% $IDoitURL %>',
             'api': '<% $IDoitAPI %>',
             'language': '<% $Language %>',
-            'key': '<% $IDoitKey %>',
+            'mandatorKeys': <% $IDoitMandatorKeysAsJSON |n %>,
             'defaultMandator': '<% $IDoitDefaultMandator %>',
             'defaultView': <% $IDoitView %>,
             'installedSoftware': '<% $IDoitInstalledSoftware %>',
@@ -154,13 +154,14 @@
                 'Ticket was edited.': '<% loc("Ticket was edited.") %>',
                 'Ticket was created.': '<% loc("Ticket was created.") %>',
                 'Error while creating i-doit logbook entry': '<% loc("Error while creating i-doit logbook entry") %>',
-                'There is no customer selected.': '<% loc("There is no customer selected.") %>',
+                'There is no customer selected.': '<% loc("There is no customer selected.") %>'
             }
         });
     }, false);
 </script>
 
 <%INIT>
+use JSON;
 use feature qw(switch);
 
 $IDoitURL = RT->Config->Get('IDoitURL');
@@ -179,13 +180,15 @@ unless($IDoitAPI) {
     push @{$results}, $msg;
 }
 
-$IDoitKey = RT->Config->Get('IDoitKey');
-unless($IDoitKey) {
-    my $msg = loc("Key for i-doit's API is not configured.");
+%IDoitMandatorKeys = RT->Config->Get('IDoitMandatorKeys');
+unless(%IDoitMandatorKeys) {
+    my $msg = loc("Mandator keys for i-doit's API is not configured.");
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
 }
+
+my $IDoitMandatorKeysAsJSON = encode_json \%IDoitMandatorKeys;
 
 my $ticketID = '';
 if ($TicketObj) {
@@ -275,7 +278,7 @@ $Language => undef
 
 $IDoitURL => undef
 $IDoitAPI => undef
-$IDoitKey => undef
+%IDoitMandatorKeys => undef
 $IDoitMandator => undef
 $IDoitDefaultMandator => undef
 $IDoitObjects => undef

@@ -111,3 +111,6 @@ msgstr "Unbekannt"
 
 msgid "Expand menu tree"
 msgstr "Menübaum ausklappen"
+
+msgid "There are no roles defined for given customer(s)."
+msgstr "Für den/die angegebenen Klienten sind keine Rollen definiert."
