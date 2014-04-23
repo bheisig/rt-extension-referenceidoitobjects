@@ -1,11 +1,25 @@
 /**
  * ReferenceIDoitObjects
+ * Copyright (C) 2011-14 synetics GmbH, <http://i-doit.org/>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  * @author Benjamin Heisig <bheisig@i-doit.org>
  * @author Leonard Fischer <lfischer@synetics.de>
  * @author Van Quyen Hoang <qhoang@synetics.de>
  * @copyright synetics GmbH
- * @license http://www.gnu.org/licenses/agpl.txt AGPL
+ * @license http://www.gnu.org/licenses/agpl.txt GNU Affero General Public License
  */
 
 /** @module org/idoit/referenceidoitobjects */

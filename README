@@ -61,7 +61,10 @@ CONFIGURATION
 
         Set($IDoitAPI, $IDoitURL . '?api=jsonrpc');
 
-        Set($IDoitKey, '');
+        Set(%IDoitMandatorKeys, (
+            'Mandator 1' => 'api key',
+            'Mandator 2' => 'api key'
+        ));
 
         Set($IDoitDefaultMandator, 1);
 
@@ -92,18 +95,19 @@ CONFIGURATION
         configuration $IDoitAPI has to be set to this script, e. g.
         "http://rt.example.org/path/to/i-doit_api_proxy.php".
 
-    $IDoitKey
-        You need a valid i-doit API key for authentication.
+    $IDoitMandatorKeys
+        This is a list of mandators with their API keys. Just put the name
+        and API key of every mandator in i-doit you like to relate to
+        tickets.
 
     $IDoitPassword
         The user's password is encoded as a MD5 hash.
 
     $IDoitDefaultMandator
-        You need the identifier of a mandator who owns the objects. This may
-        also be used while creating a new ticket. This identifier has be to
-        added to the list of the corresponding custom field. For a list of
-        (activated) mandators and their identifiers see i-doit's admin
-        center.
+        Choose a default mandator for every situation where it's needed. Use
+        its name (or whatever you like) to identify the mandator. This name
+        has be to added to the list of the corresponding custom field as
+        well.
 
     $IDoitDefaultView
         When creating or editing a ticket, this extension adds a so-called
@@ -201,8 +205,18 @@ BUGS
 COPYRIGHT AND LICENSE
     Copyright (C) 2011-14 synetics GmbH, <http://i-doit.org/>
 
-    This program is free software; you can redistribute it and/or modify it
-    under the same terms as Perl itself.
+    This program is free software: you can redistribute it and/or modify it
+    under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or (at
+    your option) any later version.
+
+    This program is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero
+    General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>.
 
     Request Tracker (RT) is Copyright Best Practical Solutions, LLC.
 
