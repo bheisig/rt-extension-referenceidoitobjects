@@ -20,9 +20,9 @@ SHA1 b8394293f2e378ba6448ca865856f48077a1575d MANIFEST
 SHA1 30732a5045c730baf75d689f6ffbce7669da7da6 MANIFEST.SKIP
 SHA1 a9e1a2d3d3b09a2085e99a14f616c0aa7e8eeca8 META.yml
 SHA1 1a4f21ca213c6e3732adebf01bf29f00a67a3f6c Makefile.PL
-SHA1 054162d4a22824dd0547d4ebfac9f32415101ba8 README
+SHA1 2780d1a4964d8f0a62da4be6d07b5cd3ca3aa9c6 README
 SHA1 ecec91e14dcf6772c5c317a0ffa83a3959fe8b45 TODO
-SHA1 49701a1582499c03b668cb0607e6e2880fe71909 etc/i-doit_api_proxy.php
+SHA1 fff7ec23eec9774a0a9c5a6576a747fbc9756f9c etc/i-doit_api_proxy.php
 SHA1 e1e604e5d2bbb842d030132c60f56692f814a468 etc/initialdata
 SHA1 210a0d9be77a0a96052e58c40d1a208b184a6ea6 html/Callbacks/ReferenceIdoitObjects/Elements/Header/Head
 SHA1 a4d2ea1f471afabec0c5fab707c24cf68e217c0f html/Callbacks/ReferenceIdoitObjects/Elements/Tabs/Privileged
@@ -79,7 +79,7 @@ SHA1 8057872efd55c155d12f009cb190a81f7f775703 inc/Module/Install/Share.pm
 SHA1 3ef36786817df816cca65bcae5e987591512aeeb inc/Module/Install/Win32.pm
 SHA1 1349967ec3cd8c41a7717750ae23ede9824a2f39 inc/Module/Install/With.pm
 SHA1 b7fc200ced09546b337e460a29379e4bd6927ca2 inc/Module/Install/WriteAll.pm
-SHA1 8b7b36454dc09d08e9c7e1fc0578396eac65478f lib/RT/Extension/ReferenceIDoitObjects.pm
+SHA1 1ae9c172dbb072719764c310361c40ae1d79f413 lib/RT/Extension/ReferenceIDoitObjects.pm
 SHA1 54693601be04ae2c902375210280e8a2e5a562eb po/de.po
 SHA1 21117f74c1256a9045626a08027068ea0e930842 static/images/i-doit.png
 SHA1 3987a51914e4ffa806ad31ce27fedd752468e3bf t/00-load.t
@@ -89,7 +89,7 @@ SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iEYEARECAAYFAlNXcSYACgkQWFkxZRfLwXLarQCdGxTUN5xL9Qxnil0wV/jLAcEA
-RAAAniMu7GQ7bIkUoo4ipZGFP0A3mg8l
-=U0qM
+iEYEARECAAYFAlNXcrgACgkQWFkxZRfLwXLSdQCeJ4HFoFux9wlNV4zuJrbe0z/g
+kx4AnjxsKH+HZuBiRead97wZ2EWZ6yby
+=ZbVY
 -----END PGP SIGNATURE-----

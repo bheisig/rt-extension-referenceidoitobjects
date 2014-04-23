@@ -128,11 +128,6 @@ This is a list of mandators with their API keys. Just put the name and API key o
 i-doit you like to relate to tickets.
 
 
-=item C<$IDoitPassword>
-
-The user's password is encoded as a MD5 hash.
-
-
 =item C<$IDoitDefaultMandator>
 
 Choose a default mandator for every situation where it's needed. Use its name (or whatever you like)

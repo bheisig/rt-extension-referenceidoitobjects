@@ -10,7 +10,7 @@
  * @author Benjamin Heisig <bheisig@synetics.de>
  * @version 0.2
  * @copyright synetics GmbH
- * @license http://dev.perl.org/licenses/
+ * @license http://www.gnu.org/licenses/agpl.txt GNU Affero General Public License
  */
 
 // URL to i-doit's API:

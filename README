@@ -100,9 +100,6 @@ CONFIGURATION
         and API key of every mandator in i-doit you like to relate to
         tickets.
 
-    $IDoitPassword
-        The user's password is encoded as a MD5 hash.
-
     $IDoitDefaultMandator
         Choose a default mandator for every situation where it's needed. Use
         its name (or whatever you like) to identify the mandator. This name
