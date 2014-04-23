@@ -21,25 +21,31 @@
     <div id="dataStore" style="display: none;"></div>
     <div id="idoitNotice" class="ui-corner-all" style="display: none;"></div>
     <div id="idoitObjectBrowserContent" style="display: none;">
+        <ul>
+            <li><a href="#idoitSelectedObjectsTab"><% loc('Selected objects') %></a></li>
+        </ul>
+
         <a href="<% RT->Config->Get('IDoitURL') %>" title="<% loc('Go to i-doit') %>" target="_blank">
             <img src="<% RT->Config->Get('WebPath') %>/static/images/i-doit.png" alt="i-doit" style="position: absolute; top: 5px; right: 8px; height: 28px;" border="0" />
         </a>
 
         <img id="idoitLoadingSign" src="<% RT->Config->Get('WebPath') %>/NoAuth/images/ui-anim_basic_16x16.gif" alt="<% loc('Loading...') %>" height="16" width="16" style="position: absolute; opacity: 0; z-index: 100; right: 80px; top: 12px;" border="0" />
 
-        <table id="idoitAllObjectsTable" style="width:100%;">
-            <thead>
-                <tr>
-                    <th width="5%"><% loc('ID') %></th>
-                    <th width="35%"><% loc('Name') %></th>
-                    <th width="35%"><% loc('Type') %></th>
-                    <th width="15%"><% loc('Location') %></th>
-                    <th width="10%"><% loc('Link') %></th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+        <div id="idoitSelectedObjectsTab">
+            <table id="idoitAllObjectsTable" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th width="5%"><% loc('ID') %></th>
+                        <th width="35%"><% loc('Name') %></th>
+                        <th width="35%"><% loc('Type') %></th>
+                        <th width="15%"><% loc('Location') %></th>
+                        <th width="10%"><% loc('Link') %></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -53,7 +59,23 @@
                 "bPaginate": false,
                 "bLengthChange": false,
                 "bSort": false,
-                "oLanguage": '<% $Language %>'
+                "oLanguage": {
+                    "sProcessing": "<% loc('Loading...') %>",
+                    "sLengthMenu": "<% loc('Show _MENU_ objects') %>",
+                    "sZeroRecords": "<% loc('No objects has been selected yet.') %>",
+                    "sInfo": "<% loc('_START_ to _END_ of _TOTAL_ objects') %>",
+                    "sInfoEmpty": "<% loc('0 to 0 of 0 objects') %>",
+                    "sInfoFiltered": "<% loc('(filtered from _MAX_ objects)') %>",
+                    "sInfoPostFix": "",
+                    "sSearch": "<% loc('Filter') %>",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "&laquo;",
+                        "sPrevious": "&lsaquo;",
+                        "sNext": "&rsaquo;",
+                        "sLast": "&raquo;"
+                    }
+                }
             }),
             objects = [<% $IDoitObjects %>],
             apiKey = '<% $IDoitAPIKey %>',
@@ -117,6 +139,7 @@
 
                     if (response.error == null) {
                         notice.hide();
+                        content.tabs();
                         content.show();
 
                         $.each(response.result, function (i, e) {
