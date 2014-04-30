@@ -1127,7 +1127,12 @@ ReferenceIDoitObjects = function (params) {
      * Initializes the object browser or displays a message.
      */
     if (that.mandator.val() === '') {
-        that.mandator.find('option[text="' + params.defaultMandator + '"]').attr('selected', 'selected');
+        // This is RT specific:
+        that.mandator.val(
+            $(params.mandator + ' option').filter(function () {
+                return $(this).html() === params.defaultMandator;
+            }).val()
+        );
 
         that.mandator.change();
     } else {
