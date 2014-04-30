@@ -122,10 +122,8 @@
                             "ids": objects,
                             "location": true
                         },
-                        "session": {
-                            "language": "<% $Language %>"
-                        },
-                        "apikey": "<% $Language %>"
+                        "language": "<% $Language %>",
+                        "apikey": apiKey
                     },
                     "id": "1",
                     "jsonrpc": "2.0",

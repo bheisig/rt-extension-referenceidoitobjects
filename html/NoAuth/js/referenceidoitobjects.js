@@ -647,14 +647,11 @@ ReferenceIDoitObjects = function (params) {
      * @param {bool} async - Send request asyncronously?
      */
     this.callIDoit = function (data, callback, async) {
+        // Enhance data:
         data.id = '1';
-
         data.jsonrpc = '2.0';
-
-        data.params.session = {
-            "language": params.language
-        };
-
+        data.params = data.params || {};
+        data.params.language = params.language;
         data.params.apikey = params.mandatorKeys[that.mandator.val()];
 
         $.ajax({
