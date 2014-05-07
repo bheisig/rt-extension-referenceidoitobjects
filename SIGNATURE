@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.68.
+signed via the Module::Signature module, version 0.73.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -15,13 +15,13 @@ not run its Makefile.PL or Build.PL.
 Hash: SHA1
 
 SHA1 78e50e186b04c8fe1defaa098f1c192181b3d837 COPYING
-SHA1 27186b65fa94e1c2969b69f652adff7414535d81 Changes
+SHA1 841d7bd3c45aefd6474d734b1ba6d1d38e07b3d7 Changes
 SHA1 b8394293f2e378ba6448ca865856f48077a1575d MANIFEST
 SHA1 30732a5045c730baf75d689f6ffbce7669da7da6 MANIFEST.SKIP
 SHA1 a9e1a2d3d3b09a2085e99a14f616c0aa7e8eeca8 META.yml
 SHA1 1a4f21ca213c6e3732adebf01bf29f00a67a3f6c Makefile.PL
 SHA1 2780d1a4964d8f0a62da4be6d07b5cd3ca3aa9c6 README
-SHA1 ecec91e14dcf6772c5c317a0ffa83a3959fe8b45 TODO
+SHA1 9c966d9f0932d403b7213a42181b955a6d2196fb TODO
 SHA1 fff7ec23eec9774a0a9c5a6576a747fbc9756f9c etc/i-doit_api_proxy.php
 SHA1 e1e604e5d2bbb842d030132c60f56692f814a468 etc/initialdata
 SHA1 210a0d9be77a0a96052e58c40d1a208b184a6ea6 html/Callbacks/ReferenceIdoitObjects/Elements/Header/Head
@@ -31,14 +31,14 @@ SHA1 0c2bc6a606fa4137512b27bfa340c9d8ff410471 html/Callbacks/ReferenceIdoitObjec
 SHA1 48fa00ecafbb02e55d067d7a1c49a1a765b1f210 html/Callbacks/ReferenceIdoitObjects/Ticket/Elements/ShowSummary/LeftColumn
 SHA1 9e3ec26a138e3ca06c2fba89726e666d0f605172 html/Callbacks/ReferenceIdoitObjects/Ticket/ModifyAll.html/AfterBasics
 SHA1 e3db219a6c3f30e5dfd899eaa9f177290fa952c5 html/Elements/SelectIDoitObjects
-SHA1 3412f45e70bc8db321b4f8b43e406ef9d38fee0f html/Elements/ShowIDoitObjects
+SHA1 a10c7df24f36937750a6b093646a0744d89b9fca html/Elements/ShowIDoitObjects
 SHA1 faf56d314fefe40211b3db8fb305dedec3861bab html/NoAuth/css/demo_table.css
 SHA1 63c5b31231d04e9ec86200d05b4525c76535d4a4 html/NoAuth/css/demo_table_jui.css
 SHA1 77bd3d3063cf3ff2da91247cbb8fe42c55678f16 html/NoAuth/css/i-doit_object_browser.css
 SHA1 d2b7e4e31fe8e1c6b720e33448674102879e4246 html/NoAuth/images/ui-anim_basic_16x16.gif
 SHA1 9cab72c6d9fde4def30a426c3ed9c8bc5ccd310a html/NoAuth/js/i-doit_ie_fix.js
 SHA1 6f6c12b01532eeebefde965a5fa832a9d441122c html/NoAuth/js/jquery.dataTables.min.js
-SHA1 07169c21364bfe5a32be6575d705b07c9cd9d1e9 html/NoAuth/js/referenceidoitobjects.js
+SHA1 dcf95ae07c31a5825b925c0dd01a073e7d06fa8c html/NoAuth/js/referenceidoitobjects.js
 SHA1 33144b4a8c148e18c8d181f47d0342e63b60536c html/Ticket/Elements/EditIDoitObjects
 SHA1 bb92b11d622f7584fa270175cd1829be97f96e3d html/Ticket/Elements/ShowIDoitObjects
 SHA1 2b70a6b246c69a9278112266e35651808a5ad2c8 html/Ticket/ModifyIDoitObjects.html
@@ -87,9 +87,9 @@ SHA1 f7be47a0678c02f3c2a037ee4095907442a245c7 t/boilerplate.t
 SHA1 0b1c5a2d59be6bfa7d60c64cd964fea6a0331705 t/pod-coverage.t
 SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
+Version: GnuPG v1
 
-iEYEARECAAYFAlNXqR8ACgkQWFkxZRfLwXJCFQCgr0QdnS4fK/fs5LdWVEQcEN6A
-DvcAoKYMeUAwNfbxCUzEEQibudqnMD62
-=ye5n
+iEYEARECAAYFAlNqRGkACgkQWFkxZRfLwXJGWgCfbk7Hrt0Vd1XXjuKcztAi8aSS
+Q7kAoKY6p1anbJnQVbhl1iDF7pS69Exb
+=I5Xx
 -----END PGP SIGNATURE-----

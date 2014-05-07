@@ -3,9 +3,9 @@
 Revision history for RT-Extension-ReferenceIDoitObjects
 
 
-##  0.93 (tba)
+##  0.93 (Wed, 07 May 2014 14:20:10 +0200)
 
-*Important notice:* This version is no longer compatible to Request Tracker version 4.0.x and i-doit version 1.2.x or older! Please use version 0.92 instead if you need compatibility to those older versions.
+*Important notice:* This extension requires Request Tracker 4.2.x or higher and a running installation of i-doit 1.3 or higher. It is no longer compatible to RT version 4.0.x and i-doit version 1.2.x or older! Please use version 0.92 instead if you need compatibility to those older versions.
 
     *   Made the code compatible to Request Tracker 4.2.x (breaks with 4.0.x)
     *   Switched from username/password authentication to i-doit API key
@@ -13,6 +13,7 @@ Revision history for RT-Extension-ReferenceIDoitObjects
     *   Renamed some tabs for better understanding
     *   Shared code with OTRS Help Desk extension to be more maintainable
     *   Renamed configuration options for default view
+
 
 ##  0.92 (Fri, 07 Jun 2013 14:03:02 +0200)
 
