@@ -81,7 +81,7 @@ ReferenceIDoitObjects = function (params) {
      *
      * @type {object}
      */
-    this.devicesViewData = {};
+    this.devicesData = {};
 
     /**
      * Is the browser initialized?
@@ -254,9 +254,6 @@ ReferenceIDoitObjects = function (params) {
                         .appendTo('#idoitObjectTypeSelector');
                 });
 
-                // Load assigned objects by contact
-                that.loadDevices();
-
                 // Trigger the event.
                 that.objectTypeSelector.change();
 
@@ -274,42 +271,78 @@ ReferenceIDoitObjects = function (params) {
      */
     this.loadCustomerData = function () {
         var customers = [],
-            customerList = that.customers.val(),
-            data = {};
+            customerList = that.customers.val();
 
         if (typeof customerList !== 'string' || customerList.length === 0) {
             $('#idoitWorkplacesTab div').html(params.l10n['There is no customer selected.']);
             $('#idoitDevicesInfo').html(params.l10n['There is no customer selected.']);
+            that.devicesTable.hide();
+            that.installedSoftware.hide();
             return;
         }
 
         customers = customerList.replace(/(\s)/g, '').split(',');
 
-        if (typeof customers !== 'undefined') {
-            if (customers.length > 0) {
+        if (typeof customers !== 'undefined' && customers.length > 0) {
                 that.showLoadingSign();
-
-                data = {
-                    "method": "cmdb.workstation_components",
-                    "params": {
-                        "filter": {
-                            "emails": customers
-                        }
-                    }
-                };
-
-                that.callIDoit(data, function (response) {
-                    that.hideLoadingSign();
-
-                    if (response.error === undefined) {
-                        that.workplacesData = response.result;
-                        that.renderWorkplacesView();
-                    } else {
-                        that.showNotice(params.l10n['Error while loading objects by email']);
-                    }
-                }, true);
-            }
+                that.loadWorkplaces(customers);
+                that.loadDevices(customers);
         }
+    };
+
+    /**
+     * Fetches and displays all objects which are assigned in i-doit to the customer.
+     *
+     * @param {array} customers - List of customer e-mail addresses
+     */
+    this.loadWorkplaces = function (customers) {
+        var data = {
+            "method": "cmdb.workstation_components",
+            "params": {
+                "filter": {
+                    "emails": customers
+                }
+            }
+        };
+
+        that.callIDoit(data, function (response) {
+            that.hideLoadingSign();
+
+            if (response.error === undefined) {
+                that.workplacesData = response.result;
+                that.renderWorkplacesView();
+            } else {
+                that.showNotice(params.l10n['Error while loading objects by email']);
+            }
+        }, true);
+    };
+
+    /**
+     * Fetches and displays all objects which are assigned in i-doit to the customer.
+     *
+     * @param {array} customers - List of customer e-mail addresses
+     */
+    this.loadDevices = function (customers) {
+        var data = {
+            "method": "cmdb.contact",
+            "params": {
+                "filter": {
+                    "email": customers[0]
+                },
+                "call": "assigned_objects_by_contact"
+            }
+        };
+
+        that.callIDoit(data, function (response) {
+            that.hideLoadingSign();
+
+            if (response.error === undefined) {
+                that.devicesData = response.result;
+                that.renderDevicesView();
+            } else {
+                that.showNotice(params.l10n['Error while loading objects by email']);
+            }
+        }, true);
     };
 
     /**
@@ -367,21 +400,6 @@ ReferenceIDoitObjects = function (params) {
                     }, true);
                 }
             }
-        }
-    };
-
-    /**
-     * Will re-initialize the object browser if mandator is changed.
-     */
-    this.changeMandator = function () {
-        var key = that.mandator.val();
-
-        that.removeAllObjects();
-
-        if (key === '') {
-            that.showNotice(params.l10n['Please select an i-doit mandator.']);
-        } else {
-            that.init();
         }
     };
 
@@ -452,285 +470,6 @@ ReferenceIDoitObjects = function (params) {
     };
 
     /**
-     * Renews the view of all objects.
-     */
-    this.renderObjectsView = function () {
-        var entities = [];
-
-        that.objectTable.fnClearTable();
-
-        $.each(that.objectsData, function (i, e) {
-            var selected = false,
-                check = '',
-                link = '';
-
-            if (typeof that.dataStore.data(e.id) !== 'undefined') {
-                selected = true;
-            }
-
-            check = '<input type="checkbox" value="' + e.id + '" name="idoitObjectBrowserObj[]" ' +
-                ((selected) ? 'checked="checked"' : '') + ' />';
-            link = '<a href="' + params.url + '?objID=' + e.id + '" target="_blank" title="' +
-                params.l10n['Go to i-doit'] + '">&raquo; i-doit</a>';
-
-            entities.push([check, e.id, e.title, link]);
-        });
-
-        that.objectTable.fnAddData(entities);
-    };
-
-    /**
-     * Removes an object from the selected data.
-     *
-     * @param {int} id - Object identifier
-     */
-    this.removeObject = function (id) {
-        that.dataStore.removeData(id);
-
-        that.renderSelectedObjects();
-
-        // Instead of rendering the lists again we can do something like this:
-        $('input[name="idoitObjectBrowserObj[]"][value="' + id + '"]').attr('checked', false);
-        $('input[name="idoitWorkplacesObject[]"][value="' + id + '"]').attr('checked', false);
-    };
-
-    /**
-     * Removes all objects from the selected data.
-     */
-    this.removeAllObjects = function () {
-        that.dataStore.removeData();
-
-        that.renderSelectedObjects();
-        that.renderObjectsView();
-        that.renderWorkplacesView();
-        that.renderDevicesView();
-        that.renderInstalledApplicationTable();
-    };
-
-    /**
-     * Adds object to the selected data.
-     *
-     * @param {int} id - Object identifier
-     * @param {string} name - Object title
-     * @param {int} type - Object type
-     */
-    this.addObject = function (id, name, type) {
-        if (typeof that.dataStore.data(id) !== 'undefined') {
-            // its already in data store
-            return;
-        }
-
-        that.dataStore.data(id, {"name": name, "type": type});
-
-        that.renderSelectedObjects();
-
-        // Instead of re-rendering the tables this is faster:
-        $('input[name="idoitObjectBrowserObj[]"][value="' + id + '"]').attr('checked', 'checked');
-        $('input[name="idoitWorkplacesObject[]"][value="' + id + '"]').attr('checked', 'checked');
-    };
-
-    /**
-     * Renews view of selected objects. Will be used when adding or removing an object.
-     */
-    this.renderSelectedObjects = function () {
-        var data = [],
-            entities = [],
-            raw;
-
-        that.selectedObjectsTable.fnClearTable();
-
-        raw = that.dataStore.data();
-
-        $.each(raw, function (i, e) {
-            var link = '<a href="' + params.url + '?objID=' + i + '" title="' +
-                params.l10n['Go to i-doit'] + '">&raquo; i-doit</a>';
-
-            entities.push([
-                '<a href="#" class="idoitObjectBrowserRemover" onclick="referenceIDoitObjects.removeObject(' +
-                    i + ')">' + params.l10n['Delete'] + '</a>',
-                i,
-                e.name,
-                e.type,
-                link
-            ]);
-
-            data.push(i);
-        });
-
-        that.selectedObjectsTable.fnAddData(entities);
-
-        switch (params.type) {
-            case 'otrs':
-                // This DynamicField is an input text with a comma-separated list if object
-                // idenfiers:
-                that.objects.val(',' + data.join(',') + ',');
-                break;
-            case 'rt':
-                // This CustomField is a textarea with one object identifer per line:
-                that.objects.val(data.join("\n"));
-                break;
-        }
-    };
-
-    /**
-     * Logs added or removed objects.
-     *
-     * An AJAX request will be sent to i-doit to add a new logbook entry for new selected objects or
-     * removed previous ones.
-     *
-     * @param {bool} edit - Was the ticket edited? Otherwise it's created.
-     */
-    this.logChangedObjects = function (edit) {
-        var preselection = that.objects.val(),
-            message,
-            comment,
-            data = {};
-
-        if (typeof preselection !== 'undefined') {
-            switch (params.type) {
-                case 'otrs':
-                    // This DynamicField is an input text with a comma-separated list if object
-                    // idenfiers:
-                    preselection = preselection.replace(/^,/, '').replace(/,$/, '').split(",");
-                    break;
-                case 'rt':
-                    // This CustomField is a textarea with one object identifer per line:
-                    preselection = preselection.split("\n");
-                    break;
-            }
-
-            if (preselection !== '') {
-                preselection = preselection.map(function (i) {
-                    i = parseInt(i, 10);
-                    return (!isNaN(i) ? i : 0);
-                });
-
-                if (preselection.length > 0) {
-                    that.showLoadingSign();
-
-                    // Was ticket created or updated?
-                    if (edit === true) {
-                        message = params.l10n['Ticket was edited.'];
-                        comment = params.ticket.id;
-                    } else {
-                        message = params.l10n['Ticket was created.'];
-                    }
-
-                    data = {
-                        "method": "cmdb.logbook.create",
-                        "params": {
-                            "object_ids": preselection,
-                            "message": message,
-                            "source": "C__LOGBOOK_SOURCE__RT",
-                            "comment": comment,
-                            "description": that.ticketTitle
-                        }
-                    };
-
-                    that.callIDoit(data, function (response) {
-                        if (response.error !== undefined) {
-                            that.showNotice(
-                                params.l10n['Error while creating i-doit logbook entry']
-                            );
-                        }
-                    }, false);
-                }
-            }
-        }
-    };
-
-    /**
-     * Sends an AJAX request to i-doit.
-     *
-     * @param {object} data - Options in JSON format
-     * @param {callback} callback - Callback fired after a successful requests
-     * @param {bool} async - Send request asyncronously?
-     */
-    this.callIDoit = function (data, callback, async) {
-        // Enhance data:
-        data.id = '1';
-        data.jsonrpc = '2.0';
-        data.params = data.params || {};
-        data.params.language = params.language;
-        data.params.apikey = params.mandatorKeys[that.mandator.val()];
-
-        $.ajax({
-            "url": params.api,
-            "data": JSON.stringify(data),
-            "contentType": "application/json",
-            "type": "POST",
-            "dataType": "json",
-            "success": callback,
-            "async": async
-        });
-    };
-
-    /**
-     * Displays a message.
-     *
-     * @param {string} msg - Message
-     */
-    this.showNotice = function (msg) {
-        that.notice.html(msg).fadeIn(500);
-        that.content.css({display: 'none'});
-    };
-
-    /**
-     * Displays the loading sign.
-     */
-    this.showLoadingSign = function () {
-        that.loadingSign.stop().fadeTo(0, 1);
-        that.content.stop().fadeTo(0, 0.3);
-    };
-
-    /**
-     * Hides the loading sign.
-     */
-    this.hideLoadingSign = function () {
-        that.loadingSign.stop().fadeTo(300, 0);
-        that.content.stop().fadeTo(300, 1);
-    };
-
-    /**
-     * Fetches and displays all objects which are assigned in i-doit to the customer.
-     */
-    this.loadDevices = function () {
-        var costumerList = that.customers.val(),
-            customers = [],
-            data = {};
-
-        if (typeof customerList !== 'string' || customerList.length === 0) {
-            $('#idoitWorkplacesTab div').html(params.l10n['There is no customer selected.']);
-            return;
-        }
-
-        customers = customerList.replace(/(\s)/g, '').split(',');
-
-        if (typeof customers !== 'undefined') {
-            if (customers.length > 0) {
-                data = {
-                    "method": "cmdb.contact",
-                    "params": {
-                        "filter": {
-                            "email": customers[0]
-                        },
-                        "call": "assigned_objects_by_contact"
-                    }
-                };
-
-                that.callIDoit(data, function (response) {
-                    if (response.error === undefined) {
-                        that.devicesViewData = response.result;
-                        that.renderDevicesView();
-                    } else {
-                        that.showNotice(params.l10n['Error while loading objects by email']);
-                    }
-                }, true);
-            }
-        }
-    };
-
-    /**
      * Renders the view of linked devices.
      */
     this.renderDevicesView = function () {
@@ -738,13 +477,14 @@ ReferenceIDoitObjects = function (params) {
 
         that.devicesTable.fnClearTable();
 
-        if (typeof that.devicesViewData === 'undefined' ||
-            Object.keys(that.devicesViewData).length === 0) {
+        if (typeof that.devicesData === 'undefined' ||
+            Object.keys(that.devicesData).length === 0 ||
+            that.devicesData.length === 0) {
             $('#idoitDevicesTab').html(
                 params.l10n['There are no roles defined for given customer(s).']
             );
         } else {
-            $.each(that.devicesViewData, function (i, e) {
+            $.each(that.devicesData, function (i, e) {
                 var selected = false,
                     check = '',
                     link = '',
@@ -905,6 +645,246 @@ ReferenceIDoitObjects = function (params) {
     };
 
     /**
+     * Renews the view of all objects.
+     */
+    this.renderObjectsView = function () {
+        var entities = [];
+
+        that.objectTable.fnClearTable();
+
+        $.each(that.objectsData, function (i, e) {
+            var selected = false,
+                check = '',
+                link = '';
+
+            if (typeof that.dataStore.data(e.id) !== 'undefined') {
+                selected = true;
+            }
+
+            check = '<input type="checkbox" value="' + e.id + '" name="idoitObjectBrowserObj[]" ' +
+                ((selected) ? 'checked="checked"' : '') + ' />';
+            link = '<a href="' + params.url + '?objID=' + e.id + '" target="_blank" title="' +
+                params.l10n['Go to i-doit'] + '">&raquo; i-doit</a>';
+
+            entities.push([check, e.id, e.title, link]);
+        });
+
+        that.objectTable.fnAddData(entities);
+    };
+
+    /**
+     * Renews view of selected objects. Will be used when adding or removing an object.
+     */
+    this.renderSelectedObjects = function () {
+        var data = [],
+            entities = [],
+            raw;
+
+        that.selectedObjectsTable.fnClearTable();
+
+        raw = that.dataStore.data();
+
+        $.each(raw, function (i, e) {
+            var link = '<a href="' + params.url + '?objID=' + i + '" title="' +
+                params.l10n['Go to i-doit'] + '">&raquo; i-doit</a>';
+
+            entities.push([
+                '<a href="#" class="idoitObjectBrowserRemover" onclick="referenceIDoitObjects.removeObject(' +
+                    i + ')">' + params.l10n['Delete'] + '</a>',
+                i,
+                e.name,
+                e.type,
+                link
+            ]);
+
+            data.push(i);
+        });
+
+        that.selectedObjectsTable.fnAddData(entities);
+
+        switch (params.type) {
+            case 'otrs':
+                // This DynamicField is an input text with a comma-separated list if object
+                // idenfiers:
+                that.objects.val(',' + data.join(',') + ',');
+                break;
+            case 'rt':
+                // This CustomField is a textarea with one object identifer per line:
+                that.objects.val(data.join("\n"));
+                break;
+        }
+    };
+
+    /**
+     * Removes an object from the selected data.
+     *
+     * @param {int} id - Object identifier
+     */
+    this.removeObject = function (id) {
+        that.dataStore.removeData(id);
+
+        that.renderSelectedObjects();
+
+        // Instead of rendering the lists again we can do something like this:
+        $('input[name="idoitObjectBrowserObj[]"][value="' + id + '"]').attr('checked', false);
+        $('input[name="idoitWorkplacesObject[]"][value="' + id + '"]').attr('checked', false);
+    };
+
+    /**
+     * Removes all objects from the selected data.
+     */
+    this.removeAllObjects = function () {
+        that.dataStore.removeData();
+
+        that.renderSelectedObjects();
+        that.renderObjectsView();
+        that.renderWorkplacesView();
+        that.renderDevicesView();
+        that.renderInstalledApplicationTable();
+    };
+
+    /**
+     * Adds object to the selected data.
+     *
+     * @param {int} id - Object identifier
+     * @param {string} name - Object title
+     * @param {int} type - Object type
+     */
+    this.addObject = function (id, name, type) {
+        if (typeof that.dataStore.data(id) !== 'undefined') {
+            // its already in data store
+            return;
+        }
+
+        that.dataStore.data(id, {"name": name, "type": type});
+
+        that.renderSelectedObjects();
+
+        // Instead of re-rendering the tables this is faster:
+        $('input[name="idoitObjectBrowserObj[]"][value="' + id + '"]').attr('checked', 'checked');
+        $('input[name="idoitWorkplacesObject[]"][value="' + id + '"]').attr('checked', 'checked');
+    };
+
+    /**
+     * Logs added or removed objects.
+     *
+     * An AJAX request will be sent to i-doit to add a new logbook entry for new selected objects or
+     * removed previous ones.
+     *
+     * @param {bool} edit - Was the ticket edited? Otherwise it's created.
+     */
+    this.logChangedObjects = function (edit) {
+        var preselection = that.objects.val(),
+            message,
+            comment,
+            data = {};
+
+        if (typeof preselection !== 'undefined') {
+            switch (params.type) {
+                case 'otrs':
+                    // This DynamicField is an input text with a comma-separated list if object
+                    // idenfiers:
+                    preselection = preselection.replace(/^,/, '').replace(/,$/, '').split(",");
+                    break;
+                case 'rt':
+                    // This CustomField is a textarea with one object identifer per line:
+                    preselection = preselection.split("\n");
+                    break;
+            }
+
+            if (preselection !== '') {
+                preselection = preselection.map(function (i) {
+                    i = parseInt(i, 10);
+                    return (!isNaN(i) ? i : 0);
+                });
+
+                if (preselection.length > 0) {
+                    that.showLoadingSign();
+
+                    // Was ticket created or updated?
+                    if (edit === true) {
+                        message = params.l10n['Ticket was edited.'];
+                        comment = params.ticket.id;
+                    } else {
+                        message = params.l10n['Ticket was created.'];
+                    }
+
+                    data = {
+                        "method": "cmdb.logbook.create",
+                        "params": {
+                            "object_ids": preselection,
+                            "message": message,
+                            "source": "C__LOGBOOK_SOURCE__RT",
+                            "comment": comment,
+                            "description": that.ticketTitle
+                        }
+                    };
+
+                    that.callIDoit(data, function (response) {
+                        if (response.error !== undefined) {
+                            that.showNotice(
+                                params.l10n['Error while creating i-doit logbook entry']
+                            );
+                        }
+                    }, false);
+                }
+            }
+        }
+    };
+
+    /**
+     * Sends an AJAX request to i-doit.
+     *
+     * @param {object} data - Options in JSON format
+     * @param {callback} callback - Callback fired after a successful requests
+     * @param {bool} async - Send request asyncronously?
+     */
+    this.callIDoit = function (data, callback, async) {
+        // Enhance data:
+        data.id = '1';
+        data.jsonrpc = '2.0';
+        data.params = data.params || {};
+        data.params.language = params.language;
+        data.params.apikey = params.mandatorKeys[that.mandator.val()];
+
+        $.ajax({
+            "url": params.api,
+            "data": JSON.stringify(data),
+            "contentType": "application/json",
+            "type": "POST",
+            "dataType": "json",
+            "success": callback,
+            "async": async
+        });
+    };
+
+    /**
+     * Displays a message.
+     *
+     * @param {string} msg - Message
+     */
+    this.showNotice = function (msg) {
+        that.notice.html(msg).fadeIn(500);
+        that.content.css({display: 'none'});
+    };
+
+    /**
+     * Displays the loading sign.
+     */
+    this.showLoadingSign = function () {
+        that.loadingSign.stop().fadeTo(0, 1);
+        that.content.stop().fadeTo(0, 0.3);
+    };
+
+    /**
+     * Hides the loading sign.
+     */
+    this.hideLoadingSign = function () {
+        that.loadingSign.stop().fadeTo(300, 0);
+        that.content.stop().fadeTo(300, 1);
+    };
+
+    /**
      * Stores the added IDs from the object view.
      *
      * @param {object} ele - Element
@@ -923,6 +903,21 @@ ReferenceIDoitObjects = function (params) {
         }
 
         that.renderSelectedObjects();
+    };
+
+    /**
+     * Will re-initialize the object browser if mandator is changed.
+     */
+    this.changeMandator = function () {
+        var key = that.mandator.val();
+
+        that.removeAllObjects();
+
+        if (key === '') {
+            that.showNotice(params.l10n['Please select an i-doit mandator.']);
+        } else {
+            that.init();
+        }
     };
 
     /***********************************************************************************************
