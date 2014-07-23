@@ -849,7 +849,15 @@ ReferenceIDoitObjects = function (params) {
         data.jsonrpc = '2.0';
         data.params = data.params || {};
         data.params.language = params.language;
-        data.params.apikey = params.mandatorKeys[that.mandator.val()];
+
+        switch (params.type) {
+            case 'otrs':
+                data.params.apikey = that.mandator.val();
+                break;
+            case 'rt':
+                data.params.apikey = params.mandatorKeys[that.mandator.val()];
+                break;
+        }
 
         $.ajax({
             "url": params.api,
