@@ -6,6 +6,8 @@ Revision history for RT-Extension-ReferenceIDoitObjects
 ##  0.94 (tba)
 
 *   Fix: Fetching devices related to current requestor doesn't work.
+*   Fix: updated dataTables jQuery plugin
+*   Fix: re-factored JavaScript code; improved code docs
 
 
 ##  0.93 (Wed, 07 May 2014 14:20:10 +0200)

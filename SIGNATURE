@@ -15,30 +15,30 @@ not run its Makefile.PL or Build.PL.
 Hash: SHA1
 
 SHA1 78e50e186b04c8fe1defaa098f1c192181b3d837 COPYING
-SHA1 70f86c5dd7682901f7b58173e3104456074b6f02 Changes
+SHA1 39de38d415dd06bf22b74f4c1becbab21064a59a Changes
 SHA1 b8394293f2e378ba6448ca865856f48077a1575d MANIFEST
 SHA1 30732a5045c730baf75d689f6ffbce7669da7da6 MANIFEST.SKIP
-SHA1 a9e1a2d3d3b09a2085e99a14f616c0aa7e8eeca8 META.yml
+SHA1 b1fe0cc293914ab9992f0d0ea61984b6e1b55c9d META.yml
 SHA1 1a4f21ca213c6e3732adebf01bf29f00a67a3f6c Makefile.PL
 SHA1 2780d1a4964d8f0a62da4be6d07b5cd3ca3aa9c6 README
 SHA1 9c966d9f0932d403b7213a42181b955a6d2196fb TODO
 SHA1 fff7ec23eec9774a0a9c5a6576a747fbc9756f9c etc/i-doit_api_proxy.php
 SHA1 e1e604e5d2bbb842d030132c60f56692f814a468 etc/initialdata
-SHA1 210a0d9be77a0a96052e58c40d1a208b184a6ea6 html/Callbacks/ReferenceIdoitObjects/Elements/Header/Head
+SHA1 aa1a2bbcac81012577b6ceaa7e826fa9729baaf0 html/Callbacks/ReferenceIdoitObjects/Elements/Header/Head
 SHA1 a4d2ea1f471afabec0c5fab707c24cf68e217c0f html/Callbacks/ReferenceIdoitObjects/Elements/Tabs/Privileged
 SHA1 d46b04ea151d165892545d975730d90fd7c0d72c html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/AfterBasics
 SHA1 0c2bc6a606fa4137512b27bfa340c9d8ff410471 html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/FormStart
 SHA1 48fa00ecafbb02e55d067d7a1c49a1a765b1f210 html/Callbacks/ReferenceIdoitObjects/Ticket/Elements/ShowSummary/LeftColumn
 SHA1 9e3ec26a138e3ca06c2fba89726e666d0f605172 html/Callbacks/ReferenceIdoitObjects/Ticket/ModifyAll.html/AfterBasics
-SHA1 e3db219a6c3f30e5dfd899eaa9f177290fa952c5 html/Elements/SelectIDoitObjects
-SHA1 a10c7df24f36937750a6b093646a0744d89b9fca html/Elements/ShowIDoitObjects
+SHA1 e1773431f4c66109c07ed85a00bb27312b8120a0 html/Elements/SelectIDoitObjects
+SHA1 f73df5e8e60a53286063e1d1dab2398ce6592602 html/Elements/ShowIDoitObjects
 SHA1 79d23ab5a97f31ed04543fd7ae28a9dac568f443 html/NoAuth/css/demo_table.css
 SHA1 a25e73237c1c9b6fc5ee7cc0efa04fd18b1bf46a html/NoAuth/css/demo_table_jui.css
 SHA1 77bd3d3063cf3ff2da91247cbb8fe42c55678f16 html/NoAuth/css/i-doit_object_browser.css
 SHA1 d2b7e4e31fe8e1c6b720e33448674102879e4246 html/NoAuth/images/ui-anim_basic_16x16.gif
 SHA1 9cab72c6d9fde4def30a426c3ed9c8bc5ccd310a html/NoAuth/js/i-doit_ie_fix.js
-SHA1 6f6c12b01532eeebefde965a5fa832a9d441122c html/NoAuth/js/jquery.dataTables.min.js
-SHA1 6fb378fa3bcaecea8af66f6c9c61e9fc92edf0b2 html/NoAuth/js/referenceidoitobjects.js
+SHA1 b2950b917d2e9d55c6a24bbf002e495400d4a3d9 html/NoAuth/js/jquery.dataTables.min.js
+SHA1 d426baa341ceba6691ec69bf1125593b4e9781a9 html/NoAuth/js/referenceidoitobjects.js
 SHA1 33144b4a8c148e18c8d181f47d0342e63b60536c html/Ticket/Elements/EditIDoitObjects
 SHA1 bb92b11d622f7584fa270175cd1829be97f96e3d html/Ticket/Elements/ShowIDoitObjects
 SHA1 2b70a6b246c69a9278112266e35651808a5ad2c8 html/Ticket/ModifyIDoitObjects.html
@@ -79,7 +79,7 @@ SHA1 8057872efd55c155d12f009cb190a81f7f775703 inc/Module/Install/Share.pm
 SHA1 3ef36786817df816cca65bcae5e987591512aeeb inc/Module/Install/Win32.pm
 SHA1 1349967ec3cd8c41a7717750ae23ede9824a2f39 inc/Module/Install/With.pm
 SHA1 b7fc200ced09546b337e460a29379e4bd6927ca2 inc/Module/Install/WriteAll.pm
-SHA1 1ae9c172dbb072719764c310361c40ae1d79f413 lib/RT/Extension/ReferenceIDoitObjects.pm
+SHA1 59f075fd047b75b967d25ee05ff84f812c97db8b lib/RT/Extension/ReferenceIDoitObjects.pm
 SHA1 54693601be04ae2c902375210280e8a2e5a562eb po/de.po
 SHA1 21117f74c1256a9045626a08027068ea0e930842 static/images/i-doit.png
 SHA1 3987a51914e4ffa806ad31ce27fedd752468e3bf t/00-load.t
@@ -89,7 +89,7 @@ SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1
 
-iEYEARECAAYFAlOkSyYACgkQWFkxZRfLwXLymgCgxBbnX5U3OfzTGnIWa6ynSXp3
-RQgAoLVqV4MCfWndrj5p1aVJvineEc6v
-=c091
+iEYEARECAAYFAlPPtxMACgkQWFkxZRfLwXJK4ACgiuKk1lWYyyNhhihkDQ/AQMTc
+HPoAn024dZ6kirIeF15jioJyEmaY8aU8
+=6rLK
 -----END PGP SIGNATURE-----

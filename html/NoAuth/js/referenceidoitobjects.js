@@ -669,7 +669,9 @@ ReferenceIDoitObjects = function (params) {
             entities.push([check, e.id, e.title, link]);
         });
 
-        that.objectTable.fnAddData(entities);
+        if (entities.length > 0) {
+            that.objectTable.fnAddData(entities);
+        }
     };
 
     /**
@@ -700,7 +702,9 @@ ReferenceIDoitObjects = function (params) {
             data.push(i);
         });
 
-        that.selectedObjectsTable.fnAddData(entities);
+        if (entities.length > 0) {
+            that.selectedObjectsTable.fnAddData(entities);
+        }
 
         switch (params.type) {
             case 'otrs':
