@@ -35,7 +35,10 @@
         <img id="idoitLoadingSign" src="<% RT->Config->Get('WebPath') %>/NoAuth/images/ui-anim_basic_16x16.gif" alt="<% loc('Loading...') %>" height="16" width="16" style="position: absolute; opacity: 0; z-index: 100; right: 80px; top: 12px;" border="0" />
 
         <div id="idoitAllObjectsTab">
-            <% loc('Object type') %>: <select id="idoitObjectTypeSelector"></select><br />
+            <label>
+                <% loc('Object type') %> <select id="idoitObjectTypeSelector" class="chosen-select"></select>
+            </label>
+            <br />
             <table id="idoitAllObjectsTable" style="width:100%;">
                 <thead>
                     <tr>
@@ -120,6 +123,8 @@
         showCustomFields = <% $IDoitShowCustomFields %>;
 
     window.addEventListener('load', function load (event) {
+        "use strict";
+
         $ = $ || jQuery;
 
         // Hide custom fields:
@@ -174,7 +179,6 @@
 
 <%INIT>
 use JSON;
-use feature qw(switch);
 
 $IDoitURL = RT->Config->Get('IDoitURL');
 unless($IDoitURL) {
@@ -248,15 +252,15 @@ unless($IDoitDefaultView) {
     $$skip_create = 1;
     push @{$results}, $msg;
 }
-given ($IDoitDefaultView) {
-    when('objects') { $IDoitView = 0; }
-    when('workplaces') { $IDoitView = 1; }
-    when('devices') { $IDoitView = 2; }
-    when('selected') { $IDoitView = 3; }
+for ($IDoitDefaultView) {
+    if(/objects/) { $IDoitView = 0; }
+    elsif(/workplaces/) { $IDoitView = 1; }
+    elsif(/devices/) { $IDoitView = 2; }
+    elsif(/selected/) { $IDoitView = 3; }
     # Deprecated:
-    when('object') { $IDoitView = 0; }
-    when('tree') { $IDoitView = 1; }
-    when('item') { $IDoitView = 3; }
+    elsif(/object/) { $IDoitView = 0; }
+    elsif(/tree/) { $IDoitView = 1; }
+    elsif(/item/) { $IDoitView = 3; }
 }
 
 $IDoitInstalledSoftware = RT->Config->Get('IDoitInstalledSoftware');
