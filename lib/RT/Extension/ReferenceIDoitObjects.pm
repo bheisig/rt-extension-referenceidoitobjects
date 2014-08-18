@@ -90,7 +90,7 @@ i-doit has a built-in API based on JSON-RPC. To call this API set its URL:
         'Mandator 2' => 'api key'
     ));
 
-    Set($IDoitDefaultMandator, 1);
+    Set($IDoitDefaultMandator, 'Mandator 1');
 
     Set($IDoitDefaultView, 'objects'); # 'objects', 'workplaces', 'devices', or 'item'
 

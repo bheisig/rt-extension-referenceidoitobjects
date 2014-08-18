@@ -66,7 +66,7 @@ CONFIGURATION
             'Mandator 2' => 'api key'
         ));
 
-        Set($IDoitDefaultMandator, 1);
+        Set($IDoitDefaultMandator, 'Mandator 1');
 
         Set($IDoitDefaultView, 'objects'); # 'objects', 'workplaces', 'devices', or 'item'
 
