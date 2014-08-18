@@ -114,3 +114,24 @@ msgstr "Menübaum ausklappen"
 
 msgid "There are no roles defined for given customer(s)."
 msgstr "Für den/die angegebenen Klienten sind keine Rollen definiert."
+
+msgid "Role"
+msgstr "Rolle"
+
+msgid "Primary"
+msgstr "Primär"
+
+msgid "Installed software"
+msgstr "Installierte Software"
+
+msgid "All objects"
+msgstr "Alle Objekte"
+
+msgid "Workplaces"
+msgstr "Arbeitsplätze"
+
+msgid "Devices"
+msgstr "Geräte"
+
+msgid "Given customer(s) could not be found in i-doit."
+msgstr "In i-doit wurde keiner der angegebenen Klienten gefunden."
