@@ -112,6 +112,7 @@
 </div>
 
 <script type="text/javascript" src="<% RT->Config->Get('WebPath') %>/NoAuth/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="<% RT->Config->Get('WebPath') %>/NoAuth/js/chosen.jquery.min.js"></script>
 <script type="text/javascript" src="<% RT->Config->Get('WebPath') %>/NoAuth/js/referenceidoitobjects.js"></script>
 
 <script type="text/javascript">

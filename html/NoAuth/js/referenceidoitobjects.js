@@ -155,13 +155,19 @@ ReferenceIDoitObjects = function (params) {
      *
      * @type {object}
      */
-    this.objectTable = $('#idoitAllObjectsTable').dataTable({
+    this.objectTable = $('#idoitAllObjectsTable').DataTable({
         "bJQueryUI": true,
         "bAutoWidth": false,
         "bLengthChange": false,
         "iDisplayLength": 20,
         "sPaginationType": "full_numbers",
-        "oLanguage": this.dataTableL10N
+        "oLanguage": this.dataTableL10N,
+        "columns": [
+            {"orderable": false},
+            null,
+            null,
+            {"orderable": false}
+        ]
     });
 
     /**
@@ -169,13 +175,20 @@ ReferenceIDoitObjects = function (params) {
      *
      * @type {object}
      */
-    this.selectedObjectsTable = $('#idoitSelectedObjectsTable').dataTable({
+    this.selectedObjectsTable = $('#idoitSelectedObjectsTable').DataTable({
         "bJQueryUI": true,
         "bAutoWidth": false,
         "bPaginate": false,
         "bLengthChange": false,
         "bSort": false,
-        "oLanguage": this.dataTableL10N
+        "oLanguage": this.dataTableL10N,
+        "columns": [
+            {"orderable": false},
+            null,
+            null,
+            null,
+            {"orderable": false}
+        ]
     });
 
     /**
@@ -183,13 +196,24 @@ ReferenceIDoitObjects = function (params) {
      *
      * @type {object}
      */
-    this.devicesTable = $('#idoitDevicesTable').dataTable({
+    this.devicesTable = $('#idoitDevicesTable').DataTable({
         "bJQueryUI": true,
         "bAutoWidth": false,
         "bLengthChange": false,
         "iDisplayLength": 20,
         "sPaginationType": "full_numbers",
-        "oLanguage": this.dataTableL10N
+        "oLanguage": this.dataTableL10N,
+        "columns": [
+            {"orderable": false},
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            {"orderable": false},
+            {"orderable": false}
+        ]
     });
 
     /**
@@ -197,13 +221,20 @@ ReferenceIDoitObjects = function (params) {
      *
      * @type {object}
      */
-    this.installedApplicationTable = $('#idoitInstalledSoftwareTable').dataTable({
+    this.installedApplicationTable = $('#idoitInstalledSoftwareTable').DataTable({
         "bJQueryUI": true,
         "bAutoWidth": false,
         "bLengthChange": false,
         "iDisplayLength": 20,
         "sPaginationType": "full_numbers",
-        "oLanguage": this.dataTableL10N
+        "oLanguage": this.dataTableL10N,
+        "columns": [
+            {"orderable": false},
+            null,
+            null,
+            null,
+            {"orderable": false}
+        ]
     });
 
     /**
@@ -256,6 +287,13 @@ ReferenceIDoitObjects = function (params) {
 
                 // Trigger the event.
                 that.objectTypeSelector.change();
+
+                // Activate chosen jQuery plugin:
+                $(".chosen-select").chosen({
+                    disable_search_threshold: 10,
+                    no_results_text: params.l10n['Nothing found.'],
+                    width: "264px"
+                });
 
                 that.initialized = true;
             } else {
@@ -329,7 +367,7 @@ ReferenceIDoitObjects = function (params) {
                 "filter": {
                     "email": customers[0]
                 },
-                "call": "assigned_objects_by_contact"
+                "method": "assigned_objects_by_contact"
             }
         };
 
@@ -419,7 +457,7 @@ ReferenceIDoitObjects = function (params) {
 
         workplaces = $('#idoitWorkplacesTab div.workplaces');
 
-        // We iterate through the first level (email-addresses).
+        // We iterate through the first level (email addresses).
         $.each(that.workplacesData, function (i, e) {
             workplaces.append(
                 '<a href="' + params.url + '?objID=' + i +
@@ -475,12 +513,12 @@ ReferenceIDoitObjects = function (params) {
     this.renderDevicesView = function () {
         var devices = [];
 
-        that.devicesTable.fnClearTable();
+        that.devicesTable.clear().draw();
 
-        if (typeof that.devicesData === 'undefined' ||
+        if (typeof that.devicesData !== 'object' ||
             Object.keys(that.devicesData).length === 0 ||
             that.devicesData.length === 0) {
-            $('#idoitDevicesTab').html(
+            $('#idoitDevicesInfo').html(
                 params.l10n['There are no roles defined for given customer(s).']
             );
         } else {
@@ -495,7 +533,7 @@ ReferenceIDoitObjects = function (params) {
                 }
 
                 check = '<input type="checkbox" value="' + e.id +
-                    '" name="idoitObjectBrowserObj[]" ' + ((selected) ? 'checked="checked"' : '') +
+                    '" name="idoitDevicesObject[]" ' + ((selected) ? 'checked="checked"' : '') +
                     ' />';
                 link = '<a href="' + params.url + '?objID=' + e.id + '" target="_blank" title="' +
                     params.l10n['Go to i-doit'] + '">&raquo; i-doit</a>';
@@ -517,7 +555,10 @@ ReferenceIDoitObjects = function (params) {
                 ]);
             });
 
-            that.devicesTable.fnAddData(devices);
+            that.devicesTable
+                .rows.add(devices)
+                .order([1, 'asc'])
+                .draw();
         }
     };
 
@@ -530,7 +571,7 @@ ReferenceIDoitObjects = function (params) {
     this.renderInstalledApplicationTable = function (ident, linkedTitle) {
         var data = {};
 
-        that.installedApplicationTable.fnClearTable();
+        that.installedApplicationTable.clear().draw();
 
         if (ident === undefined) {
             that.installedSoftware.hide();
@@ -563,9 +604,9 @@ ReferenceIDoitObjects = function (params) {
 
             if (response.error === undefined) {
                 that.installedSoftware.show();
-                that.installedApplicationTable.fnClearTable();
+                that.installedApplicationTable.clear().draw();
 
-                if(params.installedSoftware == 'objects') {
+                if (params.installedSoftware == 'objects') {
                     $.each(assignedApplicationsData, function (i, e) {
                         var selected = false,
                             check = '',
@@ -576,7 +617,7 @@ ReferenceIDoitObjects = function (params) {
                         }
 
                         check = '<input type="checkbox" value="' + e.application.id +
-                            '" name="idoitObjectBrowserObj[]" ' +
+                            '" name="idoitInstalledApplicationsObject[]" ' +
                             ((selected) ? 'checked="checked"' : '') +
                             ' onchange="referenceIDoitObjects.checkCHKB(this)" />';
                         link = '<a href="' + params.url + '?objID=' + e.application.id +
@@ -602,7 +643,7 @@ ReferenceIDoitObjects = function (params) {
                         }
 
                         check = '<input type="checkbox"  value="' + e.data.id +
-                            '" name="idoitObjectBrowserObj[]" ' +
+                            '" name="idoitInstalledApplicationsObject[]" ' +
                             ((selected) ? 'checked="checked"' : '') +
                             ' onchange="referenceIDoitObjects.checkCHKB(this)" />';
                         link = '<a href="' + params.url + '?objID=' + e.data.id +
@@ -619,7 +660,10 @@ ReferenceIDoitObjects = function (params) {
                     });
                 }
 
-                that.installedApplicationTable.fnAddData(applications);
+                that.installedApplicationTable
+                    .rows.add(applications)
+                    .order([1, 'asc'])
+                    .draw();
             } else {
                 that.showNotice(params.l10n['Error while loading objects by email']);
             }
@@ -650,7 +694,7 @@ ReferenceIDoitObjects = function (params) {
     this.renderObjectsView = function () {
         var entities = [];
 
-        that.objectTable.fnClearTable();
+        that.objectTable.clear().draw();
 
         $.each(that.objectsData, function (i, e) {
             var selected = false,
@@ -661,7 +705,7 @@ ReferenceIDoitObjects = function (params) {
                 selected = true;
             }
 
-            check = '<input type="checkbox" value="' + e.id + '" name="idoitObjectBrowserObj[]" ' +
+            check = '<input type="checkbox" value="' + e.id + '" name="idoitAllObjectsObject[]" ' +
                 ((selected) ? 'checked="checked"' : '') + ' />';
             link = '<a href="' + params.url + '?objID=' + e.id + '" target="_blank" title="' +
                 params.l10n['Go to i-doit'] + '">&raquo; i-doit</a>';
@@ -670,7 +714,10 @@ ReferenceIDoitObjects = function (params) {
         });
 
         if (entities.length > 0) {
-            that.objectTable.fnAddData(entities);
+            that.objectTable
+                .rows.add(entities)
+                .order([1, 'asc'])
+                .draw();
         }
     };
 
@@ -682,7 +729,7 @@ ReferenceIDoitObjects = function (params) {
             entities = [],
             raw;
 
-        that.selectedObjectsTable.fnClearTable();
+        that.selectedObjectsTable.clear().draw();
 
         raw = that.dataStore.data();
 
@@ -703,7 +750,10 @@ ReferenceIDoitObjects = function (params) {
         });
 
         if (entities.length > 0) {
-            that.selectedObjectsTable.fnAddData(entities);
+            that.selectedObjectsTable
+                .rows.add(entities)
+                .order([1, 'asc'])
+                .draw();
         }
 
         switch (params.type) {
@@ -730,8 +780,10 @@ ReferenceIDoitObjects = function (params) {
         that.renderSelectedObjects();
 
         // Instead of rendering the lists again we can do something like this:
-        $('input[name="idoitObjectBrowserObj[]"][value="' + id + '"]').attr('checked', false);
-        $('input[name="idoitWorkplacesObject[]"][value="' + id + '"]').attr('checked', false);
+        $('input[name="idoitAllObjectsObject[]"][value="' + id + '"]').prop('checked', false);
+        $('input[name="idoitWorkplacesObject[]"][value="' + id + '"]').prop('checked', false);
+        $('input[name="idoitDevicesObject[]"][value="' + id + '"]').prop('checked', false);
+        $('input[name="idoitInstalledApplicationsObject[]"][value="' + id + '"]').prop('checked', false);
     };
 
     /**
@@ -765,8 +817,10 @@ ReferenceIDoitObjects = function (params) {
         that.renderSelectedObjects();
 
         // Instead of re-rendering the tables this is faster:
-        $('input[name="idoitObjectBrowserObj[]"][value="' + id + '"]').attr('checked', 'checked');
-        $('input[name="idoitWorkplacesObject[]"][value="' + id + '"]').attr('checked', 'checked');
+        $('input[name="idoitAllObjectsObject[]"][value="' + id + '"]').prop('checked', true);
+        $('input[name="idoitWorkplacesObject[]"][value="' + id + '"]').prop('checked', true);
+        $('input[name="idoitDevicesObject[]"][value="' + id + '"]').prop('checked', true);
+        $('input[name="idoitInstalledApplicationsObject[]"][value="' + id + '"]').prop('checked', true);
     };
 
     /**
@@ -967,25 +1021,37 @@ ReferenceIDoitObjects = function (params) {
     /**
      * Will add/remove objects from the selection list if object's checkbox is checked/unchecked.
      */
-    that.content.on('change', 'input[name="idoitObjectBrowserObj[]"]', function () {
-        var name,
+    that.content.on('change', 'input[name="idoitAllObjectsObject[]"]', function () {
+        var id = $(this).val(),
+            name,
             type;
 
-        if ($(this).is(':checked')) {
+        if (this.checked) {
             name = $(this).closest('tr').find('td:eq(2)').text();
             type = $('#idoitObjectTypeSelector option:selected').text();
 
-            that.addObject($(this).val(), name, type);
+            that.addObject(id, name, type);
         } else {
-            that.removeObject($(this).val());
+            that.removeObject(id);
         }
     });
 
     /**
-     * Selects all objects from object view.
+     * Will add/remove objects from the selection list if object's checkbox is checked/unchecked.
      */
-    $('#idoitCheckAllObjects').click(function () {
-        $('input', that.objectTable.fnGetNodes()).attr('checked',this.checked).change();
+    that.content.on('change', 'input[name="idoitDevicesObject[]"], input[name="idoitInstalledApplicationsObject[]"]', function () {
+        var id = $(this).val(),
+            name,
+            type;
+
+        if (this.checked) {
+            name = $(this).closest('tr').find('td:eq(2)').text();
+            type = $(this).closest('tr').find('td:eq(3)').text();
+
+            that.addObject(id, name, type);
+        } else {
+            that.removeObject(id);
+        }
     });
 
     /**
@@ -995,10 +1061,9 @@ ReferenceIDoitObjects = function (params) {
         var name,
             type;
 
-        if ($(this).attr('checked')) {
+        if (this.checked) {
             name = $(this).next().text();
             type = $(this).next().next().text();
-
             that.addObject($(this).val(), name, type);
         } else {
             that.removeObject($(this).val());
@@ -1058,19 +1123,24 @@ ReferenceIDoitObjects = function (params) {
     });
 
     /**
+     * Will select/unselect all objects' checkboxes in all objects view if checkbox is marked/unmarked.
+     */
+    $('#idoitCheckAllObjects').click(function () {
+        $('input[name="idoitAllObjectsObject[]"]').prop('checked', this.checked).change();
+    });
+
+    /**
      * Will select/unselect all objects' checkboxes in devices view if checkbox is marked/unmarked.
      */
     $('#idoitCheckAllDevices').click(function () {
-        $('input', that.devicesTable.fnGetNodes()).attr('checked',this.checked).change();
+        $('input[name="idoitDevicesObject[]"]').prop('checked', this.checked).change();
     });
 
     /**
      * Will select/unselect all checkboxes of installed applications if checkbox is marked/unmarked.
      */
     $('#idoitCheckAllApps').click(function () {
-        $('input', that.installedApplicationTable.fnGetNodes())
-            .attr('checked',this.checked)
-            .change();
+        $('input[name="idoitInstalledApplicationsObject[]"]').prop('checked', this.checked).change();
     });
 
     /**

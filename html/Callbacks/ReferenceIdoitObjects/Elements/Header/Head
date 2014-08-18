@@ -23,8 +23,8 @@
 <!--[if lt IE 9]>
 <script type="text/javascript" src="<% $RT::WebPath %>/NoAuth/js/i-doit_ie_fix.js"></script>
 <![endif]-->
-<link rel="stylesheet" href="<% $RT::WebPath %>/NoAuth/css/demo_table.css" type="text/css" />
-<link rel="stylesheet" href="<% $RT::WebPath %>/NoAuth/css/demo_table_jui.css" type="text/css" />
+<link rel="stylesheet" href="<% $RT::WebPath %>/NoAuth/css/jquery.dataTables.min.css" type="text/css" />
+<link rel="stylesheet" href="<% $RT::WebPath %>/NoAuth/css/chosen.min.css" type="text/css" />
 <link rel="stylesheet" href="<% $RT::WebPath %>/NoAuth/css/i-doit_object_browser.css" type="text/css" />
 % }
 
