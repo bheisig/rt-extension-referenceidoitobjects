@@ -16,29 +16,44 @@ Hash: SHA1
 
 SHA1 78e50e186b04c8fe1defaa098f1c192181b3d837 COPYING
 SHA1 39de38d415dd06bf22b74f4c1becbab21064a59a Changes
-SHA1 b8394293f2e378ba6448ca865856f48077a1575d MANIFEST
+SHA1 ec43ac445b86fb9b0d9dbf15ad5e9ab678282246 MANIFEST
 SHA1 30732a5045c730baf75d689f6ffbce7669da7da6 MANIFEST.SKIP
 SHA1 b1fe0cc293914ab9992f0d0ea61984b6e1b55c9d META.yml
 SHA1 1a4f21ca213c6e3732adebf01bf29f00a67a3f6c Makefile.PL
-SHA1 2780d1a4964d8f0a62da4be6d07b5cd3ca3aa9c6 README
-SHA1 9c966d9f0932d403b7213a42181b955a6d2196fb TODO
+SHA1 c0c65e53529840130a2289b8736bf3f6fe6e1246 README
+SHA1 d30f6df440b9194ae2c7dc1be56aee1ee749c64e TODO
 SHA1 fff7ec23eec9774a0a9c5a6576a747fbc9756f9c etc/i-doit_api_proxy.php
 SHA1 e1e604e5d2bbb842d030132c60f56692f814a468 etc/initialdata
-SHA1 aa1a2bbcac81012577b6ceaa7e826fa9729baaf0 html/Callbacks/ReferenceIdoitObjects/Elements/Header/Head
+SHA1 7fccae377be0f8b60e6e5ca95f6eb7bc9ebe7a8c html/Callbacks/ReferenceIdoitObjects/Elements/Header/Head
 SHA1 a4d2ea1f471afabec0c5fab707c24cf68e217c0f html/Callbacks/ReferenceIdoitObjects/Elements/Tabs/Privileged
 SHA1 d46b04ea151d165892545d975730d90fd7c0d72c html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/AfterBasics
 SHA1 0c2bc6a606fa4137512b27bfa340c9d8ff410471 html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/FormStart
 SHA1 48fa00ecafbb02e55d067d7a1c49a1a765b1f210 html/Callbacks/ReferenceIdoitObjects/Ticket/Elements/ShowSummary/LeftColumn
 SHA1 9e3ec26a138e3ca06c2fba89726e666d0f605172 html/Callbacks/ReferenceIdoitObjects/Ticket/ModifyAll.html/AfterBasics
-SHA1 e1773431f4c66109c07ed85a00bb27312b8120a0 html/Elements/SelectIDoitObjects
+SHA1 b705e1e3dd25c37cd6899c0e4297b4e1818e19f4 html/Elements/SelectIDoitObjects
 SHA1 f73df5e8e60a53286063e1d1dab2398ce6592602 html/Elements/ShowIDoitObjects
-SHA1 79d23ab5a97f31ed04543fd7ae28a9dac568f443 html/NoAuth/css/demo_table.css
-SHA1 a25e73237c1c9b6fc5ee7cc0efa04fd18b1bf46a html/NoAuth/css/demo_table_jui.css
+SHA1 ab28af35a31a82fb9edfdaa58ac7350c4bef86e0 html/NoAuth/css/chosen.min.css
 SHA1 77bd3d3063cf3ff2da91247cbb8fe42c55678f16 html/NoAuth/css/i-doit_object_browser.css
+SHA1 65f23405e6f6b12947324b0fdee7966e17b78dad html/NoAuth/css/jquery.dataTables.min.css
+SHA1 2d7b7c58e303c7c5e8c9eca06fb239a4b1a4aaee html/NoAuth/images/chosen/chosen-sprite.png
+SHA1 ac1d3dd7af917de06f285b5d10221d51a00d7a68 html/NoAuth/images/chosen/chosen-sprite@2x.png
+SHA1 e07258a8dd69db552bf3b45324e070d6e720f89a html/NoAuth/images/datatables/Sorting icons.psd
+SHA1 4fd6412cf91a9486b25ffb06ff93d43c245bd5ef html/NoAuth/images/datatables/back_disabled.png
+SHA1 e834dda063b9f3b726a7e1d0d56dd4fd08256b6b html/NoAuth/images/datatables/back_enabled.png
+SHA1 d0cea8669214fdfdebc6d38249ddeb3cb0b5bd07 html/NoAuth/images/datatables/back_enabled_hover.png
+SHA1 c30deed1f703efd6e58e3188ea51fc6fab46f35f html/NoAuth/images/datatables/forward_disabled.png
+SHA1 63bbb33409d8420563e57a15b56e9bc5048e6f52 html/NoAuth/images/datatables/forward_enabled.png
+SHA1 b8dfb55cc3b5b250ef29838c83f2788fd45083de html/NoAuth/images/datatables/forward_enabled_hover.png
+SHA1 fdadf7f5935f4a411ab19366c6590546432acd0f html/NoAuth/images/datatables/sort_asc.png
+SHA1 2d39f08b8706a492e6c4847006c22ff1208949f6 html/NoAuth/images/datatables/sort_asc_disabled.png
+SHA1 cb35461ff7f6547daed299080563969b41fed878 html/NoAuth/images/datatables/sort_both.png
+SHA1 79bc8ee64be969c8c02db30a9317e534a3db7877 html/NoAuth/images/datatables/sort_desc.png
+SHA1 7bc88275f1d99623505dfa0d6730978e5c65525e html/NoAuth/images/datatables/sort_desc_disabled.png
 SHA1 d2b7e4e31fe8e1c6b720e33448674102879e4246 html/NoAuth/images/ui-anim_basic_16x16.gif
+SHA1 9dd6a493d2044e12fcf21addfe0cd93293568d69 html/NoAuth/js/chosen.jquery.min.js
 SHA1 9cab72c6d9fde4def30a426c3ed9c8bc5ccd310a html/NoAuth/js/i-doit_ie_fix.js
 SHA1 b2950b917d2e9d55c6a24bbf002e495400d4a3d9 html/NoAuth/js/jquery.dataTables.min.js
-SHA1 b6bff76e5ed079899c22887e8146ef81b900ded6 html/NoAuth/js/referenceidoitobjects.js
+SHA1 8f7d5e0361ff608b48ec4128893842d5fe244fc9 html/NoAuth/js/referenceidoitobjects.js
 SHA1 33144b4a8c148e18c8d181f47d0342e63b60536c html/Ticket/Elements/EditIDoitObjects
 SHA1 bb92b11d622f7584fa270175cd1829be97f96e3d html/Ticket/Elements/ShowIDoitObjects
 SHA1 2b70a6b246c69a9278112266e35651808a5ad2c8 html/Ticket/ModifyIDoitObjects.html
@@ -79,8 +94,8 @@ SHA1 8057872efd55c155d12f009cb190a81f7f775703 inc/Module/Install/Share.pm
 SHA1 3ef36786817df816cca65bcae5e987591512aeeb inc/Module/Install/Win32.pm
 SHA1 1349967ec3cd8c41a7717750ae23ede9824a2f39 inc/Module/Install/With.pm
 SHA1 b7fc200ced09546b337e460a29379e4bd6927ca2 inc/Module/Install/WriteAll.pm
-SHA1 59f075fd047b75b967d25ee05ff84f812c97db8b lib/RT/Extension/ReferenceIDoitObjects.pm
-SHA1 54693601be04ae2c902375210280e8a2e5a562eb po/de.po
+SHA1 f0c125605be94a6e19b0b321a221a6b15dea19bb lib/RT/Extension/ReferenceIDoitObjects.pm
+SHA1 d1658d23b7d64ad97fc200fe8f1d04f9ef347e05 po/de.po
 SHA1 21117f74c1256a9045626a08027068ea0e930842 static/images/i-doit.png
 SHA1 3987a51914e4ffa806ad31ce27fedd752468e3bf t/00-load.t
 SHA1 f7be47a0678c02f3c2a037ee4095907442a245c7 t/boilerplate.t
@@ -89,7 +104,7 @@ SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1
 
-iEYEARECAAYFAlPPui8ACgkQWFkxZRfLwXJm/ACfWrUiscYMiRQ5nnaIN+q/ePki
-U7wAoIUKgBMeIUvX77Wc/QRlM2IcXxCI
-=88qC
+iEYEARECAAYFAlPyFkoACgkQWFkxZRfLwXLlNACeJX1XiO7z/05HP82OrP42CDc3
+f+8An2Ew2ubz50RtOx6EWi5Wi3KTzv4A
+=UTea
 -----END PGP SIGNATURE-----
