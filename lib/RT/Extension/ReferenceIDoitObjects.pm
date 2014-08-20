@@ -205,6 +205,23 @@ This is an example for deleting the mason cache and restarting the Apache HTTP w
 Debian GNU/Linux based operating system.
 
 
+=head1 I-DOIT CONFIGURATION
+
+You may see and create object-related tickets within i-doit. Please refer to the i-doit manual to
+enable this feature.
+
+If you create a new ticket in i-doit a new browser tab will be opened with the RT user interface.
+Sometimes RT shows a warning that there is a CSR attack. If you observe this behavior edit RT's
+local configuration file C<$RT_HOME/etc/RT_SiteConfig.pm> where C<$RT_HOME> is the path to your RT
+installation, for example C</opt/rt4>:
+
+    Set($RestrictReferrer, 0); # avoids possible CSR attacks
+
+Don't forget to clear the Mason cache and restart your webserver.
+
+Notice: This setting could weak your security!
+
+
 =head1 USAGE
 
 Whenever you create a new ticket or edit an existing one you are able to reference this ticket with
