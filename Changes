@@ -5,9 +5,17 @@ Revision history for RT-Extension-ReferenceIDoitObjects
 
 ##  0.94 (tba)
 
-*   Fix: Fetching devices related to current requestor doesn't work.
-*   Fix: updated dataTables jQuery plugin
-*   Fix: re-factored JavaScript code; improved code docs
+This is a bugfix-only release.
+
+*   Fix: Improved selecting object type
+*   Fix: Fixed missing tab navigation after submitting ticket changes on referenced i-doit objects
+*   Fix: Fetching devices related to current requestor doesn't work
+*   Fix: Fetching right object type when selecting an object
+*   Fix: (Un)selecting all object items in a table
+*   Fix: Selecting objects in all tables at the same time
+*   Fix: Updated dataTables jQuery plugin
+*   Fix: Re-factored JavaScript code; improved code docs
+*   Fix: Improved code documentation
 
 
 ##  0.93 (Wed, 07 May 2014 14:20:10 +0200)

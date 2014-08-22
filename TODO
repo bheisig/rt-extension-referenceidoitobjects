@@ -1,7 +1,5 @@
 TODO for RT-Extension-ReferenceIDoitObjects
 
-*   [Bug] Broken graphics: Since RT 4.2 there is no good way to include graphics.
-*   [Bug] While creating a ticket within i-doit, object ID won't show up in custom field's textarea.
 *   [Feature] Integrate cross-site HTTP requests and make API proxy absolete
 *   [Feature] Implement various tree views, e. g. physical location
 *   [Feature] Add new tab to search for i-doit objects
