@@ -26,10 +26,10 @@
         </ul>
 
         <a href="<% RT->Config->Get('IDoitURL') %>" title="<% loc('Go to i-doit') %>" target="_blank">
-            <img src="<% RT->Config->Get('WebPath') %>/NoAuth/images/i-doit.png" alt="i-doit" style="position: absolute; top: 5px; right: 8px; height: 28px;" border="0" />
+            <img src="<% RT->Config->Get('WebPath') %>/static/images/i-doit.png" alt="i-doit" style="position: absolute; top: 5px; right: 8px; height: 28px;" border="0" />
         </a>
 
-        <img id="idoitLoadingSign" src="<% RT->Config->Get('WebPath') %>/NoAuth/images/ui-anim_basic_16x16.gif" alt="<% loc('Loading...') %>" height="16" width="16" style="position: absolute; opacity: 0; z-index: 100; right: 80px; top: 12px;" border="0" />
+        <img id="idoitLoadingSign" src="<% RT->Config->Get('WebPath') %>/static/images/ui-anim_basic_16x16.gif" alt="<% loc('Loading...') %>" height="16" width="16" style="position: absolute; opacity: 0; z-index: 100; right: 80px; top: 12px;" border="0" />
 
         <div id="idoitSelectedObjectsTab">
             <table id="idoitAllObjectsTable" style="width:100%;">

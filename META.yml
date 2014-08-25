@@ -25,6 +25,7 @@ no_index:
     - html
     - inc
     - po
+    - static
     - t
 keywords:
   - RT

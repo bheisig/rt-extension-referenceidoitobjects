@@ -547,7 +547,6 @@ ReferenceIDoitObjects = function (params) {
                     e.id,
                     e.title,
                     e.type_title,
-                    e.sysid,
                     e.role,
                     e.primary,
                     showSoftware,

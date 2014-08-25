@@ -1,3 +1,4 @@
+#line 1
 package Module::Install::Can;
 
 use strict;
@@ -7,7 +8,7 @@ use Module::Install::Base ();
 
 use vars qw{$VERSION @ISA $ISCORE};
 BEGIN {
-	$VERSION = '1.06';
+	$VERSION = '1.08';
 	@ISA     = 'Module::Install::Base';
 	$ISCORE  = 1;
 }
@@ -150,87 +151,4 @@ if ( $^O eq 'cygwin' ) {
 
 __END__
 
-=pod
-
-=head1 NAME
-
-Module::Install::Can - Utility functions for capability detection
-
-=head1 DESCRIPTION
-
-C<Module::Install::Can> contains a number of functions for authors to use
-when creating customised smarter installers. The functions simplify
-standard tests so that you can express your dependencies and conditions
-much more simply, and make your installer much easier to maintain.
-
-=head1 COMMANDS
-
-=head2 can_use
-
-  can_use('Module::Name');
-  can_use('Module::Name', 1.23);
-
-The C<can_use> function tests the ability to load a specific named
-module. Currently it will also actually load the module in the
-process, although this may change in the future.
-
-Takes an optional second param of a version number. The currently
-installed version of the module will be tested to make sure it is
-equal to or greater than the specified version.
-
-Returns true if the module can be loaded, or false (in both scalar or
-list context) if not.
-
-=head2 can_run
-
-  can_run('cvs');
-
-The C<can_run> function tests the ability to run a named command or
-program on the local system.
-
-Returns true if so, or false (both in scalar and list context) if not.
-
-=head2 can_cc
-
-  can_cc();
-
-The C<can_cc> function tests the ability to locate a functioning C compiler
-on the local system. Returns true if the C compiler can be found, or false
-(both in scalar and list context) if not.
-
-=head2 can_xs
-
-  can_xs();
-
-The C<can_xs> function tests for a functioning C compiler and the correct
-headers to build XS modules against the current instance of Perl.
-
-=head1 TO DO
-
-Currently, the use of a C<can_foo> command in a single problem domain
-(for example C<can_use>) results in the inclusion of additional
-functionality from different problem domains (for example C<can_run>).
-
-This module should ultimately be broken up, and the individual
-functions redestributed to different domain-specific extensions.
-
-=head1 AUTHORS
-
-Audrey Tang E<lt>autrijus@autrijus.orgE<gt>
-
-Adam Kennedy E<lt>adamk@cpan.orgE<gt>
-
-=head1 SEE ALSO
-
-L<Module::Install>, L<Class::Inspector>
-
-=head1 COPYRIGHT
-
-Copyright 2006 - 2012 Audrey Tang, Adam Kennedy.
-
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
-
-See L<http://www.perl.com/perl/misc/Artistic.html>
-
-=cut
+#line 236
