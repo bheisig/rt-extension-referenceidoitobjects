@@ -167,7 +167,12 @@ ReferenceIDoitObjects = function (params) {
             null,
             null,
             {"orderable": false}
-        ]
+        ],
+        // Workaround because of doubled sorting icons in table head:
+        "renderer": {
+            "header": "bootstrap",
+            "pageButton": "jqueryui"
+        }
     });
 
     /**
@@ -180,7 +185,6 @@ ReferenceIDoitObjects = function (params) {
         "bAutoWidth": false,
         "bPaginate": false,
         "bLengthChange": false,
-        "bSort": false,
         "oLanguage": this.dataTableL10N,
         "columns": [
             {"orderable": false},
@@ -188,7 +192,12 @@ ReferenceIDoitObjects = function (params) {
             null,
             null,
             {"orderable": false}
-        ]
+        ],
+        // Workaround because of doubled sorting icons in table head:
+        "renderer": {
+            "header": "bootstrap",
+            "pageButton": "jqueryui"
+        }
     });
 
     /**
@@ -209,11 +218,14 @@ ReferenceIDoitObjects = function (params) {
             null,
             null,
             null,
-            null,
-            null,
             {"orderable": false},
             {"orderable": false}
-        ]
+        ],
+        // Workaround because of doubled sorting icons in table head:
+        "renderer": {
+            "header": "bootstrap",
+            "pageButton": "jqueryui"
+        }
     });
 
     /**
@@ -234,7 +246,12 @@ ReferenceIDoitObjects = function (params) {
             null,
             null,
             {"orderable": false}
-        ]
+        ],
+        // Workaround because of doubled sorting icons in table head:
+        "renderer": {
+            "header": "bootstrap",
+            "pageButton": "jqueryui"
+        }
     });
 
     /**
@@ -513,7 +530,10 @@ ReferenceIDoitObjects = function (params) {
     this.renderDevicesView = function () {
         var devices = [];
 
-        that.devicesTable.clear().draw();
+        that.devicesTable
+            .clear()
+            .order([1, 'asc'])
+            .draw();
 
         if (typeof that.devicesData !== 'object' ||
             Object.keys(that.devicesData).length === 0 ||
@@ -538,9 +558,9 @@ ReferenceIDoitObjects = function (params) {
                 link = '<a href="' + params.url + '?objID=' + e.id + '" target="_blank" title="' +
                     params.l10n['Go to i-doit'] + '">&raquo; i-doit</a>';
                 showSoftware =
-                    '<span class="installed-apps-button"><a href="#" onclick="referenceIDoitObjects.renderInstalledApplicationTable(' +
-                    e.id + ', \'' + e.title + '\');">' + params.l10n['show installed software'] +
-                    '</a></span>';
+                    '<span class="installed-apps-button"><a href="#" title="' + params.l10n['show installed software'] +
+                    '" onclick="referenceIDoitObjects.renderInstalledApplicationTable(' +
+                    e.id + ', \'' + e.title + '\');">&raquo;</a></span>';
 
                 devices.push([
                     check,
@@ -548,7 +568,6 @@ ReferenceIDoitObjects = function (params) {
                     e.title,
                     e.type_title,
                     e.role,
-                    e.primary,
                     showSoftware,
                     link
                 ]);
@@ -556,7 +575,6 @@ ReferenceIDoitObjects = function (params) {
 
             that.devicesTable
                 .rows.add(devices)
-                .order([1, 'asc'])
                 .draw();
         }
     };
@@ -570,7 +588,10 @@ ReferenceIDoitObjects = function (params) {
     this.renderInstalledApplicationTable = function (ident, linkedTitle) {
         var data = {};
 
-        that.installedApplicationTable.clear().draw();
+        that.installedApplicationTable
+            .clear()
+            .order([1, 'asc'])
+            .draw();
 
         if (ident === undefined) {
             that.installedSoftware.hide();
@@ -603,7 +624,6 @@ ReferenceIDoitObjects = function (params) {
 
             if (response.error === undefined) {
                 that.installedSoftware.show();
-                that.installedApplicationTable.clear().draw();
 
                 if (params.installedSoftware == 'objects') {
                     $.each(assignedApplicationsData, function (i, e) {
@@ -661,7 +681,6 @@ ReferenceIDoitObjects = function (params) {
 
                 that.installedApplicationTable
                     .rows.add(applications)
-                    .order([1, 'asc'])
                     .draw();
             } else {
                 that.showNotice(params.l10n['Error while loading objects by email']);
@@ -693,7 +712,10 @@ ReferenceIDoitObjects = function (params) {
     this.renderObjectsView = function () {
         var entities = [];
 
-        that.objectTable.clear().draw();
+        that.objectTable
+            .clear()
+            .order([1, 'asc'])
+            .draw();
 
         $.each(that.objectsData, function (i, e) {
             var selected = false,
@@ -715,7 +737,6 @@ ReferenceIDoitObjects = function (params) {
         if (entities.length > 0) {
             that.objectTable
                 .rows.add(entities)
-                .order([1, 'asc'])
                 .draw();
         }
     };
@@ -728,7 +749,10 @@ ReferenceIDoitObjects = function (params) {
             entities = [],
             raw;
 
-        that.selectedObjectsTable.clear().draw();
+        that.selectedObjectsTable
+            .clear()
+            .order([1, 'asc'])
+            .draw();
 
         raw = that.dataStore.data();
 
@@ -738,7 +762,7 @@ ReferenceIDoitObjects = function (params) {
 
             entities.push([
                 '<a href="#" class="idoitObjectBrowserRemover" onclick="referenceIDoitObjects.removeObject(' +
-                    i + ')">' + params.l10n['Delete'] + '</a>',
+                    i + ')">' + params.l10n['Clear'] + '</a>',
                 i,
                 e.name,
                 e.type,
@@ -751,7 +775,6 @@ ReferenceIDoitObjects = function (params) {
         if (entities.length > 0) {
             that.selectedObjectsTable
                 .rows.add(entities)
-                .order([1, 'asc'])
                 .draw();
         }
 

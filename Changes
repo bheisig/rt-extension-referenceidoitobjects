@@ -13,6 +13,9 @@ This is a bugfix-only release.
 *   Fix: Fetching right object type when selecting an object
 *   Fix: (Un)selecting all object items in a table
 *   Fix: Selecting objects in all tables at the same time
+*   Fix: Improved table styling
+*   Fix: Broken images
+*   Fix: Removed non-relevant SYSID column from devices table
 *   Fix: Updated dataTables jQuery plugin
 *   Fix: Re-factored JavaScript code; improved code docs
 *   Fix: Improved code documentation

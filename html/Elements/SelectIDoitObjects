@@ -39,7 +39,7 @@
                 <% loc('Object type') %> <select id="idoitObjectTypeSelector" class="chosen-select"></select>
             </label>
             <br />
-            <table id="idoitAllObjectsTable" style="width:100%;">
+            <table id="idoitAllObjectsTable" class="compact" style="width:100%;">
                 <thead>
                     <tr>
                         <th width="5%" style="text-align: left;"><input type="checkbox" id="idoitCheckAllObjects" name="idoitCheckAllObjects"></th>
@@ -60,15 +60,14 @@
 
         <div id="idoitDevicesTab">
             <div id="idoitDevicesInfo"></div>
-            <table id="idoitDevicesTable" style="width:100%;">
+            <table id="idoitDevicesTable" class="compact" style="width:100%;">
                 <thead>
                     <tr>
                         <th width="5%" style="text-align: left;"><input type="checkbox" id="idoitCheckAllDevices" name="idoitCheckAllDevices"></th>
-                        <th width="5%"><% loc('ID') %></th>
+                        <th width="10%"><% loc('ID') %></th>
                         <th width="20%"><% loc('Name') %></th>
                         <th width="20%"><% loc('Type') %></th>
                         <th width="20%"><% loc('Role') %></th>
-                        <th width="10%"><% loc('Primary') %></th>
                         <th width="15%"><% loc('Installed software') %></th>
                         <th width="10%"><% loc('Link') %></th>
                     </tr>
@@ -79,13 +78,13 @@
             <br>
             <div id="idoitInstalledSoftware" style="display:none;">
                 <div id="idoitInstalledSoftwareInfo"><% loc('Installed software') %> (<span style="font-weight:bold;"></span>):</div>
-                <table id="idoitInstalledSoftwareTable" style="width:100%;">
+                <table id="idoitInstalledSoftwareTable" class="compact" style="width:100%;">
                     <thead>
                         <tr>
                             <th width="5%" style="text-align: left;"><input type="checkbox" id="idoitCheckAllApps" name="idoitCheckAllApps"></th>
-                            <th width="5%"><% loc('ID') %></th>
-                            <th width="25%"><% loc('Name') %></th>
-                            <th width="20%"><% loc('Type') %></th>
+                            <th width="10%"><% loc('ID') %></th>
+                            <th width="40%"><% loc('Name') %></th>
+                            <th width="35%"><% loc('Type') %></th>
                             <th width="10%"><% loc('Link') %></th>
                         </tr>
                     </thead>
@@ -96,12 +95,12 @@
         </div>
 
         <div id="idoitSelectedObjectsTab">
-            <table id="idoitSelectedObjectsTable" style="width:100%;">
+            <table id="idoitSelectedObjectsTable" class="compact" style="width:100%;">
                 <thead>
                     <tr>
-                        <th width="10%" style="text-align: left;"><a id="idoitRemoveAllObjects" href="#"><% loc('Delete') %></a></th>
-                        <th width="5%"><% loc('ID') %></th>
-                        <th width="35%"><% loc('Name') %></th>
+                        <th width="10%" style="text-align: left;"><a id="idoitRemoveAllObjects" href="#"><% loc('Clear') %></a></th>
+                        <th width="10%"><% loc('ID') %></th>
+                        <th width="40%"><% loc('Name') %></th>
                         <th width="30%"><% loc('Type') %></th>
                         <th width="10%"><% loc('Link') %></th>
                     </tr>
@@ -165,7 +164,7 @@
                 'Error while loading object types': '<% loc("Error while loading object types") %>',
                 'Error while loading objects by object type': '<% loc("Error while loading objects by object type") %>',
                 'Error while loading relation objects': '<% loc("Error while loading relation objects") %>',
-                'Delete': '<% loc("Delete") %>',
+                'Clear': '<% loc("Clear") %>',
                 'Please select an i-doit mandator.': '<% loc("Please select an i-doit mandator.") %>',
                 'Ticket was edited.': '<% loc("Ticket was edited.") %>',
                 'Ticket was created.': '<% loc("Ticket was created.") %>',

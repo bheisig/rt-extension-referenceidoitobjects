@@ -32,7 +32,7 @@
         <img id="idoitLoadingSign" src="<% RT->Config->Get('WebPath') %>/static/images/ui-anim_basic_16x16.gif" alt="<% loc('Loading...') %>" height="16" width="16" style="position: absolute; opacity: 0; z-index: 100; right: 80px; top: 12px;" border="0" />
 
         <div id="idoitSelectedObjectsTab">
-            <table id="idoitAllObjectsTable" style="width:100%;">
+            <table id="idoitAllObjectsTable" class="compact" style="width:100%;">
                 <thead>
                     <tr>
                         <th width="5%"><% loc('ID') %></th>

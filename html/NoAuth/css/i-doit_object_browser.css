@@ -43,3 +43,7 @@ span.relation-button:hover,
 div.workplaces {
     position: relative;
 }
+
+span.css_right {
+    float: right;
+}
