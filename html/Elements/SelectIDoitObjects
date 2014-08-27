@@ -99,9 +99,9 @@
                 <thead>
                     <tr>
                         <th width="10%" style="text-align: left;"><a id="idoitRemoveAllObjects" href="#"><% loc('Clear') %></a></th>
-                        <th width="10%"><% loc('ID') %></th>
+                        <th width="15%"><% loc('ID') %></th>
                         <th width="40%"><% loc('Name') %></th>
-                        <th width="30%"><% loc('Type') %></th>
+                        <th width="25%"><% loc('Type') %></th>
                         <th width="10%"><% loc('Link') %></th>
                     </tr>
                 </thead>
@@ -161,6 +161,7 @@
                 'Given customer(s) could not be found in i-doit.': '<% loc("Given customer(s) could not be found in i-doit.") %>',
                 'show installed software': '<% loc("show installed software") %>',
                 'Go to i-doit': '<% loc("Go to i-doit") %>',
+                'Show': '<% loc("Show") %>',
                 'Error while loading object types': '<% loc("Error while loading object types") %>',
                 'Error while loading objects by object type': '<% loc("Error while loading objects by object type") %>',
                 'Error while loading relation objects': '<% loc("Error while loading relation objects") %>',

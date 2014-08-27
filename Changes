@@ -15,7 +15,10 @@ This is a bugfix-only release.
 *   Fix: Selecting objects in all tables at the same time
 *   Fix: Improved table styling
 *   Fix: Broken images
-*   Fix: Removed non-relevant SYSID column from devices table
+*   Fix: Removed non-relevant columns from devices table
+*   Fix: Improved sorting table columns
+*   Fix: Avoid CSR error message when reloading "create new ticket" page
+*   Fix: Show configured default view when initiated
 *   Fix: Updated dataTables jQuery plugin
 *   Fix: Re-factored JavaScript code; improved code docs
 *   Fix: Improved code documentation

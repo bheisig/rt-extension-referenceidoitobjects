@@ -285,7 +285,7 @@ ReferenceIDoitObjects = function (params) {
         that.callIDoit(data, function (response) {
             if (response !== null && response.error === undefined) {
                 // Initialize the tabs.
-                that.content.tabs({selected: params.defaultView});
+                that.content.tabs({active: params.defaultView});
 
                 // Check whether the preselection field is filled out.
                 that.loadPreselectedData();
@@ -555,12 +555,16 @@ ReferenceIDoitObjects = function (params) {
                 check = '<input type="checkbox" value="' + e.id +
                     '" name="idoitDevicesObject[]" ' + ((selected) ? 'checked="checked"' : '') +
                     ' />';
+
                 link = '<a href="' + params.url + '?objID=' + e.id + '" target="_blank" title="' +
                     params.l10n['Go to i-doit'] + '">&raquo; i-doit</a>';
+
                 showSoftware =
-                    '<span class="installed-apps-button"><a href="#" title="' + params.l10n['show installed software'] +
+                    '<span class="installed-apps-button"><a href="javascript:void(null);" title="' +
+                    params.l10n['show installed software'] +
                     '" onclick="referenceIDoitObjects.renderInstalledApplicationTable(' +
-                    e.id + ', \'' + e.title + '\');">&raquo;</a></span>';
+                    e.id + ', \'' + e.title + '\');">&raquo; ' +  params.l10n['Show'] +
+                    '</a></span>';
 
                 devices.push([
                     check,
@@ -582,10 +586,10 @@ ReferenceIDoitObjects = function (params) {
     /**
      * Renders the table for installed applications for a specific object.
      *
-     * @param {int} ident - Object identifier
-     * @param {string} linkedTitle - Object title
+     * @param {int} id - Object identifier
+     * @param {string} title - Object title
      */
-    this.renderInstalledApplicationTable = function (ident, linkedTitle) {
+    this.renderInstalledApplicationTable = function (id, title) {
         var data = {};
 
         that.installedApplicationTable
@@ -593,18 +597,21 @@ ReferenceIDoitObjects = function (params) {
             .order([1, 'asc'])
             .draw();
 
-        if (ident === undefined) {
+        if (id === undefined) {
             that.installedSoftware.hide();
             return;
         }
 
-        $('#idoitInstalledSoftwareInfo span').html(linkedTitle);
+        $('#idoitInstalledSoftwareInfo span').html(
+            '<a href="' + params.url + '?objID=' + id + '" title="' +
+            params.l10n['Go to i-doit'] + '" target="_blank">' + title + '</a>'
+        );
 
         if (params.installedSoftware === 'objects') {
             data = {
                 "method": "cmdb.category",
                 "params": {
-                    "objID": ident,
+                    "objID": id,
                     "catgID": "C__CATG__APPLICATION"
                 }
             };
@@ -612,7 +619,7 @@ ReferenceIDoitObjects = function (params) {
             data = {
                 "method": "cmdb.objects_by_relation",
                 "params": {
-                    "id": ident,
+                    "id": id,
                     "relation_type": "C__RELATION_TYPE__SOFTWARE"
                 }
             };
@@ -761,7 +768,7 @@ ReferenceIDoitObjects = function (params) {
                 params.l10n['Go to i-doit'] + '">&raquo; i-doit</a>';
 
             entities.push([
-                '<a href="#" class="idoitObjectBrowserRemover" onclick="referenceIDoitObjects.removeObject(' +
+                '<a href="javascript:void(null);" class="idoitObjectBrowserRemover" onclick="referenceIDoitObjects.removeObject(' +
                     i + ')">' + params.l10n['Clear'] + '</a>',
                 i,
                 e.name,
