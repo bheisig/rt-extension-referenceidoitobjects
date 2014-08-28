@@ -55,7 +55,7 @@
 
         <div id="idoitWorkplacesTab">
             <div class="workplaces"></div>
-            <a href="#" id="idoitCustomerReload"><% loc('Refresh') %></a>
+            <a href="javascript:void(null);" id="idoitCustomerReload"><% loc('Refresh') %></a>
         </div>
 
         <div id="idoitDevicesTab">

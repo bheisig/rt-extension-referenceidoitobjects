@@ -326,15 +326,22 @@ ReferenceIDoitObjects = function (params) {
      */
     this.loadCustomerData = function () {
         var customers = [],
-            customerList = that.customers.val();
+            customerList = that.customers.val(),
+            workplacesInfo = $('#idoitWorkplacesTab div'),
+            devicesInfo = $('#idoitDevicesInfo'),
+            devicesTableWrapper = $('#idoitDevicesTable_wrapper');
 
         if (typeof customerList !== 'string' || customerList.length === 0) {
-            $('#idoitWorkplacesTab div').html(params.l10n['There is no customer selected.']);
+            workplacesInfo.html(params.l10n['There is no customer selected.']);
             $('#idoitDevicesInfo').html(params.l10n['There is no customer selected.']);
-            that.devicesTable.hide();
+            devicesTableWrapper.hide();
             that.installedSoftware.hide();
             return;
-        }
+        } //if
+
+        workplacesInfo.html('');
+        devicesInfo.html('');
+        devicesTableWrapper.show();
 
         customers = customerList.replace(/(\s)/g, '').split(',');
 

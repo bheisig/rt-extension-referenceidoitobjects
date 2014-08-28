@@ -18,6 +18,7 @@
 %# Request Tracker (RT) is Copyright Best Practical Solutions, LLC.
 
 <&| /Widgets/TitleBox, title => loc('Referenced i-doit objects'), class=> 'ticket-info-basic' &>
+    <input type="hidden" id="Requestors" name="Requestory" value="<% $Ticket->RequestorAddresses %>" />
     <& /Ticket/Elements/EditIDoitObjects, TicketObj => $Ticket &>
 </&>
 
