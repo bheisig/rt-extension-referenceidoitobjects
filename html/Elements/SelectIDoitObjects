@@ -147,7 +147,6 @@
                 'title': 'input[name="Subject"]'
             },
             'customers': '#Requestors',
-            'form': 'form[name="TicketCreate"]',
             'l10n': {
                 'Loading...': '<% loc("Loading...") %>',
                 'Show _MENU_ objects': '<% loc("Show _MENU_ objects") %>',

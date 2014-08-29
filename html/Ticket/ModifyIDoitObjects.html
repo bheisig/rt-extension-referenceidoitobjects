@@ -43,15 +43,6 @@
     <& /Elements/Submit, Name => 'SubmitTicket', Label => loc('Save Changes') &>
 </form>
 
-<script type="text/javascript">
-    (function($) {
-        $('form[name="ModifyReferencedIDoitObjects"]').submit(function() {
-            window.log_changed_objects(true);
-            return true;
-        });
-    })(jQuery);
-</script>
-
 <%INIT>
 my @results;
 my $TicketObj = LoadTicket($id);

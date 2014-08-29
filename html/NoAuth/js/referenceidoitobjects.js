@@ -254,6 +254,11 @@ ReferenceIDoitObjects = function (params) {
         }
     });
 
+    this.formRTCreate = $('form[name="TicketCreate"]');
+    this.formRTModifyIDoitObjects = $('form[name="ModifyReferencedIDoitObjects"]');
+    this.formRTModifyAll = $('form[name="TicketModifyAll"]');
+    this.formOTRSEdit = $('form[name="compose"]');
+
     /**
      * Make this object available in sub methods:
      */
@@ -1228,13 +1233,25 @@ ReferenceIDoitObjects = function (params) {
     });
 
     /**
-     * Will submit all changes if form is sent.
-     * @return bool Returns true which is necessary to continue with the POST request.
+     * Identifies the right ticket mode and triggers logbook entries:
      */
-    $(params.form).submit(function () {
-        that.logChangedObjects(true);
-        return true;
-    });
+    if (this.formRTCreate.length > 0) {
+        this.formRTCreate.submit(function (event) {
+            that.logChangedObjects(false);
+        });
+    } else if (this.formRTModifyIDoitObjects.length > 0) {
+        this.formRTModifyIDoitObjects.submit(function (event) {
+            that.logChangedObjects(true);
+        });
+    } else if (this.formRTModifyAll.length > 0) {
+        this.formRTModifyAll.submit(function (event) {
+            that.logChangedObjects(true);
+        });
+    } else if (this.formOTRSEdit.length > 0) {
+        this.formOTRSEdit.submit(function (event) {
+            that.logChangedObjects(true);
+        });
+    } //if
 
     /**
      * Initializes the object browser or displays a message.

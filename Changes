@@ -19,6 +19,7 @@ This is a bugfix-only release.
 *   Fix: Improved sorting table columns
 *   Fix: Avoid CSR error message when reloading "create new ticket" page
 *   Fix: Show configured default view when initiated
+*   Fix: Creating new logbook entries
 *   Fix: Updated dataTables jQuery plugin
 *   Fix: Re-factored JavaScript code; improved code docs
 *   Fix: Improved code documentation
