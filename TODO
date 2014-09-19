@@ -8,3 +8,4 @@ TODO for RT-Extension-ReferenceIDoitObjects
 *   [Feature] Show devices for every customer/requestor, not only for the first one
 *   [Feature] Configure in which queues the browser is available
 *   [Feature] Configure default object type
+*   [Bug] Rename "mandator" to "tenant"

@@ -1,238 +1,281 @@
-NAME
-    RT::Extension::ReferenceIDoitObjects - Create a ticket in relation to
-    one or more i-doit objects
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
 
-DESCRIPTION
-    This extension gives you the opportunity to combine an issue tracker
-    like RT with an IT documentation tool / CMDB like i-doit. It uses
-    i-doit's API to relate a ticket with one or more CIs / objects managed
-    by i-doit. On i-doit's side you are able to view all tickets related to
-    an object. This extension also supports i-doit's multi-mandator
-    functionality.
+<body style="background-color: white">
 
-    i-doit ("I document IT") is a web-based tool to document complex IT
-    infrastructures. It provides several modules like a ITIL compliant
-    Configuration Management Database (CMDB). More information about i-doit
-    is available under <http://www.i-doit.org/>. Its core is Free and Open
-    Source Software. Visit <http://www.i-doit.com/> for commercial support
-    and additional services. Please note, that i-doit's API (which is
-    essential for this extension) is currently only implemented in the
-    commercial branch.
 
-INSTALLATION
-    This extension requires RT 4.2.x or higher and a running installation of
-    i-doit 1.3 or higher.
 
-    Important notice: This version is no longer compatible to Request
-    Tracker version 4.0.x and i-doit version 1.2.x or older! Please use
-    version 0.92 instead if you need compatibility to those older versions.
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a></li>
+  <li><a href="#INSTALLATION">INSTALLATION</a></li>
+  <li><a href="#CONFIGURATION">CONFIGURATION</a></li>
+  <li><a href="#I-DOIT-CONFIGURATION">I-DOIT CONFIGURATION</a></li>
+  <li><a href="#USAGE">USAGE</a></li>
+  <li><a href="#AUTHORS">AUTHORS</a></li>
+  <li><a href="#SUPPORT-AND-DOCUMENTATION">SUPPORT AND DOCUMENTATION</a></li>
+  <li><a href="#BUGS">BUGS</a></li>
+  <li><a href="#COPYRIGHT-AND-LICENSE">COPYRIGHT AND LICENSE</a></li>
+  <li><a href="#SEE-ALSO">SEE ALSO</a></li>
+</ul>
 
-    To install this extension, run the following commands:
+<h1 id="NAME">NAME</h1>
 
-        perl Makefile.PL
-        make
-        make test
-        make install
-        make initdb
+<p>RT::Extension::ReferenceIDoitObjects - Create a ticket in relation to one or more i-doit objects</p>
 
-    Executing the last command creates 2 new custom fields, so please do it
-    only once. These fields contain the i-doit mandator and the referenced
-    objects.
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
 
-    Another way to install the latest release is via CPAN:
+<p>This extension gives you the opportunity to combine an issue tracker like RT with an IT documentation tool / CMDB like i-doit. It uses i-doit&#39;s API to relate a ticket with one or more CIs / objects managed by i-doit. On i-doit&#39;s side you are able to view all tickets related to an object. This extension also supports i-doit&#39;s multi-mandator functionality.</p>
 
-        cpan RT::Extension::ReferenceIDoitObjects
-        $RT_HOME/sbin/rt-setup-database --action insert --datafile /opt/rt4/local/plugins/RT-Extension-ReferenceIDoitObjects/etc/initialdata
+<p>i-doit (&quot;I document IT&quot;) is a web-based tool to document complex IT infrastructures. It provides several modules like a ITIL compliant Configuration Management Database (CMDB). More information about i-doit is available under <a href="http://www.i-doit.org/">http://www.i-doit.org/</a>. Its core is Free and Open Source Software. Visit <a href="http://www.i-doit.com/">http://www.i-doit.com/</a> for commercial support and additional services.</p>
 
-    The second command is equivalent to "make initdb", but is unfortunately
-    not executed automatically. $RT_HOME is the path to your RT
-    installation, for example "/opt/rt4".
+<h1 id="INSTALLATION">INSTALLATION</h1>
 
-CONFIGURATION
-    To enable this extension edit the RT site configuration based in
-    "$RT_HOME/etc/RT_SiteConfig.pm":
+<p>This extension requires RT 4.2.x or higher and a running installation of i-doit 1.3 or higher.</p>
 
-        Set(@Plugins,qw(RT::Extension::ReferenceIDoitObjects));
+<p><b>Important notice:</b> This version is no longer compatible to Request Tracker version 4.0.x and i-doit version 1.2.x or older! Please use version 0.92 instead if you need compatibility to those older versions.</p>
 
-    i-doit has a built-in API based on JSON-RPC. To call this API set its
-    URL:
+<p>To install this extension, run the following commands:</p>
 
-        Set($IDoitURL, 'http://example.org/i-doit/');
+<pre><code>    perl Makefile.PL
+    make
+    make test
+    make install
+    make initdb</code></pre>
 
-        Set($IDoitAPI, $IDoitURL . '?api=jsonrpc');
+<p>Executing the last command creates 2 new custom fields, so please do it only once. These fields contain the i-doit mandator and the referenced objects.</p>
 
-        Set(%IDoitMandatorKeys, (
-            'Mandator 1' => 'api key',
-            'Mandator 2' => 'api key'
-        ));
+<p>Another way to install the latest release is via CPAN:</p>
 
-        Set($IDoitDefaultMandator, 'Mandator 1');
+<pre><code>    cpan RT::Extension::ReferenceIDoitObjects
+    $RT_HOME/sbin/rt-setup-database --action insert --datafile /opt/rt4/local/plugins/RT-Extension-ReferenceIDoitObjects/etc/initialdata</code></pre>
 
-        Set($IDoitDefaultView, 'objects'); # 'objects', 'workplaces', 'devices', or 'item'
+<p>The second command is equivalent to <code>make initdb</code>, but is unfortunately not executed automatically. <code>$RT_HOME</code> is the path to your RT installation, for example <code>/opt/rt4</code>.</p>
 
-        Set($IDoitInstalledSoftware, 'relations'); # 'objects', or 'relations'
+<h1 id="CONFIGURATION">CONFIGURATION</h1>
 
-        Set($IDoitShowCustomFields, 1); # 1 ('yes') or 0 ('no')
+<p>To enable this extension edit the RT site configuration based in <code>$RT_HOME/etc/RT_SiteConfig.pm</code>:</p>
 
-    $IDoitURL
-        It's *highly recommended* to establish an encrypted connection
-        between RT and i-doit over a network, e. g. TLS over HTTP (HTTPS).
+<pre><code>    Set(@Plugins,qw(RT::Extension::ReferenceIDoitObjects));</code></pre>
 
-    $IDoitAPI
-        Please be aware of browsers' "Same Origin Policy"! This extension
-        uses AJAX requests access i-doit's API. If RT and i-doit are not
-        available under the same domain name (or IP address), AJAX calls
-        will fail.
+<p>i-doit has a built-in API based on JSON-RPC. To call this API set its URL:</p>
 
-        To avoid this "problem" (actually this policy is very useful) you
-        can setup an AJAX proxy. This extension already provides such a
-        proxy located under "etc/". It's written in PHP, so you have to
-        install PHP 5.2 or higher and the PHP extension "curl" on the same
-        machine where RT is installed. Make this little script available
-        through your web server and edit the script by setting $l_url to the
-        URL of i-doit's API, e. g.
-        "http://example.org/i-doit/index.php?api=jsonrpc". In RT's site
-        configuration $IDoitAPI has to be set to this script, e. g.
-        "http://rt.example.org/path/to/i-doit_api_proxy.php".
+<pre><code>    Set($IDoitURL, &#39;http://example.org/i-doit/&#39;);
 
-    $IDoitMandatorKeys
-        This is a list of mandators with their API keys. Just put the name
-        and API key of every mandator in i-doit you like to relate to
-        tickets.
+    Set($IDoitAPI, $IDoitURL . &#39;?api=jsonrpc&#39;);
 
-    $IDoitDefaultMandator
-        Choose a default mandator for every situation where it's needed. Use
-        its name (or whatever you like) to identify the mandator. This name
-        has be to added to the list of the corresponding custom field as
-        well.
+    Set(%IDoitMandatorKeys, (
+        &#39;Mandator 1&#39; =&gt; &#39;api key&#39;,
+        &#39;Mandator 2&#39; =&gt; &#39;api key&#39;
+    ));
 
-    $IDoitDefaultView
-        When creating or editing a ticket, this extension adds a so-called
-        *object browser* to the web interface. The browser gives you several
-        views on objects:
+    Set($IDoitDefaultMandator, &#39;Mandator 1&#39;);
 
-        "objects"
-            Select objects provided by the API and filter them by type.
+    Set($IDoitDefaultView, &#39;objects&#39;); # &#39;objects&#39;, &#39;workplaces&#39;, &#39;devices&#39;, or &#39;item&#39;
 
-        "workplaces"
-            Select users' workplaces and their related sub objects. Each
-            user will be taken by the email address provided by RT's field
-            "Requestors" if these users are documented in i-doit.
+    Set($IDoitInstalledSoftware, &#39;relations&#39;); # &#39;objects&#39;, or &#39;relations&#39;
 
-            i-doit gives you the possiblity to create relations between
-            users, their workplaces and all equipment related to these
-            workplaces.
+    Set($IDoitShowCustomFields, 1); # 1 (&#39;yes&#39;) or 0 (&#39;no&#39;)</code></pre>
 
-            Tip: You may synchronize user information between OTRS and
-            i-doit via LDAP.
+<dl>
 
-        "devices"
-            Select assigned devices for current requestor. Those devices are
-            objects in i-doit which have this requestor as an assigend
-            person.
+<dt id="IDoitURL"><code>$IDoitURL</code></dt>
+<dd>
 
-        "selected"
-            View and remove all selected items.
+<p>It&#39;s <i>highly recommended</i> to establish an encrypted connection between RT and i-doit over a network, e. g. TLS over HTTP (HTTPS).</p>
 
-    $IDoitInstalledSoftware
-        Defines which type of objects will be shown for the installed
-        software. There are two options: "objects" or "relations".
+</dd>
+<dt id="IDoitAPI"><code>$IDoitAPI</code></dt>
+<dd>
 
-        "objects"
-            Shows software objects which are assigned to the currently
-            selected object.
+<p>Please be aware of browsers&#39; &quot;<b>Same Origin Policy</b>&quot;! This extension uses AJAX requests access i-doit&#39;s API. If RT and i-doit are not available under the same domain name (or IP address), AJAX calls will fail.</p>
 
-        "relations"
-            Shows the software relation between the object and the assigned
-            software.
+<p>To avoid this &quot;problem&quot; (actually this policy is very useful) you can setup an AJAX proxy. This extension already provides such a proxy located under <code>etc/</code>. It&#39;s written in PHP, so you have to install PHP 5.2 or higher and the PHP extension <code>curl</code> on the same machine where RT is installed. Make this little script available through your web server and edit the script by setting <code>$l_url</code> to the URL of i-doit&#39;s API, e. g. <code>http://example.org/i-doit/index.php?api=jsonrpc</code>. In RT&#39;s site configuration <code>$IDoitAPI</code> has to be set to this script, e. g. <code>http://rt.example.org/path/to/i-doit_api_proxy.php</code>.</p>
 
-    $IDoitShowCustomFields
-        Sometimes it's better to "clean up" the web user interface. Whenever
-        you only have 1 mandator within i-doit and don't want to edit the
-        object identifiers manually it's recommended to hide the used custom
-        fields. Select 1 to show them or 0 to hide them.
+</dd>
+<dt id="IDoitMandatorKeys"><code>$IDoitMandatorKeys</code></dt>
+<dd>
 
-    After all your new configuration will take effect after restarting your
-    RT environment:
+<p>This is a list of mandators with their API keys. Just put the name and API key of every mandator in i-doit you like to relate to tickets.</p>
 
-        rm -rf $RT_HOME/var/mason_data/obj/* && service apache2 restart
+<p><b>Notice:</b> Within the Web GUI you must configure the custom field &quot;i-doit mandator&quot;. Add a new value for each mandator. The important field is <code>name</code> where you should set the mandator name.</p>
 
-    This is an example for deleting the mason cache and restarting the
-    Apache HTTP web server on a Debian GNU/Linux based operating system.
+</dd>
+<dt id="IDoitDefaultMandator"><code>$IDoitDefaultMandator</code></dt>
+<dd>
 
-I-DOIT CONFIGURATION
-    You may see and create object-related tickets within i-doit. Please
-    refer to the i-doit manual to enable this feature.
+<p>Choose a default mandator for every situation where it&#39;s needed. Use its name (or whatever you like) to identify the mandator. This name has be to added to the list of the corresponding custom field as well.</p>
 
-    If you create a new ticket in i-doit a new browser tab will be opened
-    with the RT user interface. Sometimes RT shows a warning that there is a
-    CSR attack. If you observe this behavior edit RT's local configuration
-    file "$RT_HOME/etc/RT_SiteConfig.pm" where $RT_HOME is the path to your
-    RT installation, for example "/opt/rt4":
+</dd>
+<dt id="IDoitDefaultView"><code>$IDoitDefaultView</code></dt>
+<dd>
 
-        Set($RestrictReferrer, 0); # avoids possible CSR attacks
+<p>When creating or editing a ticket, this extension adds a so-called <i>object browser</i> to the web interface. The browser gives you several views on objects:</p>
 
-    Don't forget to clear the Mason cache and restart your webserver.
+<dl>
 
-    Notice: This setting could weak your security!
+<dt id="objects"><code>objects</code></dt>
+<dd>
 
-USAGE
-    Whenever you create a new ticket or edit an existing one you are able to
-    reference this ticket with one or more objects in i-doit. An additional
-    box with the so-called "object browser" will shown up. Just select the
-    objects you need or unselect the objects you don't need.
+<p>Select objects provided by the API and filter them by type.</p>
 
-AUTHORS
-    Benjamin Heisig, <bheisig@synetics.de>
+</dd>
+<dt id="workplaces"><code>workplaces</code></dt>
+<dd>
 
-    Leonard Fischer, <lfischer@synetics.de>
+<p>Select users&#39; workplaces and their related sub objects. Each user will be taken by the email address provided by RT&#39;s field &quot;Requestors&quot; if these users are documented in i-doit.</p>
 
-    Van Quyen Hoang, <qhoang@synetics.de>
+<p>i-doit gives you the possiblity to create relations between users, their workplaces and all equipment related to these workplaces.</p>
 
-SUPPORT AND DOCUMENTATION
-    You can find documentation for this module with the "perldoc" command.
+<p>Tip: You may synchronize user information between OTRS and i-doit via LDAP.</p>
 
-        perldoc RT::Extension::ReferenceIDoitObjects
+</dd>
+<dt id="devices"><code>devices</code></dt>
+<dd>
 
-    You can also look for information at:
+<p>Select assigned devices for current requestor. Those devices are objects in i-doit which have this requestor as an assigend person.</p>
 
-    Search CPAN
-        <http://search.cpan.org/dist/RT-Extension-ReferenceIDoitObjects/>
+</dd>
+<dt id="selected"><code>selected</code></dt>
+<dd>
 
-    RT: CPAN's request tracker
-        <http://rt.cpan.org/NoAuth/Bugs.html?Dist=RT-Extension-ReferenceIDoi
-        tObjects>
+<p>View and remove all selected items.</p>
 
-    AnnoCPAN: Annotated CPAN documentation
-        <http://annocpan.org/dist/RT-Extension-ReferenceIDoitObjects>
+</dd>
+</dl>
 
-    CPAN Ratings
-        <http://cpanratings.perl.org/d/RT-Extension-ReferenceIDoitObjects>
+</dd>
+<dt id="IDoitInstalledSoftware"><code>$IDoitInstalledSoftware</code></dt>
+<dd>
 
-    Repository
-        <https://github.com/bheisig/rt-extension-referenceidoitobjects>
+<p>Defines which type of objects will be shown for the installed software. There are two options: &quot;objects&quot; or &quot;relations&quot;.</p>
 
-BUGS
-    Please report any bugs or feature requests to the authors.
+<dl>
 
-COPYRIGHT AND LICENSE
-    Copyright (C) 2011-14 synetics GmbH, <http://i-doit.org/>
+<dt id="objects1"><code>objects</code></dt>
+<dd>
 
-    This program is free software: you can redistribute it and/or modify it
-    under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or (at
-    your option) any later version.
+<p>Shows software objects which are assigned to the currently selected object.</p>
 
-    This program is distributed in the hope that it will be useful, but
-    WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero
-    General Public License for more details.
+</dd>
+<dt id="relations"><code>relations</code></dt>
+<dd>
 
-    You should have received a copy of the GNU Affero General Public License
-    along with this program. If not, see <http://www.gnu.org/licenses/>.
+<p>Shows the software relation between the object and the assigned software.</p>
 
-    Request Tracker (RT) is Copyright Best Practical Solutions, LLC.
+</dd>
+</dl>
 
-SEE ALSO
-        RT
+</dd>
+<dt id="IDoitShowCustomFields"><code>$IDoitShowCustomFields</code></dt>
+<dd>
+
+<p>Sometimes it&#39;s better to &quot;clean up&quot; the web user interface. Whenever you only have 1 mandator within i-doit and don&#39;t want to edit the object identifiers manually it&#39;s recommended to hide the used custom fields. Select 1 to show them or 0 to hide them.</p>
+
+</dd>
+</dl>
+
+<p>After all your new configuration will take effect after restarting your RT environment:</p>
+
+<pre><code>    rm -rf $RT_HOME/var/mason_data/obj/* &amp;&amp; service apache2 restart</code></pre>
+
+<p>This is an example for deleting the mason cache and restarting the Apache HTTP web server on a Debian GNU/Linux based operating system.</p>
+
+<h1 id="I-DOIT-CONFIGURATION">I-DOIT CONFIGURATION</h1>
+
+<p>You may see and create object-related tickets within i-doit. Please refer to the i-doit manual to enable this feature.</p>
+
+<p>If you create a new ticket in i-doit a new browser tab will be opened with the RT user interface. Sometimes RT shows a warning that there is a CSR attack. If you observe this behavior edit RT&#39;s local configuration file <code>$RT_HOME/etc/RT_SiteConfig.pm</code> where <code>$RT_HOME</code> is the path to your RT installation, for example <code>/opt/rt4</code>:</p>
+
+<pre><code>    Set($RestrictReferrer, 0); # avoids possible CSR attacks</code></pre>
+
+<p>Don&#39;t forget to clear the Mason cache and restart your webserver.</p>
+
+<p><b>Notice:</b> This setting could breach your security!</p>
+
+<h1 id="USAGE">USAGE</h1>
+
+<p>Whenever you create a new ticket or edit an existing one you are able to reference this ticket with one or more objects in i-doit. An additional box with the so-called &quot;object browser&quot; will shown up. Just select the objects you need or unselect the objects you don&#39;t need.</p>
+
+<h1 id="AUTHORS">AUTHORS</h1>
+
+<p>Benjamin Heisig, &lt;bheisig@synetics.de&gt;</p>
+
+<p>Leonard Fischer, &lt;lfischer@synetics.de&gt;</p>
+
+<p>Van Quyen Hoang, &lt;qhoang@synetics.de&gt;</p>
+
+<h1 id="SUPPORT-AND-DOCUMENTATION">SUPPORT AND DOCUMENTATION</h1>
+
+<p>You can find documentation for this module with the <code>perldoc</code> command.</p>
+
+<pre><code>    perldoc RT::Extension::ReferenceIDoitObjects</code></pre>
+
+<p>You can also look for information at:</p>
+
+<dl>
+
+<dt id="Search-CPAN"><b>Search CPAN</b></dt>
+<dd>
+
+<p><a href="http://search.cpan.org/dist/RT-Extension-ReferenceIDoitObjects/">http://search.cpan.org/dist/RT-Extension-ReferenceIDoitObjects/</a></p>
+
+</dd>
+<dt id="RT:-CPANs-request-tracker"><b>RT: CPAN&#39;s request tracker</b></dt>
+<dd>
+
+<p><a href="http://rt.cpan.org/NoAuth/Bugs.html?Dist=RT-Extension-ReferenceIDoitObjects">http://rt.cpan.org/NoAuth/Bugs.html?Dist=RT-Extension-ReferenceIDoitObjects</a></p>
+
+</dd>
+<dt id="AnnoCPAN:-Annotated-CPAN-documentation"><b>AnnoCPAN: Annotated CPAN documentation</b></dt>
+<dd>
+
+<p><a href="http://annocpan.org/dist/RT-Extension-ReferenceIDoitObjects">http://annocpan.org/dist/RT-Extension-ReferenceIDoitObjects</a></p>
+
+</dd>
+<dt id="CPAN-Ratings"><b>CPAN Ratings</b></dt>
+<dd>
+
+<p><a href="http://cpanratings.perl.org/d/RT-Extension-ReferenceIDoitObjects">http://cpanratings.perl.org/d/RT-Extension-ReferenceIDoitObjects</a></p>
+
+</dd>
+<dt id="Repository"><b>Repository</b></dt>
+<dd>
+
+<p><a href="https://github.com/bheisig/rt-extension-referenceidoitobjects">https://github.com/bheisig/rt-extension-referenceidoitobjects</a></p>
+
+</dd>
+</dl>
+
+<h1 id="BUGS">BUGS</h1>
+
+<p>Please report any bugs or feature requests to the <a href="#AUTHORS">authors</a>.</p>
+
+<h1 id="COPYRIGHT-AND-LICENSE">COPYRIGHT AND LICENSE</h1>
+
+<p>Copyright (C) 2011-14 synetics GmbH, &lt;http://i-doit.org/&gt;</p>
+
+<p>This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
+
+<p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU Affero General Public License along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.</p>
+
+<p>Request Tracker (RT) is Copyright Best Practical Solutions, LLC.</p>
+
+<h1 id="SEE-ALSO">SEE ALSO</h1>
+
+<pre><code>    RT</code></pre>
+
+
+</body>
+
+</html>
+
 
