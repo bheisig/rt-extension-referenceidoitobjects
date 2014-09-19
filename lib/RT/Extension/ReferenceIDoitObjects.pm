@@ -39,9 +39,7 @@ i-doit ("I document IT") is a web-based tool to document complex IT infrastructu
 
 =head1 INSTALLATION
 
-This extension requires RT 4.2.x or higher and a running installation of i-doit 1.3 or higher.
-
-B<Important notice:> This version is no longer compatible to Request Tracker version 4.0.x and i-doit version 1.2.x or older! Please use version 0.92 instead if you need compatibility to those older versions.
+This extension requires RT 4.2.x or higher and a running installation of i-doit 1.4 or higher.
 
 To install this extension, run the following commands:
 
