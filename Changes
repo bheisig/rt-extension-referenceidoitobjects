@@ -3,7 +3,7 @@
 Revision history for RT-Extension-ReferenceIDoitObjects
 
 
-##  0.94 (tba)
+##  0.94 (Fri, 19 Sep 2014 11:16:42 +0200)
 
 This is a bugfix-only release.
 
@@ -21,7 +21,7 @@ This is a bugfix-only release.
 *   Fix: Show configured default view when initiated
 *   Fix: Creating new logbook entries
 *   Fix: Updated dataTables jQuery plugin
-*   Fix: Re-factored JavaScript code; improved code docs
+*   Fix: Re-factored JavaScript code
 *   Fix: Improved code documentation
 
 
