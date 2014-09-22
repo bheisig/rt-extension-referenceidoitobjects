@@ -254,11 +254,6 @@ ReferenceIDoitObjects = function (params) {
         }
     });
 
-    this.formRTCreate = $('form[name="TicketCreate"]');
-    this.formRTModifyIDoitObjects = $('form[name="ModifyReferencedIDoitObjects"]');
-    this.formRTModifyAll = $('form[name="TicketModifyAll"]');
-    this.formOTRSEdit = $('form[name="compose"]');
-
     /**
      * Make this object available in sub methods:
      */
@@ -322,9 +317,9 @@ ReferenceIDoitObjects = function (params) {
                 that.showNotice(params.l10n['Error while loading object types']);
 
                 that.initialized = false;
-            }
+            } //if
         }, true);
-    };
+    }; //function
 
     /**
      * Loads and displays data of the customer (workplace, assigned objects, ...).
@@ -354,8 +349,8 @@ ReferenceIDoitObjects = function (params) {
                 that.showLoadingSign();
                 that.loadWorkplaces(customers);
                 that.loadDevices(customers);
-        }
-    };
+        } //if
+    }; //function
 
     /**
      * Fetches and displays all objects which are assigned in i-doit to the customer.
@@ -380,9 +375,9 @@ ReferenceIDoitObjects = function (params) {
                 that.renderWorkplacesView();
             } else {
                 that.showNotice(params.l10n['Error while loading objects by email']);
-            }
+            } //if
         }, true);
-    };
+    }; //function
 
     /**
      * Fetches and displays all objects which are assigned in i-doit to the customer.
@@ -408,9 +403,9 @@ ReferenceIDoitObjects = function (params) {
                 that.renderDevicesView();
             } else {
                 that.showNotice(params.l10n['Error while loading objects by email']);
-            }
+            } //if
         }, true);
-    };
+    }; //function
 
     /**
      * Loads and displays preselected objects
@@ -430,7 +425,7 @@ ReferenceIDoitObjects = function (params) {
                     // This CustomField is a textarea with one object identifer per line:
                     preselection = preselection.split("\n");
                     break;
-            }
+            } //switch/case
 
             if (preselection !== '') {
                 preselection = preselection.map(function (i) {
@@ -465,10 +460,10 @@ ReferenceIDoitObjects = function (params) {
                             );
                         }
                     }, true);
-                }
-            }
-        }
-    };
+                } //if
+            } //if
+        } //if
+    }; //function
 
     /**
      * Renews the view of workplaces.
@@ -482,7 +477,7 @@ ReferenceIDoitObjects = function (params) {
             $('#idoitWorkplacesTab div').html(
                 params.l10n['Given customer(s) could not be found in i-doit.']
             );
-        }
+        } //if
 
         workplaces = $('#idoitWorkplacesTab div.workplaces');
 
@@ -499,10 +494,10 @@ ReferenceIDoitObjects = function (params) {
             }
 
             workplaces.append('<br />');
-        });
+        }); //each
 
         $('#idoitDevicesInfo').html($('#linkToPerson').clone());
-    };
+    }; //function
 
     /**
      * Renews sub trees for the view of workplaces recursively.
@@ -517,7 +512,7 @@ ReferenceIDoitObjects = function (params) {
 
             if (typeof that.dataStore.data(i) !== 'undefined') {
                 selected = true;
-            }
+            } //if
 
             $('#idoitWorkplacesTab div.workplaces').append(
                 '<div><input type="checkbox" value="' + i +
@@ -532,9 +527,9 @@ ReferenceIDoitObjects = function (params) {
 
             if (e.children !== false) {
                 that.renderSubTree(e.children, (level + 1));
-            }
+            } //if
         });
-    };
+    }; //function
 
     /**
      * Renders the view of linked devices.
@@ -592,8 +587,8 @@ ReferenceIDoitObjects = function (params) {
             that.devicesTable
                 .rows.add(devices)
                 .draw();
-        }
-    };
+        } //if
+    }; //function
 
     /**
      * Renders the table for installed applications for a specific object.
@@ -612,7 +607,7 @@ ReferenceIDoitObjects = function (params) {
         if (id === undefined) {
             that.installedSoftware.hide();
             return;
-        }
+        } //if
 
         $('#idoitInstalledSoftwareInfo span').html(
             '<a href="' + params.url + '?objID=' + id + '" title="' +
@@ -635,7 +630,7 @@ ReferenceIDoitObjects = function (params) {
                     "relation_type": "C__RELATION_TYPE__SOFTWARE"
                 }
             };
-        }
+        } //if
 
         that.callIDoit(data, function (response) {
             var applications = [],
@@ -652,7 +647,7 @@ ReferenceIDoitObjects = function (params) {
 
                         if (typeof that.dataStore.data(e.application.id) !== 'undefined') {
                             selected = true;
-                        }
+                        } //if
 
                         check = '<input type="checkbox" value="' + e.application.id +
                             '" name="idoitInstalledApplicationsObject[]" ' +
@@ -678,7 +673,7 @@ ReferenceIDoitObjects = function (params) {
 
                         if (typeof that.dataStore.data(e.data.id) !== 'undefined') {
                             selected = true;
-                        }
+                        } //if
 
                         check = '<input type="checkbox"  value="' + e.data.id +
                             '" name="idoitInstalledApplicationsObject[]" ' +
@@ -696,16 +691,16 @@ ReferenceIDoitObjects = function (params) {
                             link
                         ]);
                     });
-                }
+                } //if
 
                 that.installedApplicationTable
                     .rows.add(applications)
                     .draw();
             } else {
                 that.showNotice(params.l10n['Error while loading objects by email']);
-            }
+            } //if
         }, true);
-    };
+    }; //function
 
     /**
      * Renders object location tree. If too long tree will be trimmed.
@@ -720,10 +715,10 @@ ReferenceIDoitObjects = function (params) {
             }
 
             return tree.join(' &raquo; ');
-        }
+        } //if
 
         return '&ndash;';
-    };
+    }; //function
 
     /**
      * Renews the view of all objects.
@@ -743,7 +738,7 @@ ReferenceIDoitObjects = function (params) {
 
             if (typeof that.dataStore.data(e.id) !== 'undefined') {
                 selected = true;
-            }
+            } //if
 
             check = '<input type="checkbox" value="' + e.id + '" name="idoitAllObjectsObject[]" ' +
                 ((selected) ? 'checked="checked"' : '') + ' />';
@@ -757,8 +752,8 @@ ReferenceIDoitObjects = function (params) {
             that.objectTable
                 .rows.add(entities)
                 .draw();
-        }
-    };
+        } //if
+    }; //function
 
     /**
      * Renews view of selected objects. Will be used when adding or removing an object.
@@ -795,7 +790,7 @@ ReferenceIDoitObjects = function (params) {
             that.selectedObjectsTable
                 .rows.add(entities)
                 .draw();
-        }
+        } //if
 
         switch (params.type) {
             case 'otrs':
@@ -807,8 +802,8 @@ ReferenceIDoitObjects = function (params) {
                 // This CustomField is a textarea with one object identifer per line:
                 that.objects.val(data.join("\n"));
                 break;
-        }
-    };
+        } //switch/case
+    }; //function
 
     /**
      * Removes an object from the selected data.
@@ -825,7 +820,7 @@ ReferenceIDoitObjects = function (params) {
         $('input[name="idoitWorkplacesObject[]"][value="' + id + '"]').prop('checked', false);
         $('input[name="idoitDevicesObject[]"][value="' + id + '"]').prop('checked', false);
         $('input[name="idoitInstalledApplicationsObject[]"][value="' + id + '"]').prop('checked', false);
-    };
+    }; //function
 
     /**
      * Removes all objects from the selected data.
@@ -838,7 +833,7 @@ ReferenceIDoitObjects = function (params) {
         that.renderWorkplacesView();
         that.renderDevicesView();
         that.renderInstalledApplicationTable();
-    };
+    }; //function
 
     /**
      * Adds object to the selected data.
@@ -851,7 +846,7 @@ ReferenceIDoitObjects = function (params) {
         if (typeof that.dataStore.data(id) !== 'undefined') {
             // its already in data store
             return;
-        }
+        } //if
 
         that.dataStore.data(id, {"name": name, "type": type});
 
@@ -862,7 +857,7 @@ ReferenceIDoitObjects = function (params) {
         $('input[name="idoitWorkplacesObject[]"][value="' + id + '"]').prop('checked', true);
         $('input[name="idoitDevicesObject[]"][value="' + id + '"]').prop('checked', true);
         $('input[name="idoitInstalledApplicationsObject[]"][value="' + id + '"]').prop('checked', true);
-    };
+    }; //function
 
     /**
      * Logs added or removed objects.
@@ -889,7 +884,7 @@ ReferenceIDoitObjects = function (params) {
                     // This CustomField is a textarea with one object identifer per line:
                     preselection = preselection.split("\n");
                     break;
-            }
+            } //switch/case
 
             if (preselection !== '') {
                 preselection = preselection.map(function (i) {
@@ -924,12 +919,12 @@ ReferenceIDoitObjects = function (params) {
                             that.showNotice(
                                 params.l10n['Error while creating i-doit logbook entry']
                             );
-                        }
+                        } //if
                     }, false);
-                }
-            }
-        }
-    };
+                } //if
+            } //if
+        } //if
+    }; //function
 
     /**
      * Sends an AJAX request to i-doit.
@@ -952,7 +947,7 @@ ReferenceIDoitObjects = function (params) {
             case 'rt':
                 data.params.apikey = params.mandatorKeys[that.mandator.val()];
                 break;
-        }
+        } //switch/case
 
         $.ajax({
             "url": params.api,
@@ -963,7 +958,7 @@ ReferenceIDoitObjects = function (params) {
             "success": callback,
             "async": async
         });
-    };
+    }; //function
 
     /**
      * Displays a message.
@@ -973,7 +968,7 @@ ReferenceIDoitObjects = function (params) {
     this.showNotice = function (msg) {
         that.notice.html(msg).fadeIn(500);
         that.content.css({display: 'none'});
-    };
+    }; //function
 
     /**
      * Displays the loading sign.
@@ -981,7 +976,7 @@ ReferenceIDoitObjects = function (params) {
     this.showLoadingSign = function () {
         that.loadingSign.stop().fadeTo(0, 1);
         that.content.stop().fadeTo(0, 0.3);
-    };
+    }; //function
 
     /**
      * Hides the loading sign.
@@ -989,7 +984,7 @@ ReferenceIDoitObjects = function (params) {
     this.hideLoadingSign = function () {
         that.loadingSign.stop().fadeTo(300, 0);
         that.content.stop().fadeTo(300, 1);
-    };
+    }; //function
 
     /**
      * Stores the added IDs from the object view.
@@ -1007,10 +1002,10 @@ ReferenceIDoitObjects = function (params) {
             that.dataStore.data(ele.value, {"name": name, "type": type});
         } else {
             that.dataStore.removeData(ele.value);
-        }
+        } //if
 
         that.renderSelectedObjects();
-    };
+    }; //function
 
     /**
      * Will re-initialize the object browser if mandator is changed.
@@ -1024,8 +1019,8 @@ ReferenceIDoitObjects = function (params) {
             that.showNotice(params.l10n['Please select an i-doit mandator.']);
         } else {
             that.init();
-        }
-    };
+        } //if
+    }; //function
 
     /***********************************************************************************************
      * Events
@@ -1055,9 +1050,9 @@ ReferenceIDoitObjects = function (params) {
                 that.renderObjectsView();
             } else {
                 that.showNotice(params.l10n['Error while loading objects by object type']);
-            }
+            } //if
         }, true);
-    });
+    }); //event
 
     /**
      * Will add/remove objects from the selection list if object's checkbox is checked/unchecked.
@@ -1074,8 +1069,8 @@ ReferenceIDoitObjects = function (params) {
             that.addObject(id, name, type);
         } else {
             that.removeObject(id);
-        }
-    });
+        } //if
+    }); //event
 
     /**
      * Will add/remove objects from the selection list if object's checkbox is checked/unchecked.
@@ -1092,8 +1087,8 @@ ReferenceIDoitObjects = function (params) {
             that.addObject(id, name, type);
         } else {
             that.removeObject(id);
-        }
-    });
+        } //if
+    }); //event
 
     /**
      * This event will store the added IDs from the view of workplaces.
@@ -1108,8 +1103,8 @@ ReferenceIDoitObjects = function (params) {
             that.addObject($(this).val(), name, type);
         } else {
             that.removeObject($(this).val());
-        }
-    });
+        } //if
+    }); //event
 
     /**
      * Will fetch and display related software objects if button is clicked.
@@ -1142,7 +1137,7 @@ ReferenceIDoitObjects = function (params) {
 
                     if (typeof that.dataStore.data(e.data.id) !== 'undefined') {
                         selected = true;
-                    }
+                    } //if
 
                     div.append(
                         '<br /><input type="checkbox" style="margin-left:' +
@@ -1159,51 +1154,51 @@ ReferenceIDoitObjects = function (params) {
                 });
             } else {
                 that.showNotice(params.l10n['Error while loading relation objects']);
-            }
+            } //if
         }, true);
-    });
+    }); //event
 
     /**
      * Will select/unselect all objects' checkboxes in all objects view if checkbox is marked/unmarked.
      */
     $('#idoitCheckAllObjects').click(function () {
         $('input[name="idoitAllObjectsObject[]"]').prop('checked', this.checked).change();
-    });
+    }); //event
 
     /**
      * Will select/unselect all objects' checkboxes in devices view if checkbox is marked/unmarked.
      */
     $('#idoitCheckAllDevices').click(function () {
         $('input[name="idoitDevicesObject[]"]').prop('checked', this.checked).change();
-    });
+    }); //event
 
     /**
      * Will select/unselect all checkboxes of installed applications if checkbox is marked/unmarked.
      */
     $('#idoitCheckAllApps').click(function () {
         $('input[name="idoitInstalledApplicationsObject[]"]').prop('checked', this.checked).change();
-    });
+    }); //event
 
     /**
      * Will reload customer data if clicked.
      */
     $('#idoitCustomerReload').click(function () {
         that.loadCustomerData();
-    });
+    }); //event
 
     /**
      * Will remove all objects if clicked.
      */
     $('#idoitRemoveAllObjects').click(function () {
         that.removeAllObjects();
-    });
+    }); //event
 
     /**
      * Will change mandator if changed.
      */
     that.mandator.on('change', function () {
         that.changeMandator();
-    });
+    }); //event
 
     /**
      * Reloads customers' data. This will be fired if a new costumer is being selected.
@@ -1213,8 +1208,8 @@ ReferenceIDoitObjects = function (params) {
             window.setTimeout(function () {
                 that.loadCustomerData();
             }, 100);
-        }
-    });
+        } //if
+    }); //event
 
     /**
      * Reloads pre-selection. This will be fired if pre-selection field is being changed.
@@ -1222,36 +1217,49 @@ ReferenceIDoitObjects = function (params) {
     that.objects.change(function () {
         if (that.initialized) {
             that.loadPreselectedData();
-        }
-    });
+        } //if
+    }); //event
 
     /**
      * Saves ticket subject. This will be fired if subject field is being changed.
      */
     $(params.ticket.title).change(function () {
         that.ticketTitle = $(params.ticket.title).val();
-    });
+    }); //event
 
     /**
      * Identifies the right ticket mode and triggers logbook entries:
      */
-    if (this.formRTCreate.length > 0) {
-        this.formRTCreate.submit(function (event) {
-            that.logChangedObjects(false);
-        });
-    } else if (this.formRTModifyIDoitObjects.length > 0) {
-        this.formRTModifyIDoitObjects.submit(function (event) {
-            that.logChangedObjects(true);
-        });
-    } else if (this.formRTModifyAll.length > 0) {
-        this.formRTModifyAll.submit(function (event) {
-            that.logChangedObjects(true);
-        });
-    } else if (this.formOTRSEdit.length > 0) {
-        this.formOTRSEdit.submit(function (event) {
-            that.logChangedObjects(true);
-        });
-    } //if
+    switch (params.type) {
+        case 'otrs':
+            this.formOTRSEdit = $('form[name="compose"]');
+
+            if (this.formOTRSEdit.length > 0) {
+                this.formOTRSEdit.submit(function (event) {
+                    that.logChangedObjects(true);
+                });
+            } //if
+            break;
+        case 'rt':
+            this.formRTCreate = $('form[name="TicketCreate"]');
+            this.formRTModifyIDoitObjects = $('form[name="ModifyReferencedIDoitObjects"]');
+            this.formRTModifyAll = $('form[name="TicketModifyAll"]');
+
+            if (this.formRTCreate.length > 0) {
+                this.formRTCreate.submit(function (event) {
+                    that.logChangedObjects(false);
+                });
+            } else if (this.formRTModifyIDoitObjects.length > 0) {
+                this.formRTModifyIDoitObjects.submit(function (event) {
+                    that.logChangedObjects(true);
+                });
+            } else if (this.formRTModifyAll.length > 0) {
+                this.formRTModifyAll.submit(function (event) {
+                    that.logChangedObjects(true);
+                });
+            } //if
+            break;
+    } //switch/case
 
     /**
      * Initializes the object browser or displays a message.
@@ -1267,6 +1275,6 @@ ReferenceIDoitObjects = function (params) {
         that.mandator.change();
     } else {
         that.init();
-    }
+    } //if
 
-};
+}; //class
