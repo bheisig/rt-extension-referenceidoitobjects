@@ -5,7 +5,7 @@ Create a ticket in relation to one or more i-doit objects
 
 ##  Description
 
-This extension gives you the opportunity to combine an issue tracker like RT with an IT documentation tool / CMDB like i-doit. It uses i-doit's API to relate a ticket with one or more objects managed by i-doit. On i-doit's side you are able to view all tickets related to an object. This extension also supports i-doit's multi-tenant functionality.
+This extension gives you the opportunity to combine an issue tracker like [Request Tracker (RT)](https://bestpractical.com/request-tracker) with an IT documentation tool / CMDB like i-doit. It uses i-doit's API to relate a ticket with one or more objects managed by i-doit. On i-doit's side you are able to view all tickets related to an object. This extension also supports i-doit's multi-tenant functionality.
 
 [i-doit ("I document IT")](https://www.i-doit.com/) is a Web application to establish an IT documentation and CMDB. Its core is Free and Open Source Software. Visit <https://www.i-doit.com/> for commercial support and additional services.
 
@@ -204,7 +204,7 @@ View and remove all selected items.
 
 ### `$IDoitInstalledSoftware`
 
-Defines which type of objects will be shown for the installed software. There are two options: "objects" or "relations".
+Defines which type of objects will be shown for the installed software. There are two options: `objects` or `relations`.
 
 
 ####    `objects`
@@ -256,9 +256,9 @@ Whenever you create a new ticket or edit an existing one you are able to referen
 
 ##  Authors
 
-*   Benjamin Heisig <bheisig@i-doit.com>
-*   Leonard Fischer <lfischer@i-doit.com>
-*   Van Quyen Hoang <qhoang@i-doit.com>
+*   Benjamin Heisig, <bheisig@i-doit.com>
+*   Leonard Fischer, <lfischer@i-doit.com>
+*   Van Quyen Hoang, <qhoang@i-doit.com>
 
 
 ##  Useful Resources
@@ -266,9 +266,10 @@ Whenever you create a new ticket or edit an existing one you are able to referen
 *   **i-doit Knowledge Base:** <https://kb.i-doit.com/display/en/>
 *   **Source code repository:** <https://github.com/bheisig/rt-extension-referenceidoitobjects>
 *   **Search CPAN:** <http://search.cpan.org/dist/RT-Extension-ReferenceIDoitObjects/>
-*   -**CPAN's request tracker:** <http://rt.cpan.org/NoAuth/Bugs.html?Dist=RT-Extension-ReferenceIDoitObjects>- _(unused)_
+*   **MetaCPAN:** <https://metacpan.org/search?q=RT-Extension-ReferenceIDoitObjects>
 *   **AnnoCPAN (Annotated CPAN documentation):** <http://annocpan.org/dist/RT-Extension-ReferenceIDoitObjects>
-*   **CPAN Ratings:** <http://cpanratings.perl.org/d/RT-Extension-ReferenceIDoitObjects>
+*   **CPAN Ratings:** <https://cpanratings.perl.org/d/RT-Extension-ReferenceIDoitObjects>
+*   ~~**CPAN's request tracker:** <https://rt.cpan.org/Public/Dist/Display.html?Name=RT-Extension-ReferenceIDoitObjects>~~ _(unused)_
 
 
 ##  Issues and Contributions
@@ -284,7 +285,7 @@ This program is free software: you can redistribute it and/or modify it under th
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
 
-You should have received a copy of the GNU Affero General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
+You should have received a copy of the GNU Affero General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 Request Tracker (RT) is Copyright Best Practical Solutions, LLC.
 
