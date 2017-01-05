@@ -1,6 +1,6 @@
 #   Changelog
 
-Revision history for RT-Extension-ReferenceIDoitObjects
+Version history for RT-Extension-ReferenceIDoitObjects
 
 
 ##  1.00 (tba)
@@ -8,6 +8,7 @@ Revision history for RT-Extension-ReferenceIDoitObjects
 **Important notice:** This extension requires Request Tracker 4.4.x and i-doit 1.8.2 or higher. It is neither compatible to RT 4.0, 4.2 nor i-doit <= 1.8.1.
 
 *   Fix: Re-named "mandator" to "tenant"
+*   Fix: Re-written documentation
 *   Fix: Clarify license (AGPLv3)
 *   Fix: Broken include of Elements/EditCustomFields
 *   Fix: Removed legacy IE hack
