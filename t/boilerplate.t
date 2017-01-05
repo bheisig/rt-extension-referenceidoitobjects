@@ -39,12 +39,12 @@ sub module_boilerplate_ok {
 TODO: {
   local $TODO = "Need to replace the boilerplate text";
 
-  not_in_file_ok(README =>
+  not_in_file_ok('README.md' =>
     "The README is used..."       => qr/The README is used/,
     "'version information here'"  => qr/to provide version information/,
   );
 
-  not_in_file_ok(Changes =>
+  not_in_file_ok('Changelog.md' =>
     "placeholder date/time"       => qr(Date/time)
   );
 

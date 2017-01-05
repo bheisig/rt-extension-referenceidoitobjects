@@ -121,6 +121,7 @@ There are several changes that come with version 1.x, so please follow these ins
 3.  The custom filed "i-doit tenant" must contain tenant identifiers not their names.
 4.  Check RT's site configuration file for the string "mandator". Please replace it with "tenant" (beware of the case-sensitivity).
 5.  In RT's site configuration the settings `%IDoitTenantKeys` and `$IDoitDefaultTenant` must containt the tenant identifiers, not their names.
+6.  Restart RT environment: `sudo rm -rf $RT_HOME/var/mason_data/obj/* && sudo systemctl restart apache2.service`
 
 
 ##  Configuration
