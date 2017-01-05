@@ -21,38 +21,38 @@
 
 my $ARGSRef = $ARGS{'ARGSRef'};
 
-## Mandator:
+## Tenant:
 
-my $IDoitMandator = 'i-doit mandator';
+my $IDoitTenant = 'i-doit tenant';
 my $cf = RT::CustomField->new($RT::SystemUser);
-$cf->LoadByNameAndQueue(Name => $IDoitMandator, Queue => '0');
+$cf->LoadByNameAndQueue(Name => $IDoitTenant, Queue => '0');
 
 unless ($cf->id) {
-    my $msg = loc(sprintf('Custom field "%s" does not exist.', $IDoitMandator));
+    my $msg = loc(sprintf('Custom field "%s" does not exist.', $IDoitTenant));
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
 }
 
-my $cfIDoitMandator = 'CustomField-' . $cf->id;
+my $cfIDoitTenant = 'CustomField-' . $cf->id;
 
-## Try to fetch mandator from HTTP GET:
-if ($$ARGSRef{'IDoitMandator'}) {
-    $$ARGSRef{$cfIDoitMandator} = $$ARGSRef{'IDoitMandator'};
+## Try to fetch tenant from HTTP GET:
+if ($$ARGSRef{'IDoitTenant'}) {
+    $$ARGSRef{$cfIDoitTenant} = $$ARGSRef{'IDoitTenant'};
 }
 
-## Try to fetch default mandator:
-if ((!$$ARGSRef{$cfIDoitMandator}) || ($$ARGSRef{$cfIDoitMandator} =~ /^[ \t]*$/)) {
-    my $IDoitDefaultMandator = RT->Config->Get('IDoitDefaultMandator');
+## Try to fetch default tenant:
+if ((!$$ARGSRef{$cfIDoitTenant}) || ($$ARGSRef{$cfIDoitTenant} =~ /^[ \t]*$/)) {
+    my $IDoitDefaultTenant = RT->Config->Get('IDoitDefaultTenant');
 
-    unless ($IDoitDefaultMandator) {
-        my $msg = loc('Default mandator is not configured.');
+    unless ($IDoitDefaultTenant) {
+        my $msg = loc('Default tenant is not configured.');
         RT::Logger->error($msg);
         $$skip_create = 1;
         push @{$results}, $msg;
     }
 
-    $$ARGSRef{$cfIDoitMandator} = $IDoitDefaultMandator;
+    $$ARGSRef{$cfIDoitTenant} = $IDoitDefaultTenant;
 }
 
 ## Objects:

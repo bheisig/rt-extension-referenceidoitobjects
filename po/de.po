@@ -7,10 +7,10 @@ msgstr ""
 msgid "Referenced i-doit objects"
 msgstr "Referenzierte Objekte aus i-doit"
 
-msgid "Default mandator is not configured."
+msgid "Default tenant is not configured."
 msgstr "Standard-Mandant ist nicht konfiguriert."
 
-msgid "Please select an i-doit mandator."
+msgid "Please select an i-doit tenant."
 msgstr "Bitte wählen Sie einen i-doit-Mandanten."
 
 msgid "Object view"

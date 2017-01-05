@@ -7,12 +7,12 @@
         Description => 'Reference to one or more i-doit objects'
     },
     {
-        Name => 'i-doit mandator',
+        Name => 'i-doit tenant',
         Type => 'SelectSingle',
         LookupType => 'RT::Queue-RT::Ticket',
         RenderType => 'Dropdown',
         Disabled => 0,
-        Description => 'i-doit mandator who owns the objects',
+        Description => 'i-doit tenant who owns the objects',
         Values => [
             { Name => '1', SortOrder => 1 }
         ]

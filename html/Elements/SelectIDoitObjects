@@ -128,7 +128,7 @@
         // Hide custom fields:
         if (showCustomFields === 0) {
             $('textarea[name="<% $IDoitObjects %>"]').parent().parent().hide();
-            $('select[name="<% $IDoitMandator %>"]').parent().parent().hide();
+            $('select[name="<% $IDoitTenant %>"]').parent().parent().hide();
         }
 
         referenceIDoitObjects = new ReferenceIDoitObjects({
@@ -136,12 +136,12 @@
             'url': '<% $IDoitURL %>',
             'api': '<% $IDoitAPI %>',
             'language': '<% $Language %>',
-            'mandatorKeys': <% $IDoitMandatorKeysAsJSON |n %>,
-            'defaultMandator': '<% $IDoitDefaultMandator %>',
+            'tenantKeys': <% $IDoitTenantKeysAsJSON |n %>,
+            'defaultTenant': '<% $IDoitDefaultTenant %>',
             'defaultView': <% $IDoitView %>,
             'installedSoftware': '<% $IDoitInstalledSoftware %>',
             'objects': 'textarea[name="<% $IDoitObjects %>"]',
-            'mandator': 'select[name="<% $IDoitMandator %>"]',
+            'tenant': 'select[name="<% $IDoitTenant %>"]',
             'ticket': {
                 'id': <% $ticketID %>,
                 'title': 'input[name="Subject"]'
@@ -165,7 +165,7 @@
                 'Error while loading objects by object type': '<% loc("Error while loading objects by object type") %>',
                 'Error while loading relation objects': '<% loc("Error while loading relation objects") %>',
                 'Clear': '<% loc("Clear") %>',
-                'Please select an i-doit mandator.': '<% loc("Please select an i-doit mandator.") %>',
+                'Please select an i-doit tenant.': '<% loc("Please select an i-doit tenant.") %>',
                 'Ticket was edited.': '<% loc("Ticket was edited.") %>',
                 'Ticket was created.': '<% loc("Ticket was created.") %>',
                 'Error while creating i-doit logbook entry': '<% loc("Error while creating i-doit logbook entry") %>',
@@ -194,35 +194,35 @@ unless($IDoitAPI) {
     push @{$results}, $msg;
 }
 
-%IDoitMandatorKeys = RT->Config->Get('IDoitMandatorKeys');
-unless(%IDoitMandatorKeys) {
-    my $msg = loc("Mandator keys for i-doit's API are not configured.");
+%IDoitTenantKeys = RT->Config->Get('IDoitTenantKeys');
+unless(%IDoitTenantKeys) {
+    my $msg = loc("Tenant keys for i-doit's API are not configured.");
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
 }
 
-my $IDoitMandatorKeysAsJSON = encode_json \%IDoitMandatorKeys;
+my $IDoitTenantKeysAsJSON = encode_json \%IDoitTenantKeys;
 
 my $ticketID = '';
 if ($TicketObj) {
     $ticketID = $TicketObj->Id;
 }
 
-my $cfMandator = 'i-doit mandator';
+my $cfTenant = 'i-doit tenant';
 my $cf = RT::CustomField->new($RT::SystemUser);
-$cf->LoadByName(Name => $cfMandator);
+$cf->LoadByName(Name => $cfTenant);
 unless($cf->id) {
-    my $msg = sprintf(loc("Custom field %s does not exist."), $cfMandator);
+    my $msg = sprintf(loc("Custom field %s does not exist."), $cfTenant);
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
 }
-$IDoitMandator = 'Object-RT::Ticket-' . $ticketID . '-CustomField-' . $cf->id . '-Values';
+$IDoitTenant = 'Object-RT::Ticket-' . $ticketID . '-CustomField-' . $cf->id . '-Values';
 
-$IDoitDefaultMandator = RT->Config->Get('IDoitDefaultMandator');
-unless($IDoitDefaultMandator) {
-    my $msg = loc("Default mandator for i-doit is not configured.");
+$IDoitDefaultTenant = RT->Config->Get('IDoitDefaultTenant');
+unless($IDoitDefaultTenant) {
+    my $msg = loc("Default tenant for i-doit is not configured.");
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
@@ -292,9 +292,9 @@ $Language => undef
 
 $IDoitURL => undef
 $IDoitAPI => undef
-%IDoitMandatorKeys => undef
-$IDoitMandator => undef
-$IDoitDefaultMandator => undef
+%IDoitTenantKeys => undef
+$IDoitTenant => undef
+$IDoitDefaultTenant => undef
 $IDoitObjects => undef
 $IDoitDefaultView => undef
 $IDoitView => undef

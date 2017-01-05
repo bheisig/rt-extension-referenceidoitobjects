@@ -99,12 +99,12 @@
         // Hide custom fields:
         if (showCustomFields === 0) {
             $('tr#<% $IDoitObjectsField %> td.value').parent().hide();
-            $('tr#<% $IDoitMandatorField %> td.value').parent().hide();
+            $('tr#<% $IDoitTenantField %> td.value').parent().hide();
         }
 
         if (apiKey.length === 0) {
             notice.html(
-                '<% loc("Please select an i-doit mandator.") %>'
+                '<% loc("Please select an i-doit tenant.") %>'
             ).fadeIn(500);
         } else if (objects.length === 0) {
             notice.html(
@@ -180,43 +180,43 @@ unless($IDoitAPI) {
     push @{$results}, $msg;
 }
 
-my $cfMandator = 'i-doit mandator';
+my $cfTenant = 'i-doit tenant';
 
-$IDoitMandator = $ticket->FirstCustomFieldValue($cfMandator);
-unless($IDoitMandator) {
-    $IDoitMandator = RT->Config->Get('IDoitDefaultMandator');
+$IDoitTenant = $ticket->FirstCustomFieldValue($cfTenant);
+unless($IDoitTenant) {
+    $IDoitTenant = RT->Config->Get('IDoitDefaultTenant');
 
-    unless ($IDoitMandator) {
-        my $msg = loc('Default mandator is not configured.');
+    unless ($IDoitTenant) {
+        my $msg = loc('Default tenant is not configured.');
         RT::Logger->error($msg);
         $$skip_create = 1;
         push @{$results}, $msg;
     }
 }
 
-%IDoitMandatorKeys = RT->Config->Get('IDoitMandatorKeys');
-unless(%IDoitMandatorKeys) {
-    my $msg = loc("Mandator keys for i-doit's API are not configured.");
+%IDoitTenantKeys = RT->Config->Get('IDoitTenantKeys');
+unless(%IDoitTenantKeys) {
+    my $msg = loc("Tenant keys for i-doit's API are not configured.");
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
 }
-while ( my ($key, $value) = each(%IDoitMandatorKeys) ) {
-    if ($key == $IDoitMandator) {
+while ( my ($key, $value) = each(%IDoitTenantKeys) ) {
+    if ($key == $IDoitTenant) {
         $IDoitAPIKey = $value;
         last;
     }
 }
 
 my $cf = RT::CustomField->new($RT::SystemUser);
-$cf->LoadByName(Name => $cfMandator);
+$cf->LoadByName(Name => $cfTenant);
 unless($cf->id) {
-    my $msg = sprintf(loc("Custom field %s does not exist."), $cfMandator);
+    my $msg = sprintf(loc("Custom field %s does not exist."), $cfTenant);
     RT::Logger->error($msg);
     $$skip_create = 1;
     push @{$results}, $msg;
 }
-$IDoitMandatorField = 'CF-' . $cf->id . '-ShowRow';
+$IDoitTenantField = 'CF-' . $cf->id . '-ShowRow';
 
 my $cfObjects = 'i-doit objects';
 
@@ -261,9 +261,9 @@ $Language => undef
 $IDoitURL => undef
 $IDoitAPI => undef
 $IDoitAPIKey => undef
-%IDoitMandatorKeys => undef
-$IDoitMandator => undef
-$IDoitMandatorField => undef
+%IDoitTenantKeys => undef
+$IDoitTenant => undef
+$IDoitTenantField => undef
 $IDoitObjects => undef
 $IDoitObjectsField => undef
 $IDoitShowCustomFields => undef

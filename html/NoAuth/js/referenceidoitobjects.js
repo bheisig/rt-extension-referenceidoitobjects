@@ -49,11 +49,11 @@ ReferenceIDoitObjects = function (params) {
     this.customers = $(params.customers);
 
     /**
-     * Selected mandator (as jQuery object)
+     * Selected tenant (as jQuery object)
      *
      * @type {object}
      */
-    this.mandator = $(params.mandator);
+    this.tenant = $(params.tenant);
 
     /**
      * Ticket title (subject)
@@ -942,10 +942,10 @@ ReferenceIDoitObjects = function (params) {
 
         switch (params.type) {
             case 'otrs':
-                data.params.apikey = that.mandator.val();
+                data.params.apikey = that.tenant.val();
                 break;
             case 'rt':
-                data.params.apikey = params.mandatorKeys[that.mandator.val()];
+                data.params.apikey = params.tenantKeys[that.tenant.val()];
                 break;
         } //switch/case
 
@@ -1008,15 +1008,15 @@ ReferenceIDoitObjects = function (params) {
     }; //function
 
     /**
-     * Will re-initialize the object browser if mandator is changed.
+     * Will re-initialize the object browser if tenant is changed.
      */
-    this.changeMandator = function () {
-        var key = that.mandator.val();
+    this.changeTenant = function () {
+        var key = that.tenant.val();
 
         that.removeAllObjects();
 
         if (key === '') {
-            that.showNotice(params.l10n['Please select an i-doit mandator.']);
+            that.showNotice(params.l10n['Please select an i-doit tenant.']);
         } else {
             that.init();
         } //if
@@ -1194,10 +1194,10 @@ ReferenceIDoitObjects = function (params) {
     }); //event
 
     /**
-     * Will change mandator if changed.
+     * Will change tenant if changed.
      */
-    that.mandator.on('change', function () {
-        that.changeMandator();
+    that.tenant.on('change', function () {
+        that.changeTenant();
     }); //event
 
     /**
@@ -1264,15 +1264,15 @@ ReferenceIDoitObjects = function (params) {
     /**
      * Initializes the object browser or displays a message.
      */
-    if (that.mandator.val() === '') {
+    if (that.tenant.val() === '') {
         // This is RT specific:
-        that.mandator.val(
-            $(params.mandator + ' option').filter(function () {
-                return $(this).html() === params.defaultMandator;
+        that.tenant.val(
+            $(params.tenant + ' option').filter(function () {
+                return $(this).html() === params.defaultTenant;
             }).val()
         );
 
-        that.mandator.change();
+        that.tenant.change();
     } else {
         that.init();
     } //if

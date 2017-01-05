@@ -32,7 +32,7 @@ RT::Extension::ReferenceIDoitObjects - Create a ticket in relation to one or mor
 
 =head1 DESCRIPTION
 
-This extension gives you the opportunity to combine an issue tracker like RT with an IT documentation tool / CMDB like i-doit. It uses i-doit's API to relate a ticket with one or more CIs / objects managed by i-doit. On i-doit's side you are able to view all tickets related to an object. This extension also supports i-doit's multi-mandator functionality.
+This extension gives you the opportunity to combine an issue tracker like RT with an IT documentation tool / CMDB like i-doit. It uses i-doit's API to relate a ticket with one or more CIs / objects managed by i-doit. On i-doit's side you are able to view all tickets related to an object. This extension also supports i-doit's multi-tenant functionality.
 
 i-doit ("I document IT") is a web-based tool to document complex IT infrastructures. It provides several modules like a ITIL compliant Configuration Management Database (CMDB). More information about i-doit is available under L<http://www.i-doit.org/>. Its core is Free and Open Source Software. Visit L<http://www.i-doit.com/> for commercial support and additional services.
 
@@ -49,7 +49,7 @@ To install this extension, run the following commands:
     make install
     make initdb
 
-Executing the last command creates 2 new custom fields, so please do it only once. These fields contain the i-doit mandator and the referenced objects.
+Executing the last command creates 2 new custom fields, so please do it only once. These fields contain the i-doit tenant and the referenced objects.
 
 Another way to install the latest release is via CPAN:
 
@@ -71,12 +71,12 @@ i-doit has a built-in API based on JSON-RPC. To call this API set its URL:
 
     Set($IDoitAPI, $IDoitURL . '?api=jsonrpc');
 
-    Set(%IDoitMandatorKeys, (
-        'Mandator 1' => 'api key',
-        'Mandator 2' => 'api key'
+    Set(%IDoitTenantKeys, (
+        'Tenant 1' => 'api key',
+        'Tenant 2' => 'api key'
     ));
 
-    Set($IDoitDefaultMandator, 'Mandator 1');
+    Set($IDoitDefaultTenant, 'Tenant 1');
 
     Set($IDoitDefaultView, 'objects'); # 'objects', 'workplaces', 'devices', or 'item'
 
@@ -99,16 +99,16 @@ Please be aware of browsers' "B<Same Origin Policy>"! This extension uses AJAX r
 To avoid this "problem" (actually this policy is very useful) you can setup an AJAX proxy. This extension already provides such a proxy located under C<etc/>. It's written in PHP, so you have to install PHP 5.2 or higher and the PHP extension C<curl> on the same machine where RT is installed. Make this little script available through your web server and edit the script by setting C<$l_url> to the URL of i-doit's API, e. g. C<http://example.org/i-doit/index.php?api=jsonrpc>. In RT's site configuration C<$IDoitAPI> has to be set to this script, e. g. C<http://rt.example.org/path/to/i-doit_api_proxy.php>.
 
 
-=item C<$IDoitMandatorKeys>
+=item C<$IDoitTenantKeys>
 
-This is a list of mandators with their API keys. Just put the name and API key of every mandator in i-doit you like to relate to tickets.
+This is a list of tenants with their API keys. Just put the name and API key of every tenant in i-doit you like to relate to tickets.
 
-B<Notice:> Within the Web GUI you must configure the custom field "i-doit mandator". Add a new value for each mandator. The important field is C<name> where you should set the mandator name.
+B<Notice:> Within the Web GUI you must configure the custom field "i-doit tenant". Add a new value for each tenant. The important field is C<name> where you should set the tenant name.
 
 
-=item C<$IDoitDefaultMandator>
+=item C<$IDoitDefaultTenant>
 
-Choose a default mandator for every situation where it's needed. Use its name (or whatever you like) to identify the mandator. This name has be to added to the list of the corresponding custom field as well.
+Choose a default tenant for every situation where it's needed. Use its name (or whatever you like) to identify the tenant. This name has be to added to the list of the corresponding custom field as well.
 
 
 =item C<$IDoitDefaultView>
@@ -160,7 +160,7 @@ Shows the software relation between the object and the assigned software.
 
 =item C<$IDoitShowCustomFields>
 
-Sometimes it's better to "clean up" the web user interface. Whenever you only have 1 mandator within i-doit and don't want to edit the object identifiers manually it's recommended to hide the used custom fields. Select 1 to show them or 0 to hide them.
+Sometimes it's better to "clean up" the web user interface. Whenever you only have 1 tenant within i-doit and don't want to edit the object identifiers manually it's recommended to hide the used custom fields. Select 1 to show them or 0 to hide them.
 
 
 =back

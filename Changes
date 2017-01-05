@@ -3,6 +3,16 @@
 Revision history for RT-Extension-ReferenceIDoitObjects
 
 
+##  1.00 (tba)
+
+**Important notice:** This extension requires Request Tracker 4.4.x and i-doit 1.8.2 or higher. It is neither compatible to RT 4.0, 4.2 nor i-doit <= 1.8.1.
+
+*   Fix: Re-named "mandator" to "tenant"
+*   Fix: Clarify license (AGPLv3)
+*   Fix: Broken include of Elements/EditCustomFields
+*   Fix: Removed legacy IE hack
+
+
 ##  0.94 (Fri, 19 Sep 2014 11:16:42 +0200)
 
 This is a bugfix-only release.
@@ -27,7 +37,7 @@ This is a bugfix-only release.
 
 ##  0.93 (Wed, 07 May 2014 14:20:10 +0200)
 
-*Important notice:* This extension requires Request Tracker 4.2.x or higher and a running installation of i-doit 1.3 or higher. It is no longer compatible to RT version 4.0.x and i-doit version 1.2.x or older! Please use version 0.92 instead if you need compatibility to those older versions.
+**Important notice:** This extension requires Request Tracker 4.2.x or higher and a running installation of i-doit 1.3 or higher. It is no longer compatible to RT version 4.0.x and i-doit version 1.2.x or older! Please use version 0.92 instead if you need compatibility to those older versions.
 
 *   Made the code compatible to Request Tracker 4.2.x (breaks with 4.0.x)
 *   Switched from username/password authentication to i-doit API key
@@ -72,7 +82,7 @@ This is a bugfix-only release.
 
 ##  0.7 (Thu, 31 May 2012 10:01:16 +0200)
 
-*   Use default mandator if necessary when modifying referenced i-doit objects
+*   Use default tenant if necessary when modifying referenced i-doit objects
 *   Look only for enabled object types (bug fix)
 
 
@@ -85,7 +95,7 @@ This is a bugfix-only release.
 
 ##  0.5 (Mon, 23 Apr 2012 13:22:37 +0200)
 
-*   When creating a ticket assign mandator and objects from HTTP GET
+*   When creating a ticket assign tenant and objects from HTTP GET
 *   Bug fixing
 
 
