@@ -3,7 +3,7 @@
 Version history for RT-Extension-ReferenceIDoitObjects
 
 
-##  1.00 (tba)
+##  1.00 (2017-01-05)
 
 **Important notice:** This extension requires Request Tracker 4.4.x and i-doit 1.8.2 or higher. It is neither compatible to RT 4.0, 4.2 nor i-doit <= 1.8.1.
 

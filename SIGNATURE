@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.73.
+signed via the Module::Signature module, version 0.80.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -12,36 +12,35 @@ the distribution may already have been compromised, and you should
 not run its Makefile.PL or Build.PL.
 
 -----BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
+Hash: SHA256
 
 SHA1 78e50e186b04c8fe1defaa098f1c192181b3d837 COPYING
-SHA1 e7c54b1809505bffd8ae8e982d8cfa80fdffc5e8 Changes
-SHA1 abd1b1ade7d90b9ed05f04821c970ad6469d5f7f MANIFEST
+SHA1 b704fda729725b8e6d152a4a86ace4924e058727 Changelog.md
+SHA1 6f6abdf121d5de617e880980f1fc0d9ae84ddefd MANIFEST
 SHA1 30732a5045c730baf75d689f6ffbce7669da7da6 MANIFEST.SKIP
-SHA1 a1c17747a36f2c6c5bd8f604553a68a6f288ffee META.yml
-SHA1 1a4f21ca213c6e3732adebf01bf29f00a67a3f6c Makefile.PL
-SHA1 70169bd64b512f084e2a8239167b722496aaf15e README
-SHA1 ae62add87a5e0b1d1c9caa27901ef40224b2e9bc TODO
+SHA1 73a54df1bd239c268d5b823fc4fdb74f506edb1a META.yml
+SHA1 f165d0d77efc9e1a00c0fa107a8df457f117dce0 Makefile.PL
+SHA1 a60d4813f049663a862310907fe323a514befa98 README.md
+SHA1 ebce1116d2cd467a871e2b32403adb4a96ba605a TODO.md
 SHA1 fff7ec23eec9774a0a9c5a6576a747fbc9756f9c etc/i-doit_api_proxy.php
-SHA1 e1e604e5d2bbb842d030132c60f56692f814a468 etc/initialdata
-SHA1 7fccae377be0f8b60e6e5ca95f6eb7bc9ebe7a8c html/Callbacks/ReferenceIdoitObjects/Elements/Header/Head
-SHA1 a4d2ea1f471afabec0c5fab707c24cf68e217c0f html/Callbacks/ReferenceIdoitObjects/Elements/Tabs/Privileged
-SHA1 d46b04ea151d165892545d975730d90fd7c0d72c html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/AfterBasics
-SHA1 0c2bc6a606fa4137512b27bfa340c9d8ff410471 html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/FormStart
-SHA1 48fa00ecafbb02e55d067d7a1c49a1a765b1f210 html/Callbacks/ReferenceIdoitObjects/Ticket/Elements/ShowSummary/LeftColumn
-SHA1 c2e3b6feef734e05b2090dd38d54bef3f79f63b4 html/Callbacks/ReferenceIdoitObjects/Ticket/ModifyAll.html/AfterBasics
-SHA1 c03b35ffdebdb4109485fb373ed945ec531e029e html/Elements/SelectIDoitObjects
-SHA1 d40e6fe17930b530560decced489b56a64a51473 html/Elements/ShowIDoitObjects
+SHA1 7a73cfc5e6a04f8a569aaa86107205ea5a966fe5 etc/initialdata
+SHA1 1d6ebf88a8040e3cdd27f3f99116685155aa485c html/Callbacks/ReferenceIdoitObjects/Elements/Header/Head
+SHA1 03a8f163dd4ccf8f078b35c4dc0f1db36b3f0c0e html/Callbacks/ReferenceIdoitObjects/Elements/Tabs/Privileged
+SHA1 f1390db619ded9c84220d3690d08a66e6a4ef0ee html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/AfterBasics
+SHA1 17decfa5803e393bc073347eeb31293843b158c0 html/Callbacks/ReferenceIdoitObjects/Ticket/Create.html/FormStart
+SHA1 74a369d0bae0e265a6ce5d717dce8b612897b7ae html/Callbacks/ReferenceIdoitObjects/Ticket/Elements/ShowSummary/LeftColumn
+SHA1 6fb802f9e26a565e561906305065b516ed476800 html/Callbacks/ReferenceIdoitObjects/Ticket/ModifyAll.html/AfterBasics
+SHA1 ddb99585d29c36ef8c41f222d314efae0f0f0764 html/Elements/SelectIDoitObjects
+SHA1 bbc9508c3b054712c6ec81fef06c41e40f546b41 html/Elements/ShowIDoitObjects
 SHA1 fd32cd86b69b798719934d558aef56a70497a1a2 html/NoAuth/css/chosen.min.css
-SHA1 bfd4e05c16b578b376e3dc08a57786cd64c1ca21 html/NoAuth/css/i-doit_object_browser.css
+SHA1 85ffcb7d3c6a6d6429631fd39ef70d4ebb97b7f4 html/NoAuth/css/i-doit_object_browser.css
 SHA1 383e0698bf8ea55a6fdec3456b3a60f89b2308c5 html/NoAuth/css/jquery.dataTables.min.css
 SHA1 9dd6a493d2044e12fcf21addfe0cd93293568d69 html/NoAuth/js/chosen.jquery.min.js
-SHA1 9cab72c6d9fde4def30a426c3ed9c8bc5ccd310a html/NoAuth/js/i-doit_ie_fix.js
 SHA1 9e1e8dc22883cee14e20fa2921696cd330c7d7be html/NoAuth/js/jquery.dataTables.min.js
-SHA1 de0e0cd6e329084a76daffb969ee5614763f0344 html/NoAuth/js/referenceidoitobjects.js
-SHA1 33144b4a8c148e18c8d181f47d0342e63b60536c html/Ticket/Elements/EditIDoitObjects
-SHA1 bb92b11d622f7584fa270175cd1829be97f96e3d html/Ticket/Elements/ShowIDoitObjects
-SHA1 21faf2d760aaadbcdabaa6354da2f7c04dd96af6 html/Ticket/ModifyIDoitObjects.html
+SHA1 cb42186b9f07f9a011689cf5b66b54d9d14d556b html/NoAuth/js/referenceidoitobjects.js
+SHA1 b711e748cfcbe8616592e79e7f093a44d2aac5c4 html/Ticket/Elements/EditIDoitObjects
+SHA1 c77fea4fb03f449ba24b7d16b8ced188874aa3e8 html/Ticket/Elements/ShowIDoitObjects
+SHA1 bf259babc004a562f3f4f9d106920e662e7f70ef html/Ticket/ModifyIDoitObjects.html
 SHA1 232f4c97414c56d94f3b58d1d6a980ed4b7b72ce inc/Module/AutoInstall.pm
 SHA1 dc13ce0dbb488a5de81c3f6519ee31acda17397a inc/Module/Install.pm
 SHA1 6f600f997754e378372022338397e11304bcd4a1 inc/Module/Install/Admin.pm
@@ -80,8 +79,8 @@ SHA1 8057872efd55c155d12f009cb190a81f7f775703 inc/Module/Install/Share.pm
 SHA1 4c5ce519d404e242418f51dfe761287469e18e3a inc/Module/Install/Win32.pm
 SHA1 1349967ec3cd8c41a7717750ae23ede9824a2f39 inc/Module/Install/With.pm
 SHA1 47a52cf8719a283c0efa2edab0088b5d67e0f23a inc/Module/Install/WriteAll.pm
-SHA1 b8cb632184265b97147f70ddb4b262a7641799b3 lib/RT/Extension/ReferenceIDoitObjects.pm
-SHA1 d1658d23b7d64ad97fc200fe8f1d04f9ef347e05 po/de.po
+SHA1 4ba6b14ca5341c08031bd15306523b491dcaac4f lib/RT/Extension/ReferenceIDoitObjects.pm
+SHA1 30c2ba342f6736ab9c17b2a9896d5080082a4153 po/de.po
 SHA1 2d7b7c58e303c7c5e8c9eca06fb239a4b1a4aaee static/images/chosen/chosen-sprite.png
 SHA1 ac1d3dd7af917de06f285b5d10221d51a00d7a68 static/images/chosen/chosen-sprite@2x.png
 SHA1 4fd6412cf91a9486b25ffb06ff93d43c245bd5ef static/images/datatables/back_disabled.png
@@ -102,19 +101,18 @@ SHA1 f7be47a0678c02f3c2a037ee4095907442a245c7 t/boilerplate.t
 SHA1 0b1c5a2d59be6bfa7d60c64cd964fea6a0331705 t/pod-coverage.t
 SHA1 640935336dc1123c0069bcf5432bcaedc2cf22d3 t/pod.t
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
 
-iQIcBAEBAgAGBQJUH+HIAAoJEBPBqo0HF/6lX9cQALn2KgfqztwyOVW6z0vGWdLe
-B1jD06x2tWGFopOmIR6kgbSCDsWEKAGhKc04HODBq1eUEmh3EdqYcO9+5azl+NgN
-BpB233RoKsMD5oJfw6uCYDXnmhgwwO4cZHnJx8iuJa1IMKWPp6kmlXdJi+qPChRR
-O+rpfteolbQs5yiiYYKnZmVN9E8L6YRYQOMkEPwDHsOGpOp+Xa6pLXdsaUEPONgd
-qEeXUOrOMD1bPWP9Nb+8ba6snFgP5JODEjcA3vo2m1+EGNQydFGoIjJHvvJ3XpYR
-Apu0dHdkbLBfKF57/dlXG1w5pL6ANmWCmIG64UL+hk8n9fNIWYGzV258P35pVD/k
-TtgYzqFKuIbHjz/d4uTn3MO4AfLnEagUhoWLEU5bVkUQbfxLmfX1KTltbNFhb2pT
-HEhrW2+3NOpdoHYfHB09V5xviJAFc/QE5jkfsnGdpJTn+qvdv9fqVJUDgmKv+IqT
-cx6NjmjTtHhbsCtbSJDe6+z6lHA1r1yBlhRHPkAKbybulG407tTYKhbUVIMpv70k
-oMayHJ4Co+HAnrWHcMniWrrgQUA/x0lKnonRyS1p03iBXvEix8abI/AhTKFrNFza
-DaD0eMBwXv3Wa5hUFp8DVr4qWejez2xQSUExxk2eoNGD60x3ONRCZk2tFTvVcaHI
-IwcKLUJJrXQzKV92QlL+
-=eBBF
+iQIcBAEBCAAGBQJYbmc0AAoJEMSWwRrcaVQB0pEP/3j5/B3TrAPPuLwLEQleGGG9
+LCK+oXsCC1uRHBr6RsSiJX7Vm5qeayuUUBMWHmg5H4PK4iV8rlVAZSDFwbmc0TTE
+GV4cQ6TF6oOqsWsHew17bjxsb0U5HJOAbwcMbSv+Vb1GXUhdRQwR3ZQsRwJRMPvS
+8c3xkjs5SGNsiYppmFZcvwzZ0P+ZcaqSzLLTGa+elfVTfJh1YUzLr/9Ns8FTf59n
+tU8RAv8ECZd5yKOpBxztER2edz9pQjjN7+iSfyvBOxRuEawH3z17u0l0dEEpIxFH
+FfcTbMrcStr0qz3/bvLuEpVBC3FNipEGjB/NcMlnsGcmtNreZdbSwfP2iNttFATF
+HoxcLTGQrhAq6mzb+dEJAP69veYPqMZrmrtaEr6+ZjUjVes6rGrV+/p6SwBrPAQK
+1VNg2+cCEnXvfiQpVTYNWlF1oDJ//XUrJ51amSdofpj5mbEw9X9aFLhPOrbuYbna
+znJg8JPXonI7YoC96x3osxVCDPH8L9jvrmAggoie0ctXRENjkEfqTdqEjANZeeQd
+fi7sdHnoAcfxfIqXOn+PZt0wwvGfzRh8Ldin3167rsehs+G7lb7x9rJ4tQ9721XR
+XS4aCkmdjLxSAw93gtgU9LESMLlYyJUkH04OJqPL+G9/cXHSnoAqppaeAxAUEWfm
+vUPSvHJ1CM6iRVo1crW5
+=BFZ0
 -----END PGP SIGNATURE-----

@@ -1,4 +1,4 @@
-Changes
+Changelog.md
 COPYING
 etc/i-doit_api_proxy.php
 etc/initialdata
@@ -14,7 +14,6 @@ html/NoAuth/css/chosen.min.css
 html/NoAuth/css/i-doit_object_browser.css
 html/NoAuth/css/jquery.dataTables.min.css
 html/NoAuth/js/chosen.jquery.min.js
-html/NoAuth/js/i-doit_ie_fix.js
 html/NoAuth/js/jquery.dataTables.min.js
 html/NoAuth/js/referenceidoitobjects.js
 html/Ticket/Elements/EditIDoitObjects
@@ -64,7 +63,7 @@ MANIFEST			This list of files
 MANIFEST.SKIP
 META.yml
 po/de.po
-README
+README.md
 SIGNATURE
 static/images/chosen/chosen-sprite.png
 static/images/chosen/chosen-sprite@2x.png
@@ -85,4 +84,4 @@ t/00-load.t
 t/boilerplate.t
 t/pod-coverage.t
 t/pod.t
-TODO
+TODO.md
