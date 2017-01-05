@@ -7,19 +7,25 @@ Create a ticket in relation to one or more i-doit objects
 
 This extension gives you the opportunity to combine an issue tracker like RT with an IT documentation tool / CMDB like i-doit. It uses i-doit's API to relate a ticket with one or more objects managed by i-doit. On i-doit's side you are able to view all tickets related to an object. This extension also supports i-doit's multi-tenant functionality.
 
-i-doit ("I document IT") is a web-based tool to document complex IT infrastructures. It provides several modules like a ITIL compliant Configuration Management Database (CMDB). More information about i-doit is available under <https://www.i-doit.com/>. Its core is Free and Open Source Software. Visit <https://www.i-doit.com/> for commercial support and additional services.
+[i-doit ("I document IT")](https://www.i-doit.com/) is a Web application to establish an IT documentation and CMDB. Its core is Free and Open Source Software. Visit <https://www.i-doit.com/> for commercial support and additional services.
+
+##  Requirements
+
+This extension requires RT 4.4.x and i-doit 1.8.2 or higher. It is not compatible with RT != 4.4.x (for example 3.8.x, 4.0.x, 4.2.x or 4.6.x) and not compatible with i-doit <= 1.8.1.
 
 
 ##  Installation
 
-This extension requires RT 4.4.x and i-doit 1.8.2 or higher.
-
+The prefered way is via CPAN. You may also fetch und install the latest version manually or even try the current development branch.
 
 ### Manual
 
-To install this extension run the following commands:
+Download the latest version from [CPAN](http://search.cpan.org/dist/RT-Extension-ReferenceIDoitObjects/) or [GitHub](https://github.com/bheisig/rt-extension-referenceidoitobjects/releases). To install this extension run the following commands:
 
 ~~~ {.bash}
+wget RT-Extension-ReferenceIDoitObjects-<VERSION>.tar.gz
+tar xzvf RT-Extension-ReferenceIDoitObjects-<VERSION>.tar.gz
+cd RT-Extension-ReferenceIDoitObjects-<VERSION>/
 perl Makefile.PL
 make
 make test
@@ -32,7 +38,7 @@ Executing the last command creates 2 new custom fields, so please do it only onc
 
 ### CPAN
 
-Another way to install the latest release is via CPAN:
+The prefered and easiest way to install the latest version is via CPAN:
 
 ~~~ {.bash}
 sudo cpan RT::Extension::ReferenceIDoitObjects
@@ -42,14 +48,13 @@ $RT_HOME/sbin/rt-setup-database --action insert --datafile /opt/rt4/local/plugin
 The second command is equivalent to `make initdb`, but is unfortunately not executed automatically. `$RT_HOME` is the path to your RT installation, for example `/opt/rt4`.
 
 
-##  Update
+### Git
 
-If you already installed this extension you will be able to update to the latest version.
-
-
-### Manual
+Fetch the current development branch:
 
 ~~~ {.bash}
+git clone https://github.com/bheisig/rt-extension-referenceidoitobjects.git
+cd rt-extension-referenceidoitobjects
 perl Makefile.PL
 make
 make test
@@ -57,11 +62,65 @@ sudo make install
 ~~~
 
 
+##  Update
+
+If you already installed this extension you will be able to update to the latest version.
+
+
 ### CPAN
 
 ~~~ {.bash}
 sudo cpan RT::Extension::ReferenceIDoitObjects
 ~~~
+
+
+### Manual
+
+~~~ {.bash}
+wget RT-Extension-ReferenceIDoitObjects-<VERSION>.tar.gz
+tar xzvf RT-Extension-ReferenceIDoitObjects-<VERSION>.tar.gz
+cd RT-Extension-ReferenceIDoitObjects-<VERSION>/
+perl Makefile.PL
+make
+make test
+sudo make install
+~~~
+
+
+### Git
+
+Fresh copy:
+
+~~~ {.bash}
+git clone https://github.com/bheisig/rt-extension-referenceidoitobjects.git
+cd rt-extension-referenceidoitobjects
+perl Makefile.PL
+make
+make test
+sudo make install
+~~~
+
+Existing copy:
+
+~~~ {.bash}
+cd rt-extension-referenceidoitobjects
+git pull
+perl Makefile.PL
+make
+make test
+sudo make install
+~~~
+
+
+##  Upgrade from 0.9x to 1.x
+
+There are several changes that come with version 1.x, so please follow these instructions carefully.
+
+1.  Just follow the normal update steps.
+2.  You have to re-name the custom field "i-doit mandator" to "i-doit tenant".
+3.  The custom filed "i-doit tenant" must contain tenant identifiers not their names.
+4.  Check RT's site configuration file for the string "mandator". Please replace it with "tenant" (beware of the case-sensitivity).
+5.  In RT's site configuration the settings `%IDoitTenantKeys` and `$IDoitDefaultTenant` must containt the tenant identifiers, not their names.
 
 
 ##  Configuration
@@ -177,7 +236,7 @@ This is an example for deleting the mason cache and restarting the Apache HTTP W
 
 ##  Configure i-doit
 
-You may see and create object-related tickets within i-doit. Please refer to the [i-doit knowledge base](https://kb.i-doit.com/display/en/) to enable this feature.
+You may see and create object-related tickets within i-doit. Please refer to the [i-doit Knowledge Base](https://kb.i-doit.com/display/en/) to enable this feature.
 
 If you create a new ticket in i-doit a new browser tab will be opened with the RT user interface. Sometimes RT shows a warning that there is a CSR attack. If you observe this behavior edit RT's local configuration file `$RT_HOME/etc/RT_SiteConfig.pm` where `$RT_HOME` is the path to your RT installation, for example `/opt/rt4`:
 
@@ -204,6 +263,7 @@ Whenever you create a new ticket or edit an existing one you are able to referen
 
 ##  Useful Resources
 
+*   **i-doit Knowledge Base:** <https://kb.i-doit.com/display/en/>
 *   **Source code repository:** <https://github.com/bheisig/rt-extension-referenceidoitobjects>
 *   **Search CPAN:** <http://search.cpan.org/dist/RT-Extension-ReferenceIDoitObjects/>
 *   -**CPAN's request tracker:** <http://rt.cpan.org/NoAuth/Bugs.html?Dist=RT-Extension-ReferenceIDoitObjects>- _(unused)_
