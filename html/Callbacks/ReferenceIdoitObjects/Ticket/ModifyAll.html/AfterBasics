@@ -1,6 +1,6 @@
 %# RT::Extension::ReferenceIDoitObjects
 %#
-%# Copyright (C) 2011-14 synetics GmbH, <http://i-doit.org/>
+%# Copyright (C) 2011-17 synetics GmbH, <https://i-doit.com/>
 %#
 %# This program is free software: you can redistribute it and/or modify
 %# it under the terms of the GNU Affero General Public License as

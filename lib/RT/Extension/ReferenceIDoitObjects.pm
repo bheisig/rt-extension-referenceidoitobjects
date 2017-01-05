@@ -1,6 +1,6 @@
 # RT::Extension::ReferenceIDoitObjects
 #
-# Copyright (C) 2011-14 synetics GmbH, <http://i-doit.org/>
+# Copyright (C) 2011-17 synetics GmbH, <https://i-doit.com/>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
@@ -23,7 +23,7 @@ use 5.010;
 use warnings;
 use strict;
 
-our $VERSION = '0.94';
+our $VERSION = '1.00';
 
 =head1 NAME
 
@@ -241,7 +241,7 @@ Please report any bugs or feature requests to the L<authors|/"AUTHORS">.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2011-14 synetics GmbH, E<lt>http://i-doit.org/E<gt>
+Copyright (C) 2011-17 synetics GmbH, E<lt>https://i-doit.com/E<gt>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
