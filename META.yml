@@ -20,7 +20,9 @@ configure_requires:
   ExtUtils::MakeMaker: 6.42
 no_index:
   file:
-    - TODO
+    - Changelog.md
+    - README.md
+    - TODO.md
   directory:
     - etc
     - html
