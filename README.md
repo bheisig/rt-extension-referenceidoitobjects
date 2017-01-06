@@ -9,6 +9,7 @@ This extension gives you the opportunity to combine an issue tracker like [Reque
 
 [i-doit ("I document IT")](https://www.i-doit.com/) is a Web application to establish an IT documentation and CMDB. Its core is Free and Open Source Software. Visit <https://www.i-doit.com/> for commercial support and additional services.
 
+
 ##  Requirements
 
 This extension requires RT 4.4.x and i-doit 1.8.2 or higher. It is not compatible with RT != 4.4.x (for example 3.8.x, 4.0.x, 4.2.x) and not compatible with i-doit <= 1.8.1.
@@ -16,6 +17,7 @@ This extension requires RT 4.4.x and i-doit 1.8.2 or higher. It is not compatibl
 Here is a matrix of all compatible versions:
 
 |               | RT 3.8.x  | RT 4.0.x  | RT 4.2.x  | RT 4.4.x  |
+| ------------- | --------- | --------- | --------- | --------- |
 | i-doit 1.0.x  |           | 0.92¹     |           |           |
 | i-doit 1.1.x  |           | 0.92      |           |           |
 | i-doit 1.2.x  |           | 0.92      |           |           |
@@ -30,9 +32,11 @@ Here is a matrix of all compatible versions:
 
 ² Requires i-doit 1.8.2 or higher
 
+
 ##  Installation
 
 The prefered way is via CPAN. You may also fetch und install the latest version manually or even try the current development branch.
+
 
 ### Manual
 
