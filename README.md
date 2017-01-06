@@ -300,6 +300,14 @@ Don't forget to clear the Mason cache and restart your Web server.
 
 Whenever you create a new ticket or edit an existing one you are able to reference this ticket with one or more objects in i-doit. An additional box with the so-called "object browser" will shown up. Just select the objects you need or unselect the objects you do not need.
 
+![Create a new ticket](docs/rt_new_ticket.png)
+
+![Display a ticket](docs/rt_display_ticket.png)
+
+![Modify a ticket](docs/rt_modify_ticket.png)
+
+![Modify everything at once](docs/rt_jumbo_ticket.png)
+
 
 ##  Authors
 
