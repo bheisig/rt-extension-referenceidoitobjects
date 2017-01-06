@@ -11,8 +11,24 @@ This extension gives you the opportunity to combine an issue tracker like [Reque
 
 ##  Requirements
 
-This extension requires RT 4.4.x and i-doit 1.8.2 or higher. It is not compatible with RT != 4.4.x (for example 3.8.x, 4.0.x, 4.2.x or 4.6.x) and not compatible with i-doit <= 1.8.1.
+This extension requires RT 4.4.x and i-doit 1.8.2 or higher. It is not compatible with RT != 4.4.x (for example 3.8.x, 4.0.x, 4.2.x) and not compatible with i-doit <= 1.8.1.
 
+Here is a matrix of all compatible versions:
+
+|               | RT 3.8.x  | RT 4.0.x  | RT 4.2.x  | RT 4.4.x  |
+| i-doit 1.0.x  |           | 0.92¹     |           |           |
+| i-doit 1.1.x  |           | 0.92      |           |           |
+| i-doit 1.2.x  |           | 0.92      |           |           |
+| i-doit 1.3.x  |           |           | 0.93      |           |
+| i-doit 1.4.x  |           |           | 0.93/0.94 |           |
+| i-doit 1.5.x  |           |           | 0.94      |           |
+| i-doit 1.6.x  |           |           | 0.94      |           |
+| i-doit 1.7.x  |           |           | 0.94      |           |
+| i-doit 1.8.x  |           |           | 0.94      | 1.00²     |
+
+¹ Requires i-doit 1.0.1 or higher
+
+² Requires i-doit 1.8.2 or higher
 
 ##  Installation
 
