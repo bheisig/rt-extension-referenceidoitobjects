@@ -39,9 +39,9 @@ The prefered way is via CPAN. You may also fetch und install the latest version 
 Download the latest version from [CPAN](http://search.cpan.org/dist/RT-Extension-ReferenceIDoitObjects/) or [GitHub](https://github.com/bheisig/rt-extension-referenceidoitobjects/releases). To install this extension run the following commands:
 
 ~~~ {.bash}
-wget RT-Extension-ReferenceIDoitObjects-<VERSION>.tar.gz
-tar xzvf RT-Extension-ReferenceIDoitObjects-<VERSION>.tar.gz
-cd RT-Extension-ReferenceIDoitObjects-<VERSION>/
+wget RT-Extension-ReferenceIDoitObjects-1.00.tar.gz
+tar xzvf RT-Extension-ReferenceIDoitObjects-1.00.tar.gz
+cd RT-Extension-ReferenceIDoitObjects-1.00/
 perl Makefile.PL
 make
 make test
@@ -93,9 +93,9 @@ sudo cpan RT::Extension::ReferenceIDoitObjects
 ### Manual
 
 ~~~ {.bash}
-wget RT-Extension-ReferenceIDoitObjects-<VERSION>.tar.gz
-tar xzvf RT-Extension-ReferenceIDoitObjects-<VERSION>.tar.gz
-cd RT-Extension-ReferenceIDoitObjects-<VERSION>/
+wget RT-Extension-ReferenceIDoitObjects-1.00.tar.gz
+tar xzvf RT-Extension-ReferenceIDoitObjects-1.00.tar.gz
+cd RT-Extension-ReferenceIDoitObjects-1.00/
 perl Makefile.PL
 make
 make test
@@ -128,9 +128,9 @@ sudo make install
 ~~~
 
 
-##  Upgrade from 0.9x to 1.x
+##  Upgrade from Version 0.9x to 1.x
 
-There are several changes that come with version 1.x, so please follow these instructions carefully.
+Version 1.x is shipped with several changes, so please follow these instructions carefully.
 
 1.  Just follow the normal update steps.
 2.  You have to re-name the custom field "i-doit mandator" to "i-doit tenant".
@@ -175,7 +175,33 @@ It is _highly recommended_ to establish an TLS encrypted connection between RT a
 
 i-doit has a API based on JSON-RPC. If you have not downloaded or activated it yet now it will be a good time to do it.
 
-**Notice:** Please be aware of browsers' "Same Origin Policy". This extension uses AJAX requests access i-doit's API. If RT and i-doit are not available under the same domain name (or IP address), AJAX calls will fail. To avoid this "problem" (actually this policy is very useful) you can setup an AJAX proxy. This extension already provides such a proxy located under `etc/`. It's written in PHP, so you have to install PHP 5.4 or higher and the PHP extension `curl` on the same machine where RT is installed. Make this little script available through your web server and edit the script by setting `$l_url` to the URL of i-doit's API, e. g. `http://i-doit.example.org/i-doit/index.php?api=jsonrpc`. In RT's site configuration the setting `$IDoitAPI` has to be set to the URL of this script, for example `http://rt.example.org/path/to/i-doit_api_proxy.php`.
+**Notice:** If you use both Web GUIs of i-doit and RT under different domains (FQDN) or IP addresses, please be aware of browsers' "Same Origin Policy". This extension uses AJAX requests access i-doit's API. If RT and i-doit are not available under the same domain name (or IP address), AJAX calls will fail.
+
+To avoid this "problem" (actually this policy is very useful) you can setup an AJAX proxy. This extension already provides such a proxy located under `etc/i-doit_api_proxy.php`. It is written in PHP, so you have to install PHP 5.4 or higher and the PHP extension `curl` on the same machine where RT is installed:
+
+~~~ {.bash}
+sudo apt install php5 php5-curl libapache2-mod-php5
+~~~
+
+Make this little script available through your web server and edit the script by setting `$l_url` to the URL of i-doit's API:
+
+~~~ {.php}
+$l_url = 'https://i-doit.example.org/i-doit/index.php?api=jsonrpc';
+~~~
+
+In RT's site configuration the setting `$IDoitAPI` has to be set to the URL of this script:
+
+~~~ {.perl}
+Set($IDoitAPI, 'https://rt.example.org/path/to/i-doit_api_proxy.php');
+~~~
+
+If you use a TLS encrypted HTTPS connection with a self-signed certificate `curl` should probably not check the certificate. Add this line to the proxy script:
+
+~~~ {.php}
+curl_setopt($l_curl_handle, CURLOPT_SSL_VERIFYPEER, false);
+~~~
+
+For testing purposes call the proxy "by hand". Point your browser to the URL of the proxy script. i-doit should answer with an error message that it is not a valid JSON-RPC request.
 
 
 ### `$IDoitTenantKeys`
