@@ -311,9 +311,9 @@ Whenever you create a new ticket or edit an existing one you are able to referen
 
 ##  Authors
 
-*   Benjamin Heisig, <bheisig@i-doit.com>
-*   Leonard Fischer, <lfischer@i-doit.com>
-*   Van Quyen Hoang, <qhoang@i-doit.com>
+*   Benjamin Heisig
+*   Leonard Fischer
+*   Van Quyen Hoang
 
 
 ##  Useful Resources
@@ -329,7 +329,9 @@ Whenever you create a new ticket or edit an existing one you are able to referen
 
 ##  Issues and Contributions
 
-Please report any bugs or feature requests to <https://github.com/bheisig/rt-extension-referenceidoitobjects/issues>. Pull requests are very welcomed!
+Please report any bugs or feature requests related to this extension to [the issue tracker](https://github.com/bheisig/rt-extension-referenceidoitobjects/issues). Pull requests are very welcomed!
+
+If you have found issues concerning i-doit or RT please contact the respective customer support. The extension's authors won't give you professional support, neither for i-doit nor RT.
 
 
 ##  Copyright and License
