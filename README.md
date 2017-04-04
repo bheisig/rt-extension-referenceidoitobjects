@@ -144,6 +144,18 @@ Version 1.x is shipped with several changes, so please follow these instructions
 6.  Restart RT environment: `sudo rm -rf $RT_HOME/var/mason_data/obj/* && sudo systemctl restart apache2.service`
 
 
+##  Issue in RT 4.4.x
+
+**Caution:** RT 4.4.x is currently shipped with an out-dated version of the JavaScript framework [jQuery](https://jquery.com/). This version breaks with the jQuery plugin [DataTables](https://datatables.net/) which is needed by this RT extension. A workaround is to upgrade jQuery.
+
+1.  Download a newer version of jQuery from their website, for example the minified version [`1.12.4.min.js`](https://code.jquery.com/jquery-1.12.4.min.js).
+2.  Copy this file to `$RT_HOME/share/static/js/`.
+3.  Inside this directory you see the out-dated jQuery version `jquery-1.11.3.min.js`. Move it: `mv jquery-1.11.3.min.js jquery-1.11.3.min.js.bak`
+4.  Create a symbolic link: `ln -s jquery-1.12.4.min.js jquery-1.11.3.min.js`
+
+Note that this workaround could be overwritten whenever you perform an update of RT.
+
+
 ##  Configuration
 
 To enable this extension edit the RT site configuration based in `$RT_HOME/etc/RT_SiteConfig.pm`:
