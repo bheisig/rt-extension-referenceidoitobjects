@@ -40,7 +40,19 @@ Here is a matrix of all compatible versions:
 
 ##  Installation
 
-**The prefered way is via CPAN.** You may also fetch und install the latest version manually or even try the current development branch.
+**The preferred way is via CPAN.** You may also fetch und install the latest version manually or even try the current development branch.
+
+But before you do please make sure all dependencies are met:
+
+-   `RT 4.4.x`
+-   Perl module `YAML::Tiny`
+
+~~~ {.bash}
+export RT_HOME="/opt/rt"
+sudo cpan YAML::Tiny
+~~~
+
+Set `RT_HOME` to the path where your RT instance is located, for example `/opt/rt4`.
 
 
 ### Manual
@@ -67,10 +79,10 @@ The prefered and easiest way to install the latest version is via CPAN:
 
 ~~~ {.bash}
 sudo cpan RT::Extension::ReferenceIDoitObjects
-$RT_HOME/sbin/rt-setup-database --action insert --datafile /opt/rt4/local/plugins/RT-Extension-ReferenceIDoitObjects/etc/initialdata
+$RT_HOME/sbin/rt-setup-database --action insert --datafile $RT_HOME/local/plugins/RT-Extension-ReferenceIDoitObjects/etc/initialdata
 ~~~
 
-The second command is equivalent to `make initdb`, but is unfortunately not executed automatically. `$RT_HOME` is the path to your RT installation, for example `/opt/rt4`.
+The second command is equivalent to `make initdb`, but is unfortunately not executed automatically.
 
 
 ### Git
@@ -145,13 +157,13 @@ Version 1.x is shipped with several changes, so please follow these instructions
 2.  You have to re-name the custom field "i-doit mandator" to "i-doit tenant".
 3.  The custom filed "i-doit tenant" must contain tenant identifiers not their names.
 4.  Check RT's site configuration file for the string "mandator". Please replace it with "tenant" (beware of the case-sensitivity).
-5.  In RT's site configuration the settings `%IDoitTenantKeys` and `$IDoitDefaultTenant` must containt the tenant identifiers, not their names.
+5.  In RT's site configuration the settings `%IDoitTenantKeys` and `$IDoitDefaultTenant` must contain the tenant identifiers, not their names.
 6.  Restart RT environment: `sudo rm -rf $RT_HOME/var/mason_data/obj/* && sudo systemctl restart apache2.service`
 
 
 ##  Issue in RT 4.4.x
 
-**Caution:** RT 4.4.x is currently shipped with an out-dated version of the JavaScript framework [jQuery](https://jquery.com/). This version breaks with the jQuery plugin [DataTables](https://datatables.net/) which is needed by this RT extension. A workaround is to upgrade jQuery.
+**Caution:** RT 4.4.x is currently shipped with an out-dated version of the JavaScript framework [jQuery](https://jquery.com/). This version breaks with the jQuery plug-in [DataTables](https://datatables.net/) which is needed by this RT extension. A workaround is to upgrade jQuery.
 
 1.  Download a newer version of jQuery from their website, for example the minified version [`1.12.4.min.js`](https://code.jquery.com/jquery-1.12.4.min.js).
 2.  Copy this file to `$RT_HOME/share/static/js/`.
@@ -194,14 +206,14 @@ It is _highly recommended_ to establish an TLS encrypted connection between RT a
 
 ### `$IDoitAPI`
 
-i-doit has a API based on JSON-RPC. If you have not downloaded or activated it yet now it will be a good time to do it.
+i-doit has a API based on JSON-RPC. If you haven't installed or configured it yet now it will be a good time to do it.
 
 **Notice:** If you use both Web GUIs of i-doit and RT under different domains (FQDN) or IP addresses, please be aware of browsers' "Same Origin Policy". This extension uses AJAX requests access i-doit's API. If RT and i-doit are not available under the same domain name (or IP address), AJAX calls will fail.
 
-To avoid this "problem" (actually this policy is very useful) you can setup an AJAX proxy. This extension already provides such a proxy located under `etc/i-doit_api_proxy.php`. It is written in PHP, so you have to install PHP 5.4 or higher and the PHP extension `curl` on the same machine where RT is installed:
+To avoid this "problem" (actually this policy is very useful) you can setup an AJAX proxy. This extension already provides such a proxy located under `etc/i-doit_api_proxy.php`. It is written in PHP, so you have to install PHP 5.6 or higher and the PHP extension `curl` on the same machine where RT is installed. For example, on a Debian GNU/Linux 9 system:
 
 ~~~ {.bash}
-sudo apt install php5 php5-curl libapache2-mod-php5
+sudo apt install php php-curl libapache2-mod-php
 ~~~
 
 Make this little script available through your web server and edit the script by setting `$l_url` to the URL of i-doit's API:
@@ -251,14 +263,14 @@ Select objects provided by the API and filter them by type.
 
 Select users' workplaces and their related components. Each user will be taken by the email address provided by RT's field "Requestors" if these users are documented in i-doit.
 
-i-doit gives you the possiblity to create relations between users, their workplaces and all components related to these workplaces.
+i-doit gives you the possibility to create relations between users, their workplaces and all components related to these workplaces.
 
 Tip: You may synchronize user information between RT and i-doit via LDAP.
 
 
 ####    `devices`
 
-Select assigned devices for current requestor. Those devices are objects in i-doit which have this requestor as an assigend person.
+Select assigned devices for current requestor. Those devices are objects in i-doit which have this requestor as an assigned person.
 
 
 ####    `selected`
@@ -315,7 +327,7 @@ Don't forget to clear the Mason cache and restart your Web server.
 
 ##  Usage
 
-Whenever you create a new ticket or edit an existing one you are able to reference this ticket with one or more objects in i-doit. An additional box with the so-called "object browser" will shown up. Just select the objects you need or unselect the objects you do not need.
+Whenever you create a new ticket or edit an existing one you are able to reference this ticket with one or more objects in i-doit. An additional box with the so-called "object browser" will shown up. Just select the objects you need or deselect the objects you do not need.
 
 ![Create a new ticket](docs/rt_new_ticket.png)
 
