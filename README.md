@@ -1,18 +1,20 @@
 #   RT::Extension::ReferenceIDoitObjects
 
-Create a ticket in relation to one or more i-doit objects
+Create a ticket in Request Tracker (RT) in relation to one or more i-doit objects
 
 
 ##  Description
 
-This extension gives you the opportunity to combine an issue tracker like [Request Tracker (RT)](https://bestpractical.com/request-tracker) with an IT documentation tool / CMDB like i-doit. It uses i-doit's API to relate a ticket with one or more objects managed by i-doit. On i-doit's side you are able to view all tickets related to an object. This extension also supports i-doit's multi-tenant functionality.
+This extension gives you the opportunity to combine an issue tracker like [Request Tracker (RT)](https://bestpractical.com/) with an IT documentation tool / CMDB like i-doit. It uses i-doit's API to relate a ticket with one or more objects managed by i-doit. On i-doit's side you are able to view all tickets related to an object. This extension also supports i-doit's multi-tenant functionality.
 
-[i-doit ("I document IT")](https://www.i-doit.com/) is a Web application to establish an IT documentation and CMDB. Its core is Free and Open Source Software. Visit <https://www.i-doit.com/> for commercial support and additional services.
+[i-doit ("I document IT")](https://i-doit.com/) is a Web application to establish an IT documentation and CMDB. Its core is Free and Open Source Software. Visit <https://www.i-doit.com/> for commercial support and additional services.
 
 
 ##  Requirements
 
-This extension requires RT 4.4.x and i-doit 1.8.2 or higher. It is not compatible with RT != 4.4.x (for example 3.8.x, 4.0.x, 4.2.x) and not compatible with i-doit <= 1.8.1.
+The latest release requires RT 4.4.x and i-doit 1.8.2 or higher. It is not compatible with RT != 4.4.x (for example 3.8.x, 4.0.x, 4.2.x) and not compatible with i-doit <= 1.8.1.
+
+You also need the i-doit API add-on installed, enabled and configured.
 
 Here is a matrix of all compatible versions:
 
@@ -27,6 +29,9 @@ Here is a matrix of all compatible versions:
 | i-doit 1.6.x  |           |           | 0.94      |           |
 | i-doit 1.7.x  |           |           | 0.94      |           |
 | i-doit 1.8.x  |           |           | 0.94      | 1.00²     |
+| i-doit 1.9.x  |           |           |           | 1.00²     |
+| i-doit 1.10.x |           |           |           | 1.00²     |
+| i-doit 1.11.x |           |           |           | 1.00²     |
 
 ¹ Requires i-doit 1.0.1 or higher
 
@@ -35,15 +40,15 @@ Here is a matrix of all compatible versions:
 
 ##  Installation
 
-The prefered way is via CPAN. You may also fetch und install the latest version manually or even try the current development branch.
+**The prefered way is via CPAN.** You may also fetch und install the latest version manually or even try the current development branch.
 
 
 ### Manual
 
-Download the latest version from [CPAN](http://search.cpan.org/dist/RT-Extension-ReferenceIDoitObjects/) or [GitHub](https://github.com/bheisig/rt-extension-referenceidoitobjects/releases). To install this extension run the following commands:
+Download the latest version from [CPAN](https://metacpan.org/release/RT-Extension-ReferenceIDoitObjects) or [GitHub](https://github.com/bheisig/rt-extension-referenceidoitobjects/releases). To install this extension run the following commands:
 
 ~~~ {.bash}
-wget RT-Extension-ReferenceIDoitObjects-1.00.tar.gz
+wget https://cpan.metacpan.org/authors/id/B/BH/BHEISIG/RT-Extension-ReferenceIDoitObjects-1.00.tar.gz
 tar xzvf RT-Extension-ReferenceIDoitObjects-1.00.tar.gz
 cd RT-Extension-ReferenceIDoitObjects-1.00/
 perl Makefile.PL
@@ -97,7 +102,7 @@ sudo cpan RT::Extension::ReferenceIDoitObjects
 ### Manual
 
 ~~~ {.bash}
-wget RT-Extension-ReferenceIDoitObjects-1.00.tar.gz
+wget https://cpan.metacpan.org/authors/id/B/BH/BHEISIG/RT-Extension-ReferenceIDoitObjects-1.00.tar.gz
 tar xzvf RT-Extension-ReferenceIDoitObjects-1.00.tar.gz
 cd RT-Extension-ReferenceIDoitObjects-1.00/
 perl Makefile.PL
@@ -321,22 +326,19 @@ Whenever you create a new ticket or edit an existing one you are able to referen
 ![Modify everything at once](docs/rt_jumbo_ticket.png)
 
 
-##  Authors
-
-*   Benjamin Heisig
-*   Leonard Fischer
-*   Van Quyen Hoang
-
-
 ##  Useful Resources
 
-*   **i-doit Knowledge Base:** <https://kb.i-doit.com/display/en/>
-*   **Source code repository:** <https://github.com/bheisig/rt-extension-referenceidoitobjects>
-*   **Search CPAN:** <http://search.cpan.org/dist/RT-Extension-ReferenceIDoitObjects/>
-*   **MetaCPAN:** <https://metacpan.org/search?q=RT-Extension-ReferenceIDoitObjects>
-*   **AnnoCPAN (Annotated CPAN documentation):** <http://annocpan.org/dist/RT-Extension-ReferenceIDoitObjects>
-*   **CPAN Ratings:** <https://cpanratings.perl.org/d/RT-Extension-ReferenceIDoitObjects>
-*   ~~**CPAN's request tracker:** <https://rt.cpan.org/Public/Dist/Display.html?Name=RT-Extension-ReferenceIDoitObjects>~~ _(unused)_
+-   [i-doit Knowledge Base](https://kb.i-doit.com/display/en/)
+-   [i-doit Website](https://i-doit.com/)
+-   [i-doit Help Center](https://help.i-doit.com/)
+-   [i-doit Community](https://community.i-doit.com/)
+-   [RT Website](https://bestpractical.com/)
+-   [Source code repository](https://github.com/bheisig/rt-extension-referenceidoitobjects)
+-   [MetaCPAN](https://metacpan.org/release/RT-Extension-ReferenceIDoitObjects)
+-   [AnnoCPAN (Annotated CPAN documentation)](http://annocpan.org/dist/RT-Extension-ReferenceIDoitObjects)
+-   [CPAN Ratings](https://cpanratings.perl.org/d/RT-Extension-ReferenceIDoitObjects)
+-   ~~[CPAN's request tracker](https://rt.cpan.org/Public/Dist/Display.html?Name=RT-Extension-ReferenceIDoitObjects)~~ _(unused)_
+-   [Install Request Tracker (RT) 4.4.1 on Debian GNU/Linux 8.6 (Or: How I survived Perl's CPAN dependency hell…)](https://gist.github.com/bheisig/a4a34ffa85ebf1c3c5dc8dd8b46a0040)
 
 
 ##  Issues and Contributions
@@ -346,9 +348,18 @@ Please report any bugs or feature requests related to this extension to [the iss
 If you have found issues concerning i-doit or RT please contact the respective customer support. The extension's authors won't give you professional support, neither for i-doit nor RT.
 
 
+##  Authors
+
+-   Benjamin Heisig
+-   Leonard Fischer
+-   Van Quyen Hoang
+
+Just to be clear: We won't give you support via e-mail. Instead, [create a new issue](https://github.com/bheisig/rt-extension-referenceidoitobjects/issues).
+
+
 ##  Copyright and License
 
-Copyright (C) 2011-17 synetics GmbH, <https://i-doit.com/>
+Copyright (C) 2011-18 [synetics GmbH](https://i-doit.com/)
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
@@ -357,4 +368,3 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU Affero General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 Request Tracker (RT) is Copyright Best Practical Solutions, LLC.
-
