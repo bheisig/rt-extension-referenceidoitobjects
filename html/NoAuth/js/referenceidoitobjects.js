@@ -510,7 +510,7 @@ ReferenceIDoitObjects = function (params) {
         $.each(data, function (i, e) {
             var selected = false;
 
-            if (typeof that.dataStore.data(i) !== 'undefined') {
+            if (typeof that.dataStore.data(i.toString()) !== 'undefined') {
                 selected = true;
             } //if
 
@@ -555,7 +555,7 @@ ReferenceIDoitObjects = function (params) {
                     link = '',
                     showSoftware = '';
 
-                if (typeof that.dataStore.data(e.id) !== 'undefined') {
+                if (typeof that.dataStore.data(e.id.toString()) !== 'undefined') {
                     selected = true;
                 }
 
@@ -645,7 +645,7 @@ ReferenceIDoitObjects = function (params) {
                             check = '',
                             link = '';
 
-                        if (typeof that.dataStore.data(e.application.id) !== 'undefined') {
+                        if (typeof that.dataStore.data(e.application.id.toString()) !== 'undefined') {
                             selected = true;
                         } //if
 
@@ -671,7 +671,7 @@ ReferenceIDoitObjects = function (params) {
                             selected = false,
                             link;
 
-                        if (typeof that.dataStore.data(e.data.id) !== 'undefined') {
+                        if (typeof that.dataStore.data(e.data.id.toString()) !== 'undefined') {
                             selected = true;
                         } //if
 
@@ -736,7 +736,7 @@ ReferenceIDoitObjects = function (params) {
                 check = '',
                 link = '';
 
-            if (typeof that.dataStore.data(e.id) !== 'undefined') {
+            if (typeof that.dataStore.data(e.id.toString()) !== 'undefined') {
                 selected = true;
             } //if
 
@@ -811,7 +811,7 @@ ReferenceIDoitObjects = function (params) {
      * @param {int} id - Object identifier
      */
     this.removeObject = function (id) {
-        that.dataStore.removeData(id);
+        that.dataStore.removeData(id.toString());
 
         that.renderSelectedObjects();
 
@@ -843,12 +843,12 @@ ReferenceIDoitObjects = function (params) {
      * @param {int} type - Object type
      */
     this.addObject = function (id, name, type) {
-        if (typeof that.dataStore.data(id) !== 'undefined') {
+        if (typeof that.dataStore.data(id.toString()) !== 'undefined') {
             // its already in data store
             return;
         } //if
 
-        that.dataStore.data(id, {"name": name, "type": type});
+        that.dataStore.data(id.toString(), {"name": name, "type": type});
 
         that.renderSelectedObjects();
 
@@ -999,9 +999,9 @@ ReferenceIDoitObjects = function (params) {
             name = $(ele).closest('tr').find('td:eq(2)').text();
             type = $(ele).closest('tr').find('td:eq(3)').text();
 
-            that.dataStore.data(ele.value, {"name": name, "type": type});
+            that.dataStore.data(ele.value.toString(), {"name": name, "type": type});
         } else {
-            that.dataStore.removeData(ele.value);
+            that.dataStore.removeData(ele.value.toString());
         } //if
 
         that.renderSelectedObjects();
@@ -1135,7 +1135,7 @@ ReferenceIDoitObjects = function (params) {
                 $.each(response.result, function (i, e) {
                     var selected = false;
 
-                    if (typeof that.dataStore.data(e.data.id) !== 'undefined') {
+                    if (typeof that.dataStore.data(e.data.id.toString()) !== 'undefined') {
                         selected = true;
                     } //if
 
